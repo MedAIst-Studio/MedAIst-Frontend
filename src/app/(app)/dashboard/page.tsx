@@ -17,7 +17,6 @@ import {
   MessageCircle,
   Star,
   Target,
-  Zap,
 } from "lucide-react";
 
 export default function Dashboard() {
@@ -104,13 +103,12 @@ export default function Dashboard() {
           <Card className="lg:col-span-2">
             <CardHeader className="pb-4">
               <div className="flex items-center space-x-2">
-                <Zap className="w-5 h-5 text-yellow-500" />
                 <CardTitle className="text-xl">Quick Actions</CardTitle>
               </div>
               <CardDescription>Jump into your AI-powered study tools</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <Button className="h-28 group relative overflow-hidden bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white border-0 shadow-lg transform hover:scale-105 transition-all duration-200">
                   <div className="flex flex-col items-center space-y-2 relative z-10">
                     <MessageCircle className="h-7 w-7" />
@@ -153,7 +151,6 @@ export default function Dashboard() {
           <Card>
             <CardHeader className="pb-4">
               <div className="flex items-center space-x-2">
-                <Target className="w-5 h-5 text-blue-500" />
                 <CardTitle className="text-xl">Study Goals</CardTitle>
               </div>
               <CardDescription>Your weekly progress tracking</CardDescription>
