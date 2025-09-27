@@ -12,9 +12,9 @@ export default function AppLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col min-h-screen">
       <DashboardHeader />
-      <main className="flex-1 overflow-hidden bg-background">{children}</main>
+      <main className="flex-1 bg-background">{children}</main>
     </div>
   );
 }

@@ -347,7 +347,7 @@ export default function ChatPage() {
       </div>
 
       {/* Messages Container */}
-      <div className="flex-1 overflow-y-auto px-4">
+      <div className="flex-1 overflow-y-auto px-4 pb-24">
         <div className="max-w-4xl mx-auto py-6 space-y-6">
           {messages.map((message) => (
             <div
@@ -465,8 +465,8 @@ export default function ChatPage() {
       </div>
 
       {/* Input Area */}
-      <div className="bg-white flex-shrink-0 px-4">
-        <div className="max-w-4xl mx-auto py-4">
+      <div className="bg-white flex-shrink-0 px-4 fixed bottom-0 left-0 right-0">
+        <div className="max-w-4xl mx-auto pb-4">
           <div className="relative flex items-center border rounded-full pr-4">
             <Textarea
               ref={textareaRef}
