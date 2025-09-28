@@ -266,7 +266,7 @@ export default function ChatPage() {
   ];
 
   return (
-    <div className="flex flex-col h-full bg-white">
+    <div className="flex flex-col h-full">
       {/* Header */}
       <div className="border-b bg-white/95 backdrop-blur-sm flex-shrink-0 z-10">
         <div className="max-w-4xl mx-auto px-4 py-3">
@@ -365,7 +365,7 @@ export default function ChatPage() {
                   className={`rounded-2xl px-4 py-3 ${
                     message.role === "user"
                       ? "bg-blue-600 text-white ml-12"
-                      : "bg-gray-100 text-gray-900"
+                      : "bg-white border text-gray-900"
                   }`}
                 >
                   <div className="whitespace-pre-wrap text-sm leading-relaxed">
@@ -429,7 +429,7 @@ export default function ChatPage() {
                     <Button
                       key={index}
                       variant="outline"
-                      className="text-left justify-start h-auto py-3 px-4 text-sm text-gray-700 hover:bg-blue-50 hover:border-blue-200"
+                      className="text-left bg-white shadow-none justify-start h-auto py-3 px-4 text-sm text-gray-700 hover:bg-blue-50 hover:border-blue-200"
                       onClick={() => setInputMessage(question)}
                     >
                       <div className="flex items-center gap-2">
@@ -465,9 +465,9 @@ export default function ChatPage() {
       </div>
 
       {/* Input Area */}
-      <div className="bg-white flex-shrink-0 px-4 fixed bottom-0 left-0 right-0">
+      <div className="flex-shrink-0 bg-background px-4 fixed bottom-0 left-0 right-0">
         <div className="max-w-4xl mx-auto pb-4">
-          <div className="relative flex items-center border rounded-full pr-4">
+          <div className="relative flex items-center border rounded-full pr-4 bg-white">
             <Textarea
               ref={textareaRef}
               value={inputMessage}
@@ -486,7 +486,7 @@ export default function ChatPage() {
               <ArrowUp className="!w-5 !h-5" />
             </Button>
           </div>
-          <div className="text-xs text-gray-500 mt-2 text-center">
+          <div className="text-xs text-gray-500 mt-4 text-center">
             MedAI can make mistakes. Please verify important medical information.
           </div>
         </div>
