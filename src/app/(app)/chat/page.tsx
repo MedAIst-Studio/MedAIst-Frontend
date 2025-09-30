@@ -268,7 +268,7 @@ export default function ChatPage() {
   return (
     <div className="flex flex-col h-full">
       {/* Header */}
-      <div className="border-b bg-white/95 backdrop-blur-sm flex-shrink-0 z-10">
+      <div className="border-b-4 border-gray-200 bg-white/95 backdrop-blur-sm flex-shrink-0 z-10">
         <div className="max-w-4xl mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
@@ -283,7 +283,7 @@ export default function ChatPage() {
             <div className="flex items-center space-x-2">
               <Dialog open={isHistoryOpen} onOpenChange={setIsHistoryOpen}>
                 <DialogTrigger asChild>
-                  <Button variant="ghost" size="sm" title="Chat history">
+                  <Button variant="outline" size="icon" title="Chat history">
                     <History className="w-4 h-4" />
                   </Button>
                 </DialogTrigger>
@@ -303,7 +303,7 @@ export default function ChatPage() {
                       savedChats.map((chat) => (
                         <div
                           key={chat.id}
-                          className="flex items-center justify-between p-3 rounded-lg border hover:bg-gray-50 group"
+                          className="flex items-center justify-between p-3 rounded-lg border border-b-3 border-b-gray-300 hover:bg-gray-50 hover:shadow-lg hover:-translate-y-0.5 group transition-all duration-200"
                         >
                           <div className="flex-1 cursor-pointer" onClick={() => loadChat(chat.id)}>
                             <h4 className="font-medium text-sm group-hover:text-blue-600">
@@ -338,7 +338,7 @@ export default function ChatPage() {
                   </div>
                 </DialogContent>
               </Dialog>
-              <Button variant="ghost" size="sm" onClick={clearChat} title="Clear chat">
+              <Button variant="outline" size="icon" onClick={clearChat} title="Clear chat">
                 <RotateCcw className="w-4 h-4" />
               </Button>
             </div>
@@ -362,10 +362,10 @@ export default function ChatPage() {
 
               <div className={`max-w-3xl ${message.role === "user" ? "order-1" : ""}`}>
                 <div
-                  className={`rounded-2xl px-4 py-3 ${
+                  className={`rounded-2xl px-4 py-3 transition-all duration-200 ${
                     message.role === "user"
-                      ? "bg-blue-600 text-white ml-12"
-                      : "bg-white border text-gray-900"
+                      ? "bg-blue-600 text-white ml-12 border-b-4 border-b-blue-800 shadow-lg"
+                      : "bg-white border border-b-4 border-b-gray-200 text-gray-900"
                   }`}
                 >
                   <div className="whitespace-pre-wrap text-sm leading-relaxed">
@@ -386,9 +386,9 @@ export default function ChatPage() {
                   {message.role === "assistant" && (
                     <div className="flex items-center gap-1 ml-2">
                       <Button
-                        variant="ghost"
-                        size="sm"
-                        className="h-6 w-6 p-0 hover:bg-gray-200"
+                        variant="outline"
+                        size="icon"
+                        className="h-8 w-8 p-0 hover:bg-gray-200"
                         onClick={() => copyMessage(message.content)}
                       >
                         <Copy className="w-3 h-3" />
@@ -399,15 +399,14 @@ export default function ChatPage() {
               </div>
             </div>
           ))}
-
           {/* Loading Message */}
           {isLoading && (
             <div className="flex gap-3 justify-start">
-              <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+              <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                 <Brain className="w-4 h-4 text-white" />
               </div>
               <div className="max-w-3xl">
-                <div className="rounded-2xl px-4 py-3 bg-gray-100">
+                <div className="rounded-2xl px-4 py-3 bg-white border-b-4 border-b-gray-300">
                   <div className="flex items-center gap-2 text-gray-600">
                     <Loader2 className="w-4 h-4 animate-spin" />
                     <span className="text-sm">MedAI is thinking...</span>
@@ -415,8 +414,7 @@ export default function ChatPage() {
                 </div>
               </div>
             </div>
-          )}
-
+          )}{" "}
           {/* Quick Questions (only show when no messages except welcome) */}
           {messages.length === 1 && (
             <div className="space-y-4">
@@ -426,12 +424,7 @@ export default function ChatPage() {
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2 max-w-2xl mx-auto">
                   {quickQuestions.map((question, index) => (
-                    <Button
-                      key={index}
-                      variant="outline"
-                      className="text-left bg-white shadow-none justify-start h-auto py-3 px-4 text-sm text-gray-700 hover:bg-blue-50 hover:border-blue-200"
-                      onClick={() => setInputMessage(question)}
-                    >
+                    <Button key={index} variant="outline" onClick={() => setInputMessage(question)}>
                       <div className="flex items-center gap-2">
                         <Sparkles className="w-4 h-4 text-blue-500 flex-shrink-0" />
                         <span>{question}</span>
@@ -459,7 +452,6 @@ export default function ChatPage() {
               </div>
             </div>
           )}
-
           <div ref={messagesEndRef} />
         </div>
       </div>
@@ -467,7 +459,7 @@ export default function ChatPage() {
       {/* Input Area */}
       <div className="flex-shrink-0 bg-background px-4 fixed bottom-0 left-0 right-0">
         <div className="max-w-4xl mx-auto pb-4">
-          <div className="relative flex items-center border rounded-full pr-4 bg-white">
+          <div className="relative flex items-center border border-b-4 border-b-gray-200 hover:shadow-sm rounded-full pr-4 bg-white transition-all duration-200">
             <Textarea
               ref={textareaRef}
               value={inputMessage}
@@ -478,8 +470,8 @@ export default function ChatPage() {
               disabled={isLoading}
             />
             <Button
-              size="lg"
-              className="h-10 w-10 p-0 rounded-full"
+              size="icon"
+              className="rounded-full"
               onClick={handleSendMessage}
               disabled={!inputMessage.trim() || isLoading}
             >

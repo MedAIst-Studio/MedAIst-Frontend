@@ -452,7 +452,7 @@ export default function QuizPage() {
                             <RotateCcw className="w-4 h-4" />
                             Tekrar Çöz
                           </Button>
-                          <Button variant="outline" size="sm">
+                          <Button variant="outline" size="icon">
                             <Eye className="w-4 h-4" />
                           </Button>
                         </div>

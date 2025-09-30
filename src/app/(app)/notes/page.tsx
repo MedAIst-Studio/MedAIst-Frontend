@@ -135,28 +135,6 @@ export default function NotesPage() {
   return (
     <div className="p-6">
       <div className="mx-auto max-w-7xl space-y-8">
-        {/* Header Section */}
-        <div className="space-y-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-4xl font-bold text-primary">Smart Notes</h1>
-              <p className="text-lg text-gray-600 mt-2">
-                Upload, organize, and get AI-powered summaries of your medical notes
-              </p>
-            </div>
-            <div className="flex items-center space-x-3">
-              <Badge variant="outline" className="bg-blue-50 border-blue-200">
-                <FileText className="w-3 h-3 mr-1" />
-                {notes.length} Notes
-              </Badge>
-              <Badge variant="outline" className="bg-green-50 border-green-200">
-                <CheckCircle2 className="w-3 h-3 mr-1" />
-                {notes.filter((n) => n.status === "completed").length} Processed
-              </Badge>
-            </div>
-          </div>
-        </div>
-
         {/* Upload Section */}
         <Card>
           <CardHeader>
@@ -356,7 +334,7 @@ export default function NotesPage() {
                 <div className="flex items-center space-x-2 pt-2">
                   <Dialog>
                     <DialogTrigger asChild>
-                      <Button variant="outline" size="sm" className="flex-1">
+                      <Button variant="outline" className="flex-1">
                         <Eye className="w-4 h-4 mr-1" />
                         View
                       </Button>
@@ -388,13 +366,13 @@ export default function NotesPage() {
                     </DialogContent>
                   </Dialog>
 
-                  <Button variant="outline" size="sm">
-                    <Edit className="w-4 h-4" />
+                  <Button variant="outline" size="icon">
+                    <Edit />
                   </Button>
 
                   {note.summary && (
-                    <Button variant="outline" size="sm">
-                      <Download className="w-4 h-4" />
+                    <Button variant="outline" size="icon">
+                      <Download />
                     </Button>
                   )}
                 </div>
