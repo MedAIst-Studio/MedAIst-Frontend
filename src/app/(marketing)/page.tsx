@@ -1,599 +1,858 @@
 "use client";
 
-import {Badge} from "@/components/ui/badge";
-import {Button} from "@/components/ui/button";
-import {Card, CardContent} from "@/components/ui/card";
 import {
   ArrowRight,
   Award,
-  BarChart3,
   Brain,
   CheckCircle,
-  ChevronRight,
-  Eye,
   FileText,
-  Globe,
-  GraduationCap,
-  Heart,
-  MessageCircle,
+  Menu,
+  MessageSquare,
   Play,
+  Quote,
+  Shield,
+  Sparkles,
   Star,
-  Stethoscope,
+  Target,
   Users,
+  X,
   Zap,
 } from "lucide-react";
 import Link from "next/link";
+import {useState} from "react";
 
-const features = [
-  {
-    icon: Brain,
-    title: "AI Destekli Öğrenme",
-    description:
-      "Gelişmiş yapay zeka algoritmaları ile kişiselleştirilmiş eğitim deneyimi yaşayın.",
-    color: "bg-primary/10 text-primary",
-  },
-  {
-    icon: FileText,
-    title: "Akıllı Belge Özeti",
-    description: "Ders notlarınızı yükleyin, AI anında önemli noktaları çıkarsın ve özetlesin.",
-    color: "bg-green-500/10 text-green-600",
-  },
-  {
-    icon: MessageCircle,
-    title: "Interaktif Quiz Sistemi",
-    description:
-      "Belgelerinizden otomatik oluşturulan sorularla bilginizi test edin ve geliştirin.",
-    color: "bg-blue-500/10 text-blue-600",
-  },
-  {
-    icon: BarChart3,
-    title: "Detaylı İlerleme Takibi",
-    description: "Öğrenme sürecinizi analiz edin, güçlü ve zayıf yönlerinizi keşfedin.",
-    color: "bg-purple-500/10 text-purple-600",
-  },
-  {
-    icon: Heart,
-    title: "7/24 AI Asistan",
-    description: "Tıbbi sorularınızı her zaman cevaplayabilen akıllı asistanınız yanınızda.",
-    color: "bg-red-500/10 text-red-600",
-  },
-  {
-    icon: Users,
-    title: "Topluluk Desteği",
-    description: "Binlerce tıp öğrencisi ile bilgi paylaşımı yapın ve birlikte gelişin.",
-    color: "bg-indigo-500/10 text-indigo-600",
-  },
-];
+import {Badge} from "@/components/ui/badge";
+import {Button} from "@/components/ui/button";
+import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
 
-const testimonials = [
-  {
-    name: "Ayşe Kaya",
-    role: "6. Sınıf Tıp Öğrencisi",
-    university: "Hacettepe Üniversitesi",
-    content:
-      "MedAIst sayesinde sınav hazırlığım çok daha etkili oldu. AI'nın oluşturduğu quizler ve özetler gerçekten işe yarıyor.",
-    rating: 5,
-    avatar: "AK",
-  },
-  {
-    name: "Mehmet Özkan",
-    role: "4. Sınıf Tıp Öğrencisi",
-    university: "İstanbul Üniversitesi",
-    content:
-      "Ders notlarımı hızlıca özet haline getirmesi harika. Çok daha az zamanda çok daha fazla şey öğrenebiliyorum.",
-    rating: 5,
-    avatar: "MÖ",
-  },
-  {
-    name: "Zehra Demir",
-    role: "5. Sınıf Tıp Öğrencisi",
-    university: "Ankara Üniversitesi",
-    content:
-      "AI asistan 24 saat kullanılabiliyor. Geç saatlerde bile sorularıma hemen cevap alabiliyorum. Çok pratik.",
-    rating: 5,
-    avatar: "ZD",
-  },
-];
+const LandingPage = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-const stats = [
-  {number: "50K+", label: "Aktif Öğrenci", icon: GraduationCap, subtext: "Güvenilir topluluk"},
-  {
-    number: "1M+",
-    label: "Oluşturulan Quiz",
-    icon: MessageCircle,
-    subtext: "Sürekli büyüyen içerik",
-  },
-  {number: "98%", label: "Memnuniyet Oranı", icon: Heart, subtext: "Mutlu kullanıcılar"},
-  {number: "24/7", label: "AI Desteği", icon: Brain, subtext: "Kesintisiz hizmet"},
-];
-
-const pricingPlans = [
-  {
-    name: "Başlangıç",
-    price: "Ücretsiz",
-    description: "Tıp öğrencileri için temel özellikler",
-    features: ["5 belge özeti / ay", "10 AI quiz / ay", "Temel AI chat", "Topluluk erişimi"],
-    popular: false,
-    cta: "Ücretsiz Başla",
-  },
-  {
-    name: "Pro",
-    price: "₺49/ay",
-    description: "Ciddi öğrenciler için gelişmiş özellikler",
-    features: [
-      "Sınırsız belge özeti",
-      "Sınırsız AI quiz",
-      "Gelişmiş AI chat",
-      "Detaylı analytics",
-      "Öncelikli destek",
-      "Özel çalışma grupları",
-    ],
-    popular: true,
-    cta: "Pro Ol",
-  },
-  {
-    name: "Kurumsal",
-    price: "₺99/ay",
-    description: "Kurumlar ve araştırma için",
-    features: [
-      "Pro'daki tüm özellikler",
-      "Kurumsal dashboard",
-      "API erişimi",
-      "Özel entegrasyonlar",
-      "Dedicated support",
-      "Bulk licensing",
-    ],
-    popular: false,
-    cta: "İletişime Geç",
-  },
-];
-
-const Homepage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
-      {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-gray-200">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center gap-2">
-              <div className="p-2 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600">
-                <Stethoscope className="w-6 h-6 text-white" />
-              </div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                MedAIst
+    <div className="min-h-screen bg-slate-50">
+      {/* Header */}
+      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
+          <div className="flex lg:flex-1">
+            <Link className="-m-1.5 p-1.5" href="/">
+              <span className="text-2xl font-bold text-slate-900">
+                Med<span className="text-blue-600">AI</span>st
               </span>
-            </div>
+            </Link>
+          </div>
 
-            <div className="hidden md:flex items-center gap-8">
-              <a href="#features" className="text-gray-700 hover:text-blue-600 transition-colors">
-                Özellikler
-              </a>
-              <a
-                href="#testimonials"
-                className="text-gray-700 hover:text-blue-600 transition-colors"
-              >
-                Yorumlar
-              </a>
-              <a href="#pricing" className="text-gray-700 hover:text-blue-600 transition-colors">
-                Fiyatlandırma
-              </a>
+          <div className="flex lg:hidden">
+            <button
+              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-slate-700"
+              type="button"
+              onClick={() => setMobileMenuOpen(true)}
+            >
+              <Menu className="h-6 w-6" />
+            </button>
+          </div>
+
+          <div className="hidden lg:flex lg:gap-x-12">
+            <Link
+              className="text-sm font-semibold leading-6 text-slate-900 hover:text-blue-600 transition-colors"
+              href="#features"
+            >
+              Özellikler
+            </Link>
+            <Link
+              className="text-sm font-semibold leading-6 text-slate-900 hover:text-blue-600 transition-colors"
+              href="#pricing"
+            >
+              Fiyatlar
+            </Link>
+            <Link
+              className="text-sm font-semibold leading-6 text-slate-900 hover:text-blue-600 transition-colors"
+              href="#about"
+            >
+              Hakkımızda
+            </Link>
+            <Link
+              className="text-sm font-semibold leading-6 text-slate-900 hover:text-blue-600 transition-colors"
+              href="#contact"
+            >
+              İletişim
+            </Link>
+          </div>
+
+          <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-4">
+            <Link href="/login">
               <Button variant="outline">Giriş Yap</Button>
-              <Link href="/dashboard">
-                <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
-                  Başla
-                </Button>
-              </Link>
+            </Link>
+            <Link href="/dashboard">
+              <Button>
+                Başla
+                <ArrowRight />
+              </Button>
+            </Link>
+          </div>
+        </nav>
+
+        {/* Mobile menu */}
+        {mobileMenuOpen && (
+          <div className="lg:hidden fixed inset-0 z-50">
+            <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-slate-900/10">
+              <div className="flex items-center justify-between">
+                <Link className="-m-1.5 p-1.5" href="/">
+                  <span className="text-2xl font-bold text-slate-900">
+                    Med<span className="text-blue-600">AI</span>st
+                  </span>
+                </Link>
+                <button
+                  className="-m-2.5 rounded-md p-2.5 text-slate-700"
+                  type="button"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <X className="h-6 w-6" />
+                </button>
+              </div>
+              <div className="mt-6 flow-root">
+                <div className="-my-6 divide-y divide-slate-500/25">
+                  <div className="space-y-2 py-6">
+                    <Link
+                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-slate-900 hover:bg-slate-50"
+                      href="#features"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Özellikler
+                    </Link>
+                    <Link
+                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-slate-900 hover:bg-slate-50"
+                      href="#pricing"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Fiyatlar
+                    </Link>
+                    <Link
+                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-slate-900 hover:bg-slate-50"
+                      href="#about"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Hakkımızda
+                    </Link>
+                    <Link
+                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-slate-900 hover:bg-slate-50"
+                      href="#contact"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      İletişim
+                    </Link>
+                  </div>
+                  <div className="py-6 space-y-2">
+                    <Link href="/login">
+                      <Button variant="outline">Giriş Yap</Button>
+                    </Link>
+                    <Link href="/dashboard">
+                      <Button>
+                        Başla
+                        <ArrowRight />
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </header>
+      {/* Hero Section */}
+      <section className="relative bg-white px-6 py-24 sm:py-32 lg:px-8 overflow-hidden">
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute top-0 right-0 -z-10 transform-gpu overflow-hidden blur-3xl sm:top-0">
+            <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] opacity-10 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]">
+              <div className="absolute inset-0 bg-blue-100 rounded-full" />
             </div>
           </div>
         </div>
-      </nav>
 
-      {/* Hero Section */}
-      <section className="container mx-auto px-4 pt-20 pb-20">
-        <div className="text-center max-w-5xl mx-auto">
-          <Badge className="mb-6 bg-primary/10 text-primary px-4 py-2">
-            <Brain className="w-4 h-4 mr-2" />
-            Türkiye&apos;nin #1 AI Tıp Asistanı
-          </Badge>
+        <div className="mx-auto max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left Column - Text Content */}
+            <div className="text-center lg:text-left">
+              <Badge className="mb-6 border-b-4 border-blue-200 bg-blue-50 text-blue-700 hover:-translate-y-0.5 transition-all duration-200 shadow-lg">
+                <Sparkles className="mr-1 h-3 w-3" />
+                Tıp Eğitiminde Yeni Nesil Platform
+              </Badge>
 
-          <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
-            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-              Tıp Eğitimini
-            </span>
-            <br />
-            <span className="text-gray-900">AI ile Dönüştür</span>
-          </h1>
+              <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-6xl lg:text-7xl">
+                <span className="text-blue-600">MedAIst</span>
+                <br />
+                <span className="text-3xl sm:text-4xl lg:text-5xl text-slate-700">
+                  Akıllı Tıp Asistanın
+                </span>
+              </h1>
 
-          <p className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed">
-            Yapay zeka teknolojisiyle tıp eğitiminizi bir üst seviyeye taşıyın. Belgelerinizi özet
-            haline getirin, akıllı quizler çözün ve AI asistanınızla 7/24 öğrenmeye devam edin.
-          </p>
+              <p className="mt-6 text-lg leading-8 text-slate-600 max-w-xl lg:max-w-none">
+                Yapay zeka destekli chat, akıllı not alma ve interaktif quiz sistemi ile tıp
+                eğitiminizi bir sonraki seviyeye taşıyın. Öğrenme sürecinizi kişiselleştirin ve
+                başarınızı artırın.
+              </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <Link href="/dashboard">
-              <Button
-                size="lg"
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 px-8 py-4 text-lg"
-              >
-                <Play className="w-5 h-5 mr-2" />
-                Ücretsiz Başla
-              </Button>
-            </Link>
-            <Button size="lg" variant="outline" className="px-8 py-4 text-lg">
-              <Eye className="w-5 h-5 mr-2" />
-              Demo İzle
-            </Button>
-          </div>
+              <div className="mt-10 flex items-center justify-center lg:justify-start gap-4 flex-wrap">
+                <Link href="/dashboard">
+                  <Button>
+                    Hemen Başla
+                    <ArrowRight />
+                  </Button>
+                </Link>
 
-          {/* Demo Preview */}
-          <div className="relative max-w-4xl mx-auto">
-            <div className="bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
-              <div className="bg-gradient-to-r from-blue-600 to-purple-600 h-3 flex gap-2 items-center px-4">
-                <div className="flex gap-1">
-                  <div className="w-3 h-3 rounded-full bg-white/30"></div>
-                  <div className="w-3 h-3 rounded-full bg-white/30"></div>
-                  <div className="w-3 h-3 rounded-full bg-white/30"></div>
-                </div>
+                <Button variant="outline">
+                  Demo İzle
+                  <Brain />
+                </Button>
               </div>
-              <div className="p-8 bg-gradient-to-br from-blue-50 to-purple-50 h-80 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-24 h-24 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Brain className="w-12 h-12 text-white" />
+            </div>
+
+            {/* Right Column - Visual Mockup */}
+            <div className="relative lg:order-last">
+              <div className="relative mx-auto max-w-lg lg:max-w-none">
+                {/* Main Dashboard Mockup */}
+                <div className="relative bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                  {/* Mockup Header */}
+                  <div className="bg-slate-50 px-4 py-3 border-b border-slate-200">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-3 h-3 bg-red-400 rounded-full" />
+                      <div className="w-3 h-3 bg-yellow-400 rounded-full" />
+                      <div className="w-3 h-3 bg-green-400 rounded-full" />
+                      <div className="ml-4 text-sm font-medium text-slate-600">
+                        MedAIst Dashboard
+                      </div>
+                    </div>
                   </div>
-                  <h3 className="text-2xl font-semibold text-gray-800 mb-2">AI Tıp Asistanı</h3>
-                  <p className="text-gray-600">Demo ekranı yakında...</p>
+
+                  {/* Mockup Content */}
+                  <div className="p-6 space-y-6">
+                    {/* Chat Interface Mockup */}
+                    <div className="space-y-3">
+                      <div className="flex items-center space-x-2 mb-4">
+                        <MessageSquare className="h-5 w-5 text-blue-600" />
+                        <span className="font-semibold text-slate-900">AI Chat Asistanı</span>
+                      </div>
+
+                      <div className="space-y-2">
+                        <div className="bg-slate-100 rounded-lg p-3 max-w-xs">
+                          <p className="text-sm text-slate-700">
+                            Kalp anatomisi hakkında bilgi verir misin?
+                          </p>
+                        </div>
+                        <div className="bg-blue-600 text-white rounded-lg p-3 max-w-xs ml-auto">
+                          <p className="text-sm">Tabii ki! Kalp, 4 odacıklı kas bir organdır...</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Stats Cards */}
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="bg-blue-50 rounded-lg p-4 border-b-4 border-blue-200">
+                        <div className="text-2xl font-bold text-blue-600">12</div>
+                        <div className="text-xs text-slate-600">Tamamlanan Quiz</div>
+                      </div>
+                      <div className="bg-green-50 rounded-lg p-4 border-b-4 border-green-200">
+                        <div className="text-2xl font-bold text-green-600">85%</div>
+                        <div className="text-xs text-slate-600">Başarı Oranı</div>
+                      </div>
+                    </div>
+
+                    {/* Notes Preview */}
+                    <div className="space-y-2">
+                      <div className="flex items-center space-x-2">
+                        <FileText className="h-4 w-4 text-green-600" />
+                        <span className="text-sm font-medium text-slate-900">Son Notlar</span>
+                      </div>
+                      <div className="bg-green-50 rounded-lg p-3 border-b-2 border-green-200">
+                        <div className="text-sm font-medium text-slate-900">
+                          Kardiyoloji - Kalp Yetmezliği
+                        </div>
+                        <div className="text-xs text-slate-600 mt-1">2 dakika önce eklendi</div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+
+                {/* Floating Elements */}
+                <div className="absolute -top-4 -right-4 bg-blue-100 rounded-full p-3 border-b-4 border-blue-200 shadow-lg animate-bounce">
+                  <Brain className="h-6 w-6 text-blue-600" />
+                </div>
+
+                <div className="absolute -bottom-4 -left-4 bg-green-100 rounded-full p-3 border-b-4 border-green-200 shadow-lg animate-pulse">
+                  <Target className="h-6 w-6 text-green-600" />
+                </div>
+
+                {/* Background decoration */}
+                <div className="absolute -z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-blue-100 rounded-full opacity-20 blur-3xl" />
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Stats Section - Çok Daha Çarpıcı */}
-      <section className="bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900 py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-blue-600/20 opacity-50"></div>
+      {/* Stats Section */}
+      <section className="py-16 bg-slate-100">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="text-center">
+              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-blue-100 border-b-4 border-blue-200 shadow-lg">
+                <Users className="h-8 w-8 text-blue-600" />
+              </div>
+              <div className="mt-4">
+                <p className="text-3xl font-bold text-slate-900">10,000+</p>
+                <p className="text-sm text-slate-600">Aktif Öğrenci</p>
+              </div>
+            </div>
 
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-12">
-            <h2 className="text-5xl md:text-6xl font-black text-white mb-4">
-              🔥{" "}
-              <span className="bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
-                ÇILGIN
-              </span>{" "}
-              RAKAMLAR
-            </h2>
-            <p className="text-xl text-gray-300">Bu rakamlar gerçek ve sürekli artıyor! 📈</p>
-          </div>
+            <div className="text-center">
+              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-green-100 border-b-4 border-green-200 shadow-lg">
+                <Award className="h-8 w-8 text-green-600" />
+              </div>
+              <div className="mt-4">
+                <p className="text-3xl font-bold text-slate-900">95%</p>
+                <p className="text-sm text-slate-600">Başarı Oranı</p>
+              </div>
+            </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => {
-              const IconComponent = stat.icon;
-              return (
-                <Card
-                  key={index}
-                  className="bg-gradient-to-br from-white/10 to-white/5 border-2 border-white/20 backdrop-blur-lg hover:bg-white/20 transition-all duration-300 transform hover:scale-110 cursor-pointer"
-                >
-                  <CardContent className="p-8 text-center">
-                    <div className="p-4 rounded-2xl bg-gradient-to-br from-yellow-400 to-orange-500 w-fit mx-auto mb-6 shadow-2xl">
-                      <IconComponent className="w-8 h-8 text-white" />
-                    </div>
-                    <div className="text-4xl md:text-5xl font-black text-white mb-3 animate-pulse">
-                      {stat.number}
-                    </div>
-                    <div className="text-xl font-bold text-yellow-300 mb-2">{stat.label}</div>
-                    <div className="text-sm text-gray-300 font-medium">{stat.subtext}</div>
-                  </CardContent>
-                </Card>
-              );
-            })}
+            <div className="text-center">
+              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-purple-100 border-b-4 border-purple-200 shadow-lg">
+                <Zap className="h-8 w-8 text-purple-600" />
+              </div>
+              <div className="mt-4">
+                <p className="text-3xl font-bold text-slate-900">50%</p>
+                <p className="text-sm text-slate-600">Hızlı Öğrenme</p>
+              </div>
+            </div>
+
+            <div className="text-center">
+              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-orange-100 border-b-4 border-orange-200 shadow-lg">
+                <Shield className="h-8 w-8 text-orange-600" />
+              </div>
+              <div className="mt-4">
+                <p className="text-3xl font-bold text-slate-900">24/7</p>
+                <p className="text-sm text-slate-600">AI Destek</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <Badge className="mb-4 bg-blue-100 text-blue-700 hover:bg-blue-100">
-              <Zap className="w-4 h-4 mr-2" />
-              Güçlü Özellikler
-            </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
-              Tıp Eğitiminizi <span className="text-blue-600">AI ile Güçlendirin</span>
+      <section className="py-24 bg-white" id="features">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+              Öğrenme Deneyiminizi <span className="text-blue-600">Dönüştürün</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Modern yapay zeka teknolojileri ile tıp öğrencilerine özel olarak tasarlanmış kapsamlı
-              öğrenme platformu.
+            <p className="mt-6 text-lg leading-8 text-slate-600">
+              Yapay zeka destekli araçlarımızla tıp eğitiminizi kişiselleştirin ve öğrenme hızınızı
+              artırın
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => {
-              const IconComponent = feature.icon;
-              return (
-                <Card
-                  key={index}
-                  className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-                >
-                  <CardContent className="p-8">
-                    <div className={`p-3 rounded-lg ${feature.color} w-fit mb-4`}>
-                      <IconComponent className="w-6 h-6" />
+          <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
+            <div className="grid max-w-xl grid-cols-1 gap-8 lg:max-w-none lg:grid-cols-3">
+              {/* AI Chat Feature */}
+              <Card className="relative overflow-hidden border-b-4 border-blue-200 bg-blue-50 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-blue-300 hover:shadow-xl">
+                <CardHeader>
+                  <div className="flex items-center space-x-3">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-500 border-b-2 border-blue-600 shadow-lg">
+                      <MessageSquare className="h-6 w-6 text-white" />
                     </div>
-                    <h3 className="text-xl font-semibold mb-3 text-gray-900">{feature.title}</h3>
-                    <p className="text-gray-600 leading-relaxed">{feature.description}</p>
-                    <div className="mt-4">
-                      <Button variant="ghost" className="text-blue-600 hover:text-blue-700 p-0">
-                        Daha fazla bilgi
-                        <ChevronRight className="w-4 h-4 ml-1" />
-                      </Button>
+                    <CardTitle className="text-xl font-semibold text-slate-900">
+                      AI Chat Asistanı
+                    </CardTitle>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-base text-gray-600 leading-relaxed">
+                    7/24 size yardımcı olan akıllı asistanımız ile tıbbi sorularınızı sorun,
+                    karmaşık konuları basitleştirin ve anında cevaplar alın.
+                  </CardDescription>
+                  <div className="mt-6 space-y-2">
+                    <div className="flex items-center text-sm text-gray-600">
+                      <div className="h-1.5 w-1.5 rounded-full bg-blue-500 mr-2" />
+                      Anında sorular ve cevaplar
                     </div>
-                  </CardContent>
-                </Card>
-              );
-            })}
+                    <div className="flex items-center text-sm text-gray-600">
+                      <div className="h-1.5 w-1.5 rounded-full bg-blue-500 mr-2" />
+                      Karmaşık konuları basitleştirme
+                    </div>
+                    <div className="flex items-center text-sm text-gray-600">
+                      <div className="h-1.5 w-1.5 rounded-full bg-blue-500 mr-2" />
+                      Kişiselleştirilmiş öğrenme
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Smart Notes Feature */}
+              <Card className="relative overflow-hidden border-b-4 border-green-200 bg-gradient-to-br from-green-50 via-white to-green-50/30 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-green-300 hover:shadow-xl">
+                <CardHeader>
+                  <div className="flex items-center space-x-3">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-green-500 to-emerald-500 border-b-2 border-green-600">
+                      <FileText className="h-6 w-6 text-white" />
+                    </div>
+                    <CardTitle className="text-xl font-semibold text-gray-900">
+                      Akıllı Not Sistemi
+                    </CardTitle>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-base text-gray-600 leading-relaxed">
+                    Dosyalarınızı yükleyin, AI&apos;ın analiz etmesini sağlayın ve otomatik olarak
+                    organize edilmiş notlar oluşturun. Öğrenme materyallerinizi kolayca yönetin.
+                  </CardDescription>
+                  <div className="mt-6 space-y-2">
+                    <div className="flex items-center text-sm text-gray-600">
+                      <div className="h-1.5 w-1.5 rounded-full bg-green-500 mr-2" />
+                      Dosya yükleme ve analiz
+                    </div>
+                    <div className="flex items-center text-sm text-gray-600">
+                      <div className="h-1.5 w-1.5 rounded-full bg-green-500 mr-2" />
+                      Otomatik organizasyon
+                    </div>
+                    <div className="flex items-center text-sm text-gray-600">
+                      <div className="h-1.5 w-1.5 rounded-full bg-green-500 mr-2" />
+                      Akıllı etiketleme
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Interactive Quiz Feature */}
+              <Card className="relative overflow-hidden border-b-4 border-purple-200 bg-gradient-to-br from-purple-50 via-white to-purple-50/30 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-purple-300 hover:shadow-xl">
+                <CardHeader>
+                  <div className="flex items-center space-x-3">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-pink-500 border-b-2 border-purple-600">
+                      <Target className="h-6 w-6 text-white" />
+                    </div>
+                    <CardTitle className="text-xl font-semibold text-gray-900">
+                      İnteraktif Quiz
+                    </CardTitle>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-base text-gray-600 leading-relaxed">
+                    Kişiselleştirilmiş quizler ile bilginizi test edin, güçlü ve zayıf yönlerinizi
+                    keşfedin. İlerleme takibi ile öğrenme hedefinize ulaşın.
+                  </CardDescription>
+                  <div className="mt-6 space-y-2">
+                    <div className="flex items-center text-sm text-gray-600">
+                      <div className="h-1.5 w-1.5 rounded-full bg-purple-500 mr-2" />
+                      Kişiselleştirilmiş sorular
+                    </div>
+                    <div className="flex items-center text-sm text-gray-600">
+                      <div className="h-1.5 w-1.5 rounded-full bg-purple-500 mr-2" />
+                      İlerleme analizi
+                    </div>
+                    <div className="flex items-center text-sm text-gray-600">
+                      <div className="h-1.5 w-1.5 rounded-full bg-purple-500 mr-2" />
+                      Performans raporları
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works Section */}
+      <section className="py-24 bg-slate-50">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+              Nasıl <span className="text-blue-600">Çalışır?</span>
+            </h2>
+            <p className="mt-6 text-lg leading-8 text-slate-600">
+              Sadece üç basit adımda öğrenme deneyiminizi dönüştürün
+            </p>
+          </div>
+
+          <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
+            <div className="grid max-w-xl grid-cols-1 gap-12 lg:max-w-none lg:grid-cols-3">
+              {/* Step 1 */}
+              <div className="flex flex-col items-center text-center">
+                <div className="relative">
+                  <div className="flex h-20 w-20 items-center justify-center rounded-full bg-blue-600 border-b-4 border-blue-800 shadow-lg">
+                    <span className="text-2xl font-bold text-white">1</span>
+                  </div>
+                  <div className="absolute -top-2 -right-2 h-6 w-6 rounded-full bg-blue-200 border-2 border-blue-400" />
+                </div>
+                <h3 className="mt-8 text-lg font-semibold text-slate-900">Kayıt Olun</h3>
+                <p className="mt-4 text-slate-600 max-w-sm">
+                  Ücretsiz hesabınızı oluşturun ve hemen MedAIst platformuna erişim sağlayın. Sadece
+                  birkaç dakika sürer.
+                </p>
+              </div>
+
+              {/* Step 2 */}
+              <div className="flex flex-col items-center text-center">
+                <div className="relative">
+                  <div className="flex h-20 w-20 items-center justify-center rounded-full bg-green-600 border-b-4 border-green-800 shadow-lg">
+                    <span className="text-2xl font-bold text-white">2</span>
+                  </div>
+                  <div className="absolute -top-2 -right-2 h-6 w-6 rounded-full bg-green-200 border-2 border-green-400" />
+                </div>
+                <h3 className="mt-8 text-lg font-semibold text-slate-900">İçerik Yükleyin</h3>
+                <p className="mt-4 text-slate-600 max-w-sm">
+                  Ders notlarınızı, PDF&apos;lerinizi yükleyin. AI asistanımız otomatik olarak
+                  analiz edip organize eder.
+                </p>
+              </div>
+
+              {/* Step 3 */}
+              <div className="flex flex-col items-center text-center">
+                <div className="relative">
+                  <div className="flex h-20 w-20 items-center justify-center rounded-full bg-purple-600 border-b-4 border-purple-800 shadow-lg">
+                    <span className="text-2xl font-bold text-white">3</span>
+                  </div>
+                  <div className="absolute -top-2 -right-2 h-6 w-6 rounded-full bg-purple-200 border-2 border-purple-400" />
+                </div>
+                <h3 className="mt-8 text-lg font-semibold text-slate-900">Öğrenmeye Başlayın</h3>
+                <p className="mt-4 text-slate-600 max-w-sm">
+                  AI chat ile sorular sorun, quiz çözün ve kişiselleştirilmiş öğrenme deneyiminizin
+                  keyfini çıkarın.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <Badge className="mb-4 bg-green-100 text-green-700 hover:bg-green-100">
-              <Users className="w-4 h-4 mr-2" />
-              Öğrenci Yorumları
-            </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
-              <span className="text-green-600">Binlerce</span> Öğrenci Güveniyor
+      <section className="py-24 bg-white">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+              Öğrencilerimiz <span className="text-blue-600">Ne Diyor?</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Türkiye&apos;nin en büyük tıp öğrencisi topluluğunun tercihi MedAIst
+            <p className="mt-6 text-lg leading-8 text-slate-600">
+              Binlerce tıp öğrencisi MedAIst ile başarısını artırdı
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <Card key={index} className="border-0 shadow-lg">
-                <CardContent className="p-8">
-                  <div className="flex items-center gap-1 mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 text-yellow-500 fill-current" />
-                    ))}
+          <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+            {/* Testimonial 1 */}
+            <Card className="bg-slate-50 border-b-4 border-blue-200 shadow-lg">
+              <CardHeader>
+                <div className="flex items-center space-x-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                  ))}
+                </div>
+                <Quote className="h-8 w-8 text-blue-600 mb-4" />
+              </CardHeader>
+              <CardContent>
+                <p className="text-slate-700 leading-relaxed mb-6">
+                  &quot;MedAIst sayesinde anatomiden klinik tıpa kadar her konuda anında yardım
+                  alabiliyorum. Özellikle AI chat özelliği gerçekten çok faydalı!&quot;
+                </p>
+                <div className="flex items-center space-x-3">
+                  <div className="h-12 w-12 rounded-full bg-blue-100 flex items-center justify-center border-2 border-blue-200">
+                    <span className="text-lg font-semibold text-blue-600">AY</span>
                   </div>
-                  <p className="text-gray-700 mb-6 leading-relaxed italic">
-                    &quot;{testimonial.content}&quot;
-                  </p>
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold">
-                      {testimonial.avatar}
-                    </div>
-                    <div>
-                      <div className="font-semibold text-gray-900">{testimonial.name}</div>
-                      <div className="text-sm text-gray-600">{testimonial.role}</div>
-                      <div className="text-xs text-gray-500">{testimonial.university}</div>
-                    </div>
+                  <div>
+                    <p className="font-semibold text-slate-900">Ayşe Yılmaz</p>
+                    <p className="text-sm text-slate-600">Tıp Fakültesi 4. Sınıf</p>
                   </div>
-                </CardContent>
-              </Card>
-            ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Testimonial 2 */}
+            <Card className="bg-slate-50 border-b-4 border-green-200 shadow-lg">
+              <CardHeader>
+                <div className="flex items-center space-x-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                  ))}
+                </div>
+                <Quote className="h-8 w-8 text-green-600 mb-4" />
+              </CardHeader>
+              <CardContent>
+                <p className="text-slate-700 leading-relaxed mb-6">
+                  &quot;Quiz sistemi gerçekten harika! Hangi konularda eksik olduğumu görebiliyor ve
+                  ona göre çalışma planı yapabiliyorum.&quot;
+                </p>
+                <div className="flex items-center space-x-3">
+                  <div className="h-12 w-12 rounded-full bg-green-100 flex items-center justify-center border-2 border-green-200">
+                    <span className="text-lg font-semibold text-green-600">MK</span>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-slate-900">Mehmet Kaya</p>
+                    <p className="text-sm text-slate-600">Tıp Fakültesi 3. Sınıf</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Testimonial 3 */}
+            <Card className="bg-slate-50 border-b-4 border-purple-200 shadow-lg">
+              <CardHeader>
+                <div className="flex items-center space-x-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                  ))}
+                </div>
+                <Quote className="h-8 w-8 text-purple-600 mb-4" />
+              </CardHeader>
+              <CardContent>
+                <p className="text-slate-700 leading-relaxed mb-6">
+                  &quot;Not alma sistemi çok pratik. PDF&apos;lerimi yüklüyorum, AI organize ediyor.
+                  Sınava hazırlanırken çok zaman kazandırıyor.&quot;
+                </p>
+                <div className="flex items-center space-x-3">
+                  <div className="h-12 w-12 rounded-full bg-purple-100 flex items-center justify-center border-2 border-purple-200">
+                    <span className="text-lg font-semibold text-purple-600">ZA</span>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-slate-900">Zehra Arslan</p>
+                    <p className="text-sm text-slate-600">Tıp Fakültesi 5. Sınıf</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
 
-      {/* Pricing Section */}
-      <section id="pricing" className="py-20 bg-gradient-to-br from-purple-50 to-blue-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <Badge className="mb-4 bg-purple-100 text-purple-700 hover:bg-purple-100">
-              <Award className="w-4 h-4 mr-2" />
-              Fiyatlandırma
-            </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
-              Bütçenize Uygun <span className="text-purple-600">Plan Seçin</span>
+      {/* Demo/Video Section */}
+      <section className="py-24 bg-slate-100">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+              Platformu <span className="text-blue-600">Keşfedin</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Öğrenci dostu fiyatlarla en iyi AI tıp eğitimi deneyimi
+            <p className="mt-6 text-lg leading-8 text-slate-600">
+              MedAIst&apos;in tüm özelliklerini bu demo video ile keşfedin
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {pricingPlans.map((plan, index) => (
-              <Card
-                key={index}
-                className={`border-2 relative ${
-                  plan.popular
-                    ? "border-purple-500 shadow-xl scale-105"
-                    : "border-gray-200 shadow-lg"
-                }`}
-              >
-                {plan.popular && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <Badge className="bg-purple-600 text-white px-6 py-2">En Popüler</Badge>
-                  </div>
-                )}
-                <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold mb-2 text-gray-900">{plan.name}</h3>
-                  <div className="text-4xl font-bold mb-4 text-gray-900">
-                    {plan.price}
-                    {plan.name !== "Başlangıç" && (
-                      <span className="text-lg text-gray-500">/ay</span>
-                    )}
-                  </div>
-                  <p className="text-gray-600 mb-6">{plan.description}</p>
-
-                  <ul className="space-y-3 mb-8">
-                    {plan.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-center gap-3">
-                        <CheckCircle className="w-5 h-5 text-green-600" />
-                        <span className="text-gray-700">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <Button
-                    className={`w-full ${
-                      plan.popular
-                        ? "bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
-                        : "bg-gray-900 hover:bg-gray-800"
-                    }`}
-                  >
-                    {plan.cta}
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
+          <div className="mx-auto mt-16 max-w-4xl">
+            <div className="relative aspect-video rounded-2xl bg-slate-900 border-b-4 border-slate-700 shadow-2xl overflow-hidden group cursor-pointer">
+              <div className="absolute inset-0 bg-blue-600/20 group-hover:bg-blue-600/30 transition-all duration-300" />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="flex h-20 w-20 items-center justify-center rounded-full bg-white/90 group-hover:bg-white group-hover:scale-110 transition-all duration-300 shadow-lg">
+                  <Play className="h-8 w-8 text-blue-600 ml-1" />
+                </div>
+              </div>
+              <div className="absolute bottom-4 left-4 text-white">
+                <p className="text-lg font-semibold">MedAIst Platform Tanıtımı</p>
+                <p className="text-sm opacity-80">3 dakikada tüm özellikleri keşfedin</p>
+              </div>
+              {/* Demo image placeholder */}
+              <div className="w-full h-full bg-slate-800 flex items-center justify-center">
+                <div className="text-center text-white/70">
+                  <Brain className="h-16 w-16 mx-auto mb-4" />
+                  <p className="text-xl font-semibold">Platform Demo</p>
+                  <p className="text-sm">Yakında eklenecek</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-            Tıp Kariyerinizi AI ile Şekillendirin
+      <section className="relative bg-slate-100 px-6 py-24 sm:py-32 lg:px-8">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+            Tıp Kariyerinizi <span className="text-blue-600">Hızlandırın</span>
           </h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
-            Bugün başlayın ve binlerce tıp öğrencisi gibi siz de AI destekli eğitimin
-            avantajlarından faydalanın.
+          <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-slate-600">
+            Bugün başlayın ve binlerce tıp öğrencisinin tercih ettiği platformla öğrenme
+            deneyiminizi dönüştürün.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="mt-10 flex items-center justify-center gap-x-6">
             <Link href="/dashboard">
               <Button
+                className="bg-blue-600 hover:bg-blue-700 text-white border-b-4 border-blue-800 hover:-translate-y-0.5 transition-all duration-200 shadow-lg hover:shadow-xl px-8 py-4 text-lg"
                 size="lg"
-                className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg"
               >
-                <ArrowRight className="w-5 h-5 mr-2" />
-                Hemen Başla
+                Ücretsiz Başla
+                <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 text-lg"
-            >
-              İletişime Geç
-            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Trust & Security Section */}
+      <section className="py-16 bg-white">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center mb-16">
+            <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+              Güven ve <span className="text-blue-600">Güvenlik</span>
+            </h2>
+            <p className="mt-6 text-lg leading-8 text-slate-600">
+              Verileriniz güvende, eğitiminiz kesintisiz
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="text-center">
+              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-green-100 border-b-4 border-green-200 shadow-lg mb-4">
+                <Shield className="h-8 w-8 text-green-600" />
+              </div>
+              <h3 className="text-lg font-semibold text-slate-900 mb-2">SSL Güvenlik</h3>
+              <p className="text-sm text-slate-600">
+                256-bit SSL şifreleme ile verileriniz korunur
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-blue-100 border-b-4 border-blue-200 shadow-lg mb-4">
+                <CheckCircle className="h-8 w-8 text-blue-600" />
+              </div>
+              <h3 className="text-lg font-semibold text-slate-900 mb-2">KVKK Uyumlu</h3>
+              <p className="text-sm text-slate-600">
+                Kişisel veriler yasalara uygun şekilde işlenir
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-purple-100 border-b-4 border-purple-200 shadow-lg mb-4">
+                <Zap className="h-8 w-8 text-purple-600" />
+              </div>
+              <h3 className="text-lg font-semibold text-slate-900 mb-2">%99.9 Uptime</h3>
+              <p className="text-sm text-slate-600">Kesintisiz hizmet için güçlü altyapı</p>
+            </div>
+
+            <div className="text-center">
+              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-orange-100 border-b-4 border-orange-200 shadow-lg mb-4">
+                <Users className="h-8 w-8 text-orange-600" />
+              </div>
+              <h3 className="text-lg font-semibold text-slate-900 mb-2">7/24 Destek</h3>
+              <p className="text-sm text-slate-600">Her zaman yanınızda olan uzman destek ekibi</p>
+            </div>
+          </div>
+
+          {/* Trust badges */}
+          <div className="mt-16 flex flex-wrap items-center justify-center gap-8 opacity-60">
+            <div className="flex items-center space-x-2">
+              <Shield className="h-6 w-6 text-slate-500" />
+              <span className="text-sm font-medium text-slate-600">ISO 27001</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <CheckCircle className="h-6 w-6 text-slate-500" />
+              <span className="text-sm font-medium text-slate-600">KVKK Uyumlu</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Zap className="h-6 w-6 text-slate-500" />
+              <span className="text-sm font-medium text-slate-600">AWS Hosting</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Users className="h-6 w-6 text-slate-500" />
+              <span className="text-sm font-medium text-slate-600">10K+ Kullanıcı</span>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <div className="p-2 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600">
-                  <Stethoscope className="w-5 h-5 text-white" />
-                </div>
-                <span className="text-xl font-bold">MedAIst</span>
-              </div>
-              <p className="text-gray-400 mb-4">
-                Tıp öğrencileri için AI destekli öğrenme platformu. Eğitiminizi bir sonraki seviyeye
-                taşıyın.
+      <footer className="bg-slate-900 text-white">
+        <div className="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            {/* Logo and Description */}
+            <div className="md:col-span-2">
+              <Link className="flex items-center" href="/">
+                <span className="text-2xl font-bold">
+                  Med<span className="text-blue-400">AI</span>st
+                </span>
+              </Link>
+              <p className="mt-4 text-slate-300 max-w-md">
+                Yapay zeka destekli tıp eğitimi platformu. Modern teknoloji ile tıp öğrenimini daha
+                etkili ve verimli hale getiriyoruz.
               </p>
-              <div className="flex gap-3">
-                <div className="p-2 rounded-lg bg-gray-800 hover:bg-gray-700 cursor-pointer">
-                  <Globe className="w-5 h-5" />
-                </div>
-                <div className="p-2 rounded-lg bg-gray-800 hover:bg-gray-700 cursor-pointer">
-                  <MessageCircle className="w-5 h-5" />
-                </div>
+              <div className="mt-6 flex space-x-6">
+                <a className="text-slate-400 hover:text-white transition-colors" href="#">
+                  <span className="sr-only">Twitter</span>
+                  <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                  </svg>
+                </a>
+                <a className="text-slate-400 hover:text-white transition-colors" href="#">
+                  <span className="sr-only">LinkedIn</span>
+                  <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                  </svg>
+                </a>
               </div>
             </div>
 
+            {/* Quick Links */}
             <div>
-              <h3 className="font-semibold mb-4">Platform</h3>
-              <ul className="space-y-2 text-gray-400">
+              <h3 className="text-lg font-semibold mb-4">Hızlı Erişim</h3>
+              <ul className="space-y-3">
                 <li>
-                  <a href="#" className="hover:text-white transition-colors">
+                  <Link
+                    className="text-slate-300 hover:text-white transition-colors"
+                    href="#features"
+                  >
                     Özellikler
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Fiyatlandırma
-                  </a>
+                  <Link
+                    className="text-slate-300 hover:text-white transition-colors"
+                    href="#pricing"
+                  >
+                    Fiyatlar
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    API
-                  </a>
+                  <Link
+                    className="text-slate-300 hover:text-white transition-colors"
+                    href="/dashboard"
+                  >
+                    Dashboard
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Entegrasyonlar
-                  </a>
+                  <Link className="text-slate-300 hover:text-white transition-colors" href="/login">
+                    Giriş Yap
+                  </Link>
                 </li>
               </ul>
             </div>
 
+            {/* Support */}
             <div>
-              <h3 className="font-semibold mb-4">Destek</h3>
-              <ul className="space-y-2 text-gray-400">
+              <h3 className="text-lg font-semibold mb-4">Destek</h3>
+              <ul className="space-y-3">
                 <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Yardım Merkezi
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
+                  <Link
+                    className="text-slate-300 hover:text-white transition-colors"
+                    href="#contact"
+                  >
                     İletişim
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Topluluk
-                  </a>
+                  <Link className="text-slate-300 hover:text-white transition-colors" href="#help">
+                    Yardım Merkezi
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Durum Sayfası
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="font-semibold mb-4">Şirket</h3>
-              <ul className="space-y-2 text-gray-400">
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Hakkımızda
-                  </a>
+                  <Link
+                    className="text-slate-300 hover:text-white transition-colors"
+                    href="#privacy"
+                  >
+                    Gizlilik
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Blog
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Kariyer
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Basın Kiti
-                  </a>
+                  <Link className="text-slate-300 hover:text-white transition-colors" href="#terms">
+                    Kullanım Koşulları
+                  </Link>
                 </li>
               </ul>
             </div>
           </div>
 
-          <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-400 text-sm">© 2025 MedAIst. Tüm hakları saklıdır.</p>
-            <div className="flex gap-6 text-sm text-gray-400 mt-4 md:mt-0">
-              <a href="#" className="hover:text-white transition-colors">
-                Gizlilik Politikası
-              </a>
-              <a href="#" className="hover:text-white transition-colors">
-                Kullanım Şartları
-              </a>
-              <a href="#" className="hover:text-white transition-colors">
-                Çerezler
-              </a>
-            </div>
+          <div className="mt-12 pt-8 border-t border-slate-800">
+            <p className="text-center text-slate-400">© 2024 MedAIst. Tüm hakları saklıdır.</p>
           </div>
         </div>
       </footer>
@@ -601,4 +860,4 @@ const Homepage = () => {
   );
 };
 
-export default Homepage;
+export default LandingPage;
