@@ -3,7 +3,9 @@ import {RefObject} from "react";
 
 import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
 import {Button} from "@/components/ui/button";
+import {useSidebar} from "@/components/ui/sidebar";
 import {Textarea} from "@/components/ui/textarea";
+import {cn} from "@/lib/utils";
 
 import {quickQuestions} from "../utils/chat-utils";
 
@@ -31,8 +33,15 @@ export const ChatInput = ({
     }
   };
 
+  const {open} = useSidebar();
+
   return (
-    <div className="flex-shrink-0 px-4 fixed bg-background bottom-0 left-[16rem] right-0">
+    <div
+      className={cn(
+        "flex-shrink-0 px-4 fixed bg-background bottom-0 right-0",
+        open ? "left-[16rem]" : "left-[3rem]",
+      )}
+    >
       <MaxWidthWrapper className="pb-6 !max-w-4xl">
         {/* Quick Questions */}
         {showQuickQuestions && (
