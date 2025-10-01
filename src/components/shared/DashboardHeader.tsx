@@ -1,16 +1,6 @@
 "use client";
 
-import {
-  Brain,
-  FileText,
-  HelpCircle,
-  Home,
-  LogOut,
-  MessageSquare,
-  Settings,
-  Target,
-  User,
-} from "lucide-react";
+import {Brain, Bug, FileText, LogOut, MessageSquare, Settings, Target, User} from "lucide-react";
 import Link from "next/link";
 
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
@@ -40,11 +30,6 @@ import {cn} from "@/lib/utils";
 
 const menuItems = [
   {
-    title: "Dashboard",
-    url: "/dashboard",
-    icon: Home,
-  },
-  {
     title: "AI Chat",
     url: "/chat",
     icon: MessageSquare,
@@ -68,9 +53,9 @@ const settingsItems = [
     icon: Settings,
   },
   {
-    title: "Yardım",
+    title: "Geri Bildirim",
     url: "/help",
-    icon: HelpCircle,
+    icon: Bug,
   },
 ];
 
@@ -141,7 +126,7 @@ export default function DashboardHeader() {
         </SidebarGroup>
       </SidebarContent>
 
-      <SidebarFooter className="p-4">
+      <SidebarFooter>
         <SidebarMenu>
           <SidebarMenuItem>
             <DropdownMenu>
