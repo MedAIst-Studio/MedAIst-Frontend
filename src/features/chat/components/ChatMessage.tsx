@@ -22,7 +22,7 @@ export const ChatMessage = ({message, onCopyMessage}: ChatMessageProps) => {
         <div
           className={`rounded-2xl px-4 py-3 transition-all duration-200 ${
             message.role === "user"
-              ? "bg-blue-600 text-white ml-12 border-b-4 border-b-blue-800"
+              ? "border-b-4 border-primary/30 bg-gradient-to-br from-primary via-primary/90 to-primary/80 text-primary-foreground"
               : "bg-white border-2 border-b-4 border-b-gray-300 text-gray-900 hover:shadow-sm hover:-translate-y-0.5"
           }`}
         >

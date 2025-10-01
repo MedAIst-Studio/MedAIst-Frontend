@@ -72,7 +72,7 @@ export const ChatInput = ({
         )}
 
         {/* Input Area */}
-        <div className="relative flex items-center border border-b-4 border-b-gray-300 rounded-full pr-4 bg-white hover:shadow-sm transition-all duration-200">
+        <div className="relative flex items-center border border-b-4 border-b-gray-300 rounded-xl pr-4 bg-white hover:shadow-sm transition-all duration-200">
           <Textarea
             ref={textareaRef}
             className="resize-none focus-visible:ring-none border p-6 shadow-none hover:shadow-none hover:border-none focus:shadow-none focus:border-none hover:translate-none focus:translate-none border-none"
@@ -83,7 +83,7 @@ export const ChatInput = ({
             onKeyDown={handleKeyPress}
           />
           <Button
-            className="rounded-full"
+            className="rounded-lg"
             disabled={!inputMessage.trim() || isLoading}
             size="icon"
             onClick={onSendMessage}

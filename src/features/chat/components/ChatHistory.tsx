@@ -33,7 +33,7 @@ export const ChatHistory = ({
         {savedChats.map((chat) => (
           <div
             key={chat.id}
-            className="flex items-center justify-between p-3 rounded-lg border border-b-4 border-b-gray-300 hover:bg-gray-50 hover:shadow-lg hover:-translate-y-0.5 group transition-all duration-200"
+            className="flex items-center justify-between p-3 rounded-lg border border-b-4 border-b-gray-300 hover:bg-gray-50 hover:-translate-y-0.5 group transition-all duration-200"
           >
             <button
               className="flex-1 cursor-pointer text-start"
