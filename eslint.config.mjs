@@ -20,7 +20,6 @@ const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
   {
     ignores: ["node_modules/**", ".next/**", "out/**", "build/**", "next-env.d.ts"],
-    // plugins: ["react", "unused-imports", "import", "@typescript-eslint", "jsx-a11y", "prettier"],
     plugins: {
       react,
       "unused-imports": unusedImports,
