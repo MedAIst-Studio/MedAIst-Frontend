@@ -1,5 +1,27 @@
 "use client";
 
+import {zodResolver} from "@hookform/resolvers/zod";
+import {
+  AlertCircle,
+  Brain,
+  Calendar,
+  CheckCircle2,
+  Download,
+  Edit,
+  Eye,
+  File,
+  FileText,
+  Loader2,
+  Search,
+  Sparkles,
+  Tag,
+  Upload,
+} from "lucide-react";
+import {useState} from "react";
+import {useForm} from "react-hook-form";
+import {z} from "zod";
+
+import {DynamicFormField, StandaloneFormField} from "@/components/shared/DynamicFormField";
 import {Badge} from "@/components/ui/badge";
 import {Button} from "@/components/ui/button";
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
@@ -11,29 +33,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import {Input} from "@/components/ui/input";
-import {Label} from "@/components/ui/label";
+import {Form} from "@/components/ui/form";
 import {Progress} from "@/components/ui/progress";
 import {Separator} from "@/components/ui/separator";
-import {Textarea} from "@/components/ui/textarea";
-import {
-  AlertCircle,
-  Brain,
-  Calendar,
-  CheckCircle2,
-  Download,
-  Edit,
-  Eye,
-  File,
-  FileText,
-  Filter,
-  Loader2,
-  Search,
-  Sparkles,
-  Tag,
-  Upload,
-} from "lucide-react";
-import {useState} from "react";
 
 interface Note {
   id: string;
@@ -47,11 +49,33 @@ interface Note {
   tags: string[];
 }
 
+// Form schema for manual note creation
+const noteFormSchema = z.object({
+  title: z.string().min(1, "Title is required").max(100, "Title must be under 100 characters"),
+  subject: z.string().min(1, "Please select a subject"),
+  content: z.string().min(10, "Content must be at least 10 characters long"),
+  tags: z.string().optional(),
+});
+
+type NoteFormData = z.infer<typeof noteFormSchema>;
+
 export default function NotesPage() {
   const [isUploading, setIsUploading] = useState(false);
   const [dragActive, setDragActive] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedSubject, setSelectedSubject] = useState("all");
+  const [isProcessingNote, setIsProcessingNote] = useState(false);
+
+  // Form setup
+  const form = useForm<NoteFormData>({
+    resolver: zodResolver(noteFormSchema),
+    defaultValues: {
+      title: "",
+      subject: "",
+      content: "",
+      tags: "",
+    },
+  });
 
   // Mock data - in real app, this would come from API
   const [notes] = useState<Note[]>([
@@ -95,6 +119,35 @@ export default function NotesPage() {
 
   const subjects = ["all", "Cardiology", "Neurology", "Pharmacology", "Anatomy", "Pathology"];
 
+  // Form submit handler
+  const onSubmitNote = async (data: NoteFormData) => {
+    setIsProcessingNote(true);
+    try {
+      // Simulate API call to create note and generate summary
+      console.log("Creating note:", data);
+
+      // Here you would typically:
+      // 1. Send data to your API
+      // 2. Generate AI summary
+      // 3. Update notes list
+      // 4. Show success message
+
+      // Simulate processing time
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
+      // Reset form on success
+      form.reset();
+
+      // Show success notification (you can add toast here)
+      alert("Note created and summary generated successfully!");
+    } catch (error) {
+      console.error("Error creating note:", error);
+      alert("Failed to create note. Please try again.");
+    } finally {
+      setIsProcessingNote(false);
+    }
+  };
+
   const handleFileUpload = (files: FileList | null) => {
     if (!files) return;
     setIsUploading(true);
@@ -129,6 +182,7 @@ export default function NotesPage() {
       note.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       note.content.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesSubject = selectedSubject === "all" || note.subject === selectedSubject;
+
     return matchesSearch && matchesSubject;
   });
 
@@ -173,10 +227,10 @@ export default function NotesPage() {
                     </p>
                   </div>
                   <input
-                    type="file"
                     multiple
                     accept=".pdf,.docx,.txt"
                     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                    type="file"
                     onChange={(e) => handleFileUpload(e.target.files)}
                   />
                 </div>
@@ -186,51 +240,75 @@ export default function NotesPage() {
                     <div className="text-center space-y-3">
                       <Loader2 className="w-8 h-8 text-blue-500 animate-spin mx-auto" />
                       <p className="text-sm font-medium">Uploading and processing...</p>
-                      <Progress value={65} className="w-48 mx-auto" />
+                      <Progress className="w-48 mx-auto" value={65} />
                     </div>
                   </div>
                 )}
               </div>
 
-              {/* Manual Text Input */}
+              {/* Manual Text Input Form */}
               <div className="space-y-4">
-                <div>
-                  <Label htmlFor="note-title" className="text-sm font-medium">
-                    Note Title
-                  </Label>
-                  <Input
-                    id="note-title"
-                    placeholder="e.g., Cardiovascular System - Chapter 5"
-                    className="mt-1"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="subject" className="text-sm font-medium">
-                    Subject
-                  </Label>
-                  <select className="w-full mt-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <option>Select subject...</option>
-                    {subjects.slice(1).map((subject) => (
-                      <option key={subject} value={subject}>
-                        {subject}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <Label htmlFor="note-content" className="text-sm font-medium">
-                    Note Content
-                  </Label>
-                  <Textarea
-                    id="note-content"
-                    placeholder="Paste your notes here for AI summarization..."
-                    className="mt-1 min-h-[120px]"
-                  />
-                </div>
-                <Button size={"lg"} className="w-full">
-                  <Sparkles className="w-4 h-4" />
-                  Generate Summary
-                </Button>
+                <Form {...form}>
+                  <form className="space-y-4" onSubmit={form.handleSubmit(onSubmitNote)}>
+                    <DynamicFormField
+                      required
+                      control={form.control}
+                      description="Give your note a descriptive title"
+                      label="Note Title"
+                      name="title"
+                      placeholder="e.g., Cardiovascular System - Chapter 5"
+                      type="text"
+                    />
+
+                    <DynamicFormField
+                      required
+                      control={form.control}
+                      description="Choose the medical subject category"
+                      label="Subject"
+                      name="subject"
+                      options={subjects.slice(1).map((subject) => ({
+                        value: subject.toLowerCase(),
+                        label: subject,
+                      }))}
+                      placeholder="Select subject..."
+                      type="select"
+                    />
+
+                    <DynamicFormField
+                      required
+                      control={form.control}
+                      description="Add your study notes or paste content from other sources"
+                      label="Note Content"
+                      name="content"
+                      placeholder="Paste your notes here for AI summarization..."
+                      rows={6}
+                      type="textarea"
+                    />
+
+                    <DynamicFormField
+                      control={form.control}
+                      description="Add comma-separated tags to help organize your notes"
+                      label="Tags (Optional)"
+                      name="tags"
+                      placeholder="e.g., anatomy, physiology, cardiology"
+                      type="text"
+                    />
+
+                    <Button className="w-full" disabled={isProcessingNote} size="lg" type="submit">
+                      {isProcessingNote ? (
+                        <>
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          Processing...
+                        </>
+                      ) : (
+                        <>
+                          <Sparkles className="w-4 h-4" />
+                          Generate Summary
+                        </>
+                      )}
+                    </Button>
+                  </form>
+                </Form>
               </div>
             </div>
           </CardContent>
@@ -238,32 +316,33 @@ export default function NotesPage() {
 
         {/* Filters and Search */}
         <Card>
-          <CardContent>
-            <div className="flex flex-col md:flex-row gap-4 items-center">
-              <div className="flex-1">
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-                  <Input
-                    placeholder="Search notes by title or content..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-10"
-                  />
-                </div>
+          <CardContent className="pt-6">
+            <div className="flex flex-col md:flex-row gap-4 items-end">
+              <div className="flex-1 relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 pointer-events-none z-10" />
+                <StandaloneFormField
+                  inputClassName="pl-10"
+                  label="Search Notes"
+                  placeholder="Search notes by title or content..."
+                  showLabel={false}
+                  type="search"
+                  value={searchTerm}
+                  onChange={setSearchTerm}
+                />
               </div>
               <div className="flex items-center space-x-2">
-                <Filter className="w-4 h-4 text-gray-500" />
-                <select
+                <StandaloneFormField
+                  className="min-w-[150px]"
+                  label="Filter by Subject"
+                  options={subjects.map((subject) => ({
+                    value: subject,
+                    label: subject === "all" ? "All Subjects" : subject,
+                  }))}
+                  showLabel={false}
+                  type="select"
                   value={selectedSubject}
-                  onChange={(e) => setSelectedSubject(e.target.value)}
-                  className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                >
-                  {subjects.map((subject) => (
-                    <option key={subject} value={subject}>
-                      {subject === "all" ? "All Subjects" : subject}
-                    </option>
-                  ))}
-                </select>
+                  onChange={setSelectedSubject}
+                />
               </div>
             </div>
           </CardContent>
@@ -280,10 +359,10 @@ export default function NotesPage() {
                       {note.title}
                     </CardTitle>
                     <div className="flex items-center space-x-2 mt-2">
-                      <Badge variant="secondary" className="text-xs">
+                      <Badge className="text-xs" variant="secondary">
                         {note.subject}
                       </Badge>
-                      <Badge variant="outline" className="text-xs">
+                      <Badge className="text-xs" variant="outline">
                         {note.fileType}
                       </Badge>
                     </div>
@@ -315,7 +394,7 @@ export default function NotesPage() {
 
                 <div className="flex flex-wrap gap-1">
                   {note.tags.map((tag, index) => (
-                    <Badge key={index} variant="outline" className="text-xs">
+                    <Badge key={index} className="text-xs" variant="outline">
                       <Tag className="w-3 h-3 mr-1" />
                       {tag}
                     </Badge>
@@ -334,7 +413,7 @@ export default function NotesPage() {
                 <div className="flex items-center space-x-2 pt-2">
                   <Dialog>
                     <DialogTrigger asChild>
-                      <Button variant="outline" className="flex-1">
+                      <Button className="flex-1" variant="outline">
                         <Eye className="w-4 h-4 mr-1" />
                         View
                       </Button>
@@ -366,12 +445,12 @@ export default function NotesPage() {
                     </DialogContent>
                   </Dialog>
 
-                  <Button variant="outline" size="icon">
+                  <Button size="icon" variant="outline">
                     <Edit />
                   </Button>
 
                   {note.summary && (
-                    <Button variant="outline" size="icon">
+                    <Button size="icon" variant="outline">
                       <Download />
                     </Button>
                   )}

@@ -13,13 +13,13 @@ const buttonVariants = cva(
           "bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700 hover:shadow-xl transform hover:-translate-y-0.5 active:translate-y-0 focus-visible:ring-blue-500/50 border-b-4 border-blue-800 hover:border-blue-900 active:border-blue-700",
 
         destructive:
-          "bg-red-500 text-white rounded-lg shadow-lg hover:bg-red-600 hover:shadow-xl transform hover:-translate-y-0.5 active:translate-y-0 focus-visible:ring-red-500/50 border-b-4 border-red-700 hover:border-red-800 active:border-red-600",
+          "bg-red-500 text-destructive-foreground rounded-lg shadow-lg hover:bg-red-600 hover:shadow-xl transform hover:-translate-y-0.5 active:translate-y-0 focus-visible:ring-red-500/50 border-b-4 border-red-700 hover:border-red-800 active:border-red-600",
 
         outline:
           "border-2 border-slate-100 bg-white text-slate-700 rounded-lg hover:shadow-xl hover:border-blue-500 hover:text-blue-700 transform hover:-translate-y-0.5 active:translate-y-0 focus-visible:ring-blue-500/50 border-b-4 border-slate-300 hover:border-blue-600 active:border-slate-300 dark:bg-slate-800 dark:border-slate-600 dark:text-slate-200 dark:hover:border-blue-400 dark:hover:text-blue-300",
 
         secondary:
-          "bg-slate-200 text-slate-800 rounded-lg shadow-lg hover:bg-slate-300 hover:shadow-xl transform hover:-translate-y-0.5 active:translate-y-0 border-b-4 border-slate-400 hover:border-slate-500 active:border-slate-300 dark:bg-slate-700 dark:text-slate-200 dark:border-slate-800 dark:hover:bg-slate-600 dark:hover:border-slate-900",
+          "bg-white text-slate-800 rounded-lg hover:bg-slate-50 hover:shadow-sm transform hover:-translate-y-0.5 active:translate-y-0 border-b-4 border-slate-200 hover:border-slate-300 active:border-slate-300 dark:bg-slate-700 dark:text-slate-200 dark:border-slate-800 dark:hover:bg-slate-600 dark:hover:border-slate-900",
 
         ghost:
           "text-slate-700 rounded-lg hover:bg-blue-50 hover:text-blue-700 shadow-sm hover:shadow-lg transform hover:-translate-y-0.5 active:translate-y-0 focus-visible:ring-blue-500/30 border-b-4 border-transparent hover:border-blue-200 active:border-transparent dark:text-slate-300 dark:hover:bg-blue-950/30 dark:hover:text-blue-300 dark:hover:border-blue-800",
@@ -73,8 +73,8 @@ function Button({
 
   return (
     <Comp
-      data-slot="button"
       className={cn(buttonVariants({variant, size, className}))}
+      data-slot="button"
       {...props}
     />
   );

@@ -1,15 +1,5 @@
 "use client";
 
-import {Button} from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import {Textarea} from "@/components/ui/textarea";
 import {
   ArrowUp,
   BookOpen,
@@ -24,6 +14,17 @@ import {
   Trash2,
 } from "lucide-react";
 import {useEffect, useRef, useState} from "react";
+
+import {Button} from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import {Textarea} from "@/components/ui/textarea";
 
 interface Message {
   id: string;
@@ -120,11 +121,15 @@ export default function ChatPage() {
 
     setSavedChats((prev) => {
       const existingIndex = prev.findIndex((chat) => chat.id === newChat.id);
+
       if (existingIndex >= 0) {
         const updated = [...prev];
+
         updated[existingIndex] = newChat;
+
         return updated;
       }
+
       return [newChat, ...prev];
     });
 
@@ -134,6 +139,7 @@ export default function ChatPage() {
   // Load a saved chat
   const loadChat = (chatId: string) => {
     const chat = savedChats.find((c) => c.id === chatId);
+
     if (chat) {
       setMessages([...chat.messages]);
       setCurrentChatId(chatId);
@@ -186,8 +192,10 @@ export default function ChatPage() {
         role: "assistant",
         timestamp: new Date(),
       };
+
       setMessages((prev) => {
         const newMessages = [...prev, aiResponse];
+
         // Auto-save after AI response
         setTimeout(() => {
           if (newMessages.length > 1) {
@@ -202,11 +210,15 @@ export default function ChatPage() {
 
             setSavedChats((prev) => {
               const existingIndex = prev.findIndex((chat) => chat.id === chatToSave.id);
+
               if (existingIndex >= 0) {
                 const updated = [...prev];
+
                 updated[existingIndex] = chatToSave;
+
                 return updated;
               }
+
               return [chatToSave, ...prev];
             });
 
@@ -215,6 +227,7 @@ export default function ChatPage() {
             }
           }
         }, 100);
+
         return newMessages;
       });
       setIsLoading(false);
@@ -234,6 +247,7 @@ export default function ChatPage() {
     };
 
     const input = userInput.toLowerCase();
+
     if (input.includes("heart") || input.includes("cardiac") || input.includes("cardiovascular")) {
       return responses.heart;
     } else if (input.includes("blood") || input.includes("hematology")) {
@@ -283,7 +297,7 @@ export default function ChatPage() {
             <div className="flex items-center space-x-2">
               <Dialog open={isHistoryOpen} onOpenChange={setIsHistoryOpen}>
                 <DialogTrigger asChild>
-                  <Button variant="outline" size="icon" title="Chat history">
+                  <Button size="icon" title="Chat history" variant="outline">
                     <History className="w-4 h-4" />
                   </Button>
                 </DialogTrigger>
@@ -303,7 +317,7 @@ export default function ChatPage() {
                       savedChats.map((chat) => (
                         <div
                           key={chat.id}
-                          className="flex items-center justify-between p-3 rounded-lg border border-b-3 border-b-gray-300 hover:bg-gray-50 hover:shadow-lg hover:-translate-y-0.5 group transition-all duration-200"
+                          className="flex items-center justify-between p-3 rounded-lg border border-b-4 border-b-gray-300 hover:bg-gray-50 hover:shadow-sm hover:-translate-y-0.5 group transition-all duration-200 bg-gray-50"
                         >
                           <div className="flex-1 cursor-pointer" onClick={() => loadChat(chat.id)}>
                             <h4 className="font-medium text-sm group-hover:text-blue-600">
@@ -316,29 +330,28 @@ export default function ChatPage() {
                             </div>
                           </div>
                           <Button
-                            variant="ghost"
-                            size="sm"
-                            className="opacity-0 group-hover:opacity-100 h-8 w-8 p-0"
+                            size="icon-sm"
+                            variant="destructive"
                             onClick={(e) => {
                               e.stopPropagation();
                               deleteChat(chat.id);
                             }}
                           >
-                            <Trash2 className="w-4 h-4 text-red-500" />
+                            <Trash2 />
                           </Button>
                         </div>
                       ))
                     )}
                   </div>
                   <div className="flex gap-2 pt-4 border-t">
-                    <Button variant="outline" className="flex-1" onClick={startNewChat}>
+                    <Button className="flex-1" variant="outline" onClick={startNewChat}>
                       <MessageSquare className="w-4 h-4 mr-2" />
                       New Chat
                     </Button>
                   </div>
                 </DialogContent>
               </Dialog>
-              <Button variant="outline" size="icon" onClick={clearChat} title="Clear chat">
+              <Button size="icon" title="Clear chat" variant="outline" onClick={clearChat}>
                 <RotateCcw className="w-4 h-4" />
               </Button>
             </div>
@@ -386,9 +399,8 @@ export default function ChatPage() {
                   {message.role === "assistant" && (
                     <div className="flex items-center gap-1 ml-2">
                       <Button
-                        variant="outline"
-                        size="icon"
-                        className="h-8 w-8 p-0 hover:bg-gray-200"
+                        size="icon-sm"
+                        variant="secondary"
                         onClick={() => copyMessage(message.content)}
                       >
                         <Copy className="w-3 h-3" />
@@ -459,21 +471,20 @@ export default function ChatPage() {
       {/* Input Area */}
       <div className="flex-shrink-0 bg-background px-4 fixed bottom-0 left-0 right-0">
         <div className="max-w-4xl mx-auto pb-4">
-          <div className="relative flex items-center border border-b-4 border-b-gray-200 hover:shadow-sm rounded-full pr-4 bg-white transition-all duration-200">
+          <div className="relative flex items-center border border-b-4 border-b-gray-200 hover:shadow-sm rounded-xl pr-4 bg-white transition-all duration-200">
             <Textarea
               ref={textareaRef}
+              className="resize-none focus-visible:ring-0 border p-6 shadow-none border-none hover:shadow-none focus-visible:shadow-none focus-visible:border-none hover:!translate-none"
+              disabled={isLoading}
+              placeholder="Ask me about medical concepts, procedures, anatomy, or anything related to your studies..."
               value={inputMessage}
               onChange={(e) => setInputMessage(e.target.value)}
               onKeyDown={handleKeyPress}
-              placeholder="Ask me about medical concepts, procedures, anatomy, or anything related to your studies..."
-              className="resize-none focus-visible:ring-0 border p-6 shadow-none border-none"
-              disabled={isLoading}
             />
             <Button
-              size="icon"
-              className="rounded-full"
-              onClick={handleSendMessage}
               disabled={!inputMessage.trim() || isLoading}
+              size="icon"
+              onClick={handleSendMessage}
             >
               <ArrowUp className="!w-5 !h-5" />
             </Button>
