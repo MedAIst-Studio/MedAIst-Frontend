@@ -84,7 +84,7 @@ const LandingPage = () => {
               <Link href="/login">
                 <Button variant="outline">Giriş Yap</Button>
               </Link>
-              <Link href="/dashboard">
+              <Link href="/signup">
                 <Button>
                   Başla
                   <ArrowRight />
@@ -148,7 +148,7 @@ const LandingPage = () => {
                     <Link href="/login">
                       <Button variant="outline">Giriş Yap</Button>
                     </Link>
-                    <Link href="/dashboard">
+                    <Link href="/signup">
                       <Button>
                         Başla
                         <ArrowRight />
@@ -196,7 +196,7 @@ const LandingPage = () => {
                 </p>
 
                 <div className="mt-10 flex items-center justify-center lg:justify-start gap-4 flex-wrap">
-                  <Link href="/dashboard">
+                  <Link href="/signup">
                     <Button>
                       Hemen Başla
                       <ArrowRight />
