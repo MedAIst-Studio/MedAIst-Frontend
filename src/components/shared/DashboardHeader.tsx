@@ -1,24 +1,19 @@
 "use client";
 
 import {
-  BarChart3,
-  Bell,
-  BookOpen,
   Brain,
   FileText,
   HelpCircle,
   Home,
   LogOut,
-  Menu,
-  MessageCircle,
+  MessageSquare,
   Settings,
+  Target,
   User,
 } from "lucide-react";
 import Link from "next/link";
 
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
-import {Badge} from "@/components/ui/badge";
-import {Button} from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -28,138 +23,192 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarTrigger,
+  useSidebar,
+} from "@/components/ui/sidebar";
+import {cn} from "@/lib/utils";
 
-const navigationItems = [
-  {name: "Dashboard", href: "/dashboard", icon: Home},
-  {name: "AI Chat", href: "/chat", icon: MessageCircle},
-  {name: "Summarize", href: "/summarize", icon: FileText},
-  {name: "Quiz", href: "/quiz", icon: HelpCircle},
-  {name: "Library", href: "/library", icon: BookOpen},
-  {name: "Analytics", href: "/analytics", icon: BarChart3},
+const menuItems = [
+  {
+    title: "Dashboard",
+    url: "/dashboard",
+    icon: Home,
+  },
+  {
+    title: "AI Chat",
+    url: "/chat",
+    icon: MessageSquare,
+  },
+  {
+    title: "Notlarım",
+    url: "/notes",
+    icon: FileText,
+  },
+  {
+    title: "Quizler",
+    url: "/quiz",
+    icon: Target,
+  },
+];
+
+const settingsItems = [
+  {
+    title: "Ayarlar",
+    url: "/settings",
+    icon: Settings,
+  },
+  {
+    title: "Yardım",
+    url: "/help",
+    icon: HelpCircle,
+  },
 ];
 
 export default function DashboardHeader() {
+  const {open} = useSidebar();
+
   return (
-    <header className="sticky px-4 top-0 z-50 w-full border-b bg-card">
-      <div className="flex h-16 items-center">
-        {/* Mobile Menu */}
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button
-              className="mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden"
-              variant="ghost"
-            >
-              <Menu className="h-6 w-6" />
-              <span className="sr-only">Toggle Menu</span>
-            </Button>
-          </SheetTrigger>
-          <SheetContent className="pr-0" side="left">
-            <SheetHeader>
-              <SheetTitle className="flex items-center">
-                <Brain className="mr-2 h-6 w-6" />
-                MedAIst
-              </SheetTitle>
-              <SheetDescription>AI-powered medical study assistant</SheetDescription>
-            </SheetHeader>
-            <div className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
-              <div className="flex flex-col space-y-2">
-                {navigationItems.map((item) => (
-                  <Link
-                    key={item.href}
-                    className="flex items-center space-x-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground"
-                    href={item.href}
-                  >
-                    <item.icon className="h-4 w-4" />
-                    <span>{item.name}</span>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </SheetContent>
-        </Sheet>
+    <Sidebar className="border-r group" collapsible="icon">
+      <SidebarHeader className="p-4 flex flex-row items-center justify-between">
+        <Link className="flex items-center space-x-2" href="/dashboard">
+          <div
+            className={cn(
+              "flex h-8 w-8 items-center justify-center rounded-lg bg-primary",
+              !open && "absolute top-4 left-[8px]",
+            )}
+          >
+            <Brain className="h-5 w-5 text-white" />
+          </div>
+          {open && (
+            <span className="text-xl font-bold">
+              Med<span className="text-blue-600">AI</span>st
+            </span>
+          )}
+        </Link>
 
-        {/* Logo */}
-        <div className="mr-4 flex">
-          <Link className="mr-6 flex items-center space-x-2" href="/dashboard">
-            <Brain className="h-6 w-6" />
-            <span className="hidden font-bold sm:inline-block">MedAIst</span>
-          </Link>
-        </div>
+        <SidebarTrigger
+          className={open ? "" : "absolute top-4 left-[8px] hidden group-hover:flex"}
+        />
 
-        {/* Desktop Navigation */}
-        {/* <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
-          {navigationItems.slice(0, 4).map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="flex items-center space-x-1 transition-colors hover:text-foreground/80 text-foreground/60"
-            >
-              <item.icon className="h-4 w-4" />
-              <span>{item.name}</span>
-            </Link>
-          ))}
-        </nav> */}
+        {!open && <div className="h-6" />}
+      </SidebarHeader>
 
-        <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
-          <div className="flex items-center space-x-2">
-            {/* Notifications */}
-            <Button size="icon" variant="outline">
-              <Bell className="h-4 w-4" />
-              <span className="sr-only">Notifications</span>
-            </Button>
+      <SidebarContent>
+        <SidebarGroup>
+          <SidebarGroupLabel>Ana Menü</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {menuItems.map((item) => (
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton asChild>
+                    <Link href={item.url}>
+                      <item.icon className="h-4 w-4" />
+                      <span>{item.title}</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
 
-            {/* User Menu */}
+        <SidebarGroup>
+          <SidebarGroupLabel>Diğer</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {settingsItems.map((item) => (
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton asChild>
+                    <Link href={item.url}>
+                      <item.icon className="h-4 w-4" />
+                      <span>{item.title}</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+      </SidebarContent>
+
+      <SidebarFooter className="p-4">
+        <SidebarMenu>
+          <SidebarMenuItem>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button size="icon" variant="outline">
-                  <Avatar className="h-8 w-8">
-                    <AvatarImage alt="Profile" src="/avatar-placeholder.jpg" />
-                    <AvatarFallback>MS</AvatarFallback>
+                <SidebarMenuButton
+                  className="data-[state=open]:bg-gray-100 data-[state=open]:text-sidebar-accent-foreground"
+                  size={"lg"}
+                >
+                  <Avatar className="h-8 w-8 rounded-lg">
+                    <AvatarImage alt="User" src="/placeholder-avatar.jpg" />
+                    <AvatarFallback className="rounded-lg bg-blue-100 text-blue-600">
+                      <User className="h-4 w-4" />
+                    </AvatarFallback>
                   </Avatar>
-                </Button>
+                  <div className="grid flex-1 text-left text-sm leading-tight">
+                    <span className="truncate font-semibold">Ömer Faruk</span>
+                    <span className="truncate text-xs text-muted-foreground">
+                      omerfaruk@example.com
+                    </span>
+                  </div>
+                </SidebarMenuButton>
               </DropdownMenuTrigger>
-              <DropdownMenuContent forceMount align="end" className="w-56">
-                <DropdownMenuLabel className="font-normal">
-                  <div className="flex flex-col space-y-1">
-                    <p className="text-sm font-medium leading-none">Medical Student</p>
-                    <p className="text-xs leading-none text-muted-foreground">
-                      student@medschool.edu
-                    </p>
-                    <Badge className="w-fit mt-1" variant="secondary">
-                      Year 3
-                    </Badge>
+              <DropdownMenuContent
+                align="end"
+                className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
+                side="bottom"
+                sideOffset={4}
+              >
+                <DropdownMenuLabel className="p-0 font-normal">
+                  <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
+                    <Avatar className="h-8 w-8 rounded-lg">
+                      <AvatarImage alt="User" src="/placeholder-avatar.jpg" />
+                      <AvatarFallback className="rounded-lg bg-blue-100 text-blue-600">
+                        <User className="h-4 w-4" />
+                      </AvatarFallback>
+                    </Avatar>
+                    <div className="grid flex-1 text-left text-sm leading-tight">
+                      <span className="truncate font-semibold">Ömer Faruk</span>
+                      <span className="truncate text-xs text-muted-foreground">
+                        omerfaruk@example.com
+                      </span>
+                    </div>
                   </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  <User className="mr-2 h-4 w-4" />
-                  <span>Profile</span>
+                <DropdownMenuItem asChild>
+                  <Link href="/profile">
+                    <User className="mr-2 h-4 w-4" />
+                    Profil
+                  </Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <BarChart3 className="mr-2 h-4 w-4" />
-                  <span>Analytics</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Settings className="mr-2 h-4 w-4" />
-                  <span>Settings</span>
+                <DropdownMenuItem asChild>
+                  <Link href="/settings">
+                    <Settings className="mr-2 h-4 w-4" />
+                    Ayarlar
+                  </Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
                   <LogOut className="mr-2 h-4 w-4" />
-                  <span>Log out</span>
+                  Çıkış Yap
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-          </div>
-        </div>
-      </div>
-    </header>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarFooter>
+    </Sidebar>
   );
 }

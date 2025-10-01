@@ -1,6 +1,7 @@
 import {ArrowUp, BookOpen, Brain, Sparkles, Stethoscope} from "lucide-react";
 import {RefObject} from "react";
 
+import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
 import {Button} from "@/components/ui/button";
 import {Textarea} from "@/components/ui/textarea";
 
@@ -31,8 +32,8 @@ export const ChatInput = ({
   };
 
   return (
-    <div className="flex-shrink-0 bg-background px-4 fixed bottom-0 left-0 right-0">
-      <div className="max-w-4xl mx-auto pb-4">
+    <div className="flex-shrink-0 px-4 fixed bg-background bottom-0 left-[16rem] right-0">
+      <MaxWidthWrapper className="pb-6 !max-w-4xl">
         {/* Quick Questions */}
         {showQuickQuestions && (
           <div className="mb-4 space-y-4">
@@ -95,7 +96,7 @@ export const ChatInput = ({
         <div className="text-xs text-gray-500 mt-4 text-center">
           MedAI can make mistakes. Please verify important medical information.
         </div>
-      </div>
+      </MaxWidthWrapper>
     </div>
   );
 };

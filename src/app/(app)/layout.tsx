@@ -1,5 +1,7 @@
-import DashboardHeader from "@/components/shared/DashboardHeader";
 import type {Metadata} from "next";
+
+import DashboardHeader from "@/components/shared/DashboardHeader";
+import {SidebarProvider} from "@/components/ui/sidebar";
 
 export const metadata: Metadata = {
   title: "Dashboard - MedAIst",
@@ -12,9 +14,9 @@ export default function AppLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="flex flex-col min-h-screen">
+    <SidebarProvider defaultOpen={true}>
       <DashboardHeader />
-      <main className="flex-1 bg-background">{children}</main>
-    </div>
+      <main className="min-h-screen w-full relative">{children}</main>
+    </SidebarProvider>
   );
 }

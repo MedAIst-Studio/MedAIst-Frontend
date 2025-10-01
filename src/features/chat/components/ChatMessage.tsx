@@ -20,10 +20,10 @@ export const ChatMessage = ({message, onCopyMessage}: ChatMessageProps) => {
 
       <div className={`max-w-3xl ${message.role === "user" ? "order-1" : ""}`}>
         <div
-          className={`rounded-2xl px-4 py-3 transition-all duration-200 ${
+          className={`rounded-2xl px-4 py-3 ${
             message.role === "user"
               ? "border-b-4 border-primary/30 bg-gradient-to-br from-primary via-primary/90 to-primary/80 text-primary-foreground"
-              : "bg-white border-2 border-b-4 border-b-gray-300 text-gray-900 hover:shadow-sm hover:-translate-y-0.5"
+              : "bg-white border border-b-4 border-b-gray-300 text-gray-900"
           }`}
         >
           <div className="whitespace-pre-wrap text-sm leading-relaxed">{message.content}</div>

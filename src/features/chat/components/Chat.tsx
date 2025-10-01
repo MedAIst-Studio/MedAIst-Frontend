@@ -1,5 +1,7 @@
 import {Brain, Loader2} from "lucide-react";
 
+import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
+
 import {useChat} from "../hooks/useChat";
 
 import {ChatHeader} from "./ChatHeader";
@@ -30,7 +32,7 @@ export const Chat = () => {
   const showQuickQuestions = messages.length === 1;
 
   return (
-    <div className="flex flex-col h-full">
+    <>
       <ChatHeader
         isHistoryOpen={isHistoryOpen}
         savedChats={savedChats}
@@ -42,8 +44,8 @@ export const Chat = () => {
       />
 
       {/* Messages Container */}
-      <div className="flex-1 overflow-y-auto px-4 pb-24">
-        <div className="max-w-4xl mx-auto py-6 space-y-6">
+      <div className="flex-1 overflow-y-auto pb-24">
+        <MaxWidthWrapper className="py-10 !max-w-4xl">
           {messages.map((message) => (
             <ChatMessage key={message.id} message={message} onCopyMessage={copyMessage} />
           ))}
@@ -66,7 +68,7 @@ export const Chat = () => {
           )}
 
           <div ref={messagesEndRef} />
-        </div>
+        </MaxWidthWrapper>
       </div>
 
       <ChatInput
@@ -78,6 +80,6 @@ export const Chat = () => {
         textareaRef={textareaRef}
         onSendMessage={sendMessage}
       />
-    </div>
+    </>
   );
 };

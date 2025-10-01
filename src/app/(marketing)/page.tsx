@@ -21,6 +21,7 @@ import {
 import Link from "next/link";
 import {useState} from "react";
 
+import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
 import {Badge} from "@/components/ui/badge";
 import {Button} from "@/components/ui/button";
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
@@ -29,67 +30,69 @@ const LandingPage = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <>
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
-        <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
-          <div className="flex lg:flex-1">
-            <Link className="-m-1.5 p-1.5" href="/">
-              <span className="text-2xl font-bold text-slate-900">
-                Med<span className="text-blue-600">AI</span>st
-              </span>
-            </Link>
-          </div>
+      <header className="sticky top-0 z-50 bg-white/70 backdrop-blur-md border-b border-slate-200">
+        <MaxWidthWrapper>
+          <nav className="flex items-center justify-between py-3">
+            <div className="flex lg:flex-1">
+              <Link className="-m-1.5 p-1.5" href="/">
+                <span className="text-2xl font-bold text-slate-900">
+                  Med<span className="text-blue-600">AI</span>st
+                </span>
+              </Link>
+            </div>
 
-          <div className="flex lg:hidden">
-            <button
-              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-slate-700"
-              type="button"
-              onClick={() => setMobileMenuOpen(true)}
-            >
-              <Menu className="h-6 w-6" />
-            </button>
-          </div>
+            <div className="flex lg:hidden">
+              <button
+                className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-slate-700"
+                type="button"
+                onClick={() => setMobileMenuOpen(true)}
+              >
+                <Menu className="h-6 w-6" />
+              </button>
+            </div>
 
-          <div className="hidden lg:flex lg:gap-x-12">
-            <Link
-              className="text-sm font-semibold leading-6 text-slate-900 hover:text-blue-600 transition-colors"
-              href="#features"
-            >
-              Özellikler
-            </Link>
-            <Link
-              className="text-sm font-semibold leading-6 text-slate-900 hover:text-blue-600 transition-colors"
-              href="#pricing"
-            >
-              Fiyatlar
-            </Link>
-            <Link
-              className="text-sm font-semibold leading-6 text-slate-900 hover:text-blue-600 transition-colors"
-              href="#about"
-            >
-              Hakkımızda
-            </Link>
-            <Link
-              className="text-sm font-semibold leading-6 text-slate-900 hover:text-blue-600 transition-colors"
-              href="#contact"
-            >
-              İletişim
-            </Link>
-          </div>
+            <div className="hidden lg:flex lg:gap-x-12">
+              <Link
+                className="text-sm font-semibold leading-6 text-slate-900 hover:text-blue-600 transition-colors"
+                href="#features"
+              >
+                Özellikler
+              </Link>
+              <Link
+                className="text-sm font-semibold leading-6 text-slate-900 hover:text-blue-600 transition-colors"
+                href="#pricing"
+              >
+                Fiyatlar
+              </Link>
+              <Link
+                className="text-sm font-semibold leading-6 text-slate-900 hover:text-blue-600 transition-colors"
+                href="#about"
+              >
+                Hakkımızda
+              </Link>
+              <Link
+                className="text-sm font-semibold leading-6 text-slate-900 hover:text-blue-600 transition-colors"
+                href="#contact"
+              >
+                İletişim
+              </Link>
+            </div>
 
-          <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-4">
-            <Link href="/login">
-              <Button variant="outline">Giriş Yap</Button>
-            </Link>
-            <Link href="/dashboard">
-              <Button>
-                Başla
-                <ArrowRight />
-              </Button>
-            </Link>
-          </div>
-        </nav>
+            <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-4">
+              <Link href="/login">
+                <Button variant="outline">Giriş Yap</Button>
+              </Link>
+              <Link href="/dashboard">
+                <Button>
+                  Başla
+                  <ArrowRight />
+                </Button>
+              </Link>
+            </div>
+          </nav>
+        </MaxWidthWrapper>
 
         {/* Mobile menu */}
         {mobileMenuOpen && (
@@ -159,139 +162,143 @@ const LandingPage = () => {
         )}
       </header>
       {/* Hero Section */}
-      <section className="relative bg-white px-6 py-24 sm:py-32 lg:px-8 overflow-hidden">
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute top-0 right-0 -z-10 transform-gpu overflow-hidden blur-3xl sm:top-0">
-            <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] opacity-10 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]">
-              <div className="absolute inset-0 bg-blue-100 rounded-full" />
+      <section className="relative bg-white py-24 sm:py-32 overflow-hidden">
+        <MaxWidthWrapper>
+          <div className="absolute inset-0 -z-10">
+            <div className="absolute top-0 right-0 -z-10 transform-gpu overflow-hidden blur-3xl sm:top-0">
+              <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] opacity-10 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]">
+                <div className="absolute inset-0 bg-blue-100 rounded-full" />
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left Column - Text Content */}
-            <div className="text-center lg:text-left">
-              <Badge className="mb-6 border-b-4 border-blue-200 bg-blue-50 text-blue-700 hover:-translate-y-0.5 transition-all duration-200 shadow-lg">
-                <Sparkles className="mr-1 h-3 w-3" />
-                Tıp Eğitiminde Yeni Nesil Platform
-              </Badge>
+          <div className="mx-auto max-w-7xl">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              {/* Left Column - Text Content */}
+              <div className="text-center lg:text-left">
+                <Badge className="mb-6 border-b-4 border-blue-200 bg-blue-50 text-blue-700 hover:-translate-y-0.5 transition-all duration-200 shadow-lg">
+                  <Sparkles className="mr-1 h-3 w-3" />
+                  Tıp Eğitiminde Yeni Nesil Platform
+                </Badge>
 
-              <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-6xl lg:text-7xl">
-                <span className="text-blue-600">MedAIst</span>
-                <br />
-                <span className="text-3xl sm:text-4xl lg:text-5xl text-slate-700">
-                  Akıllı Tıp Asistanın
-                </span>
-              </h1>
+                <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-6xl lg:text-7xl">
+                  <span className="text-blue-600">MedAIst</span>
+                  <br />
+                  <span className="text-3xl sm:text-4xl lg:text-5xl text-slate-700">
+                    Akıllı Tıp Asistanın
+                  </span>
+                </h1>
 
-              <p className="mt-6 text-lg leading-8 text-slate-600 max-w-xl lg:max-w-none">
-                Yapay zeka destekli chat, akıllı not alma ve interaktif quiz sistemi ile tıp
-                eğitiminizi bir sonraki seviyeye taşıyın. Öğrenme sürecinizi kişiselleştirin ve
-                başarınızı artırın.
-              </p>
+                <p className="mt-6 text-lg leading-8 text-slate-600 max-w-xl lg:max-w-none">
+                  Yapay zeka destekli chat, akıllı not alma ve interaktif quiz sistemi ile tıp
+                  eğitiminizi bir sonraki seviyeye taşıyın. Öğrenme sürecinizi kişiselleştirin ve
+                  başarınızı artırın.
+                </p>
 
-              <div className="mt-10 flex items-center justify-center lg:justify-start gap-4 flex-wrap">
-                <Link href="/dashboard">
-                  <Button>
-                    Hemen Başla
-                    <ArrowRight />
+                <div className="mt-10 flex items-center justify-center lg:justify-start gap-4 flex-wrap">
+                  <Link href="/dashboard">
+                    <Button>
+                      Hemen Başla
+                      <ArrowRight />
+                    </Button>
+                  </Link>
+
+                  <Button variant="outline">
+                    Demo İzle
+                    <Brain />
                   </Button>
-                </Link>
-
-                <Button variant="outline">
-                  Demo İzle
-                  <Brain />
-                </Button>
+                </div>
               </div>
-            </div>
 
-            {/* Right Column - Visual Mockup */}
-            <div className="relative lg:order-last">
-              <div className="relative mx-auto max-w-lg lg:max-w-none">
-                {/* Main Dashboard Mockup */}
-                <div className="relative bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                  {/* Mockup Header */}
-                  <div className="bg-slate-50 px-4 py-3 border-b border-slate-200">
-                    <div className="flex items-center space-x-2">
-                      <div className="w-3 h-3 bg-red-400 rounded-full" />
-                      <div className="w-3 h-3 bg-yellow-400 rounded-full" />
-                      <div className="w-3 h-3 bg-green-400 rounded-full" />
-                      <div className="ml-4 text-sm font-medium text-slate-600">
-                        MedAIst Dashboard
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Mockup Content */}
-                  <div className="p-6 space-y-6">
-                    {/* Chat Interface Mockup */}
-                    <div className="space-y-3">
-                      <div className="flex items-center space-x-2 mb-4">
-                        <MessageSquare className="h-5 w-5 text-blue-600" />
-                        <span className="font-semibold text-slate-900">AI Chat Asistanı</span>
-                      </div>
-
-                      <div className="space-y-2">
-                        <div className="bg-slate-100 rounded-lg p-3 max-w-xs">
-                          <p className="text-sm text-slate-700">
-                            Kalp anatomisi hakkında bilgi verir misin?
-                          </p>
-                        </div>
-                        <div className="bg-blue-600 text-white rounded-lg p-3 max-w-xs ml-auto">
-                          <p className="text-sm">Tabii ki! Kalp, 4 odacıklı kas bir organdır...</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Stats Cards */}
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="bg-blue-50 rounded-lg p-4 border-b-4 border-blue-200">
-                        <div className="text-2xl font-bold text-blue-600">12</div>
-                        <div className="text-xs text-slate-600">Tamamlanan Quiz</div>
-                      </div>
-                      <div className="bg-green-50 rounded-lg p-4 border-b-4 border-green-200">
-                        <div className="text-2xl font-bold text-green-600">85%</div>
-                        <div className="text-xs text-slate-600">Başarı Oranı</div>
-                      </div>
-                    </div>
-
-                    {/* Notes Preview */}
-                    <div className="space-y-2">
+              {/* Right Column - Visual Mockup */}
+              <div className="relative lg:order-last">
+                <div className="relative mx-auto max-w-lg lg:max-w-none">
+                  {/* Main Dashboard Mockup */}
+                  <div className="relative bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                    {/* Mockup Header */}
+                    <div className="bg-slate-50 px-4 py-3 border-b border-slate-200">
                       <div className="flex items-center space-x-2">
-                        <FileText className="h-4 w-4 text-green-600" />
-                        <span className="text-sm font-medium text-slate-900">Son Notlar</span>
-                      </div>
-                      <div className="bg-green-50 rounded-lg p-3 border-b-2 border-green-200">
-                        <div className="text-sm font-medium text-slate-900">
-                          Kardiyoloji - Kalp Yetmezliği
+                        <div className="w-3 h-3 bg-red-400 rounded-full" />
+                        <div className="w-3 h-3 bg-yellow-400 rounded-full" />
+                        <div className="w-3 h-3 bg-green-400 rounded-full" />
+                        <div className="ml-4 text-sm font-medium text-slate-600">
+                          MedAIst Dashboard
                         </div>
-                        <div className="text-xs text-slate-600 mt-1">2 dakika önce eklendi</div>
+                      </div>
+                    </div>
+
+                    {/* Mockup Content */}
+                    <div className="p-6 space-y-6">
+                      {/* Chat Interface Mockup */}
+                      <div className="space-y-3">
+                        <div className="flex items-center space-x-2 mb-4">
+                          <MessageSquare className="h-5 w-5 text-blue-600" />
+                          <span className="font-semibold text-slate-900">AI Chat Asistanı</span>
+                        </div>
+
+                        <div className="space-y-2">
+                          <div className="bg-slate-100 rounded-lg p-3 max-w-xs">
+                            <p className="text-sm text-slate-700">
+                              Kalp anatomisi hakkında bilgi verir misin?
+                            </p>
+                          </div>
+                          <div className="bg-blue-600 text-white rounded-lg p-3 max-w-xs ml-auto">
+                            <p className="text-sm">
+                              Tabii ki! Kalp, 4 odacıklı kas bir organdır...
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Stats Cards */}
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="bg-blue-50 rounded-lg p-4 border-b-4 border-blue-200">
+                          <div className="text-2xl font-bold text-blue-600">12</div>
+                          <div className="text-xs text-slate-600">Tamamlanan Quiz</div>
+                        </div>
+                        <div className="bg-green-50 rounded-lg p-4 border-b-4 border-green-200">
+                          <div className="text-2xl font-bold text-green-600">85%</div>
+                          <div className="text-xs text-slate-600">Başarı Oranı</div>
+                        </div>
+                      </div>
+
+                      {/* Notes Preview */}
+                      <div className="space-y-2">
+                        <div className="flex items-center space-x-2">
+                          <FileText className="h-4 w-4 text-green-600" />
+                          <span className="text-sm font-medium text-slate-900">Son Notlar</span>
+                        </div>
+                        <div className="bg-green-50 rounded-lg p-3 border-b-2 border-green-200">
+                          <div className="text-sm font-medium text-slate-900">
+                            Kardiyoloji - Kalp Yetmezliği
+                          </div>
+                          <div className="text-xs text-slate-600 mt-1">2 dakika önce eklendi</div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
 
-                {/* Floating Elements */}
-                <div className="absolute -top-4 -right-4 bg-blue-100 rounded-full p-3 border-b-4 border-blue-200 shadow-lg animate-bounce">
-                  <Brain className="h-6 w-6 text-blue-600" />
-                </div>
+                  {/* Floating Elements */}
+                  <div className="absolute -top-4 -right-4 bg-blue-100 rounded-full p-3 border-b-4 border-blue-200 shadow-lg animate-bounce">
+                    <Brain className="h-6 w-6 text-blue-600" />
+                  </div>
 
-                <div className="absolute -bottom-4 -left-4 bg-green-100 rounded-full p-3 border-b-4 border-green-200 shadow-lg animate-pulse">
-                  <Target className="h-6 w-6 text-green-600" />
-                </div>
+                  <div className="absolute -bottom-4 -left-4 bg-green-100 rounded-full p-3 border-b-4 border-green-200 shadow-lg animate-pulse">
+                    <Target className="h-6 w-6 text-green-600" />
+                  </div>
 
-                {/* Background decoration */}
-                <div className="absolute -z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-blue-100 rounded-full opacity-20 blur-3xl" />
+                  {/* Background decoration */}
+                  <div className="absolute -z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-blue-100 rounded-full opacity-20 blur-3xl" />
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </MaxWidthWrapper>
       </section>
 
       {/* Stats Section */}
       <section className="py-16 bg-slate-100">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <MaxWidthWrapper>
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
             <div className="text-center">
               <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-blue-100 border-b-4 border-blue-200 shadow-lg">
@@ -333,12 +340,12 @@ const LandingPage = () => {
               </div>
             </div>
           </div>
-        </div>
+        </MaxWidthWrapper>
       </section>
 
       {/* Features Section */}
       <section className="py-24 bg-white" id="features">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <MaxWidthWrapper>
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
               Öğrenme Deneyiminizi <span className="text-blue-600">Dönüştürün</span>
@@ -454,12 +461,12 @@ const LandingPage = () => {
               </Card>
             </div>
           </div>
-        </div>
+        </MaxWidthWrapper>
       </section>
 
       {/* How It Works Section */}
       <section className="py-24 bg-slate-50">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <MaxWidthWrapper>
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
               Nasıl <span className="text-blue-600">Çalışır?</span>
@@ -517,12 +524,12 @@ const LandingPage = () => {
               </div>
             </div>
           </div>
-        </div>
+        </MaxWidthWrapper>
       </section>
 
       {/* Testimonials Section */}
       <section className="py-24 bg-white">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <MaxWidthWrapper>
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
               Öğrencilerimiz <span className="text-blue-600">Ne Diyor?</span>
@@ -614,12 +621,12 @@ const LandingPage = () => {
               </CardContent>
             </Card>
           </div>
-        </div>
+        </MaxWidthWrapper>
       </section>
 
       {/* Demo/Video Section */}
       <section className="py-24 bg-slate-100">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <MaxWidthWrapper>
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
               Platformu <span className="text-blue-600">Keşfedin</span>
@@ -651,12 +658,12 @@ const LandingPage = () => {
               </div>
             </div>
           </div>
-        </div>
+        </MaxWidthWrapper>
       </section>
 
       {/* CTA Section */}
       <section className="relative bg-slate-100 px-6 py-24 sm:py-32 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center">
+        <MaxWidthWrapper className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
             Tıp Kariyerinizi <span className="text-blue-600">Hızlandırın</span>
           </h2>
@@ -666,21 +673,18 @@ const LandingPage = () => {
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <Link href="/dashboard">
-              <Button
-                className="bg-blue-600 hover:bg-blue-700 text-white border-b-4 border-blue-800 hover:-translate-y-0.5 transition-all duration-200 shadow-lg hover:shadow-xl px-8 py-4 text-lg"
-                size="lg"
-              >
+              <Button size={"lg"}>
                 Ücretsiz Başla
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <ArrowRight />
               </Button>
             </Link>
           </div>
-        </div>
+        </MaxWidthWrapper>
       </section>
 
       {/* Trust & Security Section */}
       <section className="py-16 bg-white">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <MaxWidthWrapper>
           <div className="mx-auto max-w-2xl text-center mb-16">
             <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
               Güven ve <span className="text-blue-600">Güvenlik</span>
@@ -747,12 +751,12 @@ const LandingPage = () => {
               <span className="text-sm font-medium text-slate-600">10K+ Kullanıcı</span>
             </div>
           </div>
-        </div>
+        </MaxWidthWrapper>
       </section>
 
       {/* Footer */}
-      <footer className="bg-slate-900 text-white">
-        <div className="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:px-8">
+      <footer className="bg-slate-900 text-white py-16">
+        <MaxWidthWrapper>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {/* Logo and Description */}
             <div className="md:col-span-2">
@@ -854,9 +858,9 @@ const LandingPage = () => {
           <div className="mt-12 pt-8 border-t border-slate-800">
             <p className="text-center text-slate-400">© 2024 MedAIst. Tüm hakları saklıdır.</p>
           </div>
-        </div>
+        </MaxWidthWrapper>
       </footer>
-    </div>
+    </>
   );
 };
 
