@@ -11,42 +11,49 @@ interface ChatMessageProps {
 
 export const ChatMessage = ({message, onCopyMessage}: ChatMessageProps) => {
   return (
-    <div className={`flex gap-3 ${message.role === "user" ? "justify-end" : "justify-start"}`}>
+    <div
+      className={`flex gap-2 sm:gap-3 ${message.role === "user" ? "justify-end" : "justify-start"}`}
+    >
       {message.role === "assistant" && (
-        <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-          <Brain className="w-4 h-4 text-white" />
+        <div className="w-7 h-7 sm:w-8 sm:h-8 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+          <Brain className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
         </div>
       )}
 
-      <div className={`max-w-3xl ${message.role === "user" ? "order-1" : ""}`}>
+      <div
+        className={`max-w-[calc(100%-3rem)] sm:max-w-3xl ${message.role === "user" ? "order-1" : ""}`}
+      >
         <div
-          className={`rounded-2xl px-4 py-3 ${
+          className={`rounded-2xl px-3 py-2 sm:px-4 sm:py-3 ${
             message.role === "user"
               ? "border-b-4 border-primary/30 bg-gradient-to-br from-primary via-primary/90 to-primary/80 text-primary-foreground"
               : "bg-white border border-b-4 border-b-gray-300 text-gray-900"
           }`}
         >
-          <div className="whitespace-pre-wrap text-sm leading-relaxed">{message.content}</div>
+          <div className="whitespace-pre-wrap text-xs sm:text-sm leading-relaxed">
+            {message.content}
+          </div>
         </div>
 
         {/* Message Actions */}
         <div
-          className={`flex items-center gap-1 mt-2 text-xs text-gray-500 ${
-            message.role === "user" ? "justify-end mr-2" : "justify-start ml-2"
+          className={`flex items-center gap-1 mt-1 sm:mt-2 text-xs text-gray-500 ${
+            message.role === "user" ? "justify-end mr-1 sm:mr-2" : "justify-start ml-1 sm:ml-2"
           }`}
         >
-          <span>
+          <span className="text-xs">
             {message.timestamp.toLocaleTimeString([], {hour: "2-digit", minute: "2-digit"})}
           </span>
 
           {message.role === "assistant" && (
-            <div className="flex items-center gap-1 ml-2">
+            <div className="flex items-center gap-1 ml-1 sm:ml-2">
               <Button
+                className="h-6 w-6 sm:h-7 sm:w-7"
                 size="icon-sm"
                 variant="secondary"
                 onClick={() => onCopyMessage(message.content)}
               >
-                <Copy />
+                <Copy className="w-3 h-3 sm:w-4 sm:h-4" />
               </Button>
             </div>
           )}
