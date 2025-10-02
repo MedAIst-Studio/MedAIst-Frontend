@@ -39,7 +39,7 @@ export function NotesList({notes, onDeleteNote, loading = false}: NotesListProps
       <Card>
         <CardContent className="p-8 text-center">
           <div className="animate-spin rounded-full border-4 border-primary border-t-transparent h-8 w-8 mx-auto mb-4" />
-          <p className="text-muted-foreground">Loading your notes...</p>
+          <p className="text-muted-foreground">Notlarınız yükleniyor...</p>
         </CardContent>
       </Card>
     );
@@ -52,7 +52,7 @@ export function NotesList({notes, onDeleteNote, loading = false}: NotesListProps
         <CardHeader>
           <CardTitle className="flex items-center space-x-2">
             <Filter className="h-5 w-5 text-primary" />
-            <span>Filter Notes</span>
+            <span>Notları Filtrele</span>
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -61,7 +61,7 @@ export function NotesList({notes, onDeleteNote, loading = false}: NotesListProps
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <Input
                 className="pl-10 border-b-4 border-primary/20 bg-gradient-to-br from-background via-background/95 to-background/90 shadow-sm transition-all duration-300 hover:border-primary/30 hover:shadow-md focus:border-primary/50 focus:shadow-lg"
-                placeholder="Search notes..."
+                placeholder="Notları ara..."
                 value={filters.searchTerm}
                 onChange={(e) => handleSearchChange(e.target.value)}
               />
@@ -79,7 +79,7 @@ export function NotesList({notes, onDeleteNote, loading = false}: NotesListProps
                   variant="outline"
                   onClick={() => handleSubjectChange(subject)}
                 >
-                  {subject === "all" ? "All Subjects" : subject}
+                  {subject === "all" ? "Tüm Konular" : subject}
                 </Button>
               ))}
             </div>
@@ -92,11 +92,11 @@ export function NotesList({notes, onDeleteNote, loading = false}: NotesListProps
         <Card>
           <CardContent className="p-8 text-center">
             <BookOpen className="mx-auto mb-4 h-12 w-12 text-muted-foreground" />
-            <h3 className="mb-2 text-lg font-semibold">No notes found</h3>
+            <h3 className="mb-2 text-lg font-semibold">Not bulunamadı</h3>
             <p className="text-muted-foreground">
               {notes.length === 0
-                ? "Start by creating your first note or uploading study materials."
-                : "Try adjusting your search or filter criteria."}
+                ? "İlk notunuzu oluşturmak veya çalışma materyalleri yüklemekle başlayın."
+                : "Arama veya filtre kriterlerinizi ayarlamayı deneyin."}
             </p>
           </CardContent>
         </Card>
@@ -112,7 +112,7 @@ export function NotesList({notes, onDeleteNote, loading = false}: NotesListProps
         <Card>
           <CardContent className="p-4 text-center">
             <p className="text-sm text-muted-foreground">
-              Showing {filteredNotes.length} of {notes.length} notes
+              {filteredNotes.length} / {notes.length} not gösteriliyor
             </p>
           </CardContent>
         </Card>

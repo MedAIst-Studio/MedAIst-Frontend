@@ -127,10 +127,10 @@ export const formatChatDate = (date: Date): string => {
 };
 
 export const quickQuestions = [
-  "Explain the cardiac cycle",
-  "What is diabetes mellitus?",
-  "How does the respiratory system work?",
-  "Difference between arteries and veins",
+  "İnsan kalbi nasıl çalışır?",
+  "Akciğerlerin temel işlevleri nelerdir?",
+  "Beyin ve sinir sistemi nasıl iletişim kurar?",
+  "Vücuttaki ana organ sistemleri nelerdir?",
 ];
 
 export const createWelcomeMessage = (): Message => ({

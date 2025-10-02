@@ -45,8 +45,8 @@ export const ChatHeader = ({
             </DialogTrigger>
             <DialogContent className="max-w-2xl">
               <DialogHeader>
-                <DialogTitle>Chat History</DialogTitle>
-                <DialogDescription>Access your previous conversations</DialogDescription>
+                <DialogTitle>Sohbet Geçmişi</DialogTitle>
+                <DialogDescription>Önceki konuşmalarınıza erişin</DialogDescription>
               </DialogHeader>
               <ChatHistory
                 savedChats={savedChats}

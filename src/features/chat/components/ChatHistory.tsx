@@ -21,8 +21,8 @@ export const ChatHistory = ({
     return (
       <div className="text-center py-8 text-gray-500">
         <MessageSquare className="w-12 h-12 mx-auto mb-2 text-gray-300" />
-        <p>No saved chats yet</p>
-        <p className="text-sm">Start a conversation and save it to see it here</p>
+        <p>Kaydedilmiş sohbet yok</p>
+        <p className="text-sm">Bir konuşma başlatın ve burada görmek için kaydedin</p>
       </div>
     );
   }
@@ -41,7 +41,7 @@ export const ChatHistory = ({
             >
               <h4 className="font-medium text-sm group-hover:text-blue-600">{chat.title}</h4>
               <div className="flex items-center gap-2 text-xs text-gray-500 mt-1">
-                <span>{chat.messageCount} messages</span>
+                <span>{chat.messageCount} mesaj</span>
                 <span>•</span>
                 <span>{chat.lastUpdated.toLocaleDateString()}</span>
               </div>
@@ -62,7 +62,7 @@ export const ChatHistory = ({
       <div className="flex gap-2 pt-4 border-t">
         <Button className="flex-1" variant="outline" onClick={onStartNewChat}>
           <MessageSquare className="w-4 h-4 mr-2" />
-          New Chat
+          Yeni Sohbet
         </Button>
       </div>
     </>

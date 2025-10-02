@@ -38,7 +38,7 @@ export function NoteForm({onSubmit, isSubmitting = false}: NoteFormProps) {
       <CardHeader>
         <CardTitle className="flex items-center space-x-2">
           <BookOpen className="h-5 w-5 text-primary" />
-          <span>Create New Note</span>
+          <span>Yeni Not Oluştur</span>
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -46,16 +46,16 @@ export function NoteForm({onSubmit, isSubmitting = false}: NoteFormProps) {
           <form className="space-y-6" onSubmit={form.handleSubmit(handleSubmit)}>
             <DynamicFormField
               control={form.control}
-              description="Give your note a descriptive title"
+              description="Notunuza kısa bir başlık verin"
               label="Title"
               name="title"
-              placeholder="Enter note title..."
+              placeholder="Not başlığını girin..."
               type="text"
             />
 
             <DynamicFormField
               control={form.control}
-              description="Select the medical subject"
+              description="Tıbbi konuyu seçin"
               label="Subject"
               name="subject"
               options={subjects
@@ -64,32 +64,32 @@ export function NoteForm({onSubmit, isSubmitting = false}: NoteFormProps) {
                   label: subject,
                   value: subject,
                 }))}
-              placeholder="Select subject..."
+              placeholder="Konu seçin..."
               type="select"
             />
 
             <DynamicFormField
               control={form.control}
-              description="Write your detailed notes here"
+              description="Buraya ayrıntılı notlarınızı yazın"
               label="Content"
               name="content"
-              placeholder="Enter your note content..."
+              placeholder="Not içeriğinizi girin..."
               rows={8}
               type="textarea"
             />
 
             <DynamicFormField
               control={form.control}
-              description="Add tags separated by commas (optional)"
+              description="Etiketleri virgülle ayırarak ekleyin (isteğe bağlı)"
               label="Tags"
               name="tags"
-              placeholder="cardiology, anatomy, physiology..."
+              placeholder="kardiyoloji, anatomi, fizyoloji..."
               type="text"
             />
 
             <Button className="w-full" disabled={isSubmitting} type="submit">
               <Plus className="mr-2 h-4 w-4" />
-              {isSubmitting ? "Creating Note..." : "Create Note"}
+              {isSubmitting ? "Not Oluşturuluyor..." : "Not Oluştur"}
             </Button>
           </form>
         </Form>

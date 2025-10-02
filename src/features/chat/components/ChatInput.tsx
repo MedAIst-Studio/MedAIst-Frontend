@@ -1,10 +1,11 @@
-import {ArrowUp, BookOpen, Brain, Sparkles, Stethoscope} from "lucide-react";
+import {ArrowUp, Sparkles} from "lucide-react";
 import {RefObject} from "react";
 
 import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
 import {Button} from "@/components/ui/button";
 import {useSidebar} from "@/components/ui/sidebar";
 import {Textarea} from "@/components/ui/textarea";
+import {useIsMobile} from "@/hooks/use-mobile";
 import {cn} from "@/lib/utils";
 
 import {quickQuestions} from "../utils/chat-utils";
@@ -34,6 +35,7 @@ export const ChatInput = ({
   };
 
   const {open} = useSidebar();
+  const isMobile = useIsMobile();
 
   return (
     <div
@@ -48,7 +50,7 @@ export const ChatInput = ({
           <div className="mb-4 space-y-4">
             <div className="text-center">
               <h3 className="text-sm font-medium text-gray-700 mb-3">
-                Quick Questions to Get Started:
+                Başlamak için hızlı sorulardan birini seçin veya kendi sorunuzla devam edin:
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2 max-w-2xl mx-auto">
                 {quickQuestions.map((question, index) => (
@@ -61,23 +63,6 @@ export const ChatInput = ({
                 ))}
               </div>
             </div>
-
-            <div className="text-center space-y-2">
-              <div className="flex items-center justify-center gap-6 text-xs text-gray-500">
-                <div className="flex items-center gap-1">
-                  <Stethoscope className="w-3 h-3" />
-                  <span>Medical Knowledge</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <BookOpen className="w-3 h-3" />
-                  <span>Study Support</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <Brain className="w-3 h-3" />
-                  <span>AI-Powered</span>
-                </div>
-              </div>
-            </div>
           </div>
         )}
 
@@ -87,7 +72,11 @@ export const ChatInput = ({
             ref={textareaRef}
             className="resize-none focus-visible:ring-none border p-6 shadow-none hover:shadow-none hover:border-none focus:shadow-none focus:border-none hover:translate-none focus:translate-none border-none"
             disabled={isLoading}
-            placeholder="Ask me about medical concepts, procedures, anatomy, or anything related to your studies..."
+            placeholder={
+              isMobile
+                ? "Sorunuzu yazın..."
+                : "MediAI'ye Sorunuzu Yazın... (Shift + Enter ile yeni satır)"
+            }
             value={inputMessage}
             onChange={(e) => setInputMessage(e.target.value)}
             onKeyDown={handleKeyPress}
@@ -103,7 +92,8 @@ export const ChatInput = ({
         </div>
 
         <div className="text-xs text-gray-500 mt-4 text-center">
-          MedAI can make mistakes. Please verify important medical information.
+          MedAI hata yapabilir. Cevapların doğruluğunu her zaman güvenilir kaynaklarla
+          karşılaştırın.
         </div>
       </MaxWidthWrapper>
     </div>

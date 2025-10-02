@@ -10,7 +10,6 @@ import {ChatMessage} from "./ChatMessage";
 
 export const Chat = () => {
   const {
-    // State
     messages,
     inputMessage,
     isLoading,
@@ -60,7 +59,7 @@ export const Chat = () => {
                 <div className="rounded-2xl px-4 py-3 bg-card border-2 border-b-4 border-b-gray-300">
                   <div className="flex items-center gap-2 text-gray-600">
                     <Loader2 className="w-4 h-4 animate-spin" />
-                    <span className="text-sm">MedAI is thinking...</span>
+                    <span className="text-sm">MedAI düşünüyor...</span>
                   </div>
                 </div>
               </div>

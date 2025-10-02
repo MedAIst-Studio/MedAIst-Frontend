@@ -65,7 +65,7 @@ export function NoteCard({note, onDelete}: NoteCardProps) {
         <div className="space-y-3">
           {note.summary && (
             <div className="rounded-md bg-muted/50 p-3">
-              <h4 className="mb-2 text-sm font-medium text-muted-foreground">Summary:</h4>
+              <h4 className="mb-2 text-sm font-medium text-muted-foreground">Özet:</h4>
               <div className="whitespace-pre-line text-sm">{note.summary}</div>
             </div>
           )}
@@ -80,12 +80,12 @@ export function NoteCard({note, onDelete}: NoteCardProps) {
               {isExpanded ? (
                 <>
                   <ChevronUp className="mr-1 h-3 w-3" />
-                  Hide Content
+                  İçeriği Gizle
                 </>
               ) : (
                 <>
                   <ChevronDown className="mr-1 h-3 w-3" />
-                  Show Content
+                  İçeriği Göster
                 </>
               )}
             </Button>
