@@ -80,7 +80,7 @@ export function LoginForm({onSubmit, onSocialLogin, isLoading = false, error}: L
             variant="outline"
             onClick={() => setShowEmailForm(false)}
           >
-            <ChevronLeft className="mr-1 h-4 w-4" />
+            <ChevronLeft />
             Geri Dön
           </Button>
 
