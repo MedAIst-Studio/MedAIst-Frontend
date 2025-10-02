@@ -3,7 +3,6 @@
 import {Brain, Sparkles, Star} from "lucide-react";
 import Link from "next/link";
 
-import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
 import {cn} from "@/lib/utils";
 
@@ -63,7 +62,7 @@ export function AuthLayout({
         </div>
       </div>
 
-      <MaxWidthWrapper className={cn("relative z-10", className)}>
+      <div className={cn("w-full max-w-lg mx-auto relative z-10", className)}>
         {/* Logo and Brand */}
         <div className="text-center mb-8">
           <Link className="inline-flex items-center space-x-3 group" href="/">
@@ -73,7 +72,7 @@ export function AuthLayout({
                 <Brain className="h-7 w-7 text-white" />
               </div>
             </div>
-            <div>
+            <div className="text-start">
               <span className="text-4xl font-bold text-white block leading-none">
                 Med<span className="text-blue-400">AI</span>st
               </span>
@@ -127,7 +126,7 @@ export function AuthLayout({
             Kullanım Koşulları
           </Link>
         </div>
-      </MaxWidthWrapper>
+      </div>
     </div>
   );
 }

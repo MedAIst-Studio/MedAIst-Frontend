@@ -1,14 +1,13 @@
 "use client";
 
 import {zodResolver} from "@hookform/resolvers/zod";
-import {ArrowRight, ChevronLeft, Eye, EyeOff, Mail} from "lucide-react";
+import {ArrowRight, ChevronLeft, Mail} from "lucide-react";
 import {useState} from "react";
 import {useForm} from "react-hook-form";
 
 import {DynamicFormField} from "@/components/shared/DynamicFormField";
 import {Button} from "@/components/ui/button";
-import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
-import {Input} from "@/components/ui/input";
+import {Form} from "@/components/ui/form";
 
 import {loginSchema, type LoginFormData} from "../utils/validation";
 
@@ -23,7 +22,6 @@ interface LoginFormProps {
 
 export function LoginForm({onSubmit, onSocialLogin, isLoading = false, error}: LoginFormProps) {
   const [showEmailForm, setShowEmailForm] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
 
   const form = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
@@ -57,10 +55,10 @@ export function LoginForm({onSubmit, onSocialLogin, isLoading = false, error}: L
           {/* Divider */}
           <div className="relative my-6">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+              <div className="w-full h-px bg-gradient-to-r from-transparent via-black/30 to-transparent" />
             </div>
             <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-transparent px-4 text-slate-300 font-medium">veya</span>
+              <span className="bg-white px-4 text-slate-600 font-medium">veya</span>
             </div>
           </div>
 
@@ -103,36 +101,13 @@ export function LoginForm({onSubmit, onSocialLogin, isLoading = false, error}: L
                 type="email"
               />
 
-              <FormField
+              <DynamicFormField
                 control={form.control}
+                disabled={isLoading}
+                label="Şifre"
                 name="password"
-                render={({field}) => (
-                  <FormItem>
-                    <FormLabel className="text-slate-200">Şifre</FormLabel>
-                    <FormControl>
-                      <div className="relative">
-                        <Input
-                          {...field}
-                          disabled={isLoading}
-                          placeholder="Şifrenizi giriniz"
-                          type={showPassword ? "text" : "password"}
-                        />
-                        <button
-                          className="absolute inset-y-0 right-0 pr-3 flex items-center"
-                          type="button"
-                          onClick={() => setShowPassword(!showPassword)}
-                        >
-                          {showPassword ? (
-                            <EyeOff className="h-4 w-4 text-slate-400 hover:text-slate-200 transition-colors" />
-                          ) : (
-                            <Eye className="h-4 w-4 text-slate-400 hover:text-slate-200 transition-colors" />
-                          )}
-                        </button>
-                      </div>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
+                placeholder="Şifreniz"
+                type="password"
               />
 
               <div className="flex items-center justify-end">
@@ -144,13 +119,9 @@ export function LoginForm({onSubmit, onSocialLogin, isLoading = false, error}: L
                 </Button>
               </div>
 
-              <Button
-                className="w-full h-12 text-base font-semibold bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-lg hover:shadow-xl transition-all duration-300"
-                disabled={isLoading}
-                type="submit"
-              >
+              <Button className="w-full" type="submit">
                 {isLoading ? "Giriş yapılıyor..." : "Giriş Yap"}
-                {!isLoading && <ArrowRight className="ml-2 h-4 w-4" />}
+                {!isLoading && <ArrowRight />}
               </Button>
             </form>
           </Form>

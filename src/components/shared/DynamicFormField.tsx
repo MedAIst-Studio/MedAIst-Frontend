@@ -1,5 +1,7 @@
 "use client";
 
+import {Eye, EyeOff} from "lucide-react";
+import {useState} from "react";
 import {Control, FieldPath, FieldValues} from "react-hook-form";
 
 import {FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
@@ -14,6 +16,8 @@ import {
 } from "@/components/ui/select";
 import {Textarea} from "@/components/ui/textarea";
 import {cn} from "@/lib/utils";
+
+import {Checkbox} from "../ui/checkbox";
 
 export interface SelectOption {
   value: string;
@@ -38,6 +42,7 @@ export interface DynamicFormFieldProps<
     | "tel"
     | "url"
     | "search"
+    | "checkbox"
     | "date"
     | "time"
     | "datetime-local"
@@ -54,6 +59,7 @@ export interface DynamicFormFieldProps<
   className?: string;
   inputClassName?: string;
   labelClassName?: string;
+  checkboxLabel?: string;
   showLabel?: boolean;
   size?: "sm" | "default";
 }
@@ -75,9 +81,12 @@ export function DynamicFormField<
   className,
   inputClassName,
   labelClassName,
+  checkboxLabel,
   showLabel = true,
   size = "default",
 }: DynamicFormFieldProps<TFieldValues, TName>) {
+  const [showPassword, setShowPassword] = useState(false);
+
   const renderInput = (field: any, fieldState: {error?: {message?: string}}) => {
     const isInvalid = !!fieldState.error;
     const baseProps = {
@@ -108,6 +117,42 @@ export function DynamicFormField<
           </Select>
         );
 
+      case "password":
+        return (
+          <div className="relative">
+            <Input
+              {...baseProps}
+              className={cn("pr-10", inputClassName)}
+              type={showPassword ? "text" : "password"}
+            />
+            <button
+              className="absolute inset-y-0 right-0 pr-3 flex items-center"
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? (
+                <EyeOff className={cn("h-4 w-4 transition-colors")} />
+              ) : (
+                <Eye className={cn("h-4 w-4 transition-colors")} />
+              )}
+            </button>
+          </div>
+        );
+
+      case "checkbox":
+        return (
+          <div className="inline-flex items-center">
+            <Checkbox
+              {...baseProps}
+              checked={!!field.value}
+              onCheckedChange={(checked) => field.onChange(checked)}
+            />
+            {checkboxLabel && (
+              <Label className={cn("ml-2 select-none", labelClassName)}>{checkboxLabel}</Label>
+            )}
+          </div>
+        );
+
       default:
         return <Input {...baseProps} type={type} />;
     }
@@ -122,7 +167,7 @@ export function DynamicFormField<
           {showLabel && label && (
             <FormLabel
               className={cn(
-                "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
+                "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 m-0",
                 required && "after:content-['*'] after:ml-0.5 after:text-destructive",
                 labelClassName,
               )}

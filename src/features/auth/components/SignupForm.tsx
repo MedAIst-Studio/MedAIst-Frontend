@@ -1,14 +1,13 @@
 "use client";
 
 import {zodResolver} from "@hookform/resolvers/zod";
-import {ArrowRight, ChevronLeft, Eye, EyeOff, UserPlus} from "lucide-react";
+import {ArrowRight, ChevronLeft, UserPlus} from "lucide-react";
 import {useState} from "react";
 import {useForm} from "react-hook-form";
 
 import {DynamicFormField} from "@/components/shared/DynamicFormField";
 import {Button} from "@/components/ui/button";
-import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
-import {Input} from "@/components/ui/input";
+import {Form} from "@/components/ui/form";
 
 import {signupSchema, type SignupFormData} from "../utils/validation";
 
@@ -91,7 +90,7 @@ export function SignupForm({onSubmit, onSocialLogin, isLoading = false, error}: 
 
           {/* Signup Form */}
           <Form {...form}>
-            <form className="space-y-5" onSubmit={form.handleSubmit(handleSubmit)}>
+            <form className="space-y-6" onSubmit={form.handleSubmit(handleSubmit)}>
               {error && (
                 <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-3 text-sm text-red-400 backdrop-blur-sm">
                   {error}
@@ -126,100 +125,33 @@ export function SignupForm({onSubmit, onSocialLogin, isLoading = false, error}: 
                 type="email"
               />
 
-              <FormField
+              <DynamicFormField
                 control={form.control}
-                name="password"
-                render={({field}) => (
-                  <FormItem>
-                    <FormLabel className="text-slate-200">Şifre</FormLabel>
-                    <FormControl>
-                      <div className="relative">
-                        <Input
-                          {...field}
-                          disabled={isLoading}
-                          placeholder="Şifrenizi oluşturun"
-                          type={showPassword ? "text" : "password"}
-                        />
-                        <button
-                          className="absolute inset-y-0 right-0 pr-3 flex items-center"
-                          type="button"
-                          onClick={() => setShowPassword(!showPassword)}
-                        >
-                          {showPassword ? (
-                            <EyeOff className="h-4 w-4 text-slate-400 hover:text-slate-200 transition-colors" />
-                          ) : (
-                            <Eye className="h-4 w-4 text-slate-400 hover:text-slate-200 transition-colors" />
-                          )}
-                        </button>
-                      </div>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="confirmPassword"
-                render={({field}) => (
-                  <FormItem>
-                    <FormLabel className="text-slate-200">Şifre Onayı</FormLabel>
-                    <FormControl>
-                      <div className="relative">
-                        <Input
-                          {...field}
-                          placeholder="Şifrenizi tekrar giriniz"
-                          type={showConfirmPassword ? "text" : "password"}
-                        />
-                        <button
-                          className="absolute inset-y-0 right-0 pr-3 flex items-center"
-                          type="button"
-                          onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                        >
-                          {showConfirmPassword ? (
-                            <EyeOff className="h-4 w-4 text-slate-400 hover:text-slate-200 transition-colors" />
-                          ) : (
-                            <Eye className="h-4 w-4 text-slate-400 hover:text-slate-200 transition-colors" />
-                          )}
-                        </button>
-                      </div>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="agreeToTerms"
-                render={({field}) => (
-                  <FormItem className="flex flex-row items-start space-x-3 space-y-0">
-                    <FormControl>
-                      <input
-                        checked={field.value}
-                        className="rounded border-white/20 bg-white/10 text-purple-600 focus:ring-purple-400 focus:ring-offset-0 mt-1"
-                        disabled={isLoading}
-                        type="checkbox"
-                        onChange={field.onChange}
-                      />
-                    </FormControl>
-                    <div className="space-y-1 leading-none">
-                      <FormLabel className="text-sm font-normal text-slate-800">
-                        Kullanım koşullarını ve gizlilik politikasını okudum, kabul ediyorum.
-                      </FormLabel>
-                    </div>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <Button
-                className="w-full h-12 text-base font-semibold bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all duration-300"
                 disabled={isLoading}
-                type="submit"
-              >
+                label="Şifre"
+                name="password"
+                placeholder="Şifreniz"
+              />
+
+              <DynamicFormField
+                control={form.control}
+                disabled={isLoading}
+                label="Şifreyi Onayla"
+                name="confirmPassword"
+                placeholder="Şifreniz"
+              />
+
+              <DynamicFormField
+                checkboxLabel="Kullanım Koşullarını Kabul Ediyorum"
+                control={form.control}
+                disabled={isLoading}
+                name="agreeToTerms"
+                type="checkbox"
+              />
+
+              <Button className="w-full" type="submit">
                 {isLoading ? "Hesap oluşturuluyor..." : "Hesap Oluştur"}
-                {!isLoading && <ArrowRight className="ml-2 h-4 w-4" />}
+                {!isLoading && <ArrowRight />}
               </Button>
             </form>
           </Form>
