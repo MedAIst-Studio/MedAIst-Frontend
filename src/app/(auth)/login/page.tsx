@@ -3,6 +3,7 @@
 import {useState} from "react";
 
 import {AuthLayout, LoginForm, type LoginFormData} from "@/features/auth";
+import {AuthAPI} from "@/features/auth/api";
 
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -13,13 +14,14 @@ export default function LoginPage() {
     setError(null);
 
     try {
-      // TODO: Implement actual login logic
+      const {data, error, success} = await AuthAPI.login(_data);
 
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-
-      // Redirect to dashboard on success
-      // router.push("/dashboard");
+      if (success) {
+        // Handle successful login to onboarding or chat ui
+        console.log("Login successful");
+      } else if (error) {
+        setError(error.message);
+      }
     } catch {
       setError("Giriş yapılırken bir hata oluştu. Lütfen tekrar deneyiniz.");
     } finally {

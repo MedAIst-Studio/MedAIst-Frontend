@@ -16,7 +16,6 @@ export default function VerifyEmailPage() {
   const searchParams = useSearchParams();
   const email = searchParams.get("email");
 
-  // Resend cooldown effect
   useEffect(() => {
     let interval: NodeJS.Timeout;
 

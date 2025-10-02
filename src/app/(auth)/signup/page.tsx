@@ -3,6 +3,7 @@
 import {useState} from "react";
 
 import {AuthLayout, SignupForm, type SignupFormData} from "@/features/auth";
+import {AuthAPI} from "@/features/auth/api";
 
 export default function SignupPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -13,15 +14,13 @@ export default function SignupPage() {
     setError(null);
 
     try {
-      // TODO: Implement actual signup logic
-      // eslint-disable-next-line no-console
-      console.log("Signup data:", data);
+      const {error, success} = await AuthAPI.signup(data);
 
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-
-      // Redirect to verification or dashboard on success
-      // router.push("/verify-email");
+      if (success) {
+        // Handle successful signup to verification or chat ui
+      } else if (error) {
+        setError(error.message);
+      }
     } catch {
       setError("Hesap oluşturulurken bir hata oluştu. Lütfen tekrar deneyiniz.");
     } finally {

@@ -4,6 +4,7 @@ import {useRouter, useSearchParams} from "next/navigation";
 import {useState} from "react";
 
 import {AuthLayout, ResetPasswordForm, type ResetPasswordFormData} from "@/features/auth";
+import {AuthAPI} from "@/features/auth/api";
 
 export default function ResetPasswordPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -18,14 +19,13 @@ export default function ResetPasswordPage() {
     setError(null);
 
     try {
-      // TODO: Implement actual reset password logic with token
-      // eslint-disable-next-line no-console
-      console.log("Reset password data:", data, "Token:", token);
+      const {error, success} = await AuthAPI.resetPassword(data, token);
 
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-
-      setIsSuccess(true);
+      if (success) {
+        setIsSuccess(true);
+      } else if (error) {
+        setError(error.message);
+      }
     } catch {
       setError("Şifre sıfırlanırken bir hata oluştu. Lütfen tekrar deneyiniz.");
     } finally {
@@ -34,11 +34,11 @@ export default function ResetPasswordPage() {
   };
 
   // If no token, redirect to forgot password
-  /* if (!token) {
+  if (!token) {
     router.push("/forgot-password");
 
     return null;
-  } */
+  }
 
   return (
     <AuthLayout

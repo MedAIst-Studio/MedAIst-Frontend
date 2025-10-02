@@ -4,6 +4,7 @@ import {useRouter} from "next/navigation";
 import {useState} from "react";
 
 import {AuthLayout, ForgotPasswordForm, type ForgotPasswordFormData} from "@/features/auth";
+import {AuthAPI} from "@/features/auth/api";
 
 export default function ForgotPasswordPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -16,14 +17,13 @@ export default function ForgotPasswordPage() {
     setError(null);
 
     try {
-      // TODO: Implement actual forgot password logic
-      // eslint-disable-next-line no-console
-      console.log("Forgot password data:", data);
+      const {error, success} = await AuthAPI.forgotPassword(data);
 
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-
-      setIsEmailSent(true);
+      if (success) {
+        setIsEmailSent(true);
+      } else if (error) {
+        setError(error.message);
+      }
     } catch {
       setError("Bir hata oluştu. Lütfen tekrar deneyiniz.");
     } finally {

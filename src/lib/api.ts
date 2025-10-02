@@ -10,6 +10,13 @@ import {logger} from "./logger";
 import {ApiConfig, ApiError, ApiRequestConfig, RequestLog, ResponseLog} from "./types";
 import {validateApiResponse, ValidationError} from "./validation";
 
+// API Response type for destructuring pattern
+export interface ApiResponse<T = any> {
+  data: T | null;
+  error: ApiError | null;
+  success: boolean;
+}
+
 const defaultApiConfig: ApiConfig = {
   enableValidation: true,
   enableLogging: process.env.NODE_ENV !== "production",
@@ -170,7 +177,7 @@ class ApiClient {
 
   async request<TResponse = any, TRequest = any>(
     requestConfig: ApiRequestConfig<TRequest>,
-  ): Promise<TResponse> {
+  ): Promise<ApiResponse<TResponse>> {
     const {
       url,
       method,
@@ -182,6 +189,7 @@ class ApiClient {
       skipValidation = false,
     } = requestConfig;
 
+    // Request validation
     if (this.config.enableValidation && !skipValidation && validationSchema && data) {
       const validation = validationSchema.safeParse(data);
 
@@ -190,10 +198,16 @@ class ApiClient {
           (err: any) => `${err.path.join(".")}: ${err.message}`,
         );
 
-        throw new ValidationError("Request validation failed", errors, {
+        const validationError = new ValidationError("Request validation failed", errors, {
           url,
           method,
         });
+
+        return {
+          data: null,
+          error: createApiError(validationError, "VALIDATION_ERROR"),
+          success: false,
+        };
       }
     }
 
@@ -208,6 +222,7 @@ class ApiClient {
 
       const response = await this.instance.request(axiosConfig);
 
+      // Response validation
       if (this.config.enableValidation && !skipValidation && responseSchema) {
         const validation = validateApiResponse(responseSchema, response.data, {
           endpoint: url,
@@ -215,22 +230,46 @@ class ApiClient {
         });
 
         if (!validation.isValid) {
-          throw new ValidationError("Response validation failed", validation.errors, {
-            url,
-            method,
-            response: response.data,
-          });
+          const validationError = new ValidationError(
+            "Response validation failed",
+            validation.errors,
+            {
+              url,
+              method,
+              response: response.data,
+            },
+          );
+
+          return {
+            data: null,
+            error: createApiError(validationError, "RESPONSE_VALIDATION_ERROR"),
+            success: false,
+          };
         }
 
-        return validation.data as TResponse;
+        return {
+          data: validation.data as TResponse,
+          error: null,
+          success: true,
+        };
       }
 
-      return response.data;
+      return {
+        data: response.data,
+        error: null,
+        success: true,
+      };
     } catch (error) {
-      if (error instanceof ValidationError) {
-        throw error;
-      }
-      throw createApiError(error, "API_CLIENT_ERROR");
+      const apiError =
+        error instanceof ValidationError
+          ? createApiError(error, "VALIDATION_ERROR")
+          : createApiError(error, "API_CLIENT_ERROR");
+
+      return {
+        data: null,
+        error: apiError,
+        success: false,
+      };
     }
   }
 
@@ -239,7 +278,7 @@ class ApiClient {
     url: string,
     params?: object,
     responseSchema?: z.ZodSchema<TResponse>,
-  ): Promise<TResponse> {
+  ): Promise<ApiResponse<TResponse>> {
     return this.request<TResponse>({
       url,
       method: "GET",
@@ -255,7 +294,7 @@ class ApiClient {
       request?: z.ZodSchema<TRequest>;
       response?: z.ZodSchema<TResponse>;
     },
-  ): Promise<TResponse> {
+  ): Promise<ApiResponse<TResponse>> {
     return this.request<TResponse, TRequest>({
       url,
       method: "POST",
@@ -272,7 +311,7 @@ class ApiClient {
       request?: z.ZodSchema<TRequest>;
       response?: z.ZodSchema<TResponse>;
     },
-  ): Promise<TResponse> {
+  ): Promise<ApiResponse<TResponse>> {
     return this.request<TResponse, TRequest>({
       url,
       method: "PUT",
@@ -289,7 +328,7 @@ class ApiClient {
       request?: z.ZodSchema<TRequest>;
       response?: z.ZodSchema<TResponse>;
     },
-  ): Promise<TResponse> {
+  ): Promise<ApiResponse<TResponse>> {
     return this.request<TResponse, TRequest>({
       url,
       method: "PATCH",
@@ -302,7 +341,7 @@ class ApiClient {
   async delete<TResponse = any>(
     url: string,
     responseSchema?: z.ZodSchema<TResponse>,
-  ): Promise<TResponse> {
+  ): Promise<ApiResponse<TResponse>> {
     return this.request<TResponse>({
       url,
       method: "DELETE",
