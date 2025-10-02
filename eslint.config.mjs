@@ -1,7 +1,7 @@
-import {FlatCompat} from "@eslint/eslintrc";
 import {dirname} from "path";
 import {fileURLToPath} from "url";
 
+import {FlatCompat} from "@eslint/eslintrc";
 import typescriptEslint from "@typescript-eslint/eslint-plugin";
 import importPlugin from "eslint-plugin-import";
 import jsxA11y from "eslint-plugin-jsx-a11y";
@@ -41,7 +41,7 @@ const eslintConfig = [
       "unused-imports/no-unused-vars": "off",
       "unused-imports/no-unused-imports": "warn",
       "object-curly-spacing": ["error", "never"],
-      "@typescript-eslint/no-explicit-any": "warn",
+      "@typescript-eslint/no-explicit-any": "off",
       "@typescript-eslint/ban-ts-comment": "off",
       "@typescript-eslint/no-unused-vars": [
         "warn",
