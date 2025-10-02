@@ -2,6 +2,7 @@
 
 import {zodResolver} from "@hookform/resolvers/zod";
 import {ArrowRight, ChevronLeft, Mail} from "lucide-react";
+import Link from "next/link";
 import {useState} from "react";
 import {useForm} from "react-hook-form";
 
@@ -111,12 +112,14 @@ export function LoginForm({onSubmit, onSocialLogin, isLoading = false, error}: L
               />
 
               <div className="flex items-center justify-end">
-                <Button
-                  className="px-0 font-normal text-sm text-blue-400 hover:text-blue-300"
-                  variant="link"
-                >
-                  Şifremi unuttum
-                </Button>
+                <Link href="/forgot-password">
+                  <Button
+                    className="px-0 font-normal text-sm text-blue-400 hover:text-blue-300"
+                    variant="link"
+                  >
+                    Şifremi unuttum
+                  </Button>
+                </Link>
               </div>
 
               <Button className="w-full" type="submit">

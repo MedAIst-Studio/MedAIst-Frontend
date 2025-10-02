@@ -22,8 +22,6 @@ interface SignupFormProps {
 
 export function SignupForm({onSubmit, onSocialLogin, isLoading = false, error}: SignupFormProps) {
   const [showEmailForm, setShowEmailForm] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const form = useForm<SignupFormData>({
     resolver: zodResolver(signupSchema),

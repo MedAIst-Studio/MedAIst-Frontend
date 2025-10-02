@@ -13,6 +13,19 @@ export interface SignupFormData {
   agreeToTerms: boolean;
 }
 
+export interface ForgotPasswordFormData {
+  email: string;
+}
+
+export interface ResetPasswordFormData {
+  password: string;
+  confirmPassword: string;
+}
+
+export interface VerifyEmailFormData {
+  code: string;
+}
+
 export interface SocialAuthProvider {
   name: "google" | "facebook";
   displayName: string;
