@@ -41,25 +41,25 @@ export function QuizList({quizzes, onStartQuiz, loading = false}: QuizListProps)
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* Filters */}
       <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center space-x-2">
-            <Filter className="h-5 w-5 text-primary" />
+        <CardHeader className="pb-3 sm:pb-6">
+          <CardTitle className="flex items-center space-x-2 text-base sm:text-lg">
+            <Filter className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
             <span>Quiz Filtresi</span>
           </CardTitle>
         </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
+        <CardContent className="pt-0">
+          <div className="space-y-3 sm:space-y-4">
             {/* Category Filter */}
             <div>
-              <label className="mb-2 block text-sm font-medium">Kategori</label>
-              <div className="flex flex-wrap gap-2">
+              <label className="mb-2 block text-xs sm:text-sm font-medium">Kategori</label>
+              <div className="flex flex-wrap gap-1 sm:gap-2">
                 {categories.map((category) => (
                   <Button
                     key={category}
-                    className={`border-b-4 transition-all duration-300 hover:-translate-y-0.5 ${
+                    className={`border-b-4 transition-all duration-300 hover:-translate-y-0.5 text-xs sm:text-sm px-2 sm:px-3 py-1 sm:py-2 h-auto ${
                       selectedCategory === category
                         ? "border-primary/50 bg-gradient-to-br from-primary via-primary/90 to-primary/80 text-primary-foreground shadow-lg hover:border-primary/70 hover:shadow-xl"
                         : "border-primary/20 bg-gradient-to-br from-background via-background/95 to-background/90 text-foreground shadow-sm hover:border-primary/30 hover:shadow-md"
@@ -76,12 +76,12 @@ export function QuizList({quizzes, onStartQuiz, loading = false}: QuizListProps)
 
             {/* Difficulty Filter */}
             <div>
-              <label className="mb-2 block text-sm font-medium">Zorluk</label>
-              <div className="flex flex-wrap gap-2">
+              <label className="mb-2 block text-xs sm:text-sm font-medium">Zorluk</label>
+              <div className="flex flex-wrap gap-1 sm:gap-2">
                 {difficulties.map((difficulty) => (
                   <Button
                     key={difficulty}
-                    className={`border-b-4 transition-all duration-300 hover:-translate-y-0.5 ${
+                    className={`border-b-4 transition-all duration-300 hover:-translate-y-0.5 text-xs sm:text-sm px-2 sm:px-3 py-1 sm:py-2 h-auto ${
                       selectedDifficulty === difficulty
                         ? "border-primary/50 bg-gradient-to-br from-primary via-primary/90 to-primary/80 text-primary-foreground shadow-lg hover:border-primary/70 hover:shadow-xl"
                         : "border-primary/20 bg-gradient-to-br from-background via-background/95 to-background/90 text-foreground shadow-sm hover:border-primary/30 hover:shadow-md"
@@ -98,8 +98,8 @@ export function QuizList({quizzes, onStartQuiz, loading = false}: QuizListProps)
 
             {/* Completion Filter */}
             <div>
-              <label className="mb-2 block text-sm font-medium">Durum</label>
-              <div className="flex flex-wrap gap-2">
+              <label className="mb-2 block text-xs sm:text-sm font-medium">Durum</label>
+              <div className="flex flex-wrap gap-1 sm:gap-2">
                 {[
                   {label: "Tümü", value: null},
                   {label: "Tamamlanan", value: true},
@@ -107,7 +107,7 @@ export function QuizList({quizzes, onStartQuiz, loading = false}: QuizListProps)
                 ].map((option) => (
                   <Button
                     key={option.label}
-                    className={`border-b-4 transition-all duration-300 hover:-translate-y-0.5 ${
+                    className={`border-b-4 transition-all duration-300 hover:-translate-y-0.5 text-xs sm:text-sm px-2 sm:px-3 py-1 sm:py-2 h-auto ${
                       showCompleted === option.value
                         ? "border-primary/50 bg-gradient-to-br from-primary via-primary/90 to-primary/80 text-primary-foreground shadow-lg hover:border-primary/70 hover:shadow-xl"
                         : "border-primary/20 bg-gradient-to-br from-background via-background/95 to-background/90 text-foreground shadow-sm hover:border-primary/30 hover:shadow-md"
@@ -128,10 +128,10 @@ export function QuizList({quizzes, onStartQuiz, loading = false}: QuizListProps)
       {/* Quiz Grid */}
       {filteredQuizzes.length === 0 ? (
         <Card>
-          <CardContent className="p-8 text-center">
-            <Target className="mx-auto mb-4 h-12 w-12 text-muted-foreground" />
-            <h3 className="mb-2 text-lg font-semibold">Quiz bulunamadı</h3>
-            <p className="text-muted-foreground">
+          <CardContent className="p-6 sm:p-8 text-center">
+            <Target className="mx-auto mb-3 sm:mb-4 h-10 w-10 sm:h-12 sm:w-12 text-muted-foreground" />
+            <h3 className="mb-2 text-base sm:text-lg font-semibold">Quiz bulunamadı</h3>
+            <p className="text-sm sm:text-base text-muted-foreground">
               {quizzes.length === 0
                 ? "Henüz quiz oluşturulmamış. İlk quiz'inizi oluşturun."
                 : "Arama kriterlerinizi değiştirmeyi deneyin."}
@@ -139,7 +139,7 @@ export function QuizList({quizzes, onStartQuiz, loading = false}: QuizListProps)
           </CardContent>
         </Card>
       ) : (
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {filteredQuizzes.map((quiz) => (
             <QuizCard key={quiz.id} quiz={quiz} onStartQuiz={onStartQuiz} />
           ))}
@@ -148,8 +148,8 @@ export function QuizList({quizzes, onStartQuiz, loading = false}: QuizListProps)
 
       {filteredQuizzes.length > 0 && (
         <Card>
-          <CardContent className="p-4 text-center">
-            <p className="text-sm text-muted-foreground">
+          <CardContent className="p-3 sm:p-4 text-center">
+            <p className="text-xs sm:text-sm text-muted-foreground">
               {filteredQuizzes.length} quiz gösteriliyor (toplam {quizzes.length})
             </p>
           </CardContent>
