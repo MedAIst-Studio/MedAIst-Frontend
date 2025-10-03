@@ -1,10 +1,10 @@
 "use client";
 
-import {BookOpen, Filter, Search} from "lucide-react";
+import {BookOpen, Search} from "lucide-react";
 import {useState} from "react";
 
 import {Button} from "@/components/ui/button";
-import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
+import {Card, CardContent} from "@/components/ui/card";
 import {Input} from "@/components/ui/input";
 
 import {Note, NoteFilters} from "../types";
@@ -46,76 +46,57 @@ export function NotesList({notes, onDeleteNote, loading = false}: NotesListProps
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Filters */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center space-x-2">
-            <Filter className="h-5 w-5 text-primary" />
-            <span>Notları Filtrele</span>
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="flex flex-col gap-4 sm:flex-row">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-              <Input
-                className="pl-10 border-b-4 border-primary/20 bg-gradient-to-br from-background via-background/95 to-background/90 shadow-sm transition-all duration-300 hover:border-primary/30 hover:shadow-md focus:border-primary/50 focus:shadow-lg"
-                placeholder="Notları ara..."
-                value={filters.searchTerm}
-                onChange={(e) => handleSearchChange(e.target.value)}
-              />
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {subjects.map((subject) => (
-                <Button
-                  key={subject}
-                  className={`border-b-4 transition-all duration-300 hover:-translate-y-0.5 ${
-                    filters.selectedSubject === subject
-                      ? "border-primary/50 bg-gradient-to-br from-primary via-primary/90 to-primary/80 text-primary-foreground shadow-lg hover:border-primary/70 hover:shadow-xl"
-                      : "border-primary/20 bg-gradient-to-br from-background via-background/95 to-background/90 text-foreground shadow-sm hover:border-primary/30 hover:shadow-md"
-                  }`}
-                  size="sm"
-                  variant="outline"
-                  onClick={() => handleSubjectChange(subject)}
-                >
-                  {subject === "all" ? "Tüm Konular" : subject}
-                </Button>
-              ))}
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="relative flex-1">
+          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+          <Input
+            className="pl-10"
+            placeholder="Notları ara..."
+            value={filters.searchTerm}
+            onChange={(e) => handleSearchChange(e.target.value)}
+          />
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {subjects.map((subject) => (
+            <Button
+              key={subject}
+              size="sm"
+              variant={filters.selectedSubject === subject ? "default" : "outline"}
+              onClick={() => handleSubjectChange(subject)}
+            >
+              {subject === "all" ? "Tümü" : subject}
+            </Button>
+          ))}
+        </div>
+      </div>
 
       {/* Notes List */}
       {filteredNotes.length === 0 ? (
-        <Card>
-          <CardContent className="p-8 text-center">
-            <BookOpen className="mx-auto mb-4 h-12 w-12 text-muted-foreground" />
-            <h3 className="mb-2 text-lg font-semibold">Not bulunamadı</h3>
-            <p className="text-muted-foreground">
-              {notes.length === 0
-                ? "İlk notunuzu oluşturmak veya çalışma materyalleri yüklemekle başlayın."
-                : "Arama veya filtre kriterlerinizi ayarlamayı deneyin."}
-            </p>
-          </CardContent>
-        </Card>
+        <div className="text-center py-12">
+          <BookOpen className="mx-auto mb-4 h-12 w-12 text-muted-foreground" />
+          <h3 className="mb-2 text-lg font-semibold">Not bulunamadı</h3>
+          <p className="text-muted-foreground">
+            {notes.length === 0
+              ? "İlk notunuzu oluşturun veya dosya yükleyin"
+              : "Arama kriterlerinizi değiştirin"}
+          </p>
+        </div>
       ) : (
-        <div className="grid gap-6">
+        <div className="grid gap-4">
           {filteredNotes.map((note) => (
             <NoteCard key={note.id} note={note} onDelete={onDeleteNote} />
           ))}
         </div>
       )}
 
-      {filteredNotes.length > 0 && (
-        <Card>
-          <CardContent className="p-4 text-center">
-            <p className="text-sm text-muted-foreground">
-              {filteredNotes.length} / {notes.length} not gösteriliyor
-            </p>
-          </CardContent>
-        </Card>
+      {filteredNotes.length > 0 && filteredNotes.length !== notes.length && (
+        <div className="text-center">
+          <p className="text-sm text-muted-foreground">
+            {filteredNotes.length} / {notes.length} not gösteriliyor
+          </p>
+        </div>
       )}
     </div>
   );
