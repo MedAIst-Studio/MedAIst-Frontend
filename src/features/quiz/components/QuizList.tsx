@@ -1,10 +1,10 @@
 "use client";
 
-import {Filter, Target} from "lucide-react";
+import {Target} from "lucide-react";
 import {useState} from "react";
 
 import {Button} from "@/components/ui/button";
-import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
+import {Card, CardContent} from "@/components/ui/card";
 
 import {type Quiz} from "../types";
 import {categories, difficulties, filterQuizzes} from "../utils";
@@ -41,119 +41,85 @@ export function QuizList({quizzes, onStartQuiz, loading = false}: QuizListProps)
   }
 
   return (
-    <div className="space-y-4 sm:space-y-6">
+    <div className="space-y-4">
       {/* Filters */}
-      <Card>
-        <CardHeader className="pb-3 sm:pb-6">
-          <CardTitle className="flex items-center space-x-2 text-base sm:text-lg">
-            <Filter className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
-            <span>Quiz Filtresi</span>
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="pt-0">
-          <div className="space-y-3 sm:space-y-4">
-            {/* Category Filter */}
-            <div>
-              <label className="mb-2 block text-xs sm:text-sm font-medium">Kategori</label>
-              <div className="flex flex-wrap gap-1 sm:gap-2">
-                {categories.map((category) => (
-                  <Button
-                    key={category}
-                    className={`border-b-4 transition-all duration-300 hover:-translate-y-0.5 text-xs sm:text-sm px-2 sm:px-3 py-1 sm:py-2 h-auto ${
-                      selectedCategory === category
-                        ? "border-primary/50 bg-gradient-to-br from-primary via-primary/90 to-primary/80 text-primary-foreground shadow-lg hover:border-primary/70 hover:shadow-xl"
-                        : "border-primary/20 bg-gradient-to-br from-background via-background/95 to-background/90 text-foreground shadow-sm hover:border-primary/30 hover:shadow-md"
-                    }`}
-                    size="sm"
-                    variant="outline"
-                    onClick={() => setSelectedCategory(category)}
-                  >
-                    {category}
-                  </Button>
-                ))}
-              </div>
-            </div>
-
-            {/* Difficulty Filter */}
-            <div>
-              <label className="mb-2 block text-xs sm:text-sm font-medium">Zorluk</label>
-              <div className="flex flex-wrap gap-1 sm:gap-2">
-                {difficulties.map((difficulty) => (
-                  <Button
-                    key={difficulty}
-                    className={`border-b-4 transition-all duration-300 hover:-translate-y-0.5 text-xs sm:text-sm px-2 sm:px-3 py-1 sm:py-2 h-auto ${
-                      selectedDifficulty === difficulty
-                        ? "border-primary/50 bg-gradient-to-br from-primary via-primary/90 to-primary/80 text-primary-foreground shadow-lg hover:border-primary/70 hover:shadow-xl"
-                        : "border-primary/20 bg-gradient-to-br from-background via-background/95 to-background/90 text-foreground shadow-sm hover:border-primary/30 hover:shadow-md"
-                    }`}
-                    size="sm"
-                    variant="outline"
-                    onClick={() => setSelectedDifficulty(difficulty)}
-                  >
-                    {difficulty}
-                  </Button>
-                ))}
-              </div>
-            </div>
-
-            {/* Completion Filter */}
-            <div>
-              <label className="mb-2 block text-xs sm:text-sm font-medium">Durum</label>
-              <div className="flex flex-wrap gap-1 sm:gap-2">
-                {[
-                  {label: "Tümü", value: null},
-                  {label: "Tamamlanan", value: true},
-                  {label: "Tamamlanmayan", value: false},
-                ].map((option) => (
-                  <Button
-                    key={option.label}
-                    className={`border-b-4 transition-all duration-300 hover:-translate-y-0.5 text-xs sm:text-sm px-2 sm:px-3 py-1 sm:py-2 h-auto ${
-                      showCompleted === option.value
-                        ? "border-primary/50 bg-gradient-to-br from-primary via-primary/90 to-primary/80 text-primary-foreground shadow-lg hover:border-primary/70 hover:shadow-xl"
-                        : "border-primary/20 bg-gradient-to-br from-background via-background/95 to-background/90 text-foreground shadow-sm hover:border-primary/30 hover:shadow-md"
-                    }`}
-                    size="sm"
-                    variant="outline"
-                    onClick={() => setShowCompleted(option.value)}
-                  >
-                    {option.label}
-                  </Button>
-                ))}
-              </div>
-            </div>
+      <div className="grid gap-4 grid-cols-1 md:grid-cols-3">
+        <div>
+          <label className="mb-2 block text-sm font-medium">Kategori</label>
+          <div className="flex flex-wrap gap-2">
+            {categories.map((category) => (
+              <Button
+                key={category}
+                size="sm"
+                variant={selectedCategory === category ? "default" : "outline"}
+                onClick={() => setSelectedCategory(category)}
+              >
+                {category}
+              </Button>
+            ))}
           </div>
-        </CardContent>
-      </Card>
+        </div>
+
+        <div>
+          <label className="mb-2 block text-sm font-medium">Zorluk</label>
+          <div className="flex flex-wrap gap-2">
+            {difficulties.map((difficulty) => (
+              <Button
+                key={difficulty}
+                size="sm"
+                variant={selectedDifficulty === difficulty ? "default" : "outline"}
+                onClick={() => setSelectedDifficulty(difficulty)}
+              >
+                {difficulty}
+              </Button>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <label className="mb-2 block text-sm font-medium">Durum</label>
+          <div className="flex flex-wrap gap-2">
+            {[
+              {label: "Tümü", value: null},
+              {label: "Tamamlanan", value: true},
+              {label: "Tamamlanmayan", value: false},
+            ].map((option) => (
+              <Button
+                key={option.label}
+                size="sm"
+                variant={showCompleted === option.value ? "default" : "outline"}
+                onClick={() => setShowCompleted(option.value)}
+              >
+                {option.label}
+              </Button>
+            ))}
+          </div>
+        </div>
+      </div>
 
       {/* Quiz Grid */}
       {filteredQuizzes.length === 0 ? (
-        <Card>
-          <CardContent className="p-6 sm:p-8 text-center">
-            <Target className="mx-auto mb-3 sm:mb-4 h-10 w-10 sm:h-12 sm:w-12 text-muted-foreground" />
-            <h3 className="mb-2 text-base sm:text-lg font-semibold">Quiz bulunamadı</h3>
-            <p className="text-sm sm:text-base text-muted-foreground">
-              {quizzes.length === 0
-                ? "Henüz quiz oluşturulmamış. İlk quiz'inizi oluşturun."
-                : "Arama kriterlerinizi değiştirmeyi deneyin."}
-            </p>
-          </CardContent>
-        </Card>
+        <div className="text-center py-12">
+          <Target className="mx-auto mb-4 h-12 w-12 text-muted-foreground" />
+          <h3 className="mb-2 text-lg font-semibold">Quiz bulunamadı</h3>
+          <p className="text-muted-foreground">
+            {quizzes.length === 0 ? "İlk quiz'inizi oluşturun" : "Filtre kriterlerinizi değiştirin"}
+          </p>
+        </div>
       ) : (
-        <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {filteredQuizzes.map((quiz) => (
             <QuizCard key={quiz.id} quiz={quiz} onStartQuiz={onStartQuiz} />
           ))}
         </div>
       )}
 
-      {filteredQuizzes.length > 0 && (
-        <Card>
-          <CardContent className="p-3 sm:p-4 text-center">
-            <p className="text-xs sm:text-sm text-muted-foreground">
-              {filteredQuizzes.length} quiz gösteriliyor (toplam {quizzes.length})
-            </p>
-          </CardContent>
-        </Card>
+      {filteredQuizzes.length > 0 && filteredQuizzes.length !== quizzes.length && (
+        <div className="text-center">
+          <p className="text-sm text-muted-foreground">
+            {filteredQuizzes.length} / {quizzes.length} quiz gösteriliyor
+          </p>
+        </div>
       )}
     </div>
   );
