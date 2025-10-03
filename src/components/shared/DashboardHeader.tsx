@@ -2,8 +2,10 @@
 
 import {Brain, Bug, FileText, LogOut, MessageSquare, Settings, Target, User} from "lucide-react";
 import Link from "next/link";
+import {useState} from "react";
 
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
+import {Dialog, DialogContent, DialogHeader, DialogTitle} from "@/components/ui/dialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -46,21 +48,31 @@ const menuItems = [
   },
 ];
 
-const settingsItems = [
-  {
-    title: "Ayarlar",
-    url: "/settings",
-    icon: Settings,
-  },
-  {
-    title: "Geri Bildirim",
-    url: "/help",
-    icon: Bug,
-  },
-];
-
 export default function DashboardHeader() {
   const {open} = useSidebar();
+  const [feedbackOpen, setFeedbackOpen] = useState(false);
+
+  const handleLogout = () => {
+    // Logout işlemi
+    alert("Çıkış yapılıyor...");
+  };
+
+  const handleFeedback = () => {
+    setFeedbackOpen(true);
+  };
+
+  const settingsItems = [
+    {
+      title: "Ayarlar",
+      url: "/settings",
+      icon: Settings,
+    },
+    {
+      title: "Geri Bildirim",
+      icon: Bug,
+      onClick: handleFeedback,
+    },
+  ];
 
   return (
     <Sidebar className="border-r group" collapsible="icon">
@@ -113,12 +125,19 @@ export default function DashboardHeader() {
             <SidebarMenu>
               {settingsItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <Link href={item.url}>
+                  {item.url ? (
+                    <SidebarMenuButton asChild>
+                      <Link href={item.url}>
+                        <item.icon className="h-4 w-4" />
+                        <span>{item.title}</span>
+                      </Link>
+                    </SidebarMenuButton>
+                  ) : (
+                    <SidebarMenuButton onClick={item.onClick}>
                       <item.icon className="h-4 w-4" />
                       <span>{item.title}</span>
-                    </Link>
-                  </SidebarMenuButton>
+                    </SidebarMenuButton>
+                  )}
                 </SidebarMenuItem>
               ))}
             </SidebarMenu>
@@ -185,7 +204,7 @@ export default function DashboardHeader() {
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>
+                <DropdownMenuItem onClick={handleLogout}>
                   <LogOut className="mr-2 h-4 w-4" />
                   Çıkış Yap
                 </DropdownMenuItem>
@@ -194,6 +213,26 @@ export default function DashboardHeader() {
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>
+
+      {/* Feedback Dialog */}
+      <Dialog open={feedbackOpen} onOpenChange={setFeedbackOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Geri Bildirim</DialogTitle>
+          </DialogHeader>
+          <div className="py-4">
+            <p className="text-sm text-muted-foreground mb-4">
+              Görüşleriniz bizim için çok değerli! Yakında detaylı bir geri bildirim formu
+              eklenecek.
+            </p>
+            <div className="space-y-2">
+              <p className="text-sm">📧 E-posta: feedback@medaist.com</p>
+              <p className="text-sm">💬 Discord: MedAIst Community</p>
+              <p className="text-sm">🐦 Twitter: @MedAIst</p>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </Sidebar>
   );
 }
