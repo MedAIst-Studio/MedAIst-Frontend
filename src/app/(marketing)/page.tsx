@@ -6,8 +6,6 @@ import FAQSection from "@/components/landing/FAQSection";
 import FeaturesSection from "@/components/landing/FeaturesSection";
 import HeroSection from "@/components/landing/HeroSection";
 import HowItWorksSection from "@/components/landing/HowItWorksSection";
-import LandingFooter from "@/components/landing/LandingFooter";
-import LandingHeader from "@/components/landing/LandingHeader";
 import TestimonialsSection from "@/components/landing/TestimonialsSection";
 
 export const metadata: Metadata = {
@@ -97,14 +95,12 @@ const LandingPage = () => {
         id="structured-data"
         type="application/ld+json"
       />
-      <LandingHeader />
       <HeroSection />
       <FeaturesSection />
       <HowItWorksSection />
       <TestimonialsSection />
       <FAQSection />
       <CallToActionSection />
-      <LandingFooter />
     </>
   );
 };
