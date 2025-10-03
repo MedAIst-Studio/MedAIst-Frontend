@@ -129,6 +129,7 @@ export function SignupForm({onSubmit, onSocialLogin, isLoading = false, error}: 
                 label="Şifre"
                 name="password"
                 placeholder="Şifreniz"
+                type="password"
               />
 
               <DynamicFormField
@@ -137,6 +138,7 @@ export function SignupForm({onSubmit, onSocialLogin, isLoading = false, error}: 
                 label="Şifreyi Onayla"
                 name="confirmPassword"
                 placeholder="Şifreniz"
+                type="password"
               />
 
               <DynamicFormField

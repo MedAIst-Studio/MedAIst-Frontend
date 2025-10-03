@@ -47,15 +47,15 @@ const LandingHeader = () => {
             </Link>
             <Link
               className="text-sm font-medium text-slate-700 hover:text-blue-600 transition-colors"
-              href="#testimonials"
+              href="/pricing"
             >
-              Referanslar
+              Fiyatlar
             </Link>
             <Link
               className="text-sm font-medium text-slate-700 hover:text-blue-600 transition-colors"
-              href="#screenshots"
+              href="#faq"
             >
-              Ekran Görüntüleri
+              S.S.S.
             </Link>
           </div>
 

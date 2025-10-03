@@ -2,6 +2,7 @@ import {Metadata} from "next";
 import Script from "next/script";
 
 import CallToActionSection from "@/components/landing/CallToActionSection";
+import FAQSection from "@/components/landing/FAQSection";
 import FeaturesSection from "@/components/landing/FeaturesSection";
 import HeroSection from "@/components/landing/HeroSection";
 import HowItWorksSection from "@/components/landing/HowItWorksSection";
@@ -101,6 +102,7 @@ const LandingPage = () => {
       <FeaturesSection />
       <HowItWorksSection />
       <TestimonialsSection />
+      <FAQSection />
       <CallToActionSection />
       <LandingFooter />
     </>
