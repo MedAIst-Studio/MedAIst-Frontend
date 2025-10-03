@@ -16,7 +16,7 @@ const buttonVariants = cva(
           "bg-red-500 text-destructive-foreground rounded-lg shadow-lg hover:bg-red-600 hover:shadow-xl transform hover:-translate-y-0.5 active:translate-y-0 focus-visible:ring-red-500/50 border-b-4 border-red-700 hover:border-red-800 active:border-red-600",
 
         outline:
-          "border-2 border-slate-100 bg-white text-slate-700 rounded-lg hover:shadow-xl hover:border-blue-500 hover:text-blue-700 transform hover:-translate-y-0.5 active:translate-y-0 focus-visible:ring-blue-500/50 border-b-4 border-slate-300 hover:border-blue-600 active:border-slate-300 dark:bg-slate-800 dark:border-slate-600 dark:text-slate-200 dark:hover:border-blue-400 dark:hover:text-blue-300",
+          "border-2 border-slate-100 bg-white text-slate-700 rounded-lg hover:shadow-xl hover:border-primary hover:text-primary transform hover:-translate-y-0.5 active:translate-y-0 focus-visible:ring-primary/50 border-b-4 border-slate-300 hover:border-primary active:border-slate-300 dark:bg-slate-800 dark:border-slate-600 dark:text-slate-200 dark:hover:border-primary/90 dark:hover:text-blue-300",
 
         secondary:
           "bg-white text-slate-800 rounded-lg hover:bg-slate-50 hover:shadow-sm transform hover:-translate-y-0.5 active:translate-y-0 border-b-4 border-slate-200 hover:border-slate-300 active:border-slate-300 dark:bg-slate-700 dark:text-slate-200 dark:border-slate-800 dark:hover:bg-slate-600 dark:hover:border-slate-900",
