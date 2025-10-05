@@ -5,6 +5,11 @@ import {useEffect, useState} from "react";
 import {FileUploadState, Note, NoteFormData} from "../types";
 import {handleFileUpload, mockNotes, processNoteFormData} from "../utils";
 
+// New hooks
+export {useChat} from "./useChat";
+export {useDocuments} from "./useDocuments";
+export {useFileUpload as useDocumentUpload} from "./useFileUpload";
+
 export const useNotes = () => {
   const [notes, setNotes] = useState<Note[]>([]);
   const [loading, setLoading] = useState(true);

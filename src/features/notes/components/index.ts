@@ -1,4 +1,3 @@
-export {FileUpload} from "./FileUpload";
-export {NoteCard} from "./NoteCard";
-export {NoteForm} from "./NoteForm";
-export {NotesList} from "./NotesList";
+export {ChatInterface} from "./ChatInterface";
+export {DocumentCard} from "./DocumentCard";
+export {FileProgressDisplay, FileUploadComponent} from "./FileUploadComponent";
