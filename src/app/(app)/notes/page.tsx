@@ -50,7 +50,7 @@ export default function PDFChatPage() {
 
   return (
     <>
-      <MaxWidthWrapper className="space-y-6 py-10">
+      <MaxWidthWrapper className="space-y-6 py-10 px-4 md:px-0">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>

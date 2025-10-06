@@ -16,7 +16,7 @@ export default function QuizPage() {
   const {quizzes, loading} = useQuizzes();
 
   return (
-    <MaxWidthWrapper className="py-10">
+    <MaxWidthWrapper className="py-10 px-4 md:px-0">
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-slate-900 mb-1">Quiz Merkezi</h1>
         <p className="text-slate-600 text-sm">Bilgilerinizi test edin ve gelişiminizi takip edin</p>

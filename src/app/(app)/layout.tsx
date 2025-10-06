@@ -1,5 +1,6 @@
 import type {Metadata} from "next";
 
+import {BottomBar} from "@/components/shared";
 import DashboardHeader from "@/components/shared/DashboardHeader";
 import {SidebarProvider} from "@/components/ui/sidebar";
 
@@ -16,7 +17,8 @@ export default function AppLayout({
   return (
     <SidebarProvider defaultOpen={true}>
       <DashboardHeader />
-      <main className="min-h-screen w-full relative">{children}</main>
+      <main className="min-h-screen w-full relative pb-20 md:pb-0">{children}</main>
+      <BottomBar />
     </SidebarProvider>
   );
 }
