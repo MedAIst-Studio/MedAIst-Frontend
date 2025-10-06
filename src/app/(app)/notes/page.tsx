@@ -49,8 +49,8 @@ export default function PDFChatPage() {
   };
 
   return (
-    <div className="p-6">
-      <MaxWidthWrapper className="space-y-6">
+    <>
+      <MaxWidthWrapper className="space-y-6 py-10">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
@@ -135,6 +135,6 @@ export default function PDFChatPage() {
           onClose={handleChatClose}
         />
       )}
-    </div>
+    </>
   );
 }

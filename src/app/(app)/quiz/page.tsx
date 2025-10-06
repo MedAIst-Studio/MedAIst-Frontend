@@ -5,6 +5,7 @@ import type {Quiz} from "@/features/quiz/types";
 import {Brain, Plus, Target, Trophy} from "lucide-react";
 import {useState} from "react";
 
+import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
 import {Button} from "@/components/ui/button";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import {QuizList} from "@/features/quiz/components/QuizList";
@@ -15,7 +16,7 @@ export default function QuizPage() {
   const {quizzes, loading} = useQuizzes();
 
   return (
-    <div className="container mx-auto max-w-7xl px-4 py-6">
+    <MaxWidthWrapper className="py-10">
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-slate-900 mb-1">Quiz Merkezi</h1>
         <p className="text-slate-600 text-sm">Bilgilerinizi test edin ve gelişiminizi takip edin</p>
@@ -89,6 +90,6 @@ export default function QuizPage() {
           </div>
         </TabsContent>
       </Tabs>
-    </div>
+    </MaxWidthWrapper>
   );
 }
