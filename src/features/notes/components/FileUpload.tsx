@@ -5,19 +5,19 @@ import {useState} from "react";
 
 import {Button} from "@/components/ui/button";
 
-interface FileUploadComponentProps {
+interface FileUploadProps {
   onFileSelect: (files: FileList) => void;
   acceptedTypes?: string;
   multiple?: boolean;
   isUploading?: boolean;
 }
 
-export const FileUploadComponent = ({
+export const FileUpload = ({
   onFileSelect,
   acceptedTypes = ".pdf,.doc,.docx,.txt,.md",
   multiple = true,
   isUploading = false,
-}: FileUploadComponentProps) => {
+}: FileUploadProps) => {
   const [dragOver, setDragOver] = useState(false);
 
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -94,12 +94,12 @@ export const FileUploadComponent = ({
           <label className="cursor-pointer" htmlFor="file-upload-input">
             {isUploading ? (
               <>
-                <div className="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full mr-2" />
+                <div className="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full" />
                 Yükleniyor...
               </>
             ) : (
               <>
-                <Plus className="h-4 w-4 mr-2" />
+                <Plus />
                 Dosya Seç
               </>
             )}

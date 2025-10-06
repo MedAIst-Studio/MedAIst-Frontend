@@ -1,3 +1,3 @@
 export {ChatInterface} from "./ChatInterface";
 export {DocumentCard} from "./DocumentCard";
-export {FileProgressDisplay, FileUploadComponent} from "./FileUploadComponent";
+export {FileProgressDisplay, FileUpload as FileUploadComponent} from "./FileUpload";
