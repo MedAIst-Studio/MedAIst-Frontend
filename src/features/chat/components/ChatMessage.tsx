@@ -24,10 +24,10 @@ export const ChatMessage = ({message, onCopyMessage}: ChatMessageProps) => {
         className={`max-w-[calc(100%-3rem)] sm:max-w-3xl ${message.role === "user" ? "order-1" : ""}`}
       >
         <div
-          className={`rounded-2xl px-3 py-2 sm:px-4 sm:py-3 ${
+          className={`${
             message.role === "user"
-              ? "border-b-4 border-primary/30 bg-gradient-to-br from-primary via-primary/90 to-primary/80 text-primary-foreground"
-              : "bg-white border border-b-4 border-b-gray-300 text-gray-900"
+              ? "border-b-4 rounded-2xl sm:px-4 sm:py-3 px-3 py-2 border-primary/30 bg-gradient-to-br from-primary via-primary/90 to-primary/80 text-primary-foreground"
+              : "text-foreground"
           }`}
         >
           <div className="whitespace-pre-wrap text-xs sm:text-sm leading-relaxed">
@@ -37,7 +37,7 @@ export const ChatMessage = ({message, onCopyMessage}: ChatMessageProps) => {
 
         {/* Message Actions */}
         <div
-          className={`flex items-center gap-1 mt-1 sm:mt-2 text-xs text-gray-500 ${
+          className={`flex items-center gap-1 mt-1 sm:mt-2 text-xs text-muted-foreground ${
             message.role === "user" ? "justify-end mr-1 sm:mr-2" : "justify-start ml-1 sm:ml-2"
           }`}
         >

@@ -227,10 +227,9 @@ function Sidebar({
           side === "left"
             ? "left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]"
             : "right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]",
-          // Adjust the padding for floating and inset variants.
           variant === "floating" || variant === "inset"
             ? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]"
-            : "group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=left]:border-r group-data-[side=right]:border-l",
+            : "group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=left]:border-r-2 group-data-[side=right]:border-l",
           className,
         )}
         data-slot="sidebar-container"
@@ -459,7 +458,7 @@ function SidebarMenuItem({className, ...props}: React.ComponentProps<"li">) {
 }
 
 const sidebarMenuButtonVariants = cva(
-  "peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-lg p-2 text-left text-sm outline-hidden ring-sidebar-ring transition-all duration-300 hover:bg-gray-300 hover:text-sidebar-foreground focus-visible:ring-2 active:bg-gray-300 active:text-sidebar-foreground disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-gray-300 data-[active=true]:font-medium data-[active=true]:text-sidebar-foreground data-[state=open]:hover:bg-gray-300 data-[state=open]:hover:text-sidebar-foreground group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 hover:-translate-y-0.5 active:translate-y-0 border-b border-transparent hover:border hover:border-b-3 hover:border-gray-300 data-[active=true]:border-b-2 data-[active=true]:border-gray-400 data-[active=true]:-translate-y-0.5",
+  "peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-lg p-2 text-left text-sm outline-hidden ring-sidebar-ring transition-all duration-300 hover:bg-secondary hover:text-sidebar-foreground focus-visible:ring-2 active:bg-secondary active:text-sidebar-foreground disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-secondary data-[active=true]:font-medium data-[active=true]:text-sidebar-foreground data-[state=open]:hover:bg-secondary data-[state=open]:hover:text-sidebar-foreground group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 hover:-translate-y-0.5 active:translate-y-0 border-b border-transparent hover:border hover:border-b-3 hover:border-secondary data-[active=true]:border-b-2 data-[active=true]:border-gray-400 data-[active=true]:-translate-y-0.5",
   {
     variants: {
       variant: {

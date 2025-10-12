@@ -3,6 +3,8 @@ import "./globals.css";
 
 import {DM_Sans} from "next/font/google";
 
+import {ThemeProvider} from "@/providers/theme-provider";
+
 const dm_sans = DM_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
@@ -21,8 +23,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html className="scroll-smooth" lang="en">
-      <body className={`${dm_sans.variable} antialiased`}>{children}</body>
+    <html suppressHydrationWarning className="scroll-smooth" lang="en">
+      <body className={`${dm_sans.variable} antialiased`}>
+        <ThemeProvider
+          disableTransitionOnChange
+          enableSystem
+          attribute={"class"}
+          defaultTheme="system"
+        >
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

@@ -49,7 +49,7 @@ export const ChatInput = ({
         {showQuickQuestions && (
           <div className="mb-3 sm:mb-4 space-y-3 sm:space-y-4">
             <div className="text-center">
-              <h3 className="text-xs sm:text-sm font-medium text-gray-700 mb-2 sm:mb-3 px-2">
+              <h3 className="text-xs sm:text-sm font-medium text-muted-foreground mb-2 sm:mb-3 px-2">
                 Başlamak için hızlı sorulardan birini seçin veya kendi sorunuzla devam edin:
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2 max-w-2xl mx-auto">
@@ -72,10 +72,10 @@ export const ChatInput = ({
         )}
 
         {/* Input Area */}
-        <div className="relative flex items-center border border-b-4 border-b-gray-300 rounded-xl pr-2 sm:pr-4 bg-white hover:shadow-sm transition-all duration-200">
+        <div className="relative flex items-center border-2 border-b-4 rounded-xl pr-2 sm:pr-4 bg-card hover:shadow-sm transition-all duration-200">
           <Textarea
             ref={textareaRef}
-            className="resize-none focus-visible:ring-none border p-3 sm:p-6 text-sm shadow-none hover:shadow-none hover:border-none focus:shadow-none focus:border-none hover:translate-none focus:translate-none border-none"
+            className="resize-none !bg-transparent focus-visible:ring-none border p-3 sm:p-4 text-sm shadow-none hover:shadow-none hover:!border-none focus:!shadow-none focus:!border-none hover:translate-none focus:!translate-none !border-none"
             disabled={isLoading}
             placeholder={
               isMobile
