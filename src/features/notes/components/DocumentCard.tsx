@@ -36,13 +36,13 @@ export const DocumentCard = ({document, onChatClick}: DocumentCardProps) => {
         <div className="flex items-start justify-between">
           <div className="flex items-center space-x-2">
             <div className="p-2 bg-blue-100 rounded-lg">
-              <FileText className="h-5 w-5 text-blue-600" />
+              <FileText className="h-5 w-5 text-primary" />
             </div>
             <div className="flex-1 min-w-0">
-              <h3 className="font-semibold text-slate-900 truncate group-hover:text-primary transition-colors">
+              <h3 className="font-semibold truncate group-hover:text-primary transition-colors">
                 {document.title}
               </h3>
-              <p className="text-sm text-slate-500 truncate">{document.fileName}</p>
+              <p className="text-sm text-muted-foreground truncate">{document.fileName}</p>
             </div>
           </div>
           {getStatusBadge(document.status)}
@@ -51,14 +51,14 @@ export const DocumentCard = ({document, onChatClick}: DocumentCardProps) => {
 
       <CardContent className="pt-0">
         <div className="space-y-3">
-          <div className="flex justify-between text-sm text-slate-600">
+          <div className="flex justify-between text-sm text-muted-foreground">
             <span>Boyut: {document.size}</span>
             <span>{new Date(document.uploadDate).toLocaleDateString("tr-TR")}</span>
           </div>
 
           {document.status === "processed" && (
-            <div className="flex items-center justify-between pt-2 border-t border-slate-100">
-              <div className="flex items-center space-x-2 text-sm text-slate-600">
+            <div className="flex items-center justify-between pt-2 border-t-2">
+              <div className="flex items-center space-x-2 text-sm text-muted-foreground">
                 <MessageSquare className="h-4 w-4" />
                 <span>{document.messageCount} mesaj</span>
               </div>
@@ -69,7 +69,7 @@ export const DocumentCard = ({document, onChatClick}: DocumentCardProps) => {
           )}
 
           {document.status === "processing" && (
-            <div className="flex items-center space-x-2 pt-2 border-t border-slate-100">
+            <div className="flex items-center space-x-2 pt-2 border-t-2">
               <div className="animate-spin h-4 w-4 border-2 border-yellow-600 border-t-transparent rounded-full" />
               <span className="text-sm text-yellow-600">Döküman işleniyor...</span>
             </div>

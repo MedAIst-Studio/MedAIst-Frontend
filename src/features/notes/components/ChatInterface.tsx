@@ -1,6 +1,6 @@
 import type {ChatMessage, Document} from "../types";
 
-import {Bot, Send, User, X} from "lucide-react";
+import {Send, X} from "lucide-react";
 import {useEffect, useRef, useState} from "react";
 
 import {Badge} from "@/components/ui/badge";
@@ -87,11 +87,11 @@ export const ChatInterface = ({document, isOpen, onClose}: ChatInterfaceProps) =
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
       <Card className="w-full max-w-4xl h-[80vh] flex flex-col">
-        <CardHeader className="flex-shrink-0 border-b border-slate-200">
+        <CardHeader className="flex-shrink-0 border-b-2 pb-4">
           <div className="flex items-center justify-between">
             <div>
               <CardTitle className="text-lg">{document.title}</CardTitle>
-              <p className="text-sm text-slate-600">{document.fileName}</p>
+              <p className="text-sm text-muted-foreground">{document.fileName}</p>
             </div>
             <Button size="icon-sm" variant="outline" onClick={onClose}>
               <X className="h-4 w-4" />
@@ -110,23 +110,15 @@ export const ChatInterface = ({document, isOpen, onClose}: ChatInterfaceProps) =
                     message.role === "user" ? "justify-end" : "justify-start"
                   }`}
                 >
-                  {message.role === "assistant" && (
-                    <div className="p-2 bg-blue-100 rounded-full">
-                      <Bot className="h-4 w-4 text-blue-600" />
-                    </div>
-                  )}
-
                   <div
                     className={`max-w-[70%] rounded-lg p-3 ${
-                      message.role === "user"
-                        ? "bg-primary text-white"
-                        : "bg-slate-100 text-slate-900"
+                      message.role === "user" && "bg-primary text-primary-foreground"
                     }`}
                   >
                     <p className="text-sm">{message.content}</p>
 
                     {message.sources && message.sources.length > 0 && (
-                      <div className="mt-2 pt-2 border-t border-slate-200">
+                      <div className="mt-2 pt-2 border-t-2">
                         <p className="text-xs text-slate-600 mb-1">Kaynak:</p>
                         {message.sources.map((source, index) => (
                           <Badge key={index} className="mr-1 text-xs" variant="secondary">
@@ -143,26 +135,15 @@ export const ChatInterface = ({document, isOpen, onClose}: ChatInterfaceProps) =
                       })}
                     </p>
                   </div>
-
-                  {message.role === "user" && (
-                    <div className="p-2 bg-primary/10 rounded-full">
-                      <User className="h-4 w-4 text-primary" />
-                    </div>
-                  )}
                 </div>
               ))}
 
               {isLoading && (
                 <div className="flex items-start space-x-3">
-                  <div className="p-2 bg-blue-100 rounded-full">
-                    <Bot className="h-4 w-4 text-blue-600" />
-                  </div>
-                  <div className="bg-slate-100 rounded-lg p-3">
-                    <div className="flex space-x-1">
-                      <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" />
-                      <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce delay-100" />
-                      <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce delay-200" />
-                    </div>
+                  <div className="flex space-x-1">
+                    <div className="w-2 h-2 bg-muted rounded-full animate-bounce" />
+                    <div className="w-2 h-2 bg-muted rounded-full animate-bounce delay-100" />
+                    <div className="w-2 h-2 bg-muted rounded-full animate-bounce delay-200" />
                   </div>
                 </div>
               )}
@@ -172,7 +153,7 @@ export const ChatInterface = ({document, isOpen, onClose}: ChatInterfaceProps) =
           </div>
 
           {/* Message Input */}
-          <div className="border-t border-slate-200 p-4">
+          <div className="border-t-2 p-4">
             <div className="flex space-x-2">
               <Input
                 disabled={isLoading}
@@ -189,7 +170,7 @@ export const ChatInterface = ({document, isOpen, onClose}: ChatInterfaceProps) =
                 <Send className="h-4 w-4" />
               </Button>
             </div>
-            <p className="text-xs text-slate-500 mt-2">
+            <p className="text-xs text-muted-foreground mt-2">
               Enter ile gönder • {document.messageCount} önceki mesaj
             </p>
           </div>

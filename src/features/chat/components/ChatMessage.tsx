@@ -53,7 +53,7 @@ export const ChatMessage = ({message, onCopyMessage}: ChatMessageProps) => {
                 variant="secondary"
                 onClick={() => onCopyMessage(message.content)}
               >
-                <Copy className="w-3 h-3 sm:w-4 sm:h-4" />
+                <Copy />
               </Button>
             </div>
           )}

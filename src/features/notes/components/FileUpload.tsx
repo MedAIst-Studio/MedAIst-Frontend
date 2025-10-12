@@ -56,7 +56,7 @@ export const FileUpload = ({
         ${
           dragOver
             ? "border-primary bg-primary/5 border-solid"
-            : "border-slate-300 hover:border-slate-400"
+            : "border-border/70 hover:border-border"
         }
         ${isUploading ? "opacity-50 pointer-events-none" : ""}
       `}
@@ -75,15 +75,15 @@ export const FileUpload = ({
       />
 
       <div className="space-y-4">
-        <div className="mx-auto w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center">
+        <div className="mx-auto w-12 h-12 bg-card/50 rounded-full flex items-center justify-center">
           <Upload className="h-6 w-6 text-slate-400" />
         </div>
 
         <div>
-          <h3 className="text-lg font-semibold text-slate-900 mb-2">
+          <h3 className="text-lg font-semibold  mb-2">
             {isUploading ? "Dosyalar yükleniyor..." : "Dosyalarınızı yükleyin"}
           </h3>
-          <p className="text-slate-600 mb-4">
+          <p className="text-muted-foreground mb-4">
             {dragOver
               ? "Dosyaları buraya bırakın"
               : "PDF, Word, TXT veya Markdown dosyalarını sürükleyip bırakın"}
@@ -106,7 +106,7 @@ export const FileUpload = ({
           </label>
         </Button>
 
-        <p className="text-xs text-slate-500">
+        <p className="text-xs text-muted-foreground">
           Desteklenen formatlar: PDF, DOC, DOCX, TXT, MD • Maksimum 10MB
         </p>
       </div>
@@ -124,12 +124,12 @@ export const FileProgressDisplay = ({files}: FileProgressDisplayProps) => {
   return (
     <div className="mt-4 space-y-2">
       {files.map((file, index) => (
-        <div key={index} className="bg-slate-50 rounded-lg p-3">
+        <div key={index} className="bg-card rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium truncate">{file.name}</span>
-            <span className="text-xs text-slate-500">{file.progress.progress}%</span>
+            <span className="text-xs text-muted-foreground">{file.progress.progress}%</span>
           </div>
-          <div className="w-full bg-slate-200 rounded-full h-1.5">
+          <div className="w-full bg-card rounded-full h-1.5">
             <div
               className={`h-1.5 rounded-full transition-all duration-300 ${
                 file.progress.status === "error"

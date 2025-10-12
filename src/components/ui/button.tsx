@@ -19,7 +19,7 @@ const buttonVariants = cva(
           "border-2 bg-card rounded-lg hover:shadow-sm hover:border-primary hover:text-primary transform hover:-translate-y-0.5 active:translate-y-0 focus-visible:ring-primary/50 border-b-4 hover:border-primary active:border-slate-300",
 
         secondary:
-          "bg-secondary text-slate-800 rounded-lg hover:shadow-sm transform hover:-translate-y-0.5 active:translate-y-0 border-b-4 active:border-slate-300",
+          "bg-secondary text-secondary-foreground rounded-lg hover:shadow-sm transform hover:-translate-y-0.5 active:translate-y-0 border-b-4 active:border-slate-300",
 
         ghost:
           "text-slate-700 rounded-lg hover:bg-blue-50 hover:text-blue-700 shadow-sm hover:shadow-lg transform hover:-translate-y-0.5 active:translate-y-0 focus-visible:ring-blue-500/30 border-b-4 border-transparent hover:border-blue-200 active:border-transparent dark:text-slate-300 dark:hover:bg-blue-950/30 dark:hover:text-blue-300 dark:hover:border-blue-800",

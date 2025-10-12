@@ -54,14 +54,14 @@ export default function PDFChatPage() {
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-bold text-slate-900">PDF Chat</h1>
-            <p className="text-slate-600">Dosyalarınızı yükleyin ve AI ile sohbet edin</p>
+            <h1 className="text-2xl font-bold">PDF Chat</h1>
+            <p className="text-muted-foreground">Dosyalarınızı yükleyin ve AI ile sohbet edin</p>
           </div>
         </div>
 
         {/* Search */}
         <div className="relative max-w-md">
-          <Search className="absolute left-3 top-5 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
+          <Search className="absolute left-3 top-5 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
             className="pl-9"
             placeholder="Döküman ara..."
@@ -88,9 +88,7 @@ export default function PDFChatPage() {
               <div className="p-4 bg-slate-100 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                 <Upload className="h-8 w-8 text-slate-400" />
               </div>
-              <h3 className="text-lg font-semibold text-slate-900 mb-2">
-                Henüz döküman yüklemediniz
-              </h3>
+              <h3 className="text-lg font-semibold mb-2">Henüz döküman yüklemediniz</h3>
               <p className="text-slate-600 mb-6">
                 PDF, Word veya metin dosyalarınızı yükleyerek AI ile sohbet etmeye başlayın
               </p>
@@ -108,11 +106,11 @@ export default function PDFChatPage() {
         {filteredDocuments.length === 0 && searchQuery && (
           <div className="text-center py-12">
             <div className="max-w-md mx-auto">
-              <div className="p-4 bg-slate-100 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                <Search className="h-8 w-8 text-slate-400" />
+              <div className="p-4 bg-card rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                <Search className="h-8 w-8 text-muted-foreground" />
               </div>
-              <h3 className="text-lg font-semibold text-slate-900 mb-2">Arama sonucu bulunamadı</h3>
-              <p className="text-slate-600">
+              <h3 className="text-lg font-semibold mb-2">Arama sonucu bulunamadı</h3>
+              <p className="text-muted-foreground">
                 &quot;{searchQuery}&quot; için herhangi bir döküman bulunamadı
               </p>
             </div>
