@@ -1,5 +1,5 @@
-import LandingFooter from "@/components/landing/LandingFooter";
-import LandingHeader from "@/components/landing/LandingHeader";
+import MarketingFooter from "@/components/shared/MarketingFooter";
+import MarketingHeader from "@/components/shared/MarketingHeader";
 
 type Props = {
   children: React.ReactNode;
@@ -7,11 +7,11 @@ type Props = {
 
 const MarketingLayout = ({children}: Props) => {
   return (
-    <>
-      <LandingHeader />
-      <main className="min-h-screen w-full relative">{children}</main>
-      <LandingFooter />
-    </>
+    <div className="flex flex-col min-h-screen">
+      <MarketingHeader />
+      <main className="flex-1 w-full relative">{children}</main>
+      <MarketingFooter />
+    </div>
   );
 };
 

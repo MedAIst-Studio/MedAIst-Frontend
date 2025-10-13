@@ -1,189 +1,228 @@
-import {ArrowRight, Brain, Play, Shield, Sparkles, Star, TrendingUp, Users} from "lucide-react";
-import Link from "next/link";
+"use client";
+
+import {motion} from "framer-motion";
+import {ArrowRight, Play, Sparkles} from "lucide-react";
 
 import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
-import {Badge} from "@/components/ui/badge";
 import {Button} from "@/components/ui/button";
 
 const HeroSection = () => {
+  const handleVideoPlay = () => {
+    // Video'yu tam ekran modda açmak
+    const video = document.getElementById("hero-demo-video") as HTMLVideoElement;
+
+    if (video) {
+      video.requestFullscreen?.();
+    }
+  };
+
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-background via-background to-primary/5 py-20 sm:py-32 overflow-hidden">
-      {/* Subtle Grid Pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#475569_1px,transparent_1px),linear-gradient(to_bottom,#475569_1px,transparent_1px)] bg-[size:80px_80px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,#000_60%,transparent_100%)] opacity-20 dark:opacity-15" />
-
-      {/* Glow Effects Base */}
-      <div className="absolute inset-0 bg-gradient-to-t from-background/50 via-transparent to-background/30" />
-
-      {/* Subtle Floating Orbs */}
-      <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-200/25 dark:bg-blue-400/20 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-2xl animate-pulse opacity-40 dark:opacity-50" />
-      <div
-        className="absolute top-3/4 right-1/4 w-64 h-64 bg-purple-200/25 dark:bg-purple-400/20 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-2xl animate-pulse opacity-40 dark:opacity-45"
-        style={{animationDelay: "3s"}}
-      />
-
-      {/* Subtle Central Glow */}
-      <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] opacity-40 dark:opacity-60 animate-pulse"
-        style={{
-          background:
-            "radial-gradient(ellipse at center, rgba(59, 130, 246, 0.08) 0%, rgba(59, 130, 246, 0.04) 50%, transparent 80%)",
-          animationDuration: "12s",
-        }}
-      />
-
+    <section className="pt-32 pb-20 sm:pt-40 sm:pb-32 bg-background relative overflow-hidden">
       <MaxWidthWrapper className="relative">
-        <div className="flex flex-col gap-10 items-center">
-          {/* Content */}
-          <div className="text-center space-y-8">
-            <div className="space-y-6">
-              <Badge
-                className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium bg-blue-50 text-blue-700 border-blue-200"
-                variant="secondary"
-              >
-                <Sparkles className="h-4 w-4" />
-                Tıp Eğitiminde Yapay Zeka
-              </Badge>
+        <div className="flex flex-col items-center text-center space-y-20">
+          {/* Hero Content */}
+          <motion.div
+            animate={{opacity: 1, y: 0}}
+            className="flex flex-col items-center space-y-8 max-w-4xl mx-auto"
+            initial={{opacity: 0, y: 50}}
+            transition={{duration: 0.8, ease: "easeOut"}}
+          >
+            {/* Hero Headline */}
+            <motion.div
+              animate={{opacity: 1, y: 0}}
+              className="space-y-6"
+              initial={{opacity: 0, y: 30}}
+              transition={{duration: 0.8, delay: 0.2}}
+            >
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-foreground leading-[1.1] max-w-4xl">
+                Binlerce Sayfa PDF&apos;in{" "}
+                <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+                  İçinde Kaybolma.
+                </span>
+                <br />
+                <span className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-semibold text-muted-foreground">
+                  Notlarınla Sohbet Et.
+                </span>
+              </h1>
 
-              <div className="space-y-4">
-                <h2 className="text-2xl sm:text-3xl lg:text-5xl font-semibold text-foreground">
-                  Akıllı Tıp Asistanın
-                </h2>
-              </div>
-
-              <p className="text-lg leading-relaxed text-muted-foreground max-w-2xl">
-                Yapay zeka destekli chat, akıllı not alma ve interaktif quiz sistemi ile tıp
-                eğitimini dönüştürün. Kişiselleştirilmiş öğrenme deneyimiyle başarınızı artırın.
+              <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+                Ders notlarını sadece okumakla yetinme. Onlara soru sor, saniyeler içinde aradığın
+                cevabı bul ve tek tıkla zayıf olduğun konulardan kendine özel deneme sınavı oluştur.
               </p>
-            </div>
 
-            <div className="flex flex-col mx-auto sm:flex-row items-center justify-center gap-4">
-              <Link href="/signup">
-                <Button className="w-full" size="lg">
-                  Ücretsiz Başla
-                  <ArrowRight />
-                </Button>
-              </Link>
+              <p className="text-base sm:text-lg text-foreground font-medium max-w-2xl mx-auto">
+                Komiteye kadar değil, komiteden sonra bile aklında kalsın.
+              </p>
+            </motion.div>
 
-              <Button size="lg" variant="outline">
+            {/* CTA Buttons */}
+            <motion.div
+              animate={{opacity: 1, y: 0}}
+              className="flex flex-col sm:flex-row gap-4 items-center"
+              initial={{opacity: 0, y: 20}}
+              transition={{duration: 0.6, delay: 0.4}}
+            >
+              <Button size="lg">
+                <Sparkles />
+                Ücretsiz Dene
+                <ArrowRight />
+              </Button>
+
+              <Button size="lg" variant="outline" onClick={handleVideoPlay}>
                 <Play />
                 Demo İzle
               </Button>
-            </div>
+            </motion.div>
 
             {/* Trust Indicators */}
-            <div className="flex flex-wrap items-center justify-center gap-8 pt-8 text-sm text-muted-foreground">
-              <div className="flex items-center gap-2">
-                <Users className="h-5 w-5 text-primary" />
-                <span className="font-medium">10,000+ Öğrenci</span>
+            <motion.div
+              animate={{opacity: 1}}
+              className="flex flex-col sm:flex-row items-center gap-6 text-sm"
+              initial={{opacity: 0}}
+              transition={{duration: 0.6, delay: 0.6}}
+            >
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                <span className="font-medium">Ücretsiz başla</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
-                <span className="font-medium">4.9/5 Puan</span>
+              <div className="hidden sm:block w-1 h-1 bg-muted-foreground/30 rounded-full" />
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <div className="w-2 h-2 bg-blue-500 rounded-full" />
+                <span className="font-medium">Kredi kartı gerekmez</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Shield className="h-5 w-5 text-green-600" />
-                <span className="font-medium">KVKK Uyumlu</span>
+              <div className="hidden sm:block w-1 h-1 bg-muted-foreground/30 rounded-full" />
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <div className="w-2 h-2 bg-purple-500 rounded-full" />
+                <span className="font-medium">Anında kurulum</span>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
-          {/* Demo Video Section */}
-          <div className="relative lg:order-last w-full">
-            {/* Video Glow Effect */}
-            <div
-              className="absolute inset-0 rounded-2xl opacity-60 dark:opacity-80 blur-xl scale-105"
-              style={{
-                background:
-                  "radial-gradient(ellipse at center, hsl(var(--primary) / 0.2) 0%, hsl(var(--primary) / 0.1) 40%, transparent 70%)",
-              }}
-            />
-
-            <div className="relative">
-              {/* Video Container */}
-              <div className="relative aspect-video rounded-2xl bg-gradient-to-br from-secondary to-secondary/80 border-2 border-primary/20 shadow-2xl shadow-primary/10 overflow-hidden group cursor-pointer transform hover:scale-105 transition-all duration-300 backdrop-blur-sm">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-purple-600/20 group-hover:from-primary/30 group-hover:to-purple-600/30 transition-all duration-300" />
-
-                {/* Play Button */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  {/* Play Button Glow */}
-                  <div
-                    className="absolute h-24 w-24 rounded-full opacity-50 group-hover:opacity-70 transition-all duration-300 animate-pulse"
-                    style={{
-                      background:
-                        "radial-gradient(circle, hsl(var(--primary) / 0.3) 0%, transparent 70%)",
-                    }}
-                  />
-                  <div className="relative flex h-20 w-20 items-center justify-center rounded-full bg-background/95 backdrop-blur-sm group-hover:bg-background group-hover:scale-110 transition-all duration-300 shadow-xl shadow-primary/20">
-                    <Play className="h-8 w-8 text-primary ml-1" fill="currentColor" />
+          {/* Video Demo */}
+          <motion.div
+            animate={{opacity: 1, y: 0}}
+            className="relative w-full max-w-4xl mx-auto"
+            initial={{opacity: 0, y: 50}}
+            transition={{duration: 0.8, delay: 0.4}}
+          >
+            {/* Video Container */}
+            <div className="relative overflow-hidden rounded-3xl shadow-2xl bg-gradient-to-br from-primary/10 to-primary/5 p-1">
+              <div className="relative aspect-video bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl overflow-hidden">
+                {/* Video Element */}
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover"
+                  id="hero-demo-video"
+                >
+                  <source src="/videos/medaist-demo.mp4" type="video/mp4" />
+                  {/* Fallback content */}
+                  <div className="absolute inset-0 flex items-center justify-center bg-muted">
+                    <div className="text-center space-y-4">
+                      <div className="w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center mx-auto">
+                        <Play className="w-8 h-8 text-primary ml-1" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-lg">MedAIst Demo</h3>
+                        <p className="text-sm text-muted-foreground">
+                          Yapay zeka destekli tıp eğitimi platformunu keşfet
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                </div>
+                </video>
 
-                {/* Video Info */}
-                <div className="absolute bottom-6 left-6 text-primary-foreground">
-                  <p className="text-lg font-semibold">MedAIst Platform Demo</p>
-                  <p className="text-sm opacity-80">3 dakikada tüm özellikler</p>
-                </div>
-
-                {/* Duration Badge */}
-                <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full text-primary-foreground text-sm font-medium">
-                  3:24
-                </div>
-
-                {/* Mockup Content */}
-                <div className="w-full h-full bg-secondary flex items-center justify-center">
-                  <div className="text-center text-primary-foreground/70">
-                    <Brain className="h-16 w-16 mx-auto mb-4" />
-                    <p className="text-xl font-semibold">Platform Önizleme</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Floating Stats */}
-              <div className="absolute -top-4 -right-4">
-                {/* Success Card Glow */}
+                {/* Video Overlay Controls */}
                 <div
-                  className="absolute inset-0 rounded-xl opacity-30 blur-sm scale-110"
-                  style={{
-                    background:
-                      "radial-gradient(ellipse at center, hsl(120 70% 50% / 0.2) 0%, transparent 70%)",
-                  }}
-                />
-                <div className="relative bg-card/95 backdrop-blur-sm rounded-xl p-4 shadow-xl border border-border/50 shadow-green-500/10">
-                  <div className="flex items-center gap-3">
-                    <div className="h-10 w-10 bg-green-100 rounded-full flex items-center justify-center">
-                      <TrendingUp className="h-5 w-5 text-green-600" />
+                  className="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer"
+                  role="button"
+                  tabIndex={0}
+                  onClick={handleVideoPlay}
+                  onKeyDown={(e) => e.key === "Enter" && handleVideoPlay()}
+                >
+                  <Button
+                    className="bg-white/20 backdrop-blur-sm border-white/30 hover:bg-white/30"
+                    size="lg"
+                    variant="outline"
+                  >
+                    <Play className="w-6 h-6 text-white" />
+                  </Button>
+                </div>
+
+                {/* Video Progress Bar */}
+                <div className="absolute bottom-4 left-4 right-4">
+                  <div className="bg-white/20 backdrop-blur-sm rounded-full h-1">
+                    <motion.div
+                      animate={{width: "100%"}}
+                      className="bg-white rounded-full h-1"
+                      initial={{width: "0%"}}
+                      transition={{duration: 30, repeat: Infinity, ease: "linear"}}
+                    />
+                  </div>
+                </div>
+
+                {/* Video Info Badge */}
+                <div className="absolute top-4 left-4">
+                  <div className="bg-black/50 backdrop-blur-sm rounded-lg px-3 py-1.5">
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
+                      <span className="text-white text-xs font-medium">CANLI DEMO</span>
                     </div>
-                    <div>
-                      <p className="text-sm font-semibold text-foreground">95% Başarı</p>
-                      <p className="text-xs text-muted-foreground">Sınav Ortalaması</p>
-                    </div>
+                  </div>
+                </div>
+
+                {/* Video Duration */}
+                <div className="absolute top-4 right-4">
+                  <div className="bg-black/50 backdrop-blur-sm rounded-lg px-2 py-1">
+                    <span className="text-white text-xs font-mono">2:34</span>
                   </div>
                 </div>
               </div>
 
-              <div className="absolute -bottom-4 -left-4">
-                {/* AI Card Glow */}
-                <div
-                  className="absolute inset-0 rounded-xl opacity-30 blur-sm scale-110"
-                  style={{
-                    background:
-                      "radial-gradient(ellipse at center, hsl(var(--primary) / 0.2) 0%, transparent 70%)",
-                  }}
-                />
-                <div className="relative bg-card/95 backdrop-blur-sm rounded-xl p-4 shadow-xl border border-border/50 shadow-primary/10">
-                  <div className="flex items-center gap-3">
-                    <div className="h-10 w-10 bg-primary/10 rounded-full flex items-center justify-center">
-                      <Brain className="h-5 w-5 text-primary" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-foreground">AI Destekli</p>
-                      <p className="text-xs text-muted-foreground">Öğrenme Sistemi</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              {/* Glow Effect */}
+              <div className="absolute -inset-4 bg-gradient-to-r from-primary/30 via-transparent to-primary/30 blur-xl -z-10" />
             </div>
-          </div>
+
+            {/* Floating Stats */}
+            <motion.div
+              animate={{opacity: 1, scale: 1, y: 0}}
+              className="absolute -top-6 -right-8 bg-card/90 backdrop-blur-sm border border-border rounded-xl p-4 shadow-xl"
+              initial={{opacity: 0, scale: 0.8, y: 20}}
+              transition={{delay: 0.8, duration: 0.6}}
+            >
+              <div className="flex items-center gap-3 text-sm">
+                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
+                <span className="font-semibold">1.247 sayfa analiz edildi</span>
+              </div>
+            </motion.div>
+
+            <motion.div
+              animate={{opacity: 1, scale: 1, y: 0}}
+              className="absolute -bottom-8 -left-8 bg-card/90 backdrop-blur-sm border border-border rounded-xl p-4 shadow-xl"
+              initial={{opacity: 0, scale: 0.8, y: -20}}
+              transition={{delay: 1.0, duration: 0.6}}
+            >
+              <div className="flex items-center gap-3 text-sm">
+                <Sparkles className="w-4 h-4 text-primary" />
+                <span className="font-semibold">AI yanıt süresi: 0.8s</span>
+              </div>
+            </motion.div>
+
+            {/* Performance Badge */}
+            <motion.div
+              animate={{opacity: 1, scale: 1}}
+              className="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-primary/10 backdrop-blur-sm border border-primary/20 rounded-full px-4 py-2 shadow-lg"
+              initial={{opacity: 0, scale: 0.8}}
+              transition={{delay: 1.2, duration: 0.6}}
+            >
+              <div className="flex items-center gap-2 text-xs font-medium text-primary">
+                <div className="w-2 h-2 bg-primary rounded-full animate-bounce" />
+                <span>CANLI DEMO</span>
+              </div>
+            </motion.div>
+          </motion.div>
         </div>
       </MaxWidthWrapper>
     </section>

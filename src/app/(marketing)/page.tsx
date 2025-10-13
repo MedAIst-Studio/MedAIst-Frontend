@@ -1,11 +1,10 @@
 import {Metadata} from "next";
 import Script from "next/script";
 
-import CallToActionSection from "@/components/landing/CallToActionSection";
-import FAQSection from "@/components/landing/FAQSection";
-import FeaturesSection from "@/components/landing/FeaturesSection";
+import CTASection from "@/components/landing/CTASection";
 import HeroSection from "@/components/landing/HeroSection";
 import HowItWorksSection from "@/components/landing/HowItWorksSection";
+import ProblemSolutionSection from "@/components/landing/ProblemSolutionSection";
 import TestimonialsSection from "@/components/landing/TestimonialsSection";
 
 export const metadata: Metadata = {
@@ -96,11 +95,10 @@ const LandingPage = () => {
         type="application/ld+json"
       />
       <HeroSection />
-      <FeaturesSection />
+      <ProblemSolutionSection />
       <HowItWorksSection />
       <TestimonialsSection />
-      <FAQSection />
-      <CallToActionSection />
+      <CTASection />
     </>
   );
 };
