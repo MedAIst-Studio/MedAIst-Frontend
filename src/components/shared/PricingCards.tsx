@@ -43,14 +43,11 @@ export function PricingCards({plans}: PricingCardsProps) {
         {plans.map((plan) => (
           <Card
             key={plan.name}
-            className={`relative ${
-              plan.recommended &&
-              "border-primary border-b-primary bg-gradient-to-br from-blue-50 to-white"
-            } `}
+            className={`relative ${plan.recommended && "border-primary border-b-primary"} `}
           >
             {plan.recommended && (
               <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                <Badge className="bg-primary text-white px-4 py-1">
+                <Badge className="bg-primary px-4 py-1">
                   <Star className="h-3 w-3 mr-1 fill-current" />
                   Önerilen
                 </Badge>
@@ -67,13 +64,13 @@ export function PricingCards({plans}: PricingCardsProps) {
               <div className="py-4">
                 <div className="flex items-center justify-center gap-2">
                   {isYearly && plan.yearlyPrice !== plan.price && (
-                    <span className="text-lg text-slate-500 line-through">{plan.price}</span>
+                    <span className="text-lg text-muted-foreground line-through">{plan.price}</span>
                   )}
-                  <span className="text-4xl font-bold text-slate-900">
+                  <span className="text-4xl font-bold">
                     {isYearly ? plan.yearlyPrice : plan.price}
                   </span>
                 </div>
-                <span className="text-slate-600 ml-1">
+                <span className="text-muted-foreground ml-1">
                   {isYearly ? plan.yearlyPeriod : plan.period}
                   {isYearly && plan.yearlyPrice !== plan.price && (
                     <span className="text-xs text-green-600 ml-2 font-medium">(%20 tasarruf)</span>
@@ -81,7 +78,9 @@ export function PricingCards({plans}: PricingCardsProps) {
                 </span>
               </div>
 
-              <CardDescription className="text-slate-600">{plan.description}</CardDescription>
+              <CardDescription className="text-muted-foreground">
+                {plan.description}
+              </CardDescription>
             </CardHeader>
 
             <CardContent className="space-y-6">
@@ -94,7 +93,7 @@ export function PricingCards({plans}: PricingCardsProps) {
                 {plan.features.map((feature, featureIndex) => (
                   <div key={featureIndex} className="flex items-start gap-3">
                     <Check className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm text-slate-700">{feature}</span>
+                    <span className="text-sm">{feature}</span>
                   </div>
                 ))}
               </div>
