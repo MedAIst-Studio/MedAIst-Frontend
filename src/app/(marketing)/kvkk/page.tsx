@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 const KVKKPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
       {/* Hero Section */}
       <section className="py-20 sm:py-32 relative">
         <MaxWidthWrapper>
@@ -29,18 +29,18 @@ const KVKKPage = () => {
             </Badge>
 
             <div className="space-y-4">
-              <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-6xl">
+              <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl">
                 <span className="text-primary">KVKK</span>
                 <br />
                 Aydınlatma Metni
               </h1>
-              <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                 6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında kişisel verilerinizin
                 işlenmesi hakkında aydınlatma.
               </p>
             </div>
 
-            <div className="text-sm text-slate-500">Son güncelleme: 3 Ekim 2024</div>
+            <div className="text-sm text-muted-foreground/60">Son güncelleme: 3 Ekim 2024</div>
           </div>
         </MaxWidthWrapper>
       </section>
@@ -51,58 +51,60 @@ const KVKKPage = () => {
           <div className="max-w-4xl mx-auto space-y-8">
             {/* Overview Cards */}
             <div className="grid md:grid-cols-4 gap-6 mb-12">
-              <Card className="border-2 border-b-4 border-slate-200 border-b-slate-300 hover:border-b-slate-400 hover:-translate-y-0.5 transition-all duration-300">
+              <Card className="border-2 border-b-4 border-border border-b-muted-foreground hover:border-b-foreground hover:-translate-y-0.5 transition-all duration-300">
                 <CardHeader className="text-center pb-3">
                   <FileText className="h-6 w-6 mx-auto text-primary mb-2" />
                   <CardTitle className="text-sm">Veri Türleri</CardTitle>
                 </CardHeader>
                 <CardContent className="pt-0">
-                  <p className="text-xs text-slate-600 text-center">
+                  <p className="text-xs text-muted-foreground text-center">
                     İşlenen kişisel veri kategorileri
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-slate-200 border-b-slate-300 hover:border-b-slate-400 hover:-translate-y-0.5 transition-all duration-300">
+              <Card className="border-2 border-b-4 border-border border-b-muted-foreground hover:border-b-foreground hover:-translate-y-0.5 transition-all duration-300">
                 <CardHeader className="text-center pb-3">
                   <Users className="h-6 w-6 mx-auto text-primary mb-2" />
                   <CardTitle className="text-sm">İşleme Amaçları</CardTitle>
                 </CardHeader>
                 <CardContent className="pt-0">
-                  <p className="text-xs text-slate-600 text-center">
+                  <p className="text-xs text-muted-foreground text-center">
                     Verilerinizin kullanım amaçları
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-slate-200 border-b-slate-300 hover:border-b-slate-400 hover:-translate-y-0.5 transition-all duration-300">
+              <Card className="border-2 border-b-4 border-border border-b-muted-foreground hover:border-b-foreground hover:-translate-y-0.5 transition-all duration-300">
                 <CardHeader className="text-center pb-3">
                   <Shield className="h-6 w-6 mx-auto text-primary mb-2" />
                   <CardTitle className="text-sm">Hukuki Dayanaklar</CardTitle>
                 </CardHeader>
                 <CardContent className="pt-0">
-                  <p className="text-xs text-slate-600 text-center">
+                  <p className="text-xs text-muted-foreground text-center">
                     Veri işlemenin yasal temelleri
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-slate-200 border-b-slate-300 hover:border-b-slate-400 hover:-translate-y-0.5 transition-all duration-300">
+              <Card className="border-2 border-b-4 border-border border-b-muted-foreground hover:border-b-foreground hover:-translate-y-0.5 transition-all duration-300">
                 <CardHeader className="text-center pb-3">
                   <AlertCircle className="h-6 w-6 mx-auto text-primary mb-2" />
                   <CardTitle className="text-sm">Veri Güvenliği</CardTitle>
                 </CardHeader>
                 <CardContent className="pt-0">
-                  <p className="text-xs text-slate-600 text-center">Güvenlik önlemleri ve koruma</p>
+                  <p className="text-xs text-muted-foreground text-center">
+                    Güvenlik önlemleri ve koruma
+                  </p>
                 </CardContent>
               </Card>
             </div>
 
             {/* Main Content */}
             <div className="prose max-w-none">
-              <Card className="border-2 border-b-4 border-slate-200 border-b-slate-300 mb-8">
+              <Card className="border-2 border-b-4 border-border border-b-muted-foreground mb-8">
                 <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-slate-900 mb-4">1. Veri Sorumlusu</h2>
+                  <h2 className="text-2xl font-bold text-foreground mb-4">1. Veri Sorumlusu</h2>
 
                   <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
                     <h3 className="font-semibold text-blue-900 mb-3">MedAIst Studio</h3>
@@ -122,7 +124,7 @@ const KVKKPage = () => {
                     </div>
                   </div>
 
-                  <p className="text-slate-700 leading-relaxed">
+                  <p className="text-muted-foreground leading-relaxed">
                     MedAIst Studio olarak, 6698 sayılı Kişisel Verilerin Korunması Kanunu
                     (&quot;KVKK&quot;) uyarınca veri sorumlusu sıfatıyla, kişisel verilerinizin
                     işlenmesi hakkında sizi aydınlatmakla yükümlüyüz.
@@ -130,20 +132,20 @@ const KVKKPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-slate-200 border-b-slate-300 mb-8">
+              <Card className="border-2 border-b-4 border-border border-b-muted-foreground mb-8">
                 <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-slate-900 mb-4">
+                  <h2 className="text-2xl font-bold text-foreground mb-4">
                     2. Kişisel Verilerin Toplanma Yöntemi
                   </h2>
 
-                  <p className="text-slate-700 leading-relaxed mb-6">
+                  <p className="text-muted-foreground leading-relaxed mb-6">
                     Kişisel verileriniz aşağıdaki yöntemlerle toplanmaktadır:
                   </p>
 
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-4">
-                      <h3 className="text-lg font-semibold text-slate-800">Otomatik Toplama</h3>
-                      <ul className="list-disc pl-6 text-slate-700 space-y-2 text-sm">
+                      <h3 className="text-lg font-semibold text-foreground">Otomatik Toplama</h3>
+                      <ul className="list-disc pl-6 text-muted-foreground space-y-2 text-sm">
                         <li>Web sitesi ve mobil uygulama kullanımı</li>
                         <li>Platform etkileşimleri ve davranış analizi</li>
                         <li>Çerezler ve benzer teknolojiler</li>
@@ -152,8 +154,8 @@ const KVKKPage = () => {
                     </div>
 
                     <div className="space-y-4">
-                      <h3 className="text-lg font-semibold text-slate-800">Manuel Toplama</h3>
-                      <ul className="list-disc pl-6 text-slate-700 space-y-2 text-sm">
+                      <h3 className="text-lg font-semibold text-foreground">Manuel Toplama</h3>
+                      <ul className="list-disc pl-6 text-muted-foreground space-y-2 text-sm">
                         <li>Hesap kayıt formu</li>
                         <li>Profil bilgileri güncelleme</li>
                         <li>İletişim formları</li>
@@ -164,90 +166,92 @@ const KVKKPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-slate-200 border-b-slate-300 mb-8">
+              <Card className="border-2 border-b-4 border-border border-b-muted-foreground mb-8">
                 <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-slate-900 mb-4">
+                  <h2 className="text-2xl font-bold text-foreground mb-4">
                     3. İşlenen Kişisel Veri Türleri
                   </h2>
 
                   <div className="space-y-6">
                     <div className="border-l-4 border-primary pl-6">
-                      <h3 className="text-lg font-semibold text-slate-800 mb-2">
+                      <h3 className="text-lg font-semibold text-foreground mb-2">
                         3.1 Kimlik Verisi
                       </h3>
-                      <p className="text-slate-700 text-sm mb-2">
+                      <p className="text-muted-foreground text-sm mb-2">
                         Ad, soyad, e-posta adresi, profil fotoğrafı
                       </p>
-                      <div className="bg-slate-50 rounded px-3 py-2">
-                        <span className="text-xs text-slate-600">
+                      <div className="bg-muted/30 rounded px-3 py-2">
+                        <span className="text-xs text-muted-foreground">
                           <strong>Kaynak:</strong> Kayıt formu, profil ayarları
                         </span>
                       </div>
                     </div>
 
                     <div className="border-l-4 border-primary pl-6">
-                      <h3 className="text-lg font-semibold text-slate-800 mb-2">
+                      <h3 className="text-lg font-semibold text-foreground mb-2">
                         3.2 İletişim Verisi
                       </h3>
-                      <p className="text-slate-700 text-sm mb-2">
+                      <p className="text-muted-foreground text-sm mb-2">
                         E-posta adresi, telefon numarası (isteğe bağlı)
                       </p>
-                      <div className="bg-slate-50 rounded px-3 py-2">
-                        <span className="text-xs text-slate-600">
+                      <div className="bg-muted/30 rounded px-3 py-2">
+                        <span className="text-xs text-muted-foreground">
                           <strong>Kaynak:</strong> Kayıt formu, iletişim formları
                         </span>
                       </div>
                     </div>
 
                     <div className="border-l-4 border-primary pl-6">
-                      <h3 className="text-lg font-semibold text-slate-800 mb-2">
+                      <h3 className="text-lg font-semibold text-foreground mb-2">
                         3.3 Eğitim/Meslek Verisi
                       </h3>
-                      <p className="text-slate-700 text-sm mb-2">
+                      <p className="text-muted-foreground text-sm mb-2">
                         Okul/üniversite bilgileri, sınıf/bölüm bilgisi (isteğe bağlı)
                       </p>
-                      <div className="bg-slate-50 rounded px-3 py-2">
-                        <span className="text-xs text-slate-600">
+                      <div className="bg-muted/30 rounded px-3 py-2">
+                        <span className="text-xs text-muted-foreground">
                           <strong>Kaynak:</strong> Profil ayarları, kayıt formu
                         </span>
                       </div>
                     </div>
 
                     <div className="border-l-4 border-primary pl-6">
-                      <h3 className="text-lg font-semibold text-slate-800 mb-2">
+                      <h3 className="text-lg font-semibold text-foreground mb-2">
                         3.4 Platform Kullanım Verisi
                       </h3>
-                      <p className="text-slate-700 text-sm mb-2">
+                      <p className="text-muted-foreground text-sm mb-2">
                         Çalışma süreleri, quiz sonuçları, not içerikleri, AI chat geçmişi
                       </p>
-                      <div className="bg-slate-50 rounded px-3 py-2">
-                        <span className="text-xs text-slate-600">
+                      <div className="bg-muted/30 rounded px-3 py-2">
+                        <span className="text-xs text-muted-foreground">
                           <strong>Kaynak:</strong> Platform etkileşimleri, kullanım analizi
                         </span>
                       </div>
                     </div>
 
                     <div className="border-l-4 border-primary pl-6">
-                      <h3 className="text-lg font-semibold text-slate-800 mb-2">3.5 Teknik Veri</h3>
-                      <p className="text-slate-700 text-sm mb-2">
+                      <h3 className="text-lg font-semibold text-foreground mb-2">
+                        3.5 Teknik Veri
+                      </h3>
+                      <p className="text-muted-foreground text-sm mb-2">
                         IP adresi, tarayıcı bilgileri, cihaz bilgileri, konum bilgisi
                       </p>
-                      <div className="bg-slate-50 rounded px-3 py-2">
-                        <span className="text-xs text-slate-600">
+                      <div className="bg-muted/30 rounded px-3 py-2">
+                        <span className="text-xs text-muted-foreground">
                           <strong>Kaynak:</strong> Otomatik toplama, log dosyaları
                         </span>
                       </div>
                     </div>
 
                     <div className="border-l-4 border-primary pl-6">
-                      <h3 className="text-lg font-semibold text-slate-800 mb-2">
+                      <h3 className="text-lg font-semibold text-foreground mb-2">
                         3.6 Finansal Veri
                       </h3>
-                      <p className="text-slate-700 text-sm mb-2">
+                      <p className="text-muted-foreground text-sm mb-2">
                         Ödeme bilgileri (sadece işlem referansları, kart bilgileri değil)
                       </p>
-                      <div className="bg-slate-50 rounded px-3 py-2">
-                        <span className="text-xs text-slate-600">
+                      <div className="bg-muted/30 rounded px-3 py-2">
+                        <span className="text-xs text-muted-foreground">
                           <strong>Kaynak:</strong> Ödeme işlemleri (üçüncü taraf ödeme
                           sağlayıcıları)
                         </span>
@@ -257,9 +261,9 @@ const KVKKPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-slate-200 border-b-slate-300 mb-8">
+              <Card className="border-2 border-b-4 border-border border-b-muted-foreground mb-8">
                 <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-slate-900 mb-4">
+                  <h2 className="text-2xl font-bold text-foreground mb-4">
                     4. Kişisel Verilerin İşlenme Amaçları
                   </h2>
 
@@ -311,71 +315,71 @@ const KVKKPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-slate-200 border-b-slate-300 mb-8">
+              <Card className="border-2 border-b-4 border-border border-b-muted-foreground mb-8">
                 <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-slate-900 mb-4">
+                  <h2 className="text-2xl font-bold text-foreground mb-4">
                     5. Kişisel Verilerin İşlenme Hukuki Sebepleri
                   </h2>
 
-                  <p className="text-slate-700 leading-relaxed mb-6">
+                  <p className="text-muted-foreground leading-relaxed mb-6">
                     KVKK&apos;nun 5. ve 6. maddelerine uygun olarak kişisel verileriniz aşağıdaki
                     hukuki sebeplere dayanarak işlenmektedir:
                   </p>
 
                   <div className="space-y-4">
-                    <div className="flex items-start space-x-4 p-4 bg-slate-50 rounded-lg">
+                    <div className="flex items-start space-x-4 p-4 bg-muted/30 rounded-lg">
                       <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
                         a
                       </div>
                       <div>
-                        <h3 className="font-semibold text-slate-800 mb-1">
+                        <h3 className="font-semibold text-foreground mb-1">
                           Açık Rıza (KVKK m.5/1-a)
                         </h3>
-                        <p className="text-slate-700 text-sm">
+                        <p className="text-muted-foreground text-sm">
                           Platform kayıt sırasında verdiğiniz açık rıza kapsamında pazarlama
                           iletişimi ve kişiselleştirme
                         </p>
                       </div>
                     </div>
 
-                    <div className="flex items-start space-x-4 p-4 bg-slate-50 rounded-lg">
+                    <div className="flex items-start space-x-4 p-4 bg-muted/30 rounded-lg">
                       <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
                         c
                       </div>
                       <div>
-                        <h3 className="font-semibold text-slate-800 mb-1">
+                        <h3 className="font-semibold text-foreground mb-1">
                           Sözleşmenin Kurulması veya İfası (KVKK m.5/1-c)
                         </h3>
-                        <p className="text-slate-700 text-sm">
+                        <p className="text-muted-foreground text-sm">
                           Hizmet sözleşmesinin kurulması ve ifa edilmesi için gerekli işlemler
                         </p>
                       </div>
                     </div>
 
-                    <div className="flex items-start space-x-4 p-4 bg-slate-50 rounded-lg">
+                    <div className="flex items-start space-x-4 p-4 bg-muted/30 rounded-lg">
                       <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
                         e
                       </div>
                       <div>
-                        <h3 className="font-semibold text-slate-800 mb-1">
+                        <h3 className="font-semibold text-foreground mb-1">
                           Kanuni Yükümlülük (KVKK m.5/1-e)
                         </h3>
-                        <p className="text-slate-700 text-sm">
+                        <p className="text-muted-foreground text-sm">
                           Vergi mevzuatı, ticaret kanunu gibi yasal yükümlülüklerimizin yerine
                           getirilmesi
                         </p>
                       </div>
                     </div>
 
-                    <div className="flex items-start space-x-4 p-4 bg-slate-50 rounded-lg">
+                    <div className="flex items-start space-x-4 p-4 bg-muted/30 rounded-lg">
                       <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
                         f
                       </div>
                       <div>
-                        <h3 className="font-semibold text-slate-800 mb-1">
+                        <h3 className="font-semibold text-foreground mb-1">
                           Meşru Menfaat (KVKK m.5/1-f)
                         </h3>
-                        <p className="text-slate-700 text-sm">
+                        <p className="text-muted-foreground text-sm">
                           Platform güvenliği, dolandırıcılık önleme ve hizmet kalitesini artırma
                           amaçlı işlemler
                         </p>
@@ -385,13 +389,13 @@ const KVKKPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-slate-200 border-b-slate-300 mb-8">
+              <Card className="border-2 border-b-4 border-border border-b-muted-foreground mb-8">
                 <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-slate-900 mb-4">
+                  <h2 className="text-2xl font-bold text-foreground mb-4">
                     6. Kişisel Verilerin Aktarılması
                   </h2>
 
-                  <h3 className="text-xl font-semibold text-slate-800 mb-4">
+                  <h3 className="text-xl font-semibold text-foreground mb-4">
                     6.1 Yurt İçi Aktarım
                   </h3>
                   <div className="mb-6">
@@ -403,27 +407,29 @@ const KVKKPage = () => {
                     </div>
 
                     <div className="space-y-3">
-                      <div className="flex justify-between items-center p-3 bg-slate-50 rounded">
-                        <span className="font-medium text-slate-800">Ödeme Sağlayıcıları</span>
-                        <span className="text-slate-600 text-sm">Finansal işlemler</span>
+                      <div className="flex justify-between items-center p-3 bg-muted/30 rounded">
+                        <span className="font-medium text-foreground">Ödeme Sağlayıcıları</span>
+                        <span className="text-muted-foreground text-sm">Finansal işlemler</span>
                       </div>
-                      <div className="flex justify-between items-center p-3 bg-slate-50 rounded">
-                        <span className="font-medium text-slate-800">Teknoloji Altyapı</span>
-                        <span className="text-slate-600 text-sm">
+                      <div className="flex justify-between items-center p-3 bg-muted/30 rounded">
+                        <span className="font-medium text-foreground">Teknoloji Altyapı</span>
+                        <span className="text-muted-foreground text-sm">
                           Sunucu ve güvenlik hizmetleri
                         </span>
                       </div>
-                      <div className="flex justify-between items-center p-3 bg-slate-50 rounded">
-                        <span className="font-medium text-slate-800">Analitik Sağlayıcıları</span>
-                        <span className="text-slate-600 text-sm">Platform analizi (anonim)</span>
+                      <div className="flex justify-between items-center p-3 bg-muted/30 rounded">
+                        <span className="font-medium text-foreground">Analitik Sağlayıcıları</span>
+                        <span className="text-muted-foreground text-sm">
+                          Platform analizi (anonim)
+                        </span>
                       </div>
                     </div>
                   </div>
 
-                  <h3 className="text-xl font-semibold text-slate-800 mb-4">
+                  <h3 className="text-xl font-semibold text-foreground mb-4">
                     6.2 Yurt Dışı Aktarım
                   </h3>
-                  <p className="text-slate-700 mb-4">
+                  <p className="text-muted-foreground mb-4">
                     Bazı teknik hizmetler için kişisel verileriniz yurt dışına aktarılabilir:
                   </p>
                   <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
@@ -437,48 +443,48 @@ const KVKKPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-slate-200 border-b-slate-300 mb-8">
+              <Card className="border-2 border-b-4 border-border border-b-muted-foreground mb-8">
                 <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-slate-900 mb-4">
+                  <h2 className="text-2xl font-bold text-foreground mb-4">
                     7. Kişisel Veri Sahibinin Hakları
                   </h2>
 
-                  <p className="text-slate-700 mb-6">
+                  <p className="text-muted-foreground mb-6">
                     KVKK&apos;nun 11. maddesi uyarınca aşağıdaki haklara sahipsiniz:
                   </p>
 
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-4">
                       <div className="border-l-4 border-primary pl-4">
-                        <h3 className="font-semibold text-slate-800 text-sm mb-1">
+                        <h3 className="font-semibold text-foreground text-sm mb-1">
                           Bilgi Talep Etme Hakkı
                         </h3>
-                        <p className="text-slate-700 text-xs">
+                        <p className="text-muted-foreground text-xs">
                           Kişisel verilerinizin işlenip işlenmediğini öğrenme
                         </p>
                       </div>
 
                       <div className="border-l-4 border-primary pl-4">
-                        <h3 className="font-semibold text-slate-800 text-sm mb-1">
+                        <h3 className="font-semibold text-foreground text-sm mb-1">
                           Bilgi Talep Etme Hakkı
                         </h3>
-                        <p className="text-slate-700 text-xs">
+                        <p className="text-muted-foreground text-xs">
                           İşlenme amacı, aktarılan üçüncü kişiler hakkında bilgi alma
                         </p>
                       </div>
 
                       <div className="border-l-4 border-primary pl-4">
-                        <h3 className="font-semibold text-slate-800 text-sm mb-1">
+                        <h3 className="font-semibold text-foreground text-sm mb-1">
                           Düzeltme Hakkı
                         </h3>
-                        <p className="text-slate-700 text-xs">
+                        <p className="text-muted-foreground text-xs">
                           Yanlış veya eksik verilerin düzeltilmesini isteme
                         </p>
                       </div>
 
                       <div className="border-l-4 border-primary pl-4">
-                        <h3 className="font-semibold text-slate-800 text-sm mb-1">Silme Hakkı</h3>
-                        <p className="text-slate-700 text-xs">
+                        <h3 className="font-semibold text-foreground text-sm mb-1">Silme Hakkı</h3>
+                        <p className="text-muted-foreground text-xs">
                           Kişisel verilerin silinmesini talep etme
                         </p>
                       </div>
@@ -486,35 +492,35 @@ const KVKKPage = () => {
 
                     <div className="space-y-4">
                       <div className="border-l-4 border-primary pl-4">
-                        <h3 className="font-semibold text-slate-800 text-sm mb-1">
+                        <h3 className="font-semibold text-foreground text-sm mb-1">
                           Anonimleştirme Hakkı
                         </h3>
-                        <p className="text-slate-700 text-xs">
+                        <p className="text-muted-foreground text-xs">
                           Kişisel verilerin anonim hale getirilmesini isteme
                         </p>
                       </div>
 
                       <div className="border-l-4 border-primary pl-4">
-                        <h3 className="font-semibold text-slate-800 text-sm mb-1">
+                        <h3 className="font-semibold text-foreground text-sm mb-1">
                           Aktarım Durdurma Hakkı
                         </h3>
-                        <p className="text-slate-700 text-xs">
+                        <p className="text-muted-foreground text-xs">
                           Üçüncü kişilere aktarımın durdurulmasını talep etme
                         </p>
                       </div>
 
                       <div className="border-l-4 border-primary pl-4">
-                        <h3 className="font-semibold text-slate-800 text-sm mb-1">İtiraz Hakkı</h3>
-                        <p className="text-slate-700 text-xs">
+                        <h3 className="font-semibold text-foreground text-sm mb-1">İtiraz Hakkı</h3>
+                        <p className="text-muted-foreground text-xs">
                           Kişisel veri işlenmesine itiraz etme
                         </p>
                       </div>
 
                       <div className="border-l-4 border-primary pl-4">
-                        <h3 className="font-semibold text-slate-800 text-sm mb-1">
+                        <h3 className="font-semibold text-foreground text-sm mb-1">
                           Zarar Tazminatı Hakkı
                         </h3>
-                        <p className="text-slate-700 text-xs">
+                        <p className="text-muted-foreground text-xs">
                           Hukuka aykırı işleme nedeniyle tazminat talep etme
                         </p>
                       </div>
@@ -523,39 +529,49 @@ const KVKKPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-slate-200 border-b-slate-300 mb-8">
+              <Card className="border-2 border-b-4 border-border border-b-muted-foreground mb-8">
                 <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-slate-900 mb-4">8. Başvuru Yöntemleri</h2>
+                  <h2 className="text-2xl font-bold text-foreground mb-4">8. Başvuru Yöntemleri</h2>
 
-                  <p className="text-slate-700 mb-6">
+                  <p className="text-muted-foreground mb-6">
                     KVKK haklarınızı kullanmak için aşağıdaki yöntemlerle başvurabilirsiniz:
                   </p>
 
                   <div className="grid md:grid-cols-2 gap-6 mb-6">
-                    <div className="bg-slate-50 border border-slate-200 rounded-lg p-6">
-                      <h3 className="font-semibold text-slate-800 mb-4">Online Başvuru</h3>
+                    <div className="bg-muted/30 border border-border rounded-lg p-6">
+                      <h3 className="font-semibold text-foreground mb-4">Online Başvuru</h3>
                       <div className="space-y-3">
                         <div>
-                          <span className="text-sm font-medium text-slate-700">E-posta:</span>
-                          <p className="text-slate-600 text-sm">kvkk@medaist.com</p>
+                          <span className="text-sm font-medium text-muted-foreground">
+                            E-posta:
+                          </span>
+                          <p className="text-muted-foreground text-sm">kvkk@medaist.com</p>
                         </div>
                         <div>
-                          <span className="text-sm font-medium text-slate-700">Online Form:</span>
-                          <p className="text-slate-600 text-sm">Hesap ayarları → Veri hakları</p>
+                          <span className="text-sm font-medium text-muted-foreground">
+                            Online Form:
+                          </span>
+                          <p className="text-muted-foreground text-sm">
+                            Hesap ayarları → Veri hakları
+                          </p>
                         </div>
                         <div>
-                          <span className="text-sm font-medium text-slate-700">Yanıt Süresi:</span>
-                          <p className="text-slate-600 text-sm">En geç 30 gün</p>
+                          <span className="text-sm font-medium text-muted-foreground">
+                            Yanıt Süresi:
+                          </span>
+                          <p className="text-muted-foreground text-sm">En geç 30 gün</p>
                         </div>
                       </div>
                     </div>
 
-                    <div className="bg-slate-50 border border-slate-200 rounded-lg p-6">
-                      <h3 className="font-semibold text-slate-800 mb-4">Yazılı Başvuru</h3>
+                    <div className="bg-muted/30 border border-border rounded-lg p-6">
+                      <h3 className="font-semibold text-foreground mb-4">Yazılı Başvuru</h3>
                       <div className="space-y-3">
                         <div>
-                          <span className="text-sm font-medium text-slate-700">Posta Adresi:</span>
-                          <p className="text-slate-600 text-sm">
+                          <span className="text-sm font-medium text-muted-foreground">
+                            Posta Adresi:
+                          </span>
+                          <p className="text-muted-foreground text-sm">
                             MedAIst Studio
                             <br />
                             KVKK Başvuru Birimi
@@ -564,10 +580,12 @@ const KVKKPage = () => {
                           </p>
                         </div>
                         <div>
-                          <span className="text-sm font-medium text-slate-700">
+                          <span className="text-sm font-medium text-muted-foreground">
                             Gerekli Belgeler:
                           </span>
-                          <p className="text-slate-600 text-sm">Kimlik fotokopisi, dilekçe</p>
+                          <p className="text-muted-foreground text-sm">
+                            Kimlik fotokopisi, dilekçe
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -583,11 +601,11 @@ const KVKKPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-slate-200 border-b-slate-300 mb-8">
+              <Card className="border-2 border-b-4 border-border border-b-muted-foreground mb-8">
                 <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-slate-900 mb-4">9. Veri Güvenliği</h2>
+                  <h2 className="text-2xl font-bold text-foreground mb-4">9. Veri Güvenliği</h2>
 
-                  <p className="text-slate-700 mb-6">
+                  <p className="text-muted-foreground mb-6">
                     KVKK&apos;nun 12. maddesi uyarınca kişisel verilerinizin güvenliği için gerekli
                     teknik ve idari tedbirler alınmıştır:
                   </p>
@@ -597,8 +615,8 @@ const KVKKPage = () => {
                       <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3">
                         <Shield className="h-6 w-6 text-primary" />
                       </div>
-                      <h3 className="font-semibold text-slate-800 mb-2">Teknik Güvenlik</h3>
-                      <ul className="text-slate-700 text-sm space-y-1">
+                      <h3 className="font-semibold text-foreground mb-2">Teknik Güvenlik</h3>
+                      <ul className="text-muted-foreground text-sm space-y-1">
                         <li>SSL/TLS şifreleme</li>
                         <li>Güvenlik duvarları</li>
                         <li>Erişim kontrolleri</li>
@@ -610,8 +628,8 @@ const KVKKPage = () => {
                       <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3">
                         <Users className="h-6 w-6 text-primary" />
                       </div>
-                      <h3 className="font-semibold text-slate-800 mb-2">İdari Güvenlik</h3>
-                      <ul className="text-slate-700 text-sm space-y-1">
+                      <h3 className="font-semibold text-foreground mb-2">İdari Güvenlik</h3>
+                      <ul className="text-muted-foreground text-sm space-y-1">
                         <li>Personel eğitimleri</li>
                         <li>Gizlilik sözleşmeleri</li>
                         <li>Erişim yetkilendirme</li>
@@ -623,8 +641,8 @@ const KVKKPage = () => {
                       <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3">
                         <AlertCircle className="h-6 w-6 text-primary" />
                       </div>
-                      <h3 className="font-semibold text-slate-800 mb-2">Olay Yönetimi</h3>
-                      <ul className="text-slate-700 text-sm space-y-1">
+                      <h3 className="font-semibold text-foreground mb-2">Olay Yönetimi</h3>
+                      <ul className="text-muted-foreground text-sm space-y-1">
                         <li>Güvenlik izleme</li>
                         <li>Incident response</li>
                         <li>Veri ihlali protokolü</li>
@@ -635,18 +653,20 @@ const KVKKPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-slate-200 border-b-slate-300">
+              <Card className="border-2 border-b-4 border-border border-b-muted-foreground">
                 <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-slate-900 mb-4">10. İletişim Bilgileri</h2>
+                  <h2 className="text-2xl font-bold text-foreground mb-4">
+                    10. İletişim Bilgileri
+                  </h2>
 
-                  <p className="text-slate-700 mb-6">
+                  <p className="text-muted-foreground mb-6">
                     KVKK ile ilgili sorularınız için bizimle iletişime geçebilirsiniz:
                   </p>
 
                   <div className="grid md:grid-cols-2 gap-6">
-                    <div className="bg-slate-50 border border-slate-200 rounded-lg p-6">
-                      <h3 className="font-semibold text-slate-800 mb-4">Veri Koruma Sorumlusu</h3>
-                      <div className="space-y-2 text-slate-700">
+                    <div className="bg-muted/30 border border-border rounded-lg p-6">
+                      <h3 className="font-semibold text-foreground mb-4">Veri Koruma Sorumlusu</h3>
+                      <div className="space-y-2 text-muted-foreground">
                         <p>
                           <strong>E-posta:</strong> kvkk@medaist.com
                         </p>
@@ -662,11 +682,11 @@ const KVKKPage = () => {
                       </div>
                     </div>
 
-                    <div className="bg-slate-50 border border-slate-200 rounded-lg p-6">
-                      <h3 className="font-semibold text-slate-800 mb-4">
+                    <div className="bg-muted/30 border border-border rounded-lg p-6">
+                      <h3 className="font-semibold text-foreground mb-4">
                         Kişisel Verileri Koruma Kurulu
                       </h3>
-                      <div className="space-y-2 text-slate-700 text-sm">
+                      <div className="space-y-2 text-muted-foreground text-sm">
                         <p>
                           Başvurularınıza yanıt alamamanız durumunda KVKK&apos;ya şikayet
                           edebilirsiniz:

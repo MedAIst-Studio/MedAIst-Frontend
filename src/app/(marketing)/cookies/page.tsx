@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 const CookiesPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
       {/* Hero Section */}
       <section className="py-20 sm:py-32 relative">
         <MaxWidthWrapper>
@@ -29,18 +29,18 @@ const CookiesPage = () => {
             </Badge>
 
             <div className="space-y-4">
-              <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-6xl">
+              <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl">
                 <span className="text-primary">Çerez</span>
                 <br />
                 Politikası
               </h1>
-              <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                 MedAIst platformunda çerez kullanımı, türleri ve gizlilik tercihlerinizi nasıl
                 yöneteceğiniz hakkında detaylı bilgiler.
               </p>
             </div>
 
-            <div className="text-sm text-slate-500">Son güncelleme: 3 Ekim 2024</div>
+            <div className="text-sm text-muted-foreground/60">Son güncelleme: 3 Ekim 2024</div>
           </div>
         </MaxWidthWrapper>
       </section>
@@ -51,58 +51,62 @@ const CookiesPage = () => {
           <div className="max-w-4xl mx-auto space-y-8">
             {/* Overview Cards */}
             <div className="grid md:grid-cols-4 gap-6 mb-12">
-              <Card className="border-2 border-b-4 border-slate-200 border-b-slate-300 hover:border-b-slate-400 hover:-translate-y-0.5 transition-all duration-300">
+              <Card className="border-2 border-b-4 border-border border-b-muted-foreground hover:border-b-foreground hover:-translate-y-0.5 transition-all duration-300">
                 <CardHeader className="text-center pb-3">
                   <Cookie className="h-6 w-6 mx-auto text-primary mb-2" />
                   <CardTitle className="text-sm">Zorunlu Çerezler</CardTitle>
                 </CardHeader>
                 <CardContent className="pt-0">
-                  <p className="text-xs text-slate-600 text-center">
+                  <p className="text-xs text-muted-foreground text-center">
                     Platform işlevselliği için gerekli
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-slate-200 border-b-slate-300 hover:border-b-slate-400 hover:-translate-y-0.5 transition-all duration-300">
+              <Card className="border-2 border-b-4 border-border border-b-muted-foreground hover:border-b-foreground hover:-translate-y-0.5 transition-all duration-300">
                 <CardHeader className="text-center pb-3">
                   <BarChart3 className="h-6 w-6 mx-auto text-primary mb-2" />
                   <CardTitle className="text-sm">Analitik Çerezler</CardTitle>
                 </CardHeader>
                 <CardContent className="pt-0">
-                  <p className="text-xs text-slate-600 text-center">
+                  <p className="text-xs text-muted-foreground text-center">
                     Kullanım istatistikleri ve analiz
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-slate-200 border-b-slate-300 hover:border-b-slate-400 hover:-translate-y-0.5 transition-all duration-300">
+              <Card className="border-2 border-b-4 border-border border-b-muted-foreground hover:border-b-foreground hover:-translate-y-0.5 transition-all duration-300">
                 <CardHeader className="text-center pb-3">
                   <Settings className="h-6 w-6 mx-auto text-primary mb-2" />
                   <CardTitle className="text-sm">Fonksiyonel Çerezler</CardTitle>
                 </CardHeader>
                 <CardContent className="pt-0">
-                  <p className="text-xs text-slate-600 text-center">Kişiselleştirme ve tercihler</p>
+                  <p className="text-xs text-muted-foreground text-center">
+                    Kişiselleştirme ve tercihler
+                  </p>
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-slate-200 border-b-slate-300 hover:border-b-slate-400 hover:-translate-y-0.5 transition-all duration-300">
+              <Card className="border-2 border-b-4 border-border border-b-muted-foreground hover:border-b-foreground hover:-translate-y-0.5 transition-all duration-300">
                 <CardHeader className="text-center pb-3">
                   <Shield className="h-6 w-6 mx-auto text-primary mb-2" />
                   <CardTitle className="text-sm">Pazarlama Çerezleri</CardTitle>
                 </CardHeader>
                 <CardContent className="pt-0">
-                  <p className="text-xs text-slate-600 text-center">Hedefli reklam ve pazarlama</p>
+                  <p className="text-xs text-muted-foreground text-center">
+                    Hedefli reklam ve pazarlama
+                  </p>
                 </CardContent>
               </Card>
             </div>
 
             {/* Main Content */}
             <div className="prose max-w-none">
-              <Card className="border-2 border-b-4 border-slate-200 border-b-slate-300 mb-8">
+              <Card className="border-2 border-b-4 border-border border-b-muted-foreground mb-8">
                 <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-slate-900 mb-4">1. Çerez Nedir?</h2>
+                  <h2 className="text-2xl font-bold text-foreground mb-4">1. Çerez Nedir?</h2>
 
-                  <p className="text-slate-700 leading-relaxed mb-6">
+                  <p className="text-muted-foreground leading-relaxed mb-6">
                     Çerezler (cookies), web sitelerini ziyaret ettiğinizde tarayıcınız tarafından
                     cihazınızda saklanan küçük metin dosyalarıdır. Bu dosyalar web sitesinin
                     çalışması, kullanıcı deneyiminin iyileştirilmesi ve site analitikleri için
@@ -142,22 +146,24 @@ const CookiesPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-slate-200 border-b-slate-300 mb-8">
+              <Card className="border-2 border-b-4 border-border border-b-muted-foreground mb-8">
                 <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-slate-900 mb-4">
+                  <h2 className="text-2xl font-bold text-foreground mb-4">
                     2. Kullandığımız Çerez Türleri
                   </h2>
 
                   <div className="space-y-8">
                     {/* Zorunlu Çerezler */}
-                    <div className="border-2 border-slate-200 rounded-lg p-6">
+                    <div className="border-2 border-border rounded-lg p-6">
                       <div className="flex items-center mb-4">
                         <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mr-4">
                           <Cookie className="h-5 w-5 text-red-600" />
                         </div>
                         <div>
-                          <h3 className="text-xl font-semibold text-slate-800">Zorunlu Çerezler</h3>
-                          <p className="text-slate-600 text-sm">
+                          <h3 className="text-xl font-semibold text-foreground">
+                            Zorunlu Çerezler
+                          </h3>
+                          <p className="text-muted-foreground text-sm">
                             Platform işlevselliği için kritik
                           </p>
                         </div>
@@ -166,15 +172,15 @@ const CookiesPage = () => {
                         </div>
                       </div>
 
-                      <p className="text-slate-700 mb-4">
+                      <p className="text-muted-foreground mb-4">
                         Bu çerezler platformun temel işlevlerini yerine getirmesi için gereklidir ve
                         kapatılamaz.
                       </p>
 
                       <div className="grid md:grid-cols-2 gap-4">
                         <div>
-                          <h4 className="font-medium text-slate-800 mb-2">Kullanım Alanları:</h4>
-                          <ul className="text-slate-700 text-sm space-y-1">
+                          <h4 className="font-medium text-foreground mb-2">Kullanım Alanları:</h4>
+                          <ul className="text-muted-foreground text-sm space-y-1">
                             <li>• Oturum yönetimi ve kimlik doğrulama</li>
                             <li>• Form verilerinin korunması</li>
                             <li>• Güvenlik kontrolleri</li>
@@ -183,19 +189,19 @@ const CookiesPage = () => {
                         </div>
 
                         <div>
-                          <h4 className="font-medium text-slate-800 mb-2">Örnek Çerezler:</h4>
-                          <ul className="text-slate-700 text-sm space-y-1">
+                          <h4 className="font-medium text-foreground mb-2">Örnek Çerezler:</h4>
+                          <ul className="text-muted-foreground text-sm space-y-1">
                             <li>
-                              • <code className="bg-slate-100 px-1 rounded">session_id</code>
+                              • <code className="bg-muted/50 px-1 rounded">session_id</code>
                             </li>
                             <li>
-                              • <code className="bg-slate-100 px-1 rounded">csrf_token</code>
+                              • <code className="bg-muted/50 px-1 rounded">csrf_token</code>
                             </li>
                             <li>
-                              • <code className="bg-slate-100 px-1 rounded">auth_token</code>
+                              • <code className="bg-muted/50 px-1 rounded">auth_token</code>
                             </li>
                             <li>
-                              • <code className="bg-slate-100 px-1 rounded">security_hash</code>
+                              • <code className="bg-muted/50 px-1 rounded">security_hash</code>
                             </li>
                           </ul>
                         </div>
@@ -203,16 +209,16 @@ const CookiesPage = () => {
                     </div>
 
                     {/* Analitik Çerezler */}
-                    <div className="border-2 border-slate-200 rounded-lg p-6">
+                    <div className="border-2 border-border rounded-lg p-6">
                       <div className="flex items-center mb-4">
                         <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-4">
                           <BarChart3 className="h-5 w-5 text-blue-600" />
                         </div>
                         <div>
-                          <h3 className="text-xl font-semibold text-slate-800">
+                          <h3 className="text-xl font-semibold text-foreground">
                             Analitik Çerezler
                           </h3>
-                          <p className="text-slate-600 text-sm">
+                          <p className="text-muted-foreground text-sm">
                             Site kullanımı ve performans analizi
                           </p>
                         </div>
@@ -221,15 +227,15 @@ const CookiesPage = () => {
                         </div>
                       </div>
 
-                      <p className="text-slate-700 mb-4">
+                      <p className="text-muted-foreground mb-4">
                         Site trafiğini analiz etmek ve kullanıcı davranışlarını anlamak için
                         kullanılır. Kişisel kimlik bilgileri içermez.
                       </p>
 
                       <div className="grid md:grid-cols-2 gap-4">
                         <div>
-                          <h4 className="font-medium text-slate-800 mb-2">Toplanan Bilgiler:</h4>
-                          <ul className="text-slate-700 text-sm space-y-1">
+                          <h4 className="font-medium text-foreground mb-2">Toplanan Bilgiler:</h4>
+                          <ul className="text-muted-foreground text-sm space-y-1">
                             <li>• Sayfa görüntülenme sayıları</li>
                             <li>• Ziyaret süreleri</li>
                             <li>• Trafik kaynakları</li>
@@ -238,8 +244,10 @@ const CookiesPage = () => {
                         </div>
 
                         <div>
-                          <h4 className="font-medium text-slate-800 mb-2">Hizmet Sağlayıcıları:</h4>
-                          <ul className="text-slate-700 text-sm space-y-1">
+                          <h4 className="font-medium text-foreground mb-2">
+                            Hizmet Sağlayıcıları:
+                          </h4>
+                          <ul className="text-muted-foreground text-sm space-y-1">
                             <li>• Google Analytics</li>
                             <li>• Mixpanel</li>
                             <li>• Hotjar</li>
@@ -250,16 +258,16 @@ const CookiesPage = () => {
                     </div>
 
                     {/* Fonksiyonel Çerezler */}
-                    <div className="border-2 border-slate-200 rounded-lg p-6">
+                    <div className="border-2 border-border rounded-lg p-6">
                       <div className="flex items-center mb-4">
                         <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mr-4">
                           <Settings className="h-5 w-5 text-purple-600" />
                         </div>
                         <div>
-                          <h3 className="text-xl font-semibold text-slate-800">
+                          <h3 className="text-xl font-semibold text-foreground">
                             Fonksiyonel Çerezler
                           </h3>
-                          <p className="text-slate-600 text-sm">
+                          <p className="text-muted-foreground text-sm">
                             Gelişmiş özellikler ve kişiselleştirme
                           </p>
                         </div>
@@ -268,15 +276,15 @@ const CookiesPage = () => {
                         </div>
                       </div>
 
-                      <p className="text-slate-700 mb-4">
+                      <p className="text-muted-foreground mb-4">
                         Platformda yaptığınız tercihleri hatırlayarak daha iyi bir kullanıcı
                         deneyimi sağlar.
                       </p>
 
                       <div className="grid md:grid-cols-2 gap-4">
                         <div>
-                          <h4 className="font-medium text-slate-800 mb-2">Özellikler:</h4>
-                          <ul className="text-slate-700 text-sm space-y-1">
+                          <h4 className="font-medium text-foreground mb-2">Özellikler:</h4>
+                          <ul className="text-muted-foreground text-sm space-y-1">
                             <li>• Dil ve bölge tercihleri</li>
                             <li>• Tema ayarları (koyu/açık mod)</li>
                             <li>• Kişiselleştirilmiş içerik</li>
@@ -285,8 +293,8 @@ const CookiesPage = () => {
                         </div>
 
                         <div>
-                          <h4 className="font-medium text-slate-800 mb-2">Saklama Süreleri:</h4>
-                          <ul className="text-slate-700 text-sm space-y-1">
+                          <h4 className="font-medium text-foreground mb-2">Saklama Süreleri:</h4>
+                          <ul className="text-muted-foreground text-sm space-y-1">
                             <li>• Dil tercihi: 1 yıl</li>
                             <li>• Tema ayarları: 6 ay</li>
                             <li>• Kişiselleştirme: 3 ay</li>
@@ -297,16 +305,16 @@ const CookiesPage = () => {
                     </div>
 
                     {/* Pazarlama Çerezleri */}
-                    <div className="border-2 border-slate-200 rounded-lg p-6">
+                    <div className="border-2 border-border rounded-lg p-6">
                       <div className="flex items-center mb-4">
                         <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-4">
                           <Shield className="h-5 w-5 text-green-600" />
                         </div>
                         <div>
-                          <h3 className="text-xl font-semibold text-slate-800">
+                          <h3 className="text-xl font-semibold text-foreground">
                             Pazarlama Çerezleri
                           </h3>
-                          <p className="text-slate-600 text-sm">
+                          <p className="text-muted-foreground text-sm">
                             Hedefli reklam ve pazarlama iletişimi
                           </p>
                         </div>
@@ -315,15 +323,15 @@ const CookiesPage = () => {
                         </div>
                       </div>
 
-                      <p className="text-slate-700 mb-4">
+                      <p className="text-muted-foreground mb-4">
                         Size daha alakalı reklamlar göstermek ve pazarlama kampanyalarının
                         etkinliğini ölçmek için kullanılır.
                       </p>
 
                       <div className="grid md:grid-cols-2 gap-4">
                         <div>
-                          <h4 className="font-medium text-slate-800 mb-2">Kullanım Amaçları:</h4>
-                          <ul className="text-slate-700 text-sm space-y-1">
+                          <h4 className="font-medium text-foreground mb-2">Kullanım Amaçları:</h4>
+                          <ul className="text-muted-foreground text-sm space-y-1">
                             <li>• Hedefli reklam gösterimi</li>
                             <li>• Kampanya performans ölçümü</li>
                             <li>• Retargeting (yeniden hedefleme)</li>
@@ -332,10 +340,10 @@ const CookiesPage = () => {
                         </div>
 
                         <div>
-                          <h4 className="font-medium text-slate-800 mb-2">
+                          <h4 className="font-medium text-foreground mb-2">
                             Üçüncü Taraf Hizmetler:
                           </h4>
-                          <ul className="text-slate-700 text-sm space-y-1">
+                          <ul className="text-muted-foreground text-sm space-y-1">
                             <li>• Google Ads</li>
                             <li>• Facebook Pixel</li>
                             <li>• LinkedIn Insight</li>
@@ -348,34 +356,36 @@ const CookiesPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-slate-200 border-b-slate-300 mb-8">
+              <Card className="border-2 border-b-4 border-border border-b-muted-foreground mb-8">
                 <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-slate-900 mb-4">
+                  <h2 className="text-2xl font-bold text-foreground mb-4">
                     3. Çerez Ayarlarınızı Yönetme
                   </h2>
 
-                  <p className="text-slate-700 mb-6">
+                  <p className="text-muted-foreground mb-6">
                     Çerez tercihlerinizi istediğiniz zaman değiştirebilirsiniz. Aşağıdaki yöntemleri
                     kullanabilirsiniz:
                   </p>
 
                   <div className="grid md:grid-cols-2 gap-6 mb-8">
-                    <div className="bg-slate-50 border border-slate-200 rounded-lg p-6">
-                      <h3 className="font-semibold text-slate-800 mb-4">Platform Ayarları</h3>
+                    <div className="bg-muted/30 border border-border rounded-lg p-6">
+                      <h3 className="font-semibold text-foreground mb-4">Platform Ayarları</h3>
                       <div className="space-y-3">
                         <div className="flex items-center space-x-3 p-3 bg-white rounded border">
                           <Cookie className="h-5 w-5 text-primary" />
                           <div>
-                            <p className="font-medium text-slate-800 text-sm">Çerez Tercihleri</p>
-                            <p className="text-slate-600 text-xs">Hesap ayarları → Gizlilik</p>
+                            <p className="font-medium text-foreground text-sm">Çerez Tercihleri</p>
+                            <p className="text-muted-foreground text-xs">
+                              Hesap ayarları → Gizlilik
+                            </p>
                           </div>
                         </div>
 
                         <div className="flex items-center space-x-3 p-3 bg-white rounded border">
                           <Settings className="h-5 w-5 text-primary" />
                           <div>
-                            <p className="font-medium text-slate-800 text-sm">Çerez Banneri</p>
-                            <p className="text-slate-600 text-xs">
+                            <p className="font-medium text-foreground text-sm">Çerez Banneri</p>
+                            <p className="text-muted-foreground text-xs">
                               Site altında bulunan yönetim paneli
                             </p>
                           </div>
@@ -383,10 +393,10 @@ const CookiesPage = () => {
                       </div>
                     </div>
 
-                    <div className="bg-slate-50 border border-slate-200 rounded-lg p-6">
-                      <h3 className="font-semibold text-slate-800 mb-4">Tarayıcı Ayarları</h3>
+                    <div className="bg-muted/30 border border-border rounded-lg p-6">
+                      <h3 className="font-semibold text-foreground mb-4">Tarayıcı Ayarları</h3>
                       <div className="space-y-3">
-                        <div className="text-sm text-slate-700">
+                        <div className="text-sm text-muted-foreground">
                           <p className="font-medium mb-2">Popüler Tarayıcılar:</p>
                           <ul className="space-y-1">
                             <li>
@@ -417,28 +427,28 @@ const CookiesPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-slate-200 border-b-slate-300 mb-8">
+              <Card className="border-2 border-b-4 border-border border-b-muted-foreground mb-8">
                 <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-slate-900 mb-4">
+                  <h2 className="text-2xl font-bold text-foreground mb-4">
                     4. Üçüncü Taraf Çerezleri
                   </h2>
 
-                  <p className="text-slate-700 mb-6">
+                  <p className="text-muted-foreground mb-6">
                     MedAIst platformunda bazı üçüncü taraf hizmetleri kullanıyoruz. Bu hizmetler
                     kendi çerezlerini yerleştirebilir:
                   </p>
 
                   <div className="space-y-6">
-                    <div className="border border-slate-200 rounded-lg p-4">
+                    <div className="border border-border rounded-lg p-4">
                       <div className="flex items-center justify-between mb-3">
-                        <h3 className="font-semibold text-slate-800">Google Analytics</h3>
+                        <h3 className="font-semibold text-foreground">Google Analytics</h3>
                         <Badge variant="outline">Analitik</Badge>
                       </div>
-                      <p className="text-slate-700 text-sm mb-3">
+                      <p className="text-muted-foreground text-sm mb-3">
                         Site trafiğini ve kullanıcı davranışlarını analiz etmek için kullanılır.
                         Kişisel kimlik bilgileri toplamaz.
                       </p>
-                      <div className="flex space-x-4 text-xs text-slate-600">
+                      <div className="flex space-x-4 text-xs text-muted-foreground">
                         <span>
                           <strong>Saklama:</strong> 26 ay
                         </span>
@@ -448,15 +458,15 @@ const CookiesPage = () => {
                       </div>
                     </div>
 
-                    <div className="border border-slate-200 rounded-lg p-4">
+                    <div className="border border-border rounded-lg p-4">
                       <div className="flex items-center justify-between mb-3">
-                        <h3 className="font-semibold text-slate-800">Stripe (Ödeme İşlemleri)</h3>
+                        <h3 className="font-semibold text-foreground">Stripe (Ödeme İşlemleri)</h3>
                         <Badge variant="outline">Fonksiyonel</Badge>
                       </div>
-                      <p className="text-slate-700 text-sm mb-3">
+                      <p className="text-muted-foreground text-sm mb-3">
                         Güvenli ödeme işlemleri için kullanılır. Sadece ödeme sırasında aktif olur.
                       </p>
-                      <div className="flex space-x-4 text-xs text-slate-600">
+                      <div className="flex space-x-4 text-xs text-muted-foreground">
                         <span>
                           <strong>Saklama:</strong> Oturum
                         </span>
@@ -466,16 +476,18 @@ const CookiesPage = () => {
                       </div>
                     </div>
 
-                    <div className="border border-slate-200 rounded-lg p-4">
+                    <div className="border border-border rounded-lg p-4">
                       <div className="flex items-center justify-between mb-3">
-                        <h3 className="font-semibold text-slate-800">Intercom (Müşteri Desteği)</h3>
+                        <h3 className="font-semibold text-foreground">
+                          Intercom (Müşteri Desteği)
+                        </h3>
                         <Badge variant="outline">Fonksiyonel</Badge>
                       </div>
-                      <p className="text-slate-700 text-sm mb-3">
+                      <p className="text-muted-foreground text-sm mb-3">
                         Canlı destek ve kullanıcı iletişimi için kullanılır. Destek geçmişini
                         saklar.
                       </p>
-                      <div className="flex space-x-4 text-xs text-slate-600">
+                      <div className="flex space-x-4 text-xs text-muted-foreground">
                         <span>
                           <strong>Saklama:</strong> 13 ay
                         </span>
@@ -488,53 +500,59 @@ const CookiesPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-slate-200 border-b-slate-300 mb-8">
+              <Card className="border-2 border-b-4 border-border border-b-muted-foreground mb-8">
                 <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-slate-900 mb-4">
+                  <h2 className="text-2xl font-bold text-foreground mb-4">
                     5. Çerez Yaşam Süreleri
                   </h2>
 
-                  <p className="text-slate-700 mb-6">
+                  <p className="text-muted-foreground mb-6">
                     Farklı çerez türlerinin farklı saklama süreleri vardır:
                   </p>
 
                   <div className="space-y-4">
-                    <div className="flex justify-between items-center p-4 bg-slate-50 rounded-lg">
+                    <div className="flex justify-between items-center p-4 bg-muted/30 rounded-lg">
                       <div>
-                        <span className="font-medium text-slate-800">Oturum Çerezleri</span>
-                        <p className="text-slate-600 text-sm">Tarayıcı kapatılınca silinir</p>
+                        <span className="font-medium text-foreground">Oturum Çerezleri</span>
+                        <p className="text-muted-foreground text-sm">
+                          Tarayıcı kapatılınca silinir
+                        </p>
                       </div>
                       <Badge variant="secondary">Geçici</Badge>
                     </div>
 
-                    <div className="flex justify-between items-center p-4 bg-slate-50 rounded-lg">
+                    <div className="flex justify-between items-center p-4 bg-muted/30 rounded-lg">
                       <div>
-                        <span className="font-medium text-slate-800">Kimlik Doğrulama</span>
-                        <p className="text-slate-600 text-sm">Güvenlik ve oturum yönetimi</p>
+                        <span className="font-medium text-foreground">Kimlik Doğrulama</span>
+                        <p className="text-muted-foreground text-sm">Güvenlik ve oturum yönetimi</p>
                       </div>
                       <Badge variant="outline">30 gün</Badge>
                     </div>
 
-                    <div className="flex justify-between items-center p-4 bg-slate-50 rounded-lg">
+                    <div className="flex justify-between items-center p-4 bg-muted/30 rounded-lg">
                       <div>
-                        <span className="font-medium text-slate-800">Tercih Çerezleri</span>
-                        <p className="text-slate-600 text-sm">Dil, tema ve kişiselleştirme</p>
+                        <span className="font-medium text-foreground">Tercih Çerezleri</span>
+                        <p className="text-muted-foreground text-sm">
+                          Dil, tema ve kişiselleştirme
+                        </p>
                       </div>
                       <Badge variant="outline">1 yıl</Badge>
                     </div>
 
-                    <div className="flex justify-between items-center p-4 bg-slate-50 rounded-lg">
+                    <div className="flex justify-between items-center p-4 bg-muted/30 rounded-lg">
                       <div>
-                        <span className="font-medium text-slate-800">Analitik Çerezler</span>
-                        <p className="text-slate-600 text-sm">Site kullanımı ve performans</p>
+                        <span className="font-medium text-foreground">Analitik Çerezler</span>
+                        <p className="text-muted-foreground text-sm">
+                          Site kullanımı ve performans
+                        </p>
                       </div>
                       <Badge variant="outline">2 yıl</Badge>
                     </div>
 
-                    <div className="flex justify-between items-center p-4 bg-slate-50 rounded-lg">
+                    <div className="flex justify-between items-center p-4 bg-muted/30 rounded-lg">
                       <div>
-                        <span className="font-medium text-slate-800">Pazarlama Çerezleri</span>
-                        <p className="text-slate-600 text-sm">Reklam ve kampanya takibi</p>
+                        <span className="font-medium text-foreground">Pazarlama Çerezleri</span>
+                        <p className="text-muted-foreground text-sm">Reklam ve kampanya takibi</p>
                       </div>
                       <Badge variant="outline">90 gün</Badge>
                     </div>
@@ -542,33 +560,33 @@ const CookiesPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-slate-200 border-b-slate-300 mb-8">
+              <Card className="border-2 border-b-4 border-border border-b-muted-foreground mb-8">
                 <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-slate-900 mb-4">6. Yasal Haklarınız</h2>
+                  <h2 className="text-2xl font-bold text-foreground mb-4">6. Yasal Haklarınız</h2>
 
-                  <p className="text-slate-700 mb-6">
+                  <p className="text-muted-foreground mb-6">
                     KVKK ve GDPR kapsamında çerezlerle ilgili haklarınız:
                   </p>
 
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-4">
                       <div className="border-l-4 border-primary pl-4">
-                        <h3 className="font-semibold text-slate-800 mb-1">Rıza Kontrolü</h3>
-                        <p className="text-slate-700 text-sm">
+                        <h3 className="font-semibold text-foreground mb-1">Rıza Kontrolü</h3>
+                        <p className="text-muted-foreground text-sm">
                           İsteğe bağlı çerezler için verdiğiniz rızayı geri çekebilirsiniz
                         </p>
                       </div>
 
                       <div className="border-l-4 border-primary pl-4">
-                        <h3 className="font-semibold text-slate-800 mb-1">Erişim Hakkı</h3>
-                        <p className="text-slate-700 text-sm">
+                        <h3 className="font-semibold text-foreground mb-1">Erişim Hakkı</h3>
+                        <p className="text-muted-foreground text-sm">
                           Hangi çerezlerin kullanıldığını ve amaçlarını öğrenebilirsiniz
                         </p>
                       </div>
 
                       <div className="border-l-4 border-primary pl-4">
-                        <h3 className="font-semibold text-slate-800 mb-1">Silme Hakkı</h3>
-                        <p className="text-slate-700 text-sm">
+                        <h3 className="font-semibold text-foreground mb-1">Silme Hakkı</h3>
+                        <p className="text-muted-foreground text-sm">
                           Çerezlerin silinmesini talep edebilirsiniz
                         </p>
                       </div>
@@ -576,22 +594,22 @@ const CookiesPage = () => {
 
                     <div className="space-y-4">
                       <div className="border-l-4 border-primary pl-4">
-                        <h3 className="font-semibold text-slate-800 mb-1">Taşınabilirlik</h3>
-                        <p className="text-slate-700 text-sm">
+                        <h3 className="font-semibold text-foreground mb-1">Taşınabilirlik</h3>
+                        <p className="text-muted-foreground text-sm">
                           Çerez tercihlerinizi başka platformlara aktarabilirsiniz
                         </p>
                       </div>
 
                       <div className="border-l-4 border-primary pl-4">
-                        <h3 className="font-semibold text-slate-800 mb-1">İtiraz Hakkı</h3>
-                        <p className="text-slate-700 text-sm">
+                        <h3 className="font-semibold text-foreground mb-1">İtiraz Hakkı</h3>
+                        <p className="text-muted-foreground text-sm">
                           Profilleme ve otomatik karar vermede kullanıma itiraz edebilirsiniz
                         </p>
                       </div>
 
                       <div className="border-l-4 border-primary pl-4">
-                        <h3 className="font-semibold text-slate-800 mb-1">Şikayet Hakkı</h3>
-                        <p className="text-slate-700 text-sm">
+                        <h3 className="font-semibold text-foreground mb-1">Şikayet Hakkı</h3>
+                        <p className="text-muted-foreground text-sm">
                           KVKK Kurulu&apos;na veya DPA&apos;ya şikayet edebilirsiniz
                         </p>
                       </div>
@@ -600,11 +618,11 @@ const CookiesPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-slate-200 border-b-slate-300 mb-8">
+              <Card className="border-2 border-b-4 border-border border-b-muted-foreground mb-8">
                 <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-slate-900 mb-4">7. Güncellemeler</h2>
+                  <h2 className="text-2xl font-bold text-foreground mb-4">7. Güncellemeler</h2>
 
-                  <p className="text-slate-700 mb-6">
+                  <p className="text-muted-foreground mb-6">
                     Bu çerez politikası zaman zaman güncellenebilir:
                   </p>
 
@@ -632,18 +650,18 @@ const CookiesPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-slate-200 border-b-slate-300">
+              <Card className="border-2 border-b-4 border-border border-b-muted-foreground">
                 <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-slate-900 mb-4">8. İletişim</h2>
+                  <h2 className="text-2xl font-bold text-foreground mb-4">8. İletişim</h2>
 
-                  <p className="text-slate-700 mb-6">
+                  <p className="text-muted-foreground mb-6">
                     Çerez politikası hakkında sorularınız için bize ulaşabilirsiniz:
                   </p>
 
                   <div className="grid md:grid-cols-2 gap-6">
-                    <div className="bg-slate-50 border border-slate-200 rounded-lg p-6">
-                      <h3 className="font-semibold text-slate-800 mb-4">Genel Sorular</h3>
-                      <div className="space-y-2 text-slate-700">
+                    <div className="bg-muted/30 border border-border rounded-lg p-6">
+                      <h3 className="font-semibold text-foreground mb-4">Genel Sorular</h3>
+                      <div className="space-y-2 text-muted-foreground">
                         <p>
                           <strong>E-posta:</strong> privacy@medaist.com
                         </p>
@@ -656,9 +674,9 @@ const CookiesPage = () => {
                       </div>
                     </div>
 
-                    <div className="bg-slate-50 border border-slate-200 rounded-lg p-6">
-                      <h3 className="font-semibold text-slate-800 mb-4">Teknik Destek</h3>
-                      <div className="space-y-2 text-slate-700">
+                    <div className="bg-muted/30 border border-border rounded-lg p-6">
+                      <h3 className="font-semibold text-foreground mb-4">Teknik Destek</h3>
+                      <div className="space-y-2 text-muted-foreground">
                         <p>
                           <strong>E-posta:</strong> support@medaist.com
                         </p>

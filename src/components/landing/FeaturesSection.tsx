@@ -20,26 +20,26 @@ import {Button} from "@/components/ui/button";
 
 const FeaturesSection = () => {
   return (
-    <section className="py-24 sm:py-32 bg-gradient-to-b from-white to-slate-50" id="features">
+    <section className="py-24 sm:py-32 bg-gradient-to-b from-background to-muted/30" id="features">
       <MaxWidthWrapper>
         {/* Header */}
         <div className="text-center space-y-6 mb-20">
           <Badge
-            className="px-6 py-3 text-slate-700 border-slate-300 bg-white shadow-sm font-medium"
+            className="px-6 py-3 text-foreground border-border bg-background shadow-sm font-medium"
             variant="outline"
           >
             ✨ Gelişmiş Özellikler
           </Badge>
-          <h2 className="text-4xl lg:text-5xl font-bold tracking-tight text-slate-900">
-            Tıp Eğitimini <span className="text-slate-600">Yeniden Tanımlıyoruz</span>
+          <h2 className="text-4xl lg:text-5xl font-bold tracking-tight text-foreground">
+            Tıp Eğitimini <span className="text-muted-foreground">Yeniden Tanımlıyoruz</span>
           </h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Binlerce tıp öğrencisi tarafından güvenilen, AI destekli öğrenme platformu ile akademik
             başarınızı maksimize edin
           </p>
 
           {/* Trust Indicators */}
-          <div className="flex items-center justify-center gap-8 mt-8 text-sm text-slate-500">
+          <div className="flex items-center justify-center gap-8 mt-8 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
               <Users className="h-5 w-5" />
               <span>15,000+ Aktif Öğrenci</span>
@@ -61,7 +61,7 @@ const FeaturesSection = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div className="space-y-6">
               <div className="flex items-center gap-4">
-                <div className="h-16 w-16 bg-gradient-to-br from-slate-900 to-slate-700 rounded-2xl flex items-center justify-center shadow-lg">
+                <div className="h-16 w-16 bg-gradient-to-br from-foreground to-muted-foreground rounded-2xl flex items-center justify-center shadow-lg">
                   <MessageSquare className="h-8 w-8 text-white" />
                 </div>
                 <Badge className="px-3 py-1 bg-green-100 text-green-800 border-green-200">
@@ -70,10 +70,10 @@ const FeaturesSection = () => {
               </div>
 
               <div>
-                <h3 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">
+                <h3 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
                   AI Chat Asistanı
                 </h3>
-                <p className="text-lg text-slate-600 leading-relaxed mb-6">
+                <p className="text-lg text-muted-foreground leading-relaxed mb-6">
                   Gelişmiş yapay zeka teknolojisi ile tıbbi sorularınıza anında, doğru ve kapsamlı
                   yanıtlar alın. Karmaşık tıbbi konuları basit dille açıklayan kişisel asistanınız.
                 </p>
@@ -85,8 +85,10 @@ const FeaturesSection = () => {
                     <CheckCircle className="h-4 w-4 text-green-600" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-slate-900">Anında Yanıt</h4>
-                    <p className="text-sm text-slate-600">Milisaniyeler içinde doğru cevap</p>
+                    <h4 className="font-semibold text-foreground">Anında Yanıt</h4>
+                    <p className="text-sm text-muted-foreground">
+                      Milisaniyeler içinde doğru cevap
+                    </p>
                   </div>
                 </div>
 
@@ -95,8 +97,8 @@ const FeaturesSection = () => {
                     <Clock className="h-4 w-4 text-purple-600" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-slate-900">7/24 Erişim</h4>
-                    <p className="text-sm text-slate-600">Her zaman yanınızda</p>
+                    <h4 className="font-semibold text-foreground">7/24 Erişim</h4>
+                    <p className="text-sm text-muted-foreground">Her zaman yanınızda</p>
                   </div>
                 </div>
 
@@ -105,35 +107,37 @@ const FeaturesSection = () => {
                     <Lightbulb className="h-4 w-4 text-orange-600" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-slate-900">Akıllı Öneriler</h4>
-                    <p className="text-sm text-slate-600">Kişiselleştirilmiş çalışma tavsiyeleri</p>
+                    <h4 className="font-semibold text-foreground">Akıllı Öneriler</h4>
+                    <p className="text-sm text-muted-foreground">
+                      Kişiselleştirilmiş çalışma tavsiyeleri
+                    </p>
                   </div>
                 </div>
               </div>
 
-              <Button className="bg-slate-900 hover:bg-slate-800 text-white px-8 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-200">
+              <Button className="bg-foreground hover:bg-muted-foreground text-primary-foreground px-8 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-200">
                 AI Asistanı Dene →
               </Button>
             </div>
 
             <div className="relative">
-              <div className="bg-gradient-to-br from-slate-100 to-slate-200 rounded-2xl p-8 shadow-2xl">
-                <div className="bg-white rounded-xl p-6 shadow-lg">
+              <div className="bg-gradient-to-br from-muted/30 to-muted/60 rounded-2xl p-8 shadow-2xl">
+                <div className="bg-card rounded-xl p-6 shadow-lg">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="h-8 w-8 bg-slate-900 rounded-full" />
+                    <div className="h-8 w-8 bg-foreground rounded-full" />
                     <div>
-                      <div className="h-2 w-20 bg-slate-200 rounded" />
-                      <div className="h-1.5 w-16 bg-slate-100 rounded mt-1" />
+                      <div className="h-2 w-20 bg-muted rounded" />
+                      <div className="h-1.5 w-16 bg-muted/70 rounded mt-1" />
                     </div>
                   </div>
                   <div className="space-y-3">
-                    <div className="bg-slate-50 rounded-lg p-3">
-                      <div className="h-2 w-full bg-slate-200 rounded" />
-                      <div className="h-2 w-3/4 bg-slate-200 rounded mt-2" />
+                    <div className="bg-muted/30 rounded-lg p-3">
+                      <div className="h-2 w-full bg-muted rounded" />
+                      <div className="h-2 w-3/4 bg-muted rounded mt-2" />
                     </div>
-                    <div className="bg-blue-50 rounded-lg p-3 ml-8">
-                      <div className="h-2 w-full bg-blue-200 rounded" />
-                      <div className="h-2 w-1/2 bg-blue-200 rounded mt-2" />
+                    <div className="bg-primary/10 rounded-lg p-3 ml-8">
+                      <div className="h-2 w-full bg-primary/30 rounded" />
+                      <div className="h-2 w-1/2 bg-primary/30 rounded mt-2" />
                     </div>
                   </div>
                 </div>
@@ -147,32 +151,32 @@ const FeaturesSection = () => {
           {/* Smart Notes System */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div className="order-2 lg:order-1 relative">
-              <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8 shadow-2xl">
-                <div className="bg-white rounded-xl p-6 shadow-lg">
+              <div className="bg-gradient-to-br from-primary/10 to-primary/20 rounded-2xl p-8 shadow-2xl">
+                <div className="bg-card rounded-xl p-6 shadow-lg">
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-2">
-                      <FileText className="h-5 w-5 text-slate-600" />
-                      <span className="font-medium text-slate-900">Kardiyoloji.pdf</span>
+                      <FileText className="h-5 w-5 text-muted-foreground" />
+                      <span className="font-medium text-foreground">Kardiyoloji.pdf</span>
                     </div>
                     <Badge className="text-xs bg-green-100 text-green-800">İşlendi</Badge>
                   </div>
                   <div className="space-y-3">
-                    <div className="h-3 w-full bg-slate-100 rounded" />
-                    <div className="h-3 w-4/5 bg-slate-100 rounded" />
-                    <div className="h-3 w-3/5 bg-blue-100 rounded" />
+                    <div className="h-3 w-full bg-muted rounded" />
+                    <div className="h-3 w-4/5 bg-muted rounded" />
+                    <div className="h-3 w-3/5 bg-primary/20 rounded" />
                     <div className="grid grid-cols-3 gap-2 mt-4">
-                      <div className="h-2 bg-slate-100 rounded" />
-                      <div className="h-2 bg-slate-100 rounded" />
-                      <div className="h-2 bg-slate-100 rounded" />
+                      <div className="h-2 bg-muted rounded" />
+                      <div className="h-2 bg-muted rounded" />
+                      <div className="h-2 bg-muted rounded" />
                     </div>
                   </div>
                 </div>
                 <div className="mt-4 flex gap-2">
-                  <div className="bg-white rounded-lg p-3 flex-1 shadow-sm">
+                  <div className="bg-card rounded-lg p-3 flex-1 shadow-sm">
                     <div className="h-2 w-full bg-purple-100 rounded" />
                     <div className="h-1.5 w-3/4 bg-purple-50 rounded mt-1" />
                   </div>
-                  <div className="bg-white rounded-lg p-3 flex-1 shadow-sm">
+                  <div className="bg-card rounded-lg p-3 flex-1 shadow-sm">
                     <div className="h-2 w-full bg-green-100 rounded" />
                     <div className="h-1.5 w-1/2 bg-green-50 rounded mt-1" />
                   </div>
@@ -194,10 +198,10 @@ const FeaturesSection = () => {
               </div>
 
               <div>
-                <h3 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">
+                <h3 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
                   Akıllı Not Alma Sistemi
                 </h3>
-                <p className="text-lg text-slate-600 leading-relaxed mb-6">
+                <p className="text-lg text-muted-foreground leading-relaxed mb-6">
                   PDF&apos;lerinizi yükleyin, AI ile anında özetleyin ve interaktif sohbetler
                   oluşturun.
                 </p>
@@ -209,8 +213,8 @@ const FeaturesSection = () => {
                     <Upload className="h-4 w-4 text-white" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-slate-900">Hızlı PDF Yükleme</h4>
-                    <p className="text-slate-600">Sürükle-bırak ile anında dosya yükleme</p>
+                    <h4 className="font-semibold text-foreground">Hızlı PDF Yükleme</h4>
+                    <p className="text-muted-foreground">Sürükle-bırak ile anında dosya yükleme</p>
                   </div>
                 </div>
 
@@ -219,8 +223,8 @@ const FeaturesSection = () => {
                     <Zap className="h-4 w-4 text-white" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-slate-900">AI Özet Çıkarma</h4>
-                    <p className="text-slate-600">Saniyeler içinde akıllı özetler</p>
+                    <h4 className="font-semibold text-foreground">AI Özet Çıkarma</h4>
+                    <p className="text-muted-foreground">Saniyeler içinde akıllı özetler</p>
                   </div>
                 </div>
               </div>
@@ -244,10 +248,10 @@ const FeaturesSection = () => {
               </div>
 
               <div>
-                <h3 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">
+                <h3 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
                   İnteraktif Quiz Motoru
                 </h3>
-                <p className="text-lg text-slate-600 leading-relaxed mb-6">
+                <p className="text-lg text-muted-foreground leading-relaxed mb-6">
                   Kişiselleştirilmiş testlerle bilginizi pekiştirin. Eksik konularınızı belirleyin
                   ve hedefli çalışma planları oluşturun.
                 </p>
@@ -260,16 +264,16 @@ const FeaturesSection = () => {
 
             <div className="relative">
               <div className="bg-gradient-to-br from-green-50 to-emerald-100 rounded-2xl p-8 shadow-2xl">
-                <div className="bg-white rounded-xl p-6 shadow-lg">
+                <div className="bg-card rounded-xl p-6 shadow-lg">
                   <div className="flex items-center justify-between mb-6">
-                    <h4 className="font-semibold text-slate-900">Kardiyoloji Quiz #1</h4>
+                    <h4 className="font-semibold text-foreground">Kardiyoloji Quiz #1</h4>
                     <Badge className="text-xs bg-green-100 text-green-800">15/20 Doğru</Badge>
                   </div>
 
                   <div className="space-y-4">
-                    <div className="p-4 bg-slate-50 rounded-lg">
-                      <div className="h-3 w-full bg-slate-200 rounded mb-2" />
-                      <div className="h-3 w-3/4 bg-slate-200 rounded" />
+                    <div className="p-4 bg-muted/30 rounded-lg">
+                      <div className="h-3 w-full bg-muted rounded mb-2" />
+                      <div className="h-3 w-3/4 bg-muted rounded" />
                     </div>
 
                     <div className="space-y-2">
@@ -277,21 +281,21 @@ const FeaturesSection = () => {
                         <div className="h-3 w-3 bg-green-500 rounded-full" />
                         <div className="h-2 w-32 bg-green-200 rounded" />
                       </div>
-                      <div className="flex items-center gap-2 p-2 bg-slate-50 rounded">
-                        <div className="h-3 w-3 bg-slate-300 rounded-full" />
-                        <div className="h-2 w-28 bg-slate-200 rounded" />
+                      <div className="flex items-center gap-2 p-2 bg-muted/30 rounded">
+                        <div className="h-3 w-3 bg-muted rounded-full" />
+                        <div className="h-2 w-28 bg-muted rounded" />
                       </div>
-                      <div className="flex items-center gap-2 p-2 bg-slate-50 rounded">
-                        <div className="h-3 w-3 bg-slate-300 rounded-full" />
-                        <div className="h-2 w-24 bg-slate-200 rounded" />
+                      <div className="flex items-center gap-2 p-2 bg-muted/30 rounded">
+                        <div className="h-3 w-3 bg-muted rounded-full" />
+                        <div className="h-2 w-24 bg-muted rounded" />
                       </div>
                     </div>
                   </div>
 
                   <div className="mt-6 flex justify-between items-center">
-                    <div className="text-sm text-slate-500">Soru 18/20</div>
+                    <div className="text-sm text-muted-foreground">Soru 18/20</div>
                     <div className="flex gap-2">
-                      <div className="h-8 w-16 bg-slate-200 rounded-lg" />
+                      <div className="h-8 w-16 bg-muted rounded-lg" />
                       <div className="h-8 w-16 bg-green-500 rounded-lg" />
                     </div>
                   </div>
@@ -306,10 +310,12 @@ const FeaturesSection = () => {
 
         {/* Stats & Trust Section */}
         <div className="mt-32">
-          <div className="bg-gradient-to-r from-slate-900 to-slate-800 rounded-3xl p-12 lg:p-16 text-white">
+          <div className="bg-gradient-to-r from-primary to-primary/80 rounded-3xl p-12 lg:p-16 text-primary-foreground">
             <div className="text-center mb-16">
-              <h3 className="text-3xl lg:text-4xl font-bold mb-6">Binlerce Öğrenci Güveniyor</h3>
-              <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+              <h3 className="text-3xl lg:text-4xl font-bold mb-6 text-primary-foreground">
+                Binlerce Öğrenci Güveniyor
+              </h3>
+              <p className="text-xl text-primary-foreground/80 max-w-3xl mx-auto leading-relaxed">
                 Türkiye&apos;nin en kapsamlı tıp eğitimi platformu olarak, öğrencilerin akademik
                 başarısını destekliyoruz
               </p>
@@ -317,32 +323,42 @@ const FeaturesSection = () => {
 
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-16">
               <div className="text-center">
-                <div className="text-4xl lg:text-5xl font-bold text-white mb-2">15K+</div>
-                <div className="text-slate-300 font-medium">Aktif Öğrenci</div>
+                <div className="text-4xl lg:text-5xl font-bold text-primary-foreground mb-2">
+                  15K+
+                </div>
+                <div className="text-primary-foreground/70 font-medium">Aktif Öğrenci</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl lg:text-5xl font-bold text-white mb-2">4.9</div>
-                <div className="text-slate-300 font-medium">Kullanıcı Puanı</div>
+                <div className="text-4xl lg:text-5xl font-bold text-primary-foreground mb-2">
+                  4.9
+                </div>
+                <div className="text-primary-foreground/70 font-medium">Kullanıcı Puanı</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl lg:text-5xl font-bold text-white mb-2">1M+</div>
-                <div className="text-slate-300 font-medium">Çözülen Soru</div>
+                <div className="text-4xl lg:text-5xl font-bold text-primary-foreground mb-2">
+                  1M+
+                </div>
+                <div className="text-primary-foreground/70 font-medium">Çözülen Soru</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl lg:text-5xl font-bold text-white mb-2">98%</div>
-                <div className="text-slate-300 font-medium">Memnuniyet</div>
+                <div className="text-4xl lg:text-5xl font-bold text-primary-foreground mb-2">
+                  98%
+                </div>
+                <div className="text-primary-foreground/70 font-medium">Memnuniyet</div>
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {/* Advanced Analytics */}
               <div className="text-center space-y-4">
-                <div className="h-16 w-16 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto border border-white/20">
-                  <BarChart3 className="h-8 w-8 text-white" />
+                <div className="h-16 w-16 bg-primary-foreground/10 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto border border-primary-foreground/20">
+                  <BarChart3 className="h-8 w-8 text-primary-foreground" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-white mb-2 text-lg">Gelişmiş Analitik</h4>
-                  <p className="text-slate-300 text-sm leading-relaxed">
+                  <h4 className="font-semibold text-primary-foreground mb-2 text-lg">
+                    Gelişmiş Analitik
+                  </h4>
+                  <p className="text-primary-foreground/70 text-sm leading-relaxed">
                     Performansınızı izleyin, güçlü ve zayıf yönlerinizi keşfedin
                   </p>
                 </div>
@@ -350,12 +366,14 @@ const FeaturesSection = () => {
 
               {/* Cross-Platform */}
               <div className="text-center space-y-4">
-                <div className="h-16 w-16 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto border border-white/20">
-                  <Monitor className="h-8 w-8 text-white" />
+                <div className="h-16 w-16 bg-primary-foreground/10 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto border border-primary-foreground/20">
+                  <Monitor className="h-8 w-8 text-primary-foreground" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-white mb-2 text-lg">Çoklu Platform</h4>
-                  <p className="text-slate-300 text-sm leading-relaxed">
+                  <h4 className="font-semibold text-primary-foreground mb-2 text-lg">
+                    Çoklu Platform
+                  </h4>
+                  <p className="text-primary-foreground/70 text-sm leading-relaxed">
                     Web, iOS, Android - her cihazda sorunsuz deneyim
                   </p>
                 </div>
@@ -363,12 +381,14 @@ const FeaturesSection = () => {
 
               {/* Enterprise Security */}
               <div className="text-center space-y-4">
-                <div className="h-16 w-16 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto border border-white/20">
-                  <Shield className="h-8 w-8 text-white" />
+                <div className="h-16 w-16 bg-primary-foreground/10 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto border border-primary-foreground/20">
+                  <Shield className="h-8 w-8 text-primary-foreground" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-white mb-2 text-lg">Kurumsal Güvenlik</h4>
-                  <p className="text-slate-300 text-sm leading-relaxed">
+                  <h4 className="font-semibold text-primary-foreground mb-2 text-lg">
+                    Kurumsal Güvenlik
+                  </h4>
+                  <p className="text-primary-foreground/70 text-sm leading-relaxed">
                     KVKK uyumlu, SSL şifreli, güvenli veri koruma
                   </p>
                 </div>
@@ -376,18 +396,22 @@ const FeaturesSection = () => {
 
               {/* 24/7 Expert Support */}
               <div className="text-center space-y-4">
-                <div className="h-16 w-16 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto border border-white/20">
-                  <MessageSquare className="h-8 w-8 text-white" />
+                <div className="h-16 w-16 bg-primary-foreground/10 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto border border-primary-foreground/20">
+                  <MessageSquare className="h-8 w-8 text-primary-foreground" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-white mb-2 text-lg">Uzman Destek</h4>
-                  <p className="text-slate-300 text-sm leading-relaxed">7/24 teknik destek</p>
+                  <h4 className="font-semibold text-primary-foreground mb-2 text-lg">
+                    Uzman Destek
+                  </h4>
+                  <p className="text-primary-foreground/70 text-sm leading-relaxed">
+                    7/24 teknik destek
+                  </p>
                 </div>
               </div>
             </div>
 
             <div className="text-center mt-16">
-              <Button className="bg-white text-slate-900 hover:bg-slate-100 px-12 py-4 rounded-2xl font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-300">
+              <Button className="bg-background text-foreground hover:bg-muted px-12 py-4 rounded-2xl font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 border border-border">
                 Ücretsiz Başlayın
               </Button>
             </div>

@@ -7,19 +7,28 @@ import {Button} from "@/components/ui/button";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 py-20 sm:py-32 overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:6rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
+    <section className="relative min-h-screen bg-gradient-to-br from-background via-background to-primary/5 py-20 sm:py-32 overflow-hidden">
+      {/* Subtle Grid Pattern */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#475569_1px,transparent_1px),linear-gradient(to_bottom,#475569_1px,transparent_1px)] bg-[size:80px_80px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,#000_60%,transparent_100%)] opacity-20 dark:opacity-15" />
 
-      {/* Floating Orbs */}
-      <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-blue-200/20 rounded-full mix-blend-multiply filter blur-xl animate-pulse opacity-70" />
+      {/* Glow Effects Base */}
+      <div className="absolute inset-0 bg-gradient-to-t from-background/50 via-transparent to-background/30" />
+
+      {/* Subtle Floating Orbs */}
+      <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-200/25 dark:bg-blue-400/20 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-2xl animate-pulse opacity-40 dark:opacity-50" />
       <div
-        className="absolute top-3/4 right-1/4 w-72 h-72 bg-purple-200/20 rounded-full mix-blend-multiply filter blur-xl animate-pulse opacity-70"
-        style={{animationDelay: "2s"}}
+        className="absolute top-3/4 right-1/4 w-64 h-64 bg-purple-200/25 dark:bg-purple-400/20 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-2xl animate-pulse opacity-40 dark:opacity-45"
+        style={{animationDelay: "3s"}}
       />
+
+      {/* Subtle Central Glow */}
       <div
-        className="absolute top-1/2 left-1/2 w-96 h-96 bg-indigo-200/15 rounded-full mix-blend-multiply filter blur-2xl animate-pulse opacity-60"
-        style={{animationDelay: "4s"}}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] opacity-40 dark:opacity-60 animate-pulse"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, rgba(59, 130, 246, 0.08) 0%, rgba(59, 130, 246, 0.04) 50%, transparent 80%)",
+          animationDuration: "12s",
+        }}
       />
 
       <MaxWidthWrapper className="relative">
@@ -36,12 +45,12 @@ const HeroSection = () => {
               </Badge>
 
               <div className="space-y-4">
-                <h2 className="text-2xl sm:text-3xl lg:text-5xl font-semibold text-slate-700">
+                <h2 className="text-2xl sm:text-3xl lg:text-5xl font-semibold text-foreground">
                   Akıllı Tıp Asistanın
                 </h2>
               </div>
 
-              <p className="text-lg leading-relaxed text-slate-600 max-w-2xl">
+              <p className="text-lg leading-relaxed text-muted-foreground max-w-2xl">
                 Yapay zeka destekli chat, akıllı not alma ve interaktif quiz sistemi ile tıp
                 eğitimini dönüştürün. Kişiselleştirilmiş öğrenme deneyimiyle başarınızı artırın.
               </p>
@@ -62,9 +71,9 @@ const HeroSection = () => {
             </div>
 
             {/* Trust Indicators */}
-            <div className="flex flex-wrap items-center justify-center gap-8 pt-8 text-sm text-slate-500">
+            <div className="flex flex-wrap items-center justify-center gap-8 pt-8 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
-                <Users className="h-5 w-5 text-blue-600" />
+                <Users className="h-5 w-5 text-primary" />
                 <span className="font-medium">10,000+ Öğrenci</span>
               </div>
               <div className="flex items-center gap-2">
@@ -80,32 +89,49 @@ const HeroSection = () => {
 
           {/* Demo Video Section */}
           <div className="relative lg:order-last w-full">
+            {/* Video Glow Effect */}
+            <div
+              className="absolute inset-0 rounded-2xl opacity-60 dark:opacity-80 blur-xl scale-105"
+              style={{
+                background:
+                  "radial-gradient(ellipse at center, hsl(var(--primary) / 0.2) 0%, hsl(var(--primary) / 0.1) 40%, transparent 70%)",
+              }}
+            />
+
             <div className="relative">
               {/* Video Container */}
-              <div className="relative aspect-video rounded-2xl bg-gradient-to-br from-slate-900 to-slate-800 border-2 shadow-2xl overflow-hidden group cursor-pointer transform hover:scale-105 transition-all duration-300">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-purple-600/20 group-hover:from-blue-600/30 group-hover:to-purple-600/30 transition-all duration-300" />
+              <div className="relative aspect-video rounded-2xl bg-gradient-to-br from-secondary to-secondary/80 border-2 border-primary/20 shadow-2xl shadow-primary/10 overflow-hidden group cursor-pointer transform hover:scale-105 transition-all duration-300 backdrop-blur-sm">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-purple-600/20 group-hover:from-primary/30 group-hover:to-purple-600/30 transition-all duration-300" />
 
                 {/* Play Button */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="flex h-20 w-20 items-center justify-center rounded-full bg-white/95 backdrop-blur-sm group-hover:bg-white group-hover:scale-110 transition-all duration-300 shadow-xl">
-                    <Play className="h-8 w-8 text-blue-600 ml-1" fill="currentColor" />
+                  {/* Play Button Glow */}
+                  <div
+                    className="absolute h-24 w-24 rounded-full opacity-50 group-hover:opacity-70 transition-all duration-300 animate-pulse"
+                    style={{
+                      background:
+                        "radial-gradient(circle, hsl(var(--primary) / 0.3) 0%, transparent 70%)",
+                    }}
+                  />
+                  <div className="relative flex h-20 w-20 items-center justify-center rounded-full bg-background/95 backdrop-blur-sm group-hover:bg-background group-hover:scale-110 transition-all duration-300 shadow-xl shadow-primary/20">
+                    <Play className="h-8 w-8 text-primary ml-1" fill="currentColor" />
                   </div>
                 </div>
 
                 {/* Video Info */}
-                <div className="absolute bottom-6 left-6 text-white">
+                <div className="absolute bottom-6 left-6 text-primary-foreground">
                   <p className="text-lg font-semibold">MedAIst Platform Demo</p>
                   <p className="text-sm opacity-80">3 dakikada tüm özellikler</p>
                 </div>
 
                 {/* Duration Badge */}
-                <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full text-white text-sm font-medium">
+                <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full text-primary-foreground text-sm font-medium">
                   3:24
                 </div>
 
                 {/* Mockup Content */}
-                <div className="w-full h-full bg-slate-900 flex items-center justify-center">
-                  <div className="text-center text-white/70">
+                <div className="w-full h-full bg-secondary flex items-center justify-center">
+                  <div className="text-center text-primary-foreground/70">
                     <Brain className="h-16 w-16 mx-auto mb-4" />
                     <p className="text-xl font-semibold">Platform Önizleme</p>
                   </div>
@@ -113,26 +139,46 @@ const HeroSection = () => {
               </div>
 
               {/* Floating Stats */}
-              <div className="absolute -top-4 -right-4 bg-white rounded-xl p-4 shadow-xl border border-slate-200/50">
-                <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 bg-green-100 rounded-full flex items-center justify-center">
-                    <TrendingUp className="h-5 w-5 text-green-600" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-slate-900">95% Başarı</p>
-                    <p className="text-xs text-slate-600">Sınav Ortalaması</p>
+              <div className="absolute -top-4 -right-4">
+                {/* Success Card Glow */}
+                <div
+                  className="absolute inset-0 rounded-xl opacity-30 blur-sm scale-110"
+                  style={{
+                    background:
+                      "radial-gradient(ellipse at center, hsl(120 70% 50% / 0.2) 0%, transparent 70%)",
+                  }}
+                />
+                <div className="relative bg-card/95 backdrop-blur-sm rounded-xl p-4 shadow-xl border border-border/50 shadow-green-500/10">
+                  <div className="flex items-center gap-3">
+                    <div className="h-10 w-10 bg-green-100 rounded-full flex items-center justify-center">
+                      <TrendingUp className="h-5 w-5 text-green-600" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-foreground">95% Başarı</p>
+                      <p className="text-xs text-muted-foreground">Sınav Ortalaması</p>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div className="absolute -bottom-4 -left-4 bg-white rounded-xl p-4 shadow-xl border border-slate-200/50">
-                <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 bg-blue-100 rounded-full flex items-center justify-center">
-                    <Brain className="h-5 w-5 text-blue-600" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-slate-900">AI Destekli</p>
-                    <p className="text-xs text-slate-600">Öğrenme Sistemi</p>
+              <div className="absolute -bottom-4 -left-4">
+                {/* AI Card Glow */}
+                <div
+                  className="absolute inset-0 rounded-xl opacity-30 blur-sm scale-110"
+                  style={{
+                    background:
+                      "radial-gradient(ellipse at center, hsl(var(--primary) / 0.2) 0%, transparent 70%)",
+                  }}
+                />
+                <div className="relative bg-card/95 backdrop-blur-sm rounded-xl p-4 shadow-xl border border-border/50 shadow-primary/10">
+                  <div className="flex items-center gap-3">
+                    <div className="h-10 w-10 bg-primary/10 rounded-full flex items-center justify-center">
+                      <Brain className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-foreground">AI Destekli</p>
+                      <p className="text-xs text-muted-foreground">Öğrenme Sistemi</p>
+                    </div>
                   </div>
                 </div>
               </div>

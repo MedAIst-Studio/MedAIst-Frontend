@@ -115,7 +115,7 @@ const PricingPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
       {/* Hero Section */}
       <section className="py-20 sm:py-32 relative">
         {/* Grid Pattern Background - Only for Hero */}
@@ -140,12 +140,12 @@ const PricingPage = () => {
             </Badge>
 
             <div className="space-y-4">
-              <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-6xl">
+              <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl">
                 <span className="text-primary">Size Uygun</span>
                 <br />
                 Planı Seçin
               </h1>
-              <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                 Ücretsiz planla başlayın, ihtiyacınıza göre yükseltin. Her zaman esnek, her zaman
                 şeffaf fiyatlandırma.
               </p>
@@ -158,66 +158,66 @@ const PricingPage = () => {
       <PricingCards plans={plans} />
 
       {/* Features Comparison */}
-      <section className="py-20 bg-slate-50 relative overflow-hidden">
+      <section className="py-20 bg-muted/30 relative overflow-hidden">
         {/* Subtle background effects */}
-        <div className="absolute top-16 right-16 w-40 h-40 bg-gradient-to-br from-blue-200/30 to-purple-200/30 rounded-full blur-3xl" />
-        <div className="absolute bottom-16 left-16 w-32 h-32 bg-gradient-to-br from-pink-200/30 to-yellow-200/30 rounded-full blur-2xl" />
+        <div className="absolute top-16 right-16 w-40 h-40 bg-gradient-to-br from-primary/20 to-purple-500/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-16 left-16 w-32 h-32 bg-gradient-to-br from-pink-500/20 to-yellow-500/20 rounded-full blur-2xl" />
         <MaxWidthWrapper>
           <div className="text-center space-y-4 mb-16">
-            <h2 className="text-3xl font-bold text-slate-900">Plan Karşılaştırması</h2>
-            <p className="text-slate-600">
+            <h2 className="text-3xl font-bold text-foreground">Plan Karşılaştırması</h2>
+            <p className="text-muted-foreground">
               Hangi planın size en uygun olduğunu görmek için detaylı karşılaştırma
             </p>
           </div>
 
-          <Card className="border-2 border-b-4 border-slate-200 border-b-slate-300 bg-white">
+          <Card className="border-2 border-b-4 border-border border-b-muted-foreground bg-card">
             <CardContent className="p-8">
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead>
-                    <tr className="border-b">
-                      <th className="text-left py-4 font-semibold text-slate-900">Özellik</th>
-                      <th className="text-center py-4 font-semibold text-slate-900">Başlangıç</th>
-                      <th className="text-center py-4 font-semibold text-slate-900">Pro</th>
-                      <th className="text-center py-4 font-semibold text-slate-900">Ekip</th>
+                    <tr className="border-b border-border">
+                      <th className="text-left py-4 font-semibold text-foreground">Özellik</th>
+                      <th className="text-center py-4 font-semibold text-foreground">Başlangıç</th>
+                      <th className="text-center py-4 font-semibold text-foreground">Pro</th>
+                      <th className="text-center py-4 font-semibold text-foreground">Ekip</th>
                     </tr>
                   </thead>
                   <tbody className="text-sm">
-                    <tr className="border-b">
-                      <td className="py-4 text-slate-700">AI Chat Mesajı</td>
+                    <tr className="border-b border-border">
+                      <td className="py-4 text-muted-foreground">AI Chat Mesajı</td>
                       <td className="text-center py-4">10/gün</td>
                       <td className="text-center py-4">Sınırsız</td>
                       <td className="text-center py-4">Sınırsız</td>
                     </tr>
-                    <tr className="border-b">
-                      <td className="py-4 text-slate-700">Not Sayfası</td>
-                      <td className="text-center py-4">5</td>
-                      <td className="text-center py-4">Sınırsız</td>
-                      <td className="text-center py-4">Sınırsız</td>
+                    <tr className="border-b border-border">
+                      <td className="py-4 text-muted-foreground">Not Sayfası</td>
+                      <td className="text-center py-4 text-muted-foreground">5</td>
+                      <td className="text-center py-4 text-muted-foreground">Sınırsız</td>
+                      <td className="text-center py-4 text-muted-foreground">Sınırsız</td>
                     </tr>
-                    <tr className="border-b">
-                      <td className="py-4 text-slate-700">PDF Upload</td>
-                      <td className="text-center py-4">❌</td>
-                      <td className="text-center py-4">✅</td>
-                      <td className="text-center py-4">✅</td>
+                    <tr className="border-b border-border">
+                      <td className="py-4 text-muted-foreground">PDF Upload</td>
+                      <td className="text-center py-4 text-muted-foreground">❌</td>
+                      <td className="text-center py-4 text-muted-foreground">✅</td>
+                      <td className="text-center py-4 text-muted-foreground">✅</td>
                     </tr>
-                    <tr className="border-b">
-                      <td className="py-4 text-slate-700">Mobil App</td>
-                      <td className="text-center py-4">❌</td>
-                      <td className="text-center py-4">✅</td>
-                      <td className="text-center py-4">✅</td>
+                    <tr className="border-b border-border">
+                      <td className="py-4 text-muted-foreground">Mobil App</td>
+                      <td className="text-center py-4 text-muted-foreground">❌</td>
+                      <td className="text-center py-4 text-muted-foreground">✅</td>
+                      <td className="text-center py-4 text-muted-foreground">✅</td>
                     </tr>
-                    <tr className="border-b">
-                      <td className="py-4 text-slate-700">Ekip Özellikleri</td>
-                      <td className="text-center py-4">❌</td>
-                      <td className="text-center py-4">❌</td>
-                      <td className="text-center py-4">✅</td>
+                    <tr className="border-b border-border">
+                      <td className="py-4 text-muted-foreground">Ekip Özellikleri</td>
+                      <td className="text-center py-4 text-muted-foreground">❌</td>
+                      <td className="text-center py-4 text-muted-foreground">❌</td>
+                      <td className="text-center py-4 text-muted-foreground">✅</td>
                     </tr>
                     <tr>
-                      <td className="py-4 text-slate-700">Destek</td>
-                      <td className="text-center py-4">Topluluk</td>
-                      <td className="text-center py-4">Email</td>
-                      <td className="text-center py-4">Öncelikli</td>
+                      <td className="py-4 text-muted-foreground">Destek</td>
+                      <td className="text-center py-4 text-muted-foreground">Topluluk</td>
+                      <td className="text-center py-4 text-muted-foreground">Email</td>
+                      <td className="text-center py-4 text-muted-foreground">Öncelikli</td>
                     </tr>
                   </tbody>
                 </table>
@@ -236,7 +236,7 @@ const PricingPage = () => {
                 <HelpCircle className="h-4 w-4 mr-2" />
                 Sıkça Sorulan Sorular
               </Badge>
-              <h2 className="text-3xl font-bold text-slate-900">Fiyatlandırma Hakkında</h2>
+              <h2 className="text-3xl font-bold text-foreground">Fiyatlandırma Hakkında</h2>
             </div>
 
             <div className="space-y-4">
@@ -244,14 +244,14 @@ const PricingPage = () => {
                 {faqs.map((faq, index) => (
                   <AccordionItem
                     key={index}
-                    className="border-2 border-b-4 border-slate-200 border-b-slate-300 bg-white rounded-lg mb-4 hover:border-b-slate-400 hover:-translate-y-0.5 transition-all duration-300 hover:shadow-lg"
+                    className="border-2 border-b-4 border-border border-b-muted-foreground bg-card rounded-lg mb-4 hover:border-b-foreground hover:-translate-y-0.5 transition-all duration-300 hover:shadow-lg"
                     value={`item-${index}`}
                   >
                     <AccordionTrigger className="px-6 py-4 text-left hover:no-underline">
-                      <span className="text-lg font-semibold text-slate-900">{faq.question}</span>
+                      <span className="text-lg font-semibold text-foreground">{faq.question}</span>
                     </AccordionTrigger>
                     <AccordionContent className="px-6 pb-4">
-                      <p className="text-slate-600 leading-relaxed">{faq.answer}</p>
+                      <p className="text-muted-foreground leading-relaxed">{faq.answer}</p>
                     </AccordionContent>
                   </AccordionItem>
                 ))}
@@ -259,7 +259,7 @@ const PricingPage = () => {
             </div>
 
             <div className="text-center mt-12">
-              <p className="text-slate-600 mb-4">Başka sorularınız mı var?</p>
+              <p className="text-muted-foreground mb-4">Başka sorularınız mı var?</p>
               <Button variant="outline">İletişime Geçin</Button>
             </div>
           </div>
@@ -271,7 +271,7 @@ const PricingPage = () => {
         <MaxWidthWrapper>
           <div className="text-center space-y-6 text-white">
             <h2 className="text-3xl font-bold">Tıp Eğitiminizi Dönüştürmeye Hazır mısınız?</h2>
-            <p className="text-blue-100 max-w-2xl mx-auto">
+            <p className="text-primary-foreground/80 max-w-2xl mx-auto">
               Ücretsiz planla başlayın, özelliklerimizi keşfedin ve ihtiyacınıza uygun plana geçin.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

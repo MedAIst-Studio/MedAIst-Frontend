@@ -67,17 +67,20 @@ const HowItWorksSection = () => {
   ];
 
   return (
-    <section className="py-24 sm:py-32 bg-gradient-to-b from-white to-slate-50" id="how-it-works">
+    <section
+      className="py-24 sm:py-32 bg-gradient-to-b from-background to-muted/30"
+      id="how-it-works"
+    >
       <MaxWidthWrapper>
         {/* Header */}
         <div className="text-center space-y-6 mb-20">
           <Badge className="px-4 py-2 text-primary border-primary/30 bg-primary/10 shadow-sm font-medium">
             Nasıl Çalışır
           </Badge>
-          <h2 className="text-4xl lg:text-5xl font-bold tracking-tight text-slate-900">
+          <h2 className="text-4xl lg:text-5xl font-bold tracking-tight text-foreground">
             <span className="text-primary">3 Basit Adımda</span> Başlayın
           </h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             MedAIst platformunu kullanarak tıp eğitiminizi nasıl dönüştürebileceğinizi keşfedin. Her
             adım başarınıza bir adım daha yaklaştırır.
           </p>
@@ -99,7 +102,7 @@ const HowItWorksSection = () => {
                       : step.color === "purple"
                         ? "border-purple-500 shadow-purple-100"
                         : "border-green-500 shadow-green-100"
-                    : "border-slate-200 hover:border-slate-300"
+                    : "border-border hover:border-muted-foreground"
                 } ${isActive ? "scale-105" : ""}`}
                 onClick={() => setActiveStep(step.id)}
               >
@@ -132,8 +135,8 @@ const HowItWorksSection = () => {
 
                   {/* Content */}
                   <div className="space-y-4">
-                    <h3 className="text-xl font-bold text-slate-900">{step.title}</h3>
-                    <p className="text-slate-600 leading-relaxed">{step.description}</p>
+                    <h3 className="text-xl font-bold text-foreground">{step.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed">{step.description}</p>
 
                     {/* Features List */}
                     <div className="space-y-2">
@@ -158,7 +161,7 @@ const HowItWorksSection = () => {
                               }`}
                             />
                           </div>
-                          <span className="text-sm text-slate-600">{detail}</span>
+                          <span className="text-sm text-muted-foreground">{detail}</span>
                         </div>
                       ))}
                     </div>
@@ -186,41 +189,45 @@ const HowItWorksSection = () => {
 
         {/* Dynamic Mockup Section */}
         <div className="relative">
-          <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-12 lg:p-16 shadow-2xl">
+          <div className="bg-gradient-to-br from-primary to-primary/80 rounded-3xl p-12 lg:p-16 shadow-2xl">
             {/* Header */}
             <div className="text-center mb-12">
-              <h3 className="text-2xl lg:text-3xl font-bold text-white mb-4">
+              <h3 className="text-2xl lg:text-3xl font-bold text-primary-foreground mb-4">
                 {steps.find((s) => s.id === activeStep)?.title} - Canlı Önizleme
               </h3>
-              <p className="text-slate-300 text-lg">Gerçek platform deneyimini keşfedin</p>
+              <p className="text-primary-foreground/80 text-lg">
+                Gerçek platform deneyimini keşfedin
+              </p>
             </div>
 
             {/* Mockup Browser Window */}
-            <div className="bg-slate-100 rounded-2xl p-2 shadow-2xl">
+            <div className="bg-muted/20 rounded-2xl p-2 shadow-2xl">
               {/* Browser Header */}
-              <div className="flex items-center gap-3 px-4 py-3 bg-white rounded-t-xl border-b border-slate-200">
+              <div className="flex items-center gap-3 px-4 py-3 bg-card rounded-t-xl border-b border-border">
                 <div className="flex gap-2">
                   <div className="w-3 h-3 bg-red-400 rounded-full" />
                   <div className="w-3 h-3 bg-yellow-400 rounded-full" />
                   <div className="w-3 h-3 bg-green-400 rounded-full" />
                 </div>
                 <div className="flex-1 flex justify-center">
-                  <div className="bg-slate-100 rounded-lg px-4 py-1.5 text-sm text-slate-600 max-w-xs">
+                  <div className="bg-muted rounded-lg px-4 py-1.5 text-sm text-muted-foreground max-w-xs">
                     🔒 medaist.com/dashboard
                   </div>
                 </div>
               </div>
 
               {/* Dynamic Content Based on Active Step */}
-              <div className="bg-white rounded-b-xl min-h-[400px] relative overflow-hidden">
+              <div className="bg-card rounded-b-xl min-h-[400px] relative overflow-hidden">
                 {activeStep === 1 && (
                   <div className="p-8 space-y-6">
                     <div className="text-center">
                       <div className="h-20 w-20 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
                         <Upload className="h-10 w-10 text-blue-600" />
                       </div>
-                      <h4 className="text-xl font-semibold text-slate-900 mb-2">Dosya Yükleme</h4>
-                      <p className="text-slate-600">Sürükle-bırak ile dosyalarınızı yükleyin</p>
+                      <h4 className="text-xl font-semibold text-foreground mb-2">Dosya Yükleme</h4>
+                      <p className="text-muted-foreground">
+                        Sürükle-bırak ile dosyalarınızı yükleyin
+                      </p>
                     </div>
                     <div className="border-2 border-dashed border-blue-300 rounded-xl p-8 bg-blue-50">
                       <div className="text-center space-y-3">
@@ -241,12 +248,12 @@ const HowItWorksSection = () => {
                         <div className="h-10 w-10 bg-purple-100 rounded-full flex items-center justify-center">
                           <Bot className="h-6 w-6 text-purple-600" />
                         </div>
-                        <h4 className="text-xl font-semibold text-slate-900">AI Asistan</h4>
+                        <h4 className="text-xl font-semibold text-foreground">AI Asistan</h4>
                       </div>
 
                       <div className="space-y-4">
-                        <div className="bg-slate-50 rounded-xl p-4 max-w-sm">
-                          <p className="text-slate-700">
+                        <div className="bg-muted/30 rounded-xl p-4 max-w-sm">
+                          <p className="text-foreground">
                             Kalp yetmezliği hakkında soru sormak istiyorum
                           </p>
                         </div>
@@ -254,7 +261,7 @@ const HowItWorksSection = () => {
                           <div className="flex items-start gap-3">
                             <Bot className="h-5 w-5 text-purple-600 mt-0.5" />
                             <div>
-                              <p className="text-slate-700 mb-2">
+                              <p className="text-foreground mb-2">
                                 Kalp yetmezliği ile ilgili hangi konuyu detaylandırmak istersiniz?
                               </p>
                               <div className="flex gap-2">
@@ -279,30 +286,30 @@ const HowItWorksSection = () => {
                       <div className="h-10 w-10 bg-green-100 rounded-full flex items-center justify-center">
                         <TrendingUp className="h-6 w-6 text-green-600" />
                       </div>
-                      <h4 className="text-xl font-semibold text-slate-900">İlerleme Takibi</h4>
+                      <h4 className="text-xl font-semibold text-foreground">İlerleme Takibi</h4>
                     </div>
 
                     <div className="grid grid-cols-2 gap-6">
                       <div className="bg-green-50 rounded-xl p-4">
                         <div className="text-center">
                           <div className="text-2xl font-bold text-green-600 mb-1">85%</div>
-                          <div className="text-sm text-slate-600">Başarı Oranı</div>
+                          <div className="text-sm text-muted-foreground">Başarı Oranı</div>
                         </div>
                       </div>
                       <div className="bg-blue-50 rounded-xl p-4">
                         <div className="text-center">
                           <div className="text-2xl font-bold text-blue-600 mb-1">247</div>
-                          <div className="text-sm text-slate-600">Çözülen Soru</div>
+                          <div className="text-sm text-muted-foreground">Çözülen Soru</div>
                         </div>
                       </div>
                     </div>
 
                     <div className="mt-6 space-y-3">
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-slate-600">Kardiyoloji</span>
-                        <span className="text-sm font-medium text-slate-900">92%</span>
+                        <span className="text-sm text-muted-foreground">Kardiyoloji</span>
+                        <span className="text-sm font-medium text-foreground">92%</span>
                       </div>
-                      <div className="w-full bg-slate-200 rounded-full h-2">
+                      <div className="w-full bg-muted rounded-full h-2">
                         <div className="bg-green-500 h-2 rounded-full" style={{width: "92%"}} />
                       </div>
                     </div>
@@ -324,10 +331,10 @@ const HowItWorksSection = () => {
         {/* CTA Section */}
         <div className="text-center mt-20">
           <div className="space-y-6">
-            <h3 className="text-2xl lg:text-3xl font-bold text-slate-900">
+            <h3 className="text-2xl lg:text-3xl font-bold text-foreground">
               Hemen Başlamaya Hazır mısınız?
             </h3>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Binlerce tıp öğrencisinin tercih ettiği platform ile akademik başarınızı artırın
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">

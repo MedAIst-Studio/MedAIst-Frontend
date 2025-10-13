@@ -66,17 +66,17 @@ const FAQSection = () => {
   ];
 
   return (
-    <section className="py-24 sm:py-32 bg-white" id="faq">
+    <section className="py-24 sm:py-32 bg-background" id="faq">
       <MaxWidthWrapper>
         <div className="text-center space-y-4 mb-16">
           <Badge className="px-4 py-2 text-blue-600 border-blue-200 bg-blue-50" variant="outline">
             <HelpCircle className="h-4 w-4 mr-2" />
             Sıkça Sorulan Sorular
           </Badge>
-          <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
             Merak Ettikleriniz
           </h2>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             MedAIst hakkında en çok sorulan soruların yanıtları burada
           </p>
         </div>
@@ -86,16 +86,16 @@ const FAQSection = () => {
             {faqs.map((faq) => (
               <AccordionItem
                 key={faq.id}
-                className="bg-white rounded-xl border-2 border-b-4 border-b-slate-200 px-6 py-2 hover:shadow-sm transition-all duration-300 hover:border-b-slate-300 transform hover:-translate-y-0.5 cursor-pointer"
+                className="bg-card rounded-xl border-2 border-b-4 border-b-border px-6 py-2 hover:shadow-sm transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer"
                 value={faq.id}
               >
                 <AccordionTrigger className="py-6 hover:no-underline group text-left">
-                  <span className="text-lg font-semibold text-slate-900 group-hover:text-blue-600 transition-colors">
+                  <span className="text-lg font-semibold text-foreground group-hover:text-blue-600 transition-colors">
                     {faq.question}
                   </span>
                 </AccordionTrigger>
                 <AccordionContent className="pb-6">
-                  <p className="text-slate-600 leading-relaxed">{faq.answer}</p>
+                  <p className="text-muted-foreground leading-relaxed">{faq.answer}</p>
                 </AccordionContent>
               </AccordionItem>
             ))}
@@ -104,9 +104,9 @@ const FAQSection = () => {
 
         {/* Additional Help */}
         <div className="mt-16 text-center">
-          <div className="bg-slate-50 rounded-2xl p-8">
-            <h3 className="text-xl font-semibold text-slate-900 mb-4">Cevabını bulamadın mı?</h3>
-            <p className="text-slate-600 mb-6">
+          <div className="bg-muted/30 rounded-2xl p-8">
+            <h3 className="text-xl font-semibold text-foreground mb-4">Cevabını bulamadın mı?</h3>
+            <p className="text-muted-foreground mb-6">
               Destek ekibimiz size yardımcı olmaktan mutluluk duyar
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
