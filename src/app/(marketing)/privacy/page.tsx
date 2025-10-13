@@ -52,7 +52,7 @@ const PrivacyPage = () => {
           <div className="max-w-4xl mx-auto space-y-8">
             {/* Overview Cards */}
             <div className="grid md:grid-cols-3 gap-6 mb-12">
-              <Card className="border-2 border-b-4 border-border border-b-muted-foreground hover:border-b-foreground hover:-translate-y-0.5 transition-all duration-300">
+              <Card>
                 <CardHeader className="text-center">
                   <Lock className="h-8 w-8 mx-auto text-primary mb-2" />
                   <CardTitle className="text-lg">Güvenli Depolama</CardTitle>
@@ -64,7 +64,7 @@ const PrivacyPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-border border-b-muted-foreground hover:border-b-foreground hover:-translate-y-0.5 transition-all duration-300">
+              <Card>
                 <CardHeader className="text-center">
                   <Eye className="h-8 w-8 mx-auto text-primary mb-2" />
                   <CardTitle className="text-lg">Şeffaflık</CardTitle>
@@ -76,7 +76,7 @@ const PrivacyPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-border border-b-muted-foreground hover:border-b-foreground hover:-translate-y-0.5 transition-all duration-300">
+              <Card>
                 <CardHeader className="text-center">
                   <FileText className="h-8 w-8 mx-auto text-primary mb-2" />
                   <CardTitle className="text-lg">Kullanıcı Hakları</CardTitle>
@@ -90,8 +90,8 @@ const PrivacyPage = () => {
             </div>
 
             {/* Main Content */}
-            <div className="prose max-w-none">
-              <Card className="border-2 border-b-4 border-border border-b-muted-foreground mb-8">
+            <div className="prose max-w-none flex flex-col gap-10">
+              <Card>
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold text-foreground mb-4">1. Giriş</h2>
                   <p className="text-muted-foreground leading-relaxed mb-4">
@@ -107,7 +107,7 @@ const PrivacyPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-border border-b-muted-foreground mb-8">
+              <Card>
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold text-foreground mb-4">
                     2. Topladığımız Bilgiler
@@ -145,7 +145,7 @@ const PrivacyPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-border border-b-muted-foreground mb-8">
+              <Card>
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold text-foreground mb-4">
                     3. Bilgilerin Kullanım Amaçları
@@ -189,7 +189,7 @@ const PrivacyPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-border border-b-muted-foreground mb-8">
+              <Card>
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold text-foreground mb-4">4. Veri Paylaşımı</h2>
 
@@ -222,7 +222,7 @@ const PrivacyPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-border border-b-muted-foreground mb-8">
+              <Card>
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold text-foreground mb-4">5. Veri Güvenliği</h2>
 
@@ -252,7 +252,7 @@ const PrivacyPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-border border-b-muted-foreground mb-8">
+              <Card>
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold text-foreground mb-4">6. Kullanıcı Hakları</h2>
 
@@ -308,7 +308,7 @@ const PrivacyPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-border border-b-muted-foreground mb-8">
+              <Card>
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold text-foreground mb-4">7. Çerezler</h2>
 
@@ -343,7 +343,7 @@ const PrivacyPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-border border-b-muted-foreground mb-8">
+              <Card>
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold text-foreground mb-4">
                     8. Veri Saklama Süreleri
@@ -373,7 +373,7 @@ const PrivacyPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-border border-b-muted-foreground mb-8">
+              <Card>
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold text-foreground mb-4">9. Değişiklikler</h2>
 
@@ -391,7 +391,7 @@ const PrivacyPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-border border-b-muted-foreground">
+              <Card>
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold text-foreground mb-4">10. İletişim</h2>
 

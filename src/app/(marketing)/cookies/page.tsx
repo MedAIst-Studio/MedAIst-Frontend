@@ -51,7 +51,7 @@ const CookiesPage = () => {
           <div className="max-w-4xl mx-auto space-y-8">
             {/* Overview Cards */}
             <div className="grid md:grid-cols-4 gap-6 mb-12">
-              <Card className="border-2 border-b-4 border-border border-b-muted-foreground hover:border-b-foreground hover:-translate-y-0.5 transition-all duration-300">
+              <Card>
                 <CardHeader className="text-center pb-3">
                   <Cookie className="h-6 w-6 mx-auto text-primary mb-2" />
                   <CardTitle className="text-sm">Zorunlu Çerezler</CardTitle>
@@ -63,7 +63,7 @@ const CookiesPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-border border-b-muted-foreground hover:border-b-foreground hover:-translate-y-0.5 transition-all duration-300">
+              <Card>
                 <CardHeader className="text-center pb-3">
                   <BarChart3 className="h-6 w-6 mx-auto text-primary mb-2" />
                   <CardTitle className="text-sm">Analitik Çerezler</CardTitle>
@@ -75,7 +75,7 @@ const CookiesPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-border border-b-muted-foreground hover:border-b-foreground hover:-translate-y-0.5 transition-all duration-300">
+              <Card>
                 <CardHeader className="text-center pb-3">
                   <Settings className="h-6 w-6 mx-auto text-primary mb-2" />
                   <CardTitle className="text-sm">Fonksiyonel Çerezler</CardTitle>
@@ -87,7 +87,7 @@ const CookiesPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-border border-b-muted-foreground hover:border-b-foreground hover:-translate-y-0.5 transition-all duration-300">
+              <Card>
                 <CardHeader className="text-center pb-3">
                   <Shield className="h-6 w-6 mx-auto text-primary mb-2" />
                   <CardTitle className="text-sm">Pazarlama Çerezleri</CardTitle>
@@ -101,8 +101,8 @@ const CookiesPage = () => {
             </div>
 
             {/* Main Content */}
-            <div className="prose max-w-none">
-              <Card className="border-2 border-b-4 border-border border-b-muted-foreground mb-8">
+            <div className="prose max-w-none flex flex-col gap-10">
+              <Card>
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold text-foreground mb-4">1. Çerez Nedir?</h2>
 
@@ -146,7 +146,7 @@ const CookiesPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-border border-b-muted-foreground mb-8">
+              <Card>
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold text-foreground mb-4">
                     2. Kullandığımız Çerez Türleri
@@ -356,7 +356,7 @@ const CookiesPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-border border-b-muted-foreground mb-8">
+              <Card>
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold text-foreground mb-4">
                     3. Çerez Ayarlarınızı Yönetme
@@ -427,7 +427,7 @@ const CookiesPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-border border-b-muted-foreground mb-8">
+              <Card>
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold text-foreground mb-4">
                     4. Üçüncü Taraf Çerezleri
@@ -500,7 +500,7 @@ const CookiesPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-border border-b-muted-foreground mb-8">
+              <Card>
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold text-foreground mb-4">
                     5. Çerez Yaşam Süreleri
@@ -560,7 +560,7 @@ const CookiesPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-border border-b-muted-foreground mb-8">
+              <Card>
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold text-foreground mb-4">6. Yasal Haklarınız</h2>
 
@@ -618,7 +618,7 @@ const CookiesPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-border border-b-muted-foreground mb-8">
+              <Card>
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold text-foreground mb-4">7. Güncellemeler</h2>
 
@@ -650,7 +650,7 @@ const CookiesPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-border border-b-muted-foreground">
+              <Card>
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold text-foreground mb-4">8. İletişim</h2>
 

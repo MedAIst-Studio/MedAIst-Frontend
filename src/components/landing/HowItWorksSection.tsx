@@ -56,7 +56,7 @@ const HowItWorksSection = () => {
   ];
 
   return (
-    <section ref={ref} className="py-24 sm:py-32 bg-background">
+    <section ref={ref} className="py-24 sm:py-32 bg-background" id="howitworks">
       <MaxWidthWrapper>
         <motion.div
           animate={isInView ? {opacity: 1, y: 0} : {}}

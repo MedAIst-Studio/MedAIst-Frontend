@@ -51,7 +51,7 @@ const KVKKPage = () => {
           <div className="max-w-4xl mx-auto space-y-8">
             {/* Overview Cards */}
             <div className="grid md:grid-cols-4 gap-6 mb-12">
-              <Card className="border-2 border-b-4 border-border border-b-muted-foreground hover:border-b-foreground hover:-translate-y-0.5 transition-all duration-300">
+              <Card>
                 <CardHeader className="text-center pb-3">
                   <FileText className="h-6 w-6 mx-auto text-primary mb-2" />
                   <CardTitle className="text-sm">Veri Türleri</CardTitle>
@@ -63,7 +63,7 @@ const KVKKPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-border border-b-muted-foreground hover:border-b-foreground hover:-translate-y-0.5 transition-all duration-300">
+              <Card>
                 <CardHeader className="text-center pb-3">
                   <Users className="h-6 w-6 mx-auto text-primary mb-2" />
                   <CardTitle className="text-sm">İşleme Amaçları</CardTitle>
@@ -75,7 +75,7 @@ const KVKKPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-border border-b-muted-foreground hover:border-b-foreground hover:-translate-y-0.5 transition-all duration-300">
+              <Card>
                 <CardHeader className="text-center pb-3">
                   <Shield className="h-6 w-6 mx-auto text-primary mb-2" />
                   <CardTitle className="text-sm">Hukuki Dayanaklar</CardTitle>
@@ -87,7 +87,7 @@ const KVKKPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-border border-b-muted-foreground hover:border-b-foreground hover:-translate-y-0.5 transition-all duration-300">
+              <Card>
                 <CardHeader className="text-center pb-3">
                   <AlertCircle className="h-6 w-6 mx-auto text-primary mb-2" />
                   <CardTitle className="text-sm">Veri Güvenliği</CardTitle>
@@ -101,8 +101,8 @@ const KVKKPage = () => {
             </div>
 
             {/* Main Content */}
-            <div className="prose max-w-none">
-              <Card className="border-2 border-b-4 border-border border-b-muted-foreground mb-8">
+            <div className="prose max-w-none flex flex-col gap-10">
+              <Card>
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold text-foreground mb-4">1. Veri Sorumlusu</h2>
 
@@ -132,7 +132,7 @@ const KVKKPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-border border-b-muted-foreground mb-8">
+              <Card>
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold text-foreground mb-4">
                     2. Kişisel Verilerin Toplanma Yöntemi
@@ -166,7 +166,7 @@ const KVKKPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-border border-b-muted-foreground mb-8">
+              <Card>
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold text-foreground mb-4">
                     3. İşlenen Kişisel Veri Türleri
@@ -261,7 +261,7 @@ const KVKKPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-border border-b-muted-foreground mb-8">
+              <Card>
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold text-foreground mb-4">
                     4. Kişisel Verilerin İşlenme Amaçları
@@ -315,7 +315,7 @@ const KVKKPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-border border-b-muted-foreground mb-8">
+              <Card>
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold text-foreground mb-4">
                     5. Kişisel Verilerin İşlenme Hukuki Sebepleri
@@ -389,7 +389,7 @@ const KVKKPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-border border-b-muted-foreground mb-8">
+              <Card>
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold text-foreground mb-4">
                     6. Kişisel Verilerin Aktarılması
@@ -443,7 +443,7 @@ const KVKKPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-border border-b-muted-foreground mb-8">
+              <Card>
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold text-foreground mb-4">
                     7. Kişisel Veri Sahibinin Hakları
@@ -529,7 +529,7 @@ const KVKKPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-border border-b-muted-foreground mb-8">
+              <Card>
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold text-foreground mb-4">8. Başvuru Yöntemleri</h2>
 
@@ -601,7 +601,7 @@ const KVKKPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-border border-b-muted-foreground mb-8">
+              <Card>
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold text-foreground mb-4">9. Veri Güvenliği</h2>
 
@@ -653,7 +653,7 @@ const KVKKPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-b-4 border-border border-b-muted-foreground">
+              <Card>
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold text-foreground mb-4">
                     10. İletişim Bilgileri

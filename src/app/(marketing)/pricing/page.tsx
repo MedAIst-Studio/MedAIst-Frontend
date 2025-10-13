@@ -159,9 +159,6 @@ const PricingPage = () => {
 
       {/* Features Comparison */}
       <section className="py-20 bg-muted/30 relative overflow-hidden">
-        {/* Subtle background effects */}
-        <div className="absolute top-16 right-16 w-40 h-40 bg-gradient-to-br from-primary/20 to-purple-500/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-16 left-16 w-32 h-32 bg-gradient-to-br from-pink-500/20 to-yellow-500/20 rounded-full blur-2xl" />
         <MaxWidthWrapper>
           <div className="text-center space-y-4 mb-16">
             <h2 className="text-3xl font-bold text-foreground">Plan Karşılaştırması</h2>
@@ -170,7 +167,7 @@ const PricingPage = () => {
             </p>
           </div>
 
-          <Card className="border-2 border-b-4 border-border border-b-muted-foreground bg-card">
+          <Card>
             <CardContent className="p-8">
               <div className="overflow-x-auto">
                 <table className="w-full">
@@ -244,7 +241,7 @@ const PricingPage = () => {
                 {faqs.map((faq, index) => (
                   <AccordionItem
                     key={index}
-                    className="border-2 border-b-4 border-border border-b-muted-foreground bg-card rounded-lg mb-4 hover:border-b-foreground hover:-translate-y-0.5 transition-all duration-300 hover:shadow-lg"
+                    className="border-2 border-b-4 border-border bg-card rounded-lg mb-4 hover:-translate-y-0.5 transition-all duration-300"
                     value={`item-${index}`}
                   >
                     <AccordionTrigger className="px-6 py-4 text-left hover:no-underline">
@@ -269,8 +266,10 @@ const PricingPage = () => {
       {/* CTA */}
       <section className="py-20 bg-primary">
         <MaxWidthWrapper>
-          <div className="text-center space-y-6 text-white">
-            <h2 className="text-3xl font-bold">Tıp Eğitiminizi Dönüştürmeye Hazır mısınız?</h2>
+          <div className="text-center space-y-6 ">
+            <h2 className="text-3xl font-bold text-primary-foreground">
+              Tıp Eğitiminizi Dönüştürmeye Hazır mısınız?
+            </h2>
             <p className="text-primary-foreground/80 max-w-2xl mx-auto">
               Ücretsiz planla başlayın, özelliklerimizi keşfedin ve ihtiyacınıza uygun plana geçin.
             </p>

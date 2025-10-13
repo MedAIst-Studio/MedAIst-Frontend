@@ -81,7 +81,7 @@ const ProblemSolutionSection = () => {
   ];
 
   return (
-    <section ref={ref} className="py-24 sm:py-32 bg-muted/20">
+    <section ref={ref} className="py-24 sm:py-32 bg-muted/20" id="features">
       <MaxWidthWrapper>
         <motion.div
           animate={isInView ? {opacity: 1, y: 0} : {}}
