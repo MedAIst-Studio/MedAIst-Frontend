@@ -65,6 +65,7 @@ export const useUploadFile = () => {
     onError: (error: Error) => {
       toast.error(error.message || "Dosya yükleme başarısız");
     },
+    retry: 1,
   });
 };
 

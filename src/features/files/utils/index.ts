@@ -1,5 +1,8 @@
 import {Note} from "../types";
 
+// Re-export file validation utilities
+export * from "./fileValidation";
+
 export const subjects = ["all", "Cardiology", "Neurology", "Pharmacology", "Anatomy", "Pathology"];
 
 export const mockNotes: Note[] = [

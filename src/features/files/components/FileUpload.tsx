@@ -2,29 +2,59 @@ import type {FileUploadProgress} from "../types";
 
 import {Plus, Upload} from "lucide-react";
 import {useState} from "react";
+import {toast} from "sonner";
 
 import {Button} from "@/components/ui/button";
+
+import {FILE_COUNT_LIMITS, FILE_SIZE_LIMITS} from "../constants";
+import {formatFileSize, validateFiles} from "../utils";
 
 interface FileUploadProps {
   onFileSelect: (files: FileList) => void;
   acceptedTypes?: string;
   multiple?: boolean;
   isUploading?: boolean;
+  maxFileSize?: number; // in bytes, default 10MB
+  maxFiles?: number;
 }
 
 export const FileUpload = ({
   onFileSelect,
-  acceptedTypes = ".pdf,.doc,.docx,.txt,.md",
+  acceptedTypes = ".pdf",
   multiple = true,
   isUploading = false,
+  maxFileSize = FILE_SIZE_LIMITS.MAX,
+  maxFiles = FILE_COUNT_LIMITS.MAX,
 }: FileUploadProps) => {
   const [dragOver, setDragOver] = useState(false);
+
+  const handleFileValidation = (files: FileList): boolean => {
+    const acceptedTypesArray = acceptedTypes.split(",").map((type) => type.trim());
+
+    const validation = validateFiles(files, {
+      maxFileSize,
+      maxFiles,
+      acceptedTypes: acceptedTypesArray,
+    });
+
+    if (!validation.isValid) {
+      toast.error("Dosya Hatası", {
+        description: validation.error,
+      });
+
+      return false;
+    }
+
+    return true;
+  };
 
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
 
     if (files && files.length > 0) {
-      onFileSelect(files);
+      if (handleFileValidation(files)) {
+        onFileSelect(files);
+      }
       event.target.value = ""; // Reset input
     }
   };
@@ -45,7 +75,9 @@ export const FileUpload = ({
     const files = e.dataTransfer.files;
 
     if (files && files.length > 0) {
-      onFileSelect(files);
+      if (handleFileValidation(files)) {
+        onFileSelect(files);
+      }
     }
   };
 
@@ -84,9 +116,7 @@ export const FileUpload = ({
             {isUploading ? "Dosyalar yükleniyor..." : "Dosyalarınızı yükleyin"}
           </h3>
           <p className="text-muted-foreground mb-4">
-            {dragOver
-              ? "Dosyaları buraya bırakın"
-              : "PDF, Word, TXT veya Markdown dosyalarını sürükleyip bırakın"}
+            {dragOver ? "Dosyaları buraya bırakın" : "PDF dosyalarını sürükleyip bırakın"}
           </p>
         </div>
 
@@ -106,9 +136,15 @@ export const FileUpload = ({
           </label>
         </Button>
 
-        <p className="text-xs text-muted-foreground">
-          Desteklenen formatlar: PDF, DOC, DOCX, TXT, MD • Maksimum 10MB
-        </p>
+        <div className="space-y-1">
+          <p className="text-xs text-muted-foreground">
+            Desteklenen formatlar: {acceptedTypes.split(",").join(", ").toUpperCase()} • Maksimum{" "}
+            {formatFileSize(maxFileSize)}
+          </p>
+          <p className="text-xs text-muted-foreground">
+            Maksimum {maxFiles} dosya • Dosya boyutuna göre işlenme süresi değişebilir
+          </p>
+        </div>
       </div>
     </div>
   );

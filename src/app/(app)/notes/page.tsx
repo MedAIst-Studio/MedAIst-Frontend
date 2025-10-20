@@ -80,7 +80,7 @@ export default function PDFChatPage() {
               </div>
               <h3 className="text-lg font-semibold mb-2">Henüz döküman yüklemediniz</h3>
               <p className="text-slate-600 mb-6">
-                PDF, Word veya metin dosyalarınızı yükleyerek AI ile sohbet etmeye başlayın
+                PDF dosyalarınızı yükleyerek AI ile sohbet etmeye başlayın
               </p>
               <Button asChild>
                 <label className="cursor-pointer" htmlFor="file-upload">
