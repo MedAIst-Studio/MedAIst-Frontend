@@ -1,6 +1,6 @@
 "use client";
 
-import type {Document} from "@/features/notes/types";
+import type {Document} from "@/features/files/types";
 
 import {Search, Upload} from "lucide-react";
 import {useState} from "react";
@@ -13,8 +13,8 @@ import {
   DocumentCard,
   FileProgressDisplay,
   FileUploadComponent,
-} from "@/features/notes/components";
-import {useChat, useDocumentUpload, useDocuments} from "@/features/notes/hooks";
+} from "@/features/files/components";
+import {useChat, useDocumentUpload, useDocuments} from "@/features/files/hooks";
 
 export default function PDFChatPage() {
   const [searchQuery, setSearchQuery] = useState("");

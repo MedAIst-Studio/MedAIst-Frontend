@@ -1,6 +1,6 @@
 "use client";
 
-import {ArrowRight, BookOpen, Brain, CheckCircle, FileText, Upload} from "lucide-react";
+import {ArrowRight, Brain, CheckCircle, FileText, Upload} from "lucide-react";
 import {useRouter} from "next/navigation";
 import {useState} from "react";
 
@@ -8,8 +8,8 @@ import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
 import {Badge} from "@/components/ui/badge";
 import {Button} from "@/components/ui/button";
 import {Card, CardContent} from "@/components/ui/card";
-import {FileProgressDisplay, FileUploadComponent} from "@/features/notes/components";
-import {useDocumentUpload} from "@/features/notes/hooks";
+import {FileProgressDisplay, FileUploadComponent} from "@/features/files/components";
+import {useDocumentUpload} from "@/features/files/hooks";
 
 export default function OnboardingPage() {
   const router = useRouter();
@@ -18,8 +18,6 @@ export default function OnboardingPage() {
 
   const handleFileSelect = async (files: FileList) => {
     await uploadFiles(files);
-
-    // Simulate success and move to next step
     setTimeout(() => {
       setCurrentStep(2);
     }, 2000);
@@ -34,217 +32,166 @@ export default function OnboardingPage() {
   };
 
   return (
-    <MaxWidthWrapper className="py-10">
-      {/* Header */}
-      <div className="text-center mb-12">
-        <div className="inline-flex items-center gap-2 bg-white border-2 border-b-4 border-slate-200 rounded-full px-6 py-3 mb-6 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
-          <span className="text-sm font-medium text-slate-700">✨ MedAIst&apos;e Hoş Geldiniz</span>
-        </div>
+    <MaxWidthWrapper className="min-h-screen flex items-center justify-center py-12">
+      <div className="max-w-7xl mx-auto">
+        {currentStep === 1 && (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left Side - Content */}
+            <div className="space-y-8 hidden lg:block">
+              <div className="space-y-6">
+                <Badge className="px-4 py-2 text-sm" variant="secondary">
+                  ✨ MedAIst&apos;e Hoş Geldiniz
+                </Badge>
 
-        <h1 className="text-4xl lg:text-6xl font-bold text-slate-900 mb-6 leading-tight">
-          Tıp Eğitiminize
-          <span className="text-primary"> AI Gücü </span>
-          Katın
-        </h1>
+                <h1 className="text-4xl lg:text-6xl font-bold text-foreground tracking-tight">
+                  Tıp Eğitiminize
+                  <br />
+                  <span className="text-primary">AI Gücü</span> Katın
+                </h1>
 
-        <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-          İlk dosyalarınızı yükleyerek AI destekli öğrenme deneyiminizi başlatın. PDF&apos;lerinizi
-          akıllı notlara dönüştürün, sohbet edin ve başarınızı artırın.
-        </p>
-      </div>
-
-      {/* Progress Steps */}
-      <div className="flex items-center justify-center mb-12">
-        <div className="flex items-center gap-4">
-          <div
-            className={`flex items-center gap-2 ${currentStep >= 1 ? "text-slate-900" : "text-slate-400"}`}
-          >
-            <div
-              className={`w-10 h-10 rounded-xl flex items-center justify-center text-sm font-semibold border-2 border-b-4 transition-all duration-200 ${
-                currentStep >= 1
-                  ? "bg-slate-900 text-white border-slate-700 border-b-slate-800 shadow-sm"
-                  : "bg-white border-slate-200 border-b-slate-300"
-              }`}
-            >
-              {currentStep > 1 ? <CheckCircle /> : "1"}
-            </div>
-            <span className="font-medium">Dosya Yükleyin</span>
-          </div>
-
-          <div
-            className={`w-8 h-1 rounded-full ${currentStep >= 2 ? "bg-slate-900" : "bg-slate-200"}`}
-          />
-
-          <div
-            className={`flex items-center gap-2 ${currentStep >= 2 ? "text-slate-900" : "text-slate-400"}`}
-          >
-            <div
-              className={`w-10 h-10 rounded-xl flex items-center justify-center text-sm font-semibold border-2 border-b-4 transition-all duration-200 ${
-                currentStep >= 2
-                  ? "bg-slate-900 text-white border-slate-700 border-b-slate-800"
-                  : "bg-white border-slate-200 "
-              }`}
-            >
-              {currentStep > 2 ? <CheckCircle className="w-5 h-5" /> : "2"}
-            </div>
-            <span className="font-medium">Başlayın</span>
-          </div>
-        </div>
-      </div>
-
-      {currentStep === 1 && (
-        <div className="space-y-8">
-          {/* File Upload Section */}
-          <Card>
-            <CardContent className="p-8 lg:p-12">
-              <div className="text-center mb-8">
-                <div className="inline-flex items-center gap-2 bg-slate-100 border-2 border-b-4 border-slate-300 rounded-full px-4 py-2 mb-4 hover:-translate-y-0.5 transition-all duration-200">
-                  <Upload className="h-5 w-5 text-slate-600" />
-                  <span className="text-sm font-medium text-slate-700">Adım 1</span>
-                </div>
-                <h2 className="text-2xl lg:text-3xl font-bold mb-4">İlk Dosyalarınızı Yükleyin</h2>
-                <p className="text-muted-foreground">
-                  Tıp ders notlarınızı, kitaplarınızı veya makalelerinizi yükleyerek başlayın
+                <p className="text-xl text-muted-foreground leading-relaxed">
+                  İlk dosyalarınızı yükleyerek AI destekli öğrenme deneyiminizi başlatın.
+                  PDF&apos;lerinizi akıllı notlara dönüştürün ve başarınızı artırın.
                 </p>
               </div>
 
-              <FileUploadComponent isUploading={isUploading} onFileSelect={handleFileSelect} />
-
-              {uploadingFiles.length > 0 && (
-                <div className="mt-6">
-                  <FileProgressDisplay files={uploadingFiles} />
+              {/* Stats */}
+              <div className="grid grid-cols-3 gap-8">
+                <div>
+                  <div className="text-3xl font-bold text-foreground">10K+</div>
+                  <div className="text-sm text-muted-foreground">Tıp Öğrencisi</div>
                 </div>
-              )}
-            </CardContent>
-          </Card>
-
-          {/* Feature Preview Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card>
-              <CardContent className="p-6 text-center">
-                <div className="w-12 h-12 bg-slate-900 border-2 border-b-4 border-slate-700 border-b-slate-800 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-                  <Brain className="h-6 w-6 text-white" />
+                <div>
+                  <div className="text-3xl font-bold text-foreground">500K+</div>
+                  <div className="text-sm text-muted-foreground">İşlenen Doküman</div>
                 </div>
-                <h3 className="font-semibold text-slate-900 mb-2">AI Chat</h3>
-                <p className="text-sm text-slate-600">
-                  Dosyalarınızla sohbet edin, sorular sorun ve anında yanıt alın
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className="p-6 text-center">
-                <div className="w-12 h-12 bg-slate-900 border-2 border-b-4 border-slate-700 border-b-slate-800 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-                  <FileText className="h-6 w-6 text-white" />
+                <div>
+                  <div className="text-3xl font-bold text-foreground">95%</div>
+                  <div className="text-sm text-muted-foreground">Başarı Oranı</div>
                 </div>
-                <h3 className="font-semibold text-slate-900 mb-2">Akıllı Notlar</h3>
-                <p className="text-sm text-slate-600">
-                  AI ile otomatik özetler ve organize edilmiş not sistemi
-                </p>
-              </CardContent>
-            </Card>
+              </div>
 
-            <Card>
-              <CardContent className="p-6 text-center">
-                <div className="w-12 h-12 bg-slate-900 border-2 border-b-4 border-slate-700 border-b-slate-800 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-                  <BookOpen className="h-6 w-6 text-white" />
+              {/* Features */}
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <Brain className="h-4 w-4 text-primary" />
+                  </div>
+                  <span className="font-medium">Dosyalarınızla AI sohbeti</span>
                 </div>
-                <h3 className="font-semibold text-slate-900 mb-2">Quiz Sistemi</h3>
-                <p className="text-sm text-slate-600">
-                  Kişiselleştirilmiş testlerle bilginizi pekiştirin
-                </p>
-              </CardContent>
-            </Card>
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <FileText className="h-4 w-4 text-primary" />
+                  </div>
+                  <span className="font-medium">Otomatik akıllı özetler</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <CheckCircle className="h-4 w-4 text-primary" />
+                  </div>
+                  <span className="font-medium">Kişiselleştirilmiş quiz sistemi</span>
+                </div>
+              </div>
+
+              {/* Trust Badges */}
+              <div className="flex items-center gap-6 text-xs text-muted-foreground">
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="h-3 w-3 text-green-500" />
+                  <span>Güvenli ve Şifreli</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="h-3 w-3 text-green-500" />
+                  <span>KVKK Uyumlu</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="h-3 w-3 text-green-500" />
+                  <span>Ücretsiz Başlangıç</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Side - Upload */}
+            <div className="space-y-6">
+              <Card>
+                <CardContent className="p-8">
+                  <div className="text-center mb-6">
+                    <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Upload className="h-8 w-8 text-primary" />
+                    </div>
+                    <h2 className="text-xl font-semibold mb-2">İlk Dosyanızı Yükleyin</h2>
+                    <p className="text-muted-foreground text-sm">
+                      Ders notlarınızı, kitaplarınızı veya makalelerinizi yükleyerek başlayın
+                    </p>
+                  </div>
+
+                  <FileUploadComponent isUploading={isUploading} onFileSelect={handleFileSelect} />
+
+                  {uploadingFiles.length > 0 && (
+                    <div className="mt-6">
+                      <FileProgressDisplay files={uploadingFiles} />
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+
+              {/* Skip Option */}
+              <div className="text-center">
+                <Button className="w-full" variant="outline" onClick={handleSkip}>
+                  Şimdilik atla, daha sonra yüklerim
+                </Button>
+              </div>
+            </div>
           </div>
+        )}
 
-          {/* Skip Option */}
-          <div className="text-center">
-            <Button variant="outline" onClick={handleSkip}>
-              Şimdilik Atla, Sonra Yüklerim
+        {currentStep === 2 && (
+          <div className="text-center space-y-8">
+            {/* Success State */}
+            <div className="space-y-6">
+              <div className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto">
+                <CheckCircle className="h-10 w-10 text-white" />
+              </div>
+
+              <Badge className="bg-green-100 text-green-700 border-green-200" variant="secondary">
+                ✨ Dosyalar Başarıyla Yüklendi
+              </Badge>
+
+              <h2 className="text-3xl lg:text-4xl font-bold text-foreground">
+                Harika! Artık Hazırsınız
+              </h2>
+
+              <p className="text-lg text-muted-foreground max-w-xl mx-auto">
+                Dosyalarınız işlendi ve AI asistanınız hazır. Şimdi öğrenmeye başlayabilirsiniz!
+              </p>
+            </div>
+
+            {/* Quick Actions */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-md mx-auto">
+              <Button
+                className="h-16 flex flex-col gap-1 p-4"
+                variant="outline"
+                onClick={handleGetStarted}
+              >
+                <Brain className="h-5 w-5 text-primary" />
+                <span className="text-sm font-medium">AI Sohbet Başlat</span>
+              </Button>
+
+              <Button
+                className="h-16 flex flex-col gap-1 p-4"
+                variant="outline"
+                onClick={() => router.push("/notes")}
+              >
+                <FileText className="h-5 w-5 text-primary" />
+                <span className="text-sm font-medium">Notları Görüntüle</span>
+              </Button>
+            </div>
+
+            <Button className="px-8" size="lg" onClick={handleGetStarted}>
+              Platforma Devam Et
+              <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </div>
-        </div>
-      )}
-
-      {currentStep === 2 && (
-        <div className="text-center space-y-8">
-          {/* Success Animation */}
-          <div className="relative">
-            <div className="w-24 h-24 bg-green-500 border-4 border-b-8 border-green-400 border-b-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-2xl">
-              <CheckCircle className="h-12 w-12 text-white" />
-            </div>
-            <div className="absolute inset-0 w-24 h-24 bg-green-500 rounded-2xl mx-auto animate-ping opacity-20" />
-          </div>
-
-          <div className="space-y-4">
-            <Badge className="bg-green-100 text-green-800 border-2 border-b-4 border-green-200 border-b-green-300 px-4 py-2 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
-              ✨ Dosyalar Başarıyla Yüklendi
-            </Badge>
-
-            <h2 className="text-3xl lg:text-4xl font-bold text-slate-900">
-              Harika! Artık Hazırsınız
-            </h2>
-
-            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-              Dosyalarınız işlendi ve AI asistanınız hazır. Şimdi sohbet etmeye, notlar almaya ve
-              öğrenmeye başlayabilirsiniz!
-            </p>
-          </div>
-
-          {/* Next Steps */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
-            <Card className="bg-slate-50 border-2 border-b-4 border-slate-200 border-b-slate-300 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-              <CardContent className="p-6">
-                <div className="w-12 h-12 bg-slate-900 border-2 border-b-4 border-slate-700 border-b-slate-800 rounded-xl flex items-center justify-center mb-3 shadow-lg">
-                  <Brain className="h-6 w-6 text-white" />
-                </div>
-                <h3 className="font-semibold text-slate-900 mb-2">AI ile Sohbet Et</h3>
-                <p className="text-sm text-slate-600">
-                  Dosyanızla ilgili sorular sorun ve akıllı yanıtlar alın
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-slate-50 border-2 border-b-4 border-slate-200 border-b-slate-300 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-              <CardContent className="p-6">
-                <div className="w-12 h-12 bg-slate-900 border-2 border-b-4 border-slate-700 border-b-slate-800 rounded-xl flex items-center justify-center mb-3 shadow-lg">
-                  <FileText className="h-6 w-6 text-white" />
-                </div>
-                <h3 className="font-semibold text-slate-900 mb-2">Notları Keşfet</h3>
-                <p className="text-sm text-slate-600">
-                  Otomatik özetleri inceleyin ve notlarınızı organize edin
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-
-          <Button
-            className="bg-slate-900 hover:bg-slate-800 text-white px-8 py-4 rounded-xl text-lg font-semibold border-2 border-b-4 border-slate-700 border-b-slate-800 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
-            size="lg"
-            onClick={handleGetStarted}
-          >
-            Platformu Keşfetmeye Başla
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
-        </div>
-      )}
-
-      {/* Bottom Info */}
-      <div className="mt-16 text-center">
-        <div className="inline-flex items-center gap-6 text-sm text-slate-500">
-          <div className="flex items-center gap-2">
-            <CheckCircle className="h-4 w-4 text-green-500" />
-            <span>Güvenli ve Şifreli</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <CheckCircle className="h-4 w-4 text-green-500" />
-            <span>KVKK Uyumlu</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <CheckCircle className="h-4 w-4 text-green-500" />
-            <span>Ücretsiz Başlangıç</span>
-          </div>
-        </div>
+        )}
       </div>
     </MaxWidthWrapper>
   );
