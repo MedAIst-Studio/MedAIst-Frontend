@@ -6,6 +6,11 @@ export const loginSchema = z.object({
   rememberMe: z.boolean().optional(),
 });
 
+export const loginResponseSchema = z.object({
+  access_token: z.string(),
+  refresh_token: z.string(),
+});
+
 export const signupSchema = z
   .object({
     firstName: z

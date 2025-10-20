@@ -8,9 +8,9 @@ import {z} from "zod";
 
 import {logger} from "./logger";
 import {ApiConfig, ApiError, ApiRequestConfig} from "./types";
+import {createApiError, getCookie} from "./utils";
 import {validateApiResponse, ValidationError} from "./validation";
 
-// API Response type for destructuring pattern
 export interface ApiResponse<T = any> {
   data: T | null;
   error: ApiError | null;
@@ -31,30 +31,16 @@ export const axiosInstance: AxiosInstance = axios.create({
   },
 });
 
-const createApiError = (error: any, code?: string): ApiError => {
-  let message = "Unknown API error";
-
-  if (error?.response?.data) {
-    const responseData = error.response.data;
-
-    message =
-      responseData.message || responseData.error || responseData.error_description || message;
-  } else if (error?.message) {
-    message = error.message;
-  }
-
-  return {
-    message,
-    code: code || error?.code || error?.response?.data?.code,
-    timestamp: new Date(),
-    requestId: error?.config?.requestId,
-  };
-};
-
 axiosInstance.interceptors.request.use(
   (config: any) => {
     config.requestId = logger.generateRequestId();
     config.startTime = Date.now();
+
+    const accessToken = getCookie("access_token");
+
+    if (accessToken && config.headers) {
+      config.headers.Authorization = `Bearer ${accessToken}`;
+    }
 
     if (defaultApiConfig.enableLogging) {
       logger.logApiRequest({
@@ -128,7 +114,7 @@ class ApiClient {
   }
 
   async request<TResponse = any, TRequest = any>(
-    requestConfig: ApiRequestConfig<TRequest>,
+    requestConfig: ApiRequestConfig<TRequest, TResponse>,
   ): Promise<ApiResponse<TResponse>> {
     const {
       url,
@@ -174,7 +160,6 @@ class ApiClient {
 
       const response = await this.instance.request(axiosConfig);
 
-      // Response validation
       if (this.config.enableValidation && !skipValidation && responseSchema) {
         const validation = validateApiResponse(responseSchema, response.data, {
           endpoint: url,
@@ -225,79 +210,85 @@ class ApiClient {
     }
   }
 
-  // Convenience methods
-  async get<TResponse = any>(
+  // Convenience methods with type inference
+  async get<TSchema extends z.ZodTypeAny>(
     url: string,
     params?: object,
-    responseSchema?: z.ZodSchema<TResponse>,
-  ): Promise<ApiResponse<TResponse>> {
-    return this.request<TResponse>({
+    responseSchema?: TSchema,
+  ): Promise<ApiResponse<TSchema extends z.ZodTypeAny ? z.infer<TSchema> : any>> {
+    return this.request<TSchema extends z.ZodTypeAny ? z.infer<TSchema> : any, any>({
       url,
       method: "GET",
       params,
-      responseSchema,
+      responseSchema: responseSchema as any,
     });
   }
 
-  async post<TResponse = any, TRequest = any>(
+  async post<TRequestSchema extends z.ZodTypeAny, TResponseSchema extends z.ZodTypeAny>(
     url: string,
-    data?: TRequest,
+    data?: TRequestSchema extends z.ZodTypeAny ? z.infer<TRequestSchema> : any,
     schemas?: {
-      request?: z.ZodSchema<TRequest>;
-      response?: z.ZodSchema<TResponse>;
+      request?: TRequestSchema;
+      response?: TResponseSchema;
     },
-  ): Promise<ApiResponse<TResponse>> {
-    return this.request<TResponse, TRequest>({
-      url,
-      method: "POST",
-      data,
-      validationSchema: schemas?.request,
-      responseSchema: schemas?.response,
-    });
+  ): Promise<ApiResponse<TResponseSchema extends z.ZodTypeAny ? z.infer<TResponseSchema> : any>> {
+    return this.request<TResponseSchema extends z.ZodTypeAny ? z.infer<TResponseSchema> : any, any>(
+      {
+        url,
+        method: "POST",
+        data,
+        validationSchema: schemas?.request as any,
+        responseSchema: schemas?.response as any,
+      },
+    );
   }
 
-  async put<TResponse = any, TRequest = any>(
+  async put<TRequestSchema extends z.ZodTypeAny, TResponseSchema extends z.ZodTypeAny>(
     url: string,
-    data?: TRequest,
+    data?: TRequestSchema extends z.ZodTypeAny ? z.infer<TRequestSchema> : any,
     schemas?: {
-      request?: z.ZodSchema<TRequest>;
-      response?: z.ZodSchema<TResponse>;
+      request?: TRequestSchema;
+      response?: TResponseSchema;
     },
-  ): Promise<ApiResponse<TResponse>> {
-    return this.request<TResponse, TRequest>({
-      url,
-      method: "PUT",
-      data,
-      validationSchema: schemas?.request,
-      responseSchema: schemas?.response,
-    });
+  ): Promise<ApiResponse<TResponseSchema extends z.ZodTypeAny ? z.infer<TResponseSchema> : any>> {
+    return this.request<TResponseSchema extends z.ZodTypeAny ? z.infer<TResponseSchema> : any, any>(
+      {
+        url,
+        method: "PUT",
+        data,
+        validationSchema: schemas?.request as any,
+        responseSchema: schemas?.response as any,
+      },
+    );
   }
 
-  async patch<TResponse = any, TRequest = any>(
+  async patch<TRequestSchema extends z.ZodTypeAny, TResponseSchema extends z.ZodTypeAny>(
     url: string,
-    data?: TRequest,
+    data?: TRequestSchema extends z.ZodTypeAny ? z.infer<TRequestSchema> : any,
     schemas?: {
-      request?: z.ZodSchema<TRequest>;
-      response?: z.ZodSchema<TResponse>;
+      request?: TRequestSchema;
+      response?: TResponseSchema;
     },
-  ): Promise<ApiResponse<TResponse>> {
-    return this.request<TResponse, TRequest>({
-      url,
-      method: "PATCH",
-      data,
-      validationSchema: schemas?.request,
-      responseSchema: schemas?.response,
-    });
+  ): Promise<ApiResponse<TResponseSchema extends z.ZodTypeAny ? z.infer<TResponseSchema> : any>> {
+    return this.request<TResponseSchema extends z.ZodTypeAny ? z.infer<TResponseSchema> : any, any>(
+      {
+        url,
+        method: "PATCH",
+        data,
+        validationSchema: schemas?.request as any,
+        responseSchema: schemas?.response as any,
+      },
+    );
   }
 
-  async delete<TResponse = any>(
+  async delete<TSchema extends z.ZodTypeAny>(
     url: string,
-    responseSchema?: z.ZodSchema<TResponse>,
-  ): Promise<ApiResponse<TResponse>> {
-    return this.request<TResponse>({
+    responseSchema?: TSchema,
+  ): Promise<ApiResponse<TSchema extends z.ZodTypeAny ? z.infer<TSchema> : any>> {
+    return this.request<TSchema extends z.ZodTypeAny ? z.infer<TSchema> : any, any>({
       url,
       method: "DELETE",
-      responseSchema,
+      responseSchema: responseSchema as any,
     });
   }
 }

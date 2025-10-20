@@ -1,7 +1,7 @@
 import {apiClient} from "@/lib/api";
 
 import {ForgotPasswordFormData, ResetPasswordFormData} from "../types";
-import {LoginFormData, loginSchema, SignupFormData} from "../utils/validation";
+import {LoginFormData, loginResponseSchema, loginSchema, SignupFormData} from "../utils/validation";
 
 const AUTH_PATH = "/auth";
 
@@ -9,6 +9,7 @@ export const AuthAPI = {
   async login(request: LoginFormData) {
     const {data, error, success} = await apiClient.post(`${AUTH_PATH}/login`, request, {
       request: loginSchema,
+      response: loginResponseSchema,
     });
 
     return {data, error, success};

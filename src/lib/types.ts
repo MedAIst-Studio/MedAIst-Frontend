@@ -11,14 +11,14 @@ export interface ApiConfig {
 }
 
 // Request configuration with validation
-export interface ApiRequestConfig<TRequest = any> {
+export interface ApiRequestConfig<TRequest = any, TResponse = any> {
   url: string;
   method: HttpMethod;
   data?: TRequest;
   params?: Record<string, any>;
   headers?: Record<string, string>;
   validationSchema?: z.ZodSchema<TRequest>;
-  responseSchema?: z.ZodSchema<any>;
+  responseSchema?: z.ZodSchema<TResponse>;
   skipValidation?: boolean;
   skipLogging?: boolean;
   retries?: number;

@@ -11,6 +11,9 @@ export const fileAPI = {
       url: "/files/upload",
       method: "POST",
       data: formData,
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
     });
 
     return {data, error};
