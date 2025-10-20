@@ -3,6 +3,8 @@ import "./globals.css";
 
 import {DM_Sans} from "next/font/google";
 
+import {Toaster} from "@/components/ui/sonner";
+import {QueryProvider} from "@/providers/query-provider";
 import {ThemeProvider} from "@/providers/theme-provider";
 
 const dm_sans = DM_Sans({
@@ -25,14 +27,17 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning className="scroll-smooth" lang="en">
       <body className={`${dm_sans.variable} antialiased`}>
-        <ThemeProvider
-          disableTransitionOnChange
-          enableSystem
-          attribute={"class"}
-          defaultTheme="system"
-        >
-          {children}
-        </ThemeProvider>
+        <QueryProvider>
+          <ThemeProvider
+            disableTransitionOnChange
+            enableSystem
+            attribute={"class"}
+            defaultTheme="system"
+          >
+            {children}
+            <Toaster />
+          </ThemeProvider>
+        </QueryProvider>
       </body>
     </html>
   );

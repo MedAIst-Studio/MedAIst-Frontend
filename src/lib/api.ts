@@ -7,7 +7,7 @@ import axios, {
 import {z} from "zod";
 
 import {logger} from "./logger";
-import {ApiConfig, ApiError, ApiRequestConfig, RequestLog, ResponseLog} from "./types";
+import {ApiConfig, ApiError, ApiRequestConfig} from "./types";
 import {validateApiResponse, ValidationError} from "./validation";
 
 // API Response type for destructuring pattern
@@ -20,13 +20,8 @@ export interface ApiResponse<T = any> {
 const defaultApiConfig: ApiConfig = {
   enableValidation: true,
   enableLogging: process.env.NODE_ENV !== "production",
-  enableRetry: true,
-  maxRetries: 3,
-  retryDelay: 1000,
   timeout: 10000,
 };
-
-const generateRequestId = () => Math.random().toString(36).substring(2, 15);
 
 export const axiosInstance: AxiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -50,61 +45,26 @@ const createApiError = (error: any, code?: string): ApiError => {
 
   return {
     message,
-    status: error?.response?.status,
     code: code || error?.code || error?.response?.data?.code,
-    details: error?.response?.data,
     timestamp: new Date(),
     requestId: error?.config?.requestId,
   };
 };
 
-const shouldRetry = (error: AxiosError, config: any): boolean => {
-  const retryCount = config.retryCount || 0;
-  const maxRetries = config.maxRetries || defaultApiConfig.maxRetries;
-
-  if (retryCount >= maxRetries) return false;
-
-  if (!error.response) return true;
-  if (error.response.status >= 500) return true;
-
-  return false;
-};
-
-const retryRequest = async (error: AxiosError): Promise<AxiosResponse> => {
-  const config = error.config as any;
-
-  config.retryCount = (config.retryCount || 0) + 1;
-
-  await new Promise((resolve) =>
-    setTimeout(resolve, defaultApiConfig.retryDelay * config.retryCount),
-  );
-
-  logger.info(`Retrying request (attempt ${config.retryCount})`, {
-    url: config.url,
-    method: config.method,
-  });
-
-  return axiosInstance.request(config);
-};
-
 axiosInstance.interceptors.request.use(
   (config: any) => {
-    const requestId = generateRequestId();
-
-    config.requestId = requestId;
+    config.requestId = logger.generateRequestId();
     config.startTime = Date.now();
 
     if (defaultApiConfig.enableLogging) {
-      const requestLog: RequestLog = {
-        id: requestId,
+      logger.logApiRequest({
+        id: config.requestId,
         method: (config.method?.toUpperCase() as any) || "GET",
         url: `${config.baseURL}${config.url}`,
         headers: config.headers as Record<string, string>,
         data: config.data,
         timestamp: new Date(),
-      };
-
-      logger.debug("API Request", requestLog);
+      });
     }
 
     return config;
@@ -122,16 +82,14 @@ axiosInstance.interceptors.response.use(
     const duration = config.startTime ? Date.now() - config.startTime : 0;
 
     if (defaultApiConfig.enableLogging) {
-      const responseLog: ResponseLog = {
+      logger.logApiResponse({
         requestId: config.requestId,
         status: response.status,
         statusText: response.statusText,
         data: response.data,
         duration,
         timestamp: new Date(),
-      };
-
-      logger.debug("API Response", responseLog);
+      });
     }
 
     return response;
@@ -141,7 +99,7 @@ axiosInstance.interceptors.response.use(
     const duration = config?.startTime ? Date.now() - config.startTime : 0;
 
     if (defaultApiConfig.enableLogging) {
-      const responseLog: ResponseLog = {
+      logger.logApiResponse({
         requestId: config?.requestId,
         status: error.response?.status || 0,
         statusText: error.response?.statusText || "Network Error",
@@ -149,13 +107,7 @@ axiosInstance.interceptors.response.use(
         duration,
         timestamp: new Date(),
         errors: [error.message],
-      };
-
-      logger.error("API Error Response", responseLog);
-    }
-
-    if (defaultApiConfig.enableRetry && config && shouldRetry(error, config)) {
-      return retryRequest(error);
+      });
     }
 
     const apiError = createApiError(error, "API_RESPONSE_ERROR");

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 export enum LogLevel {
   DEBUG = 0,
   INFO = 1,
@@ -15,6 +16,25 @@ export interface LogEntry {
   url?: string;
   userAgent?: string;
   stack?: string;
+}
+
+export interface RequestLog {
+  id: string;
+  method: string;
+  url: string;
+  headers?: Record<string, string>;
+  data?: any;
+  timestamp: Date;
+}
+
+export interface ResponseLog {
+  requestId: string;
+  status: number;
+  statusText: string;
+  data?: any;
+  duration: number;
+  timestamp: Date;
+  errors?: string[];
 }
 
 export interface LoggerConfig {
@@ -59,12 +79,10 @@ class Logger {
 
     const entry = this.createLogEntry(level, message, data, error);
 
-    // Console logging
     if (this.config.enableConsole) {
       this.logToConsole(entry);
     }
 
-    // Buffer for remote logging
     if (this.config.enableRemote) {
       this.buffer.push(entry);
       if (this.buffer.length >= this.config.bufferSize) {
@@ -74,21 +92,40 @@ class Logger {
   }
 
   private logToConsole(entry: LogEntry) {
-    const {level, message, data, timestamp} = entry;
-    const timeStr = timestamp.toISOString();
+    const {level, message, data} = entry;
+
+    const isDev = process.env.NODE_ENV !== "production";
 
     switch (level) {
       case LogLevel.DEBUG:
-        console.debug(`[${timeStr}] DEBUG: ${message}`, data);
+        if (isDev) {
+          if (data && Object.keys(data).length > 0) {
+            console.debug(`🔍 ${message}`, data);
+          } else {
+            console.debug(`🔍 ${message}`);
+          }
+        }
         break;
       case LogLevel.INFO:
-        console.info(`[${timeStr}] INFO: ${message}`, data);
+        if (data && Object.keys(data).length > 0) {
+          console.info(`ℹ️  ${message}`, data);
+        } else {
+          console.info(`ℹ️  ${message}`);
+        }
         break;
       case LogLevel.WARN:
-        console.warn(`[${timeStr}] WARN: ${message}`, data);
+        if (data && Object.keys(data).length > 0) {
+          console.warn(`⚠️  ${message}`, data);
+        } else {
+          console.warn(`⚠️  ${message}`);
+        }
         break;
       case LogLevel.ERROR:
-        console.error(`[${timeStr}] ERROR: ${message}`, data);
+        if (data && Object.keys(data).length > 0) {
+          console.error(`❌ ${message}`, data);
+        } else {
+          console.error(`❌ ${message}`);
+        }
         break;
     }
   }
@@ -174,6 +211,24 @@ class Logger {
     this.log(LogLevel.ERROR, message, error, errorObj);
   }
 
+  generateRequestId(): string {
+    return Math.random().toString(36).substring(2, 15);
+  }
+
+  logApiRequest(request: RequestLog) {
+    this.debug(`→ ${request.method} ${request.url}`);
+  }
+
+  logApiResponse(response: ResponseLog) {
+    if (response.errors && response.errors.length > 0) {
+      this.error(`← ${response.status} (${response.duration}ms)`, {
+        errors: response.errors,
+      });
+    } else {
+      this.debug(`← ${response.status} (${response.duration}ms)`);
+    }
+  }
+
   // Performance logging
   time(label: string) {
     if (typeof performance !== "undefined") {
@@ -189,9 +244,14 @@ class Logger {
       const measures = performance.getEntriesByName(label);
       const duration = measures[measures.length - 1]?.duration;
 
-      this.debug(`Performance: ${label}`, {
-        duration: `${duration?.toFixed(2)}ms`,
-      });
+      // Sadece yavaş işlemleri logla (>1000ms)
+      if (duration && duration > 1000) {
+        this.warn(`Slow Performance: ${label}`, {
+          duration: `${duration?.toFixed(2)}ms`,
+        });
+      } else if (duration) {
+        this.debug(`⚡ ${label}: ${duration?.toFixed(2)}ms`);
+      }
 
       // Cleanup
       performance.clearMarks(`${label}-start`);
@@ -209,7 +269,6 @@ class Logger {
   }
 }
 
-// Create logger instance
 const loggerConfig: LoggerConfig = {
   level: process.env.NODE_ENV === "production" ? LogLevel.WARN : LogLevel.DEBUG,
   enableConsole: true,
@@ -221,7 +280,6 @@ const loggerConfig: LoggerConfig = {
 
 export const logger = new Logger(loggerConfig);
 
-// Export logger for cleanup on app unmount
 if (typeof window !== "undefined") {
   window.addEventListener("beforeunload", () => {
     logger.destroy();

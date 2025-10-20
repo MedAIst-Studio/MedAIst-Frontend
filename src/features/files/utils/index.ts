@@ -1,13 +1,4 @@
-import {z} from "zod";
-
-import {Note, NoteFormData} from "../types";
-
-export const noteFormSchema = z.object({
-  title: z.string().min(1, "Title is required").max(100, "Title must be under 100 characters"),
-  subject: z.string().min(1, "Please select a subject"),
-  content: z.string().min(10, "Content must be at least 10 characters long"),
-  tags: z.string().optional(),
-});
+import {Note} from "../types";
 
 export const subjects = ["all", "Cardiology", "Neurology", "Pharmacology", "Anatomy", "Pathology"];
 
@@ -58,35 +49,5 @@ export const filterNotes = (notes: Note[], searchTerm: string, selectedSubject: 
     const matchesSubject = selectedSubject === "all" || note.subject === selectedSubject;
 
     return matchesSearch && matchesSubject;
-  });
-};
-
-export const processNoteFormData = async (data: NoteFormData): Promise<Note> => {
-  // Simulate processing time
-  await new Promise((resolve) => setTimeout(resolve, 2000));
-
-  const newNote: Note = {
-    id: `note-${Date.now()}`,
-    title: data.title,
-    content: data.content,
-    subject: data.subject,
-    uploadDate: new Date().toISOString().split("T")[0],
-    fileType: "TEXT",
-    status: "completed",
-    tags: data.tags ? data.tags.split(",").map((tag) => tag.trim()) : [],
-    summary: `AI-generated summary for: ${data.title}`,
-  };
-
-  return newNote;
-};
-
-export const handleFileUpload = async (files: FileList | null): Promise<void> => {
-  if (!files) return;
-
-  // Simulate file upload processing
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, 3000);
   });
 };

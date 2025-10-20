@@ -7,9 +7,6 @@ export type HttpMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
 export interface ApiConfig {
   enableValidation: boolean;
   enableLogging: boolean;
-  enableRetry: boolean;
-  maxRetries: number;
-  retryDelay: number;
   timeout: number;
 }
 

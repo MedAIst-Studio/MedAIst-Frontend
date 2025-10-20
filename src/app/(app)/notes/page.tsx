@@ -21,21 +21,11 @@ export default function PDFChatPage() {
   const [selectedDocument, setSelectedDocument] = useState<string | null>(null);
   const [isChatOpen, setIsChatOpen] = useState(false);
 
-  // Hooks
   const {documents, searchDocuments} = useDocuments();
   const {uploadingFiles, isUploading, uploadFiles} = useDocumentUpload();
   const chat = useChat(selectedDocument || "");
 
   const filteredDocuments = searchDocuments(searchQuery);
-
-  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const files = event.target.files;
-
-    if (!files || files.length === 0) return;
-
-    uploadFiles(files);
-    event.target.value = ""; // Reset input
-  };
 
   const handleDocumentClick = (documentId: string) => {
     setSelectedDocument(documentId);
