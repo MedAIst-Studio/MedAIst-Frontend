@@ -17,8 +17,8 @@ export default function LoginPage() {
       const {data, error, success} = await AuthAPI.login(_data);
 
       if (success) {
-        document.cookie = `access_token=${data?.access_token}; path=/; max-age=86400`;
-        document.cookie = `refresh_token=${data?.refresh_token}; path=/; max-age=2592000`;
+        document.cookie = `accessToken=${data?.accessToken}; path=/; max-age=86400`;
+        document.cookie = `refreshToken=${data?.refreshToken}; path=/; max-age=2592000`;
       } else if (error) {
         setError(error.message);
       }

@@ -36,7 +36,7 @@ axiosInstance.interceptors.request.use(
     config.requestId = logger.generateRequestId();
     config.startTime = Date.now();
 
-    const accessToken = getCookie("access_token");
+    const accessToken = getCookie("accessToken");
 
     if (accessToken && config.headers) {
       config.headers.Authorization = `Bearer ${accessToken}`;
