@@ -9,6 +9,7 @@ import {useForm} from "react-hook-form";
 import {DynamicFormField} from "@/components/shared/DynamicFormField";
 import {Button} from "@/components/ui/button";
 import {Form} from "@/components/ui/form";
+import {Spinner} from "@/components/ui/spinner";
 
 import {loginSchema, type LoginFormData} from "../utils/validation";
 
@@ -59,7 +60,7 @@ export function LoginForm({onSubmit, onSocialLogin, isLoading = false, error}: L
               <div className="w-full h-px bg-gradient-to-r from-transparent via-black/30 to-transparent" />
             </div>
             <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-white px-4 text-slate-600 font-medium">veya</span>
+              <span className="bg-card px-4 text-muted-foreground font-medium">veya</span>
             </div>
           </div>
 
@@ -122,8 +123,8 @@ export function LoginForm({onSubmit, onSocialLogin, isLoading = false, error}: L
                 </Link>
               </div>
 
-              <Button className="w-full" type="submit">
-                {isLoading ? "Giriş yapılıyor..." : "Giriş Yap"}
+              <Button className="w-full" disabled={isLoading} type="submit">
+                {isLoading ? <Spinner /> : "Giriş Yap"}
                 {!isLoading && <ArrowRight />}
               </Button>
             </form>

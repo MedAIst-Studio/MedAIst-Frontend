@@ -94,7 +94,7 @@ export function AuthLayout({
           <CardHeader className="relative space-y-3 text-center">
             <div className="mx-auto w-12 h-1 bg-gradient-to-r from-blue-400 to-indigo-400 rounded-full mb-4" />
             <CardTitle className="text-3xl font-bold">{title}</CardTitle>
-            <CardDescription className="text-slate-700 text-base leading-relaxed">
+            <CardDescription className="text-muted-foreground text-base leading-relaxed">
               {subtitle}
             </CardDescription>
           </CardHeader>
@@ -104,10 +104,10 @@ export function AuthLayout({
           {/* Footer */}
           <div className="relative px-8 pb-8">
             <div className="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mb-6" />
-            <p className="text-center text-sm text-slate-500">
+            <p className="text-center text-sm text-muted-foreground">
               {footerText}{" "}
               <Link
-                className="font-semibold text-blue-400 hover:text-blue-300 hover:underline transition-colors duration-200"
+                className="font-semibold text-primary hover:underline transition-colors duration-200"
                 href={footerLink.href}
               >
                 {footerLink.text}

@@ -1,6 +1,7 @@
 "use client";
 
-import {Chrome, Facebook} from "lucide-react";
+import {Facebook} from "lucide-react";
+import Image from "next/image";
 
 import {Button} from "@/components/ui/button";
 import {cn} from "@/lib/utils";
@@ -15,13 +16,13 @@ interface SocialLoginButtonProps {
 const socialProviders = {
   google: {
     name: "Google",
-    icon: Chrome,
+    icon: <Image alt="Google Logo" height={14} src="/google.svg" width={14} />,
     iconClassName: "text-blue-600",
     variant: "outline" as const,
   },
   facebook: {
     name: "Facebook",
-    icon: Facebook,
+    icon: <Facebook className="h-4 w-4" />,
     iconClassName: "text-white",
     variant: "default" as const,
   },
@@ -44,7 +45,7 @@ export function SocialLoginButton({
       variant={config.variant}
       onClick={onClick}
     >
-      <Icon className={cn(config.iconClassName)} />
+      {Icon}
       {isLoading ? "Bağlanıyor..." : `${config.name} ile devam et`}
     </Button>
   );
