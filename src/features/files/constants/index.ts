@@ -49,9 +49,9 @@ export const UPLOAD_MESSAGES = {
 
 // Processing time estimates (in seconds per MB)
 export const PROCESSING_TIME_ESTIMATES = {
-  FAST: 2, // For simple text files
-  MEDIUM: 5, // For standard PDFs
-  SLOW: 10, // For complex PDFs with images
+  FAST: 2,
+  MEDIUM: 5,
+  SLOW: 10,
 } as const;
 
 // Retry configuration

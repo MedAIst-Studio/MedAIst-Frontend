@@ -40,30 +40,8 @@ const mockDocuments: Document[] = [
 ];
 
 export const useDocuments = () => {
-  const [documents, setDocuments] = useState<Document[]>(mockDocuments);
+  const [documents, setDocuments] = useState<Document[]>([]);
   const [loading, setLoading] = useState(false);
-
-  const addDocument = async (document: Omit<Document, "id" | "uploadDate" | "messageCount">) => {
-    setLoading(true);
-    try {
-      const newDocument: Document = {
-        ...document,
-        id: Date.now().toString(),
-        uploadDate: new Date().toISOString().split("T")[0],
-        messageCount: 0,
-      };
-
-      setDocuments((prev) => [newDocument, ...prev]);
-
-      return newDocument;
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const updateDocument = (id: string, updates: Partial<Document>) => {
-    setDocuments((prev) => prev.map((doc) => (doc.id === id ? {...doc, ...updates} : doc)));
-  };
 
   const deleteDocument = (id: string) => {
     setDocuments((prev) => prev.filter((doc) => doc.id !== id));
@@ -87,8 +65,6 @@ export const useDocuments = () => {
   return {
     documents,
     loading,
-    addDocument,
-    updateDocument,
     deleteDocument,
     getDocument,
     searchDocuments,

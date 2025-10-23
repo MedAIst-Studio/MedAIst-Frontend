@@ -6,7 +6,6 @@ import {Search, Upload} from "lucide-react";
 import {useState} from "react";
 
 import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
-import {Button} from "@/components/ui/button";
 import {Input} from "@/components/ui/input";
 import {
   ChatInterface,
@@ -79,15 +78,9 @@ export default function PDFChatPage() {
                 <Upload className="h-8 w-8 text-slate-400" />
               </div>
               <h3 className="text-lg font-semibold mb-2">Henüz döküman yüklemediniz</h3>
-              <p className="text-slate-600 mb-6">
+              <p className="text-muted-foreground mb-6">
                 PDF dosyalarınızı yükleyerek AI ile sohbet etmeye başlayın
               </p>
-              <Button asChild>
-                <label className="cursor-pointer" htmlFor="file-upload">
-                  <Upload className="h-4 w-4 mr-2" />
-                  İlk Dosyanızı Yükleyin
-                </label>
-              </Button>
             </div>
           </div>
         )}

@@ -26,8 +26,7 @@ export function SignupForm({onSubmit, onSocialLogin, isLoading = false, error}: 
   const form = useForm<SignupFormData>({
     resolver: zodResolver(signupSchema),
     defaultValues: {
-      firstName: "",
-      lastName: "",
+      username: "",
       email: "",
       password: "",
       confirmPassword: "",
@@ -95,24 +94,14 @@ export function SignupForm({onSubmit, onSocialLogin, isLoading = false, error}: 
                 </div>
               )}
 
-              <div className="grid grid-cols-2 gap-4">
-                <DynamicFormField
-                  control={form.control}
-                  disabled={isLoading}
-                  label="Ad"
-                  name="firstName"
-                  placeholder="Adınız"
-                  type="text"
-                />
-                <DynamicFormField
-                  control={form.control}
-                  disabled={isLoading}
-                  label="Soyad"
-                  name="lastName"
-                  placeholder="Soyadınız"
-                  type="text"
-                />
-              </div>
+              <DynamicFormField
+                control={form.control}
+                disabled={isLoading}
+                label="Kullanıcı Adı"
+                name="username"
+                placeholder="Kullanıcı adınız"
+                type="text"
+              />
 
               <DynamicFormField
                 control={form.control}

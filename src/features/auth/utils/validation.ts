@@ -13,16 +13,11 @@ export const loginResponseSchema = z.object({
 
 export const signupSchema = z
   .object({
-    firstName: z
+    username: z
       .string()
-      .min(1, "Ad gereklidir")
-      .min(2, "Ad en az 2 karakter olmalıdır")
-      .max(50, "Ad en fazla 50 karakter olabilir"),
-    lastName: z
-      .string()
-      .min(1, "Soyad gereklidir")
-      .min(2, "Soyad en az 2 karakter olmalıdır")
-      .max(50, "Soyad en fazla 50 karakter olabilir"),
+      .min(1, "Kullanıcı adı gereklidir")
+      .min(2, "Kullanıcı adı en az 2 karakter olmalıdır")
+      .max(50, "Kullanıcı adı en fazla 50 karakter olabilir"),
     email: z
       .string()
       .min(1, "E-posta adresi gereklidir")

@@ -1,24 +1,3 @@
-// Legacy Note interfaces (kept for backward compatibility)
-export interface Note {
-  id: string;
-  title: string;
-  content: string;
-  summary?: string;
-  subject: string;
-  uploadDate: string;
-  fileType: string;
-  status: "processing" | "completed" | "failed";
-  tags: string[];
-}
-
-export interface NoteFormData {
-  title: string;
-  subject: string;
-  content: string;
-  tags?: string;
-}
-
-// New Document and Chat interfaces
 export interface Document {
   id: string;
   title: string;

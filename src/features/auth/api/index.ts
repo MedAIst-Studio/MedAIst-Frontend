@@ -17,7 +17,7 @@ export const AuthAPI = {
 
   async signup(request: SignupFormData) {
     const {data, error, success} = await apiClient.post(`${AUTH_PATH}/signup`, {
-      fullName: `${request.firstName} ${request.lastName}`,
+      username: `${request.firstName} ${request.lastName}`,
       email: request.email,
       password: request.password,
     });
