@@ -1,5 +1,6 @@
 "use client";
 
+import {useRouter} from "next/navigation";
 import {useState} from "react";
 
 import {AuthLayout, SignupForm, type SignupFormData} from "@/features/auth";
@@ -8,6 +9,7 @@ import {AuthAPI} from "@/features/auth/api";
 export default function SignupPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
 
   const handleSignup = async (data: SignupFormData) => {
     setIsLoading(true);
@@ -17,7 +19,25 @@ export default function SignupPage() {
       const {error, success} = await AuthAPI.signup(data);
 
       if (success) {
-        // Handle successful signup to verification or chat ui
+        const {
+          error,
+          success,
+          data: loginData,
+        } = await AuthAPI.login({
+          email: data.email,
+          password: data.password,
+        });
+
+        if (error) {
+          setError(error.message);
+        }
+
+        if (success) {
+          document.cookie = `accessToken=${loginData?.accessToken}; path=/; max-age=86400`;
+          document.cookie = `refreshToken=${loginData?.refreshToken}; path=/; max-age=2592000`;
+        }
+
+        router.push("/onboarding");
       } else if (error) {
         setError(error.message);
       }
