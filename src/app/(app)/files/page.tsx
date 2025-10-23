@@ -1,121 +1,21 @@
-"use client";
-
-import type {Document} from "@/features/files/types";
-
-import {Search, Upload} from "lucide-react";
-import {useState} from "react";
-
 import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
-import {Input} from "@/components/ui/input";
-import {
-  ChatInterface,
-  DocumentCard,
-  FileProgressDisplay,
-  FileUploadComponent,
-} from "@/features/files/components";
-import {useChat, useDocumentUpload, useDocuments} from "@/features/files/hooks";
+import {Files} from "@/features/files/components/Files";
 
-export default function PDFChatPage() {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedDocument, setSelectedDocument] = useState<string | null>(null);
-  const [isChatOpen, setIsChatOpen] = useState(false);
-
-  const {documents, searchDocuments} = useDocuments();
-  const {uploadingFiles, isUploading, uploadFiles} = useDocumentUpload();
-  const chat = useChat(selectedDocument || "");
-
-  const filteredDocuments = searchDocuments(searchQuery);
-
-  const handleDocumentClick = (documentId: string) => {
-    setSelectedDocument(documentId);
-    setIsChatOpen(true);
-    chat.initializeChat();
-  };
-
-  const handleChatClose = () => {
-    setIsChatOpen(false);
-    setSelectedDocument(null);
-  };
-
+const FilesPage = () => {
   return (
-    <>
-      <MaxWidthWrapper className="space-y-6 py-10 px-4 md:px-0">
-        {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <div>
-            <h1 className="text-2xl font-bold">PDF Chat</h1>
-            <p className="text-muted-foreground">Dosyalarınızı yükleyin ve AI ile sohbet edin</p>
-          </div>
+    <MaxWidthWrapper className="py-8">
+      <div className="space-y-6">
+        <div>
+          <h1 className="text-3xl font-bold mb-2">Dosyalarım</h1>
+          <p className="text-muted-foreground">
+            PDF dosyalarınızı yükleyin ve yapay zeka ile etkileşime geçin.
+          </p>
         </div>
 
-        {/* Search */}
-        <div className="relative max-w-md">
-          <Search className="absolute left-3 top-5 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-          <Input
-            className="pl-9"
-            placeholder="Döküman ara..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-        </div>
-
-        {/* Documents Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredDocuments.map((document: Document) => (
-            <DocumentCard
-              key={document.id}
-              document={document}
-              onChatClick={() => handleDocumentClick(document.id)}
-            />
-          ))}
-        </div>
-
-        {/* Empty State */}
-        {filteredDocuments.length === 0 && !searchQuery && (
-          <div className="text-center py-12">
-            <div className="max-w-md mx-auto">
-              <div className="p-4 bg-slate-100 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                <Upload className="h-8 w-8 text-slate-400" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Henüz döküman yüklemediniz</h3>
-              <p className="text-muted-foreground mb-6">
-                PDF dosyalarınızı yükleyerek AI ile sohbet etmeye başlayın
-              </p>
-            </div>
-          </div>
-        )}
-
-        {/* No Search Results */}
-        {filteredDocuments.length === 0 && searchQuery && (
-          <div className="text-center py-12">
-            <div className="max-w-md mx-auto">
-              <div className="p-4 bg-card rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                <Search className="h-8 w-8 text-muted-foreground" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Arama sonucu bulunamadı</h3>
-              <p className="text-muted-foreground">
-                &quot;{searchQuery}&quot; için herhangi bir döküman bulunamadı
-              </p>
-            </div>
-          </div>
-        )}
-
-        <FileUploadComponent
-          isUploading={isUploading}
-          onFileSelect={(files: FileList) => uploadFiles(files)}
-        />
-
-        {uploadingFiles.length > 0 && <FileProgressDisplay files={uploadingFiles} />}
-      </MaxWidthWrapper>
-      <br />
-
-      {isChatOpen && selectedDocument && (
-        <ChatInterface
-          document={documents.find((d) => d.id === selectedDocument)!}
-          isOpen={isChatOpen}
-          onClose={handleChatClose}
-        />
-      )}
-    </>
+        <Files />
+      </div>
+    </MaxWidthWrapper>
   );
-}
+};
+
+export default FilesPage;

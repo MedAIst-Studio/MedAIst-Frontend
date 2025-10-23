@@ -1,40 +1,96 @@
 import {Brain, Loader2} from "lucide-react";
+import {useEffect, useRef, useState} from "react";
 
 import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
 
-import {useChat} from "../hooks/useChat";
+import {useChatMessages, useChats, useDeleteChat, useSendMessage} from "../queries";
 
 import {ChatHeader} from "./ChatHeader";
 import {ChatInput} from "./ChatInput";
 import {ChatMessage} from "./ChatMessage";
 
-export const Chat = () => {
-  const {
-    messages,
-    inputMessage,
-    isLoading,
-    savedChats,
-    isHistoryOpen,
-    messagesEndRef,
-    textareaRef,
+type ChatProps = {
+  chatId?: string;
+  fileId: string;
+};
 
-    setInputMessage,
-    setIsHistoryOpen,
-    loadChat,
-    deleteChat,
-    startNewChat,
-    sendMessage,
-    copyMessage,
-    clearChat,
-  } = useChat();
+export const Chat = ({chatId: initialChatId, fileId}: ChatProps) => {
+  const [currentChatId, setCurrentChatId] = useState<string | null>(initialChatId || null);
+  const [inputMessage, setInputMessage] = useState("");
+  const [isHistoryOpen, setIsHistoryOpen] = useState(false);
 
-  const showQuickQuestions = messages.length === 1;
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  const {data: savedChats = []} = useChats();
+  const {data: messages = [], isLoading: isMessagesLoading} = useChatMessages(currentChatId);
+  const sendMessageMutation = useSendMessage();
+  const deleteChatMutation = useDeleteChat();
+
+  const isLoading = isMessagesLoading || sendMessageMutation.isPending;
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({behavior: "smooth"});
+  }, [messages]);
+
+  const sendMessage = async () => {
+    if (!inputMessage.trim() || sendMessageMutation.isPending) return;
+
+    const message = inputMessage.trim();
+
+    setInputMessage("");
+
+    try {
+      const chatIdToUse = currentChatId || "new";
+
+      const response = await sendMessageMutation.mutateAsync({
+        chatId: chatIdToUse,
+        message,
+        file_id: fileId,
+      });
+
+      if (!currentChatId && response?.chat_id) {
+        setCurrentChatId(response.chat_id);
+      }
+    } catch {
+      setInputMessage(message);
+    }
+  };
+
+  const startNewChat = () => {
+    setCurrentChatId(null);
+    setInputMessage("");
+    setIsHistoryOpen(false);
+  };
+
+  const loadChat = (chatId: string) => {
+    setCurrentChatId(chatId);
+    setIsHistoryOpen(false);
+  };
+
+  const deleteChat = async (chatId: string) => {
+    await deleteChatMutation.mutateAsync(chatId);
+
+    if (currentChatId === chatId) {
+      startNewChat();
+    }
+  };
+
+  const clearChat = () => {
+    startNewChat();
+  };
+
+  const copyMessage = (content: string) => {
+    navigator.clipboard.writeText(content);
+  };
+
+  const showQuickQuestions = (messages?.length || 0) === 1;
 
   return (
     <>
       <ChatHeader
         isHistoryOpen={isHistoryOpen}
-        savedChats={savedChats}
+        savedChats={savedChats || []}
         setIsHistoryOpen={setIsHistoryOpen}
         onClearChat={clearChat}
         onDeleteChat={deleteChat}
@@ -46,8 +102,8 @@ export const Chat = () => {
       <div className="flex-1 overflow-y-auto pb-20 sm:pb-24">
         <MaxWidthWrapper className="py-4 px-4 sm:py-6 md:py-10 !max-w-4xl">
           <div className="space-y-4 sm:space-y-6">
-            {messages.map((message) => (
-              <ChatMessage key={message.id} message={message} onCopyMessage={copyMessage} />
+            {(messages || []).map((message, index) => (
+              <ChatMessage key={index} message={message} onCopyMessage={copyMessage} />
             ))}
 
             {/* Loading Message */}
@@ -57,8 +113,8 @@ export const Chat = () => {
                   <Brain className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
                 </div>
                 <div className="max-w-[calc(100%-3rem)] sm:max-w-3xl">
-                  <div className="rounded-2xl px-3 py-2 sm:px-4 sm:py-3 bg-card border-2 border-b-4 border-b-gray-300">
-                    <div className="flex items-center gap-2 text-gray-600">
+                  <div className="rounded-2xl px-3 py-2 sm:px-4 sm:py-3 bg-card border-2 border-b-4">
+                    <div className="flex items-center gap-2 text-muted-foreground">
                       <Loader2 className="w-3 h-3 sm:w-4 sm:h-4 animate-spin" />
                       <span className="text-xs sm:text-sm">MedAI düşünüyor...</span>
                     </div>

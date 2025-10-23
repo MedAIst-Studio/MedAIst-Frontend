@@ -7,7 +7,7 @@ import {toast} from "sonner";
 import {Button} from "@/components/ui/button";
 
 import {FILE_COUNT_LIMITS, FILE_SIZE_LIMITS} from "../constants";
-import {formatFileSize, validateFiles} from "../utils";
+import {formatFileSize, validateFiles} from "../utils/fileValidation";
 
 interface FileUploadProps {
   onFileSelect: (files: FileList) => void;

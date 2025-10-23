@@ -1,8 +1,2 @@
-"use client";
-
-// New hooks
-export {useChat} from "./useChat";
-export {useDocuments} from "./useDocuments";
-export {useFileUpload as useDocumentUpload} from "./useFileUpload";
-
-export * from "./useFileQueries";
+// Export hooks if any are added in the future
+export {};

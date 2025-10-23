@@ -1,5 +1,7 @@
 import {apiClient} from "@/lib/api";
 
+import {filesResponseSchema} from "../validation";
+
 export const fileAPI = {
   uploadFile: async (file_title: string, file_data: File) => {
     const formData = new FormData();
@@ -19,30 +21,15 @@ export const fileAPI = {
     return {data, error};
   },
 
-  getDocuments: async () => {
-    const {data, error} = await apiClient.request({
-      url: "/files",
-      method: "GET",
-    });
+  getFiles: async () => {
+    const {data, error} = await apiClient.get("/files", undefined, filesResponseSchema);
 
     return {data, error};
   },
 
-  deleteDocument: async (fileId: string) => {
-    const {data, error} = await apiClient.request({
-      url: `/files/${fileId}`,
-      method: "DELETE",
-    });
+  deleteFile: async (fileId: string) => {
+    const {error} = await apiClient.delete(`/files/${fileId}`);
 
-    return {data, error};
-  },
-
-  getDocument: async (fileId: string) => {
-    const {data, error} = await apiClient.request({
-      url: `/files/${fileId}`,
-      method: "GET",
-    });
-
-    return {data, error};
+    return {error};
   },
 };

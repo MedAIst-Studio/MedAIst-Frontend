@@ -1,3 +1,4 @@
-export {ChatInterface} from "./ChatInterface";
-export {DocumentCard} from "./DocumentCard";
-export {FileProgressDisplay, FileUpload as FileUploadComponent} from "./FileUpload";
+export * from "./FileCard";
+export * from "./FileList";
+export * from "./Files";
+export * from "./FileUpload";

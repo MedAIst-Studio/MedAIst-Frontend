@@ -1,6 +1,6 @@
 "use client";
 
-import {Brain, Bug, FileText, LogOut, MessageSquare, Settings, Target, User} from "lucide-react";
+import {Brain, Bug, FileText, LogOut, Settings, Target, User} from "lucide-react";
 import Link from "next/link";
 import {useState} from "react";
 
@@ -32,13 +32,8 @@ import {cn} from "@/lib/utils";
 
 const menuItems = [
   {
-    title: "AI Chat",
-    url: "/chat",
-    icon: MessageSquare,
-  },
-  {
-    title: "Notlarım",
-    url: "/notes",
+    title: "Dosyalar",
+    url: "/files",
     icon: FileText,
   },
   {

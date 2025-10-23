@@ -1,14 +1,15 @@
 // Components
-export * from "./components";
 
 // Hooks
 export * from "./hooks";
+
+// Queries
+export * from "./queries";
 
 // Types
 export * from "./types";
 
 // Utils
-export * from "./utils";
 
 // Constants
 export * from "./constants";

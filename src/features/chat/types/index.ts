@@ -1,23 +1,10 @@
-export interface Message {
-  id: string;
-  content: string;
-  role: "user" | "assistant";
-  timestamp: Date;
-}
-
-export interface SavedChat {
-  id: string;
-  title: string;
-  messages: Message[];
-  lastUpdated: Date;
-  messageCount: number;
-}
+import type {Chat, Message} from "../validations";
 
 export interface ChatState {
   messages: Message[];
   inputMessage: string;
   isLoading: boolean;
-  savedChats: SavedChat[];
+  savedChats: Chat[];
   currentChatId: string | null;
   isHistoryOpen: boolean;
 }
@@ -26,7 +13,7 @@ export interface ChatActions {
   setMessages: (messages: Message[]) => void;
   setInputMessage: (message: string) => void;
   setIsLoading: (loading: boolean) => void;
-  setSavedChats: (chats: SavedChat[] | ((prev: SavedChat[]) => SavedChat[])) => void;
+  setSavedChats: (chats: Chat[] | ((prev: Chat[]) => Chat[])) => void;
   setCurrentChatId: (id: string | null) => void;
   setIsHistoryOpen: (open: boolean) => void;
 }
