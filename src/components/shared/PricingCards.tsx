@@ -32,7 +32,7 @@ export function PricingCards({plans}: PricingCardsProps) {
   const [isYearly, setIsYearly] = useState(false);
 
   return (
-    <>
+    <section className="py-20">
       {/* Yearly Toggle */}
       <div className="text-center mb-16">
         <PricingToggle onToggle={setIsYearly} />
@@ -101,6 +101,6 @@ export function PricingCards({plans}: PricingCardsProps) {
           </Card>
         ))}
       </div>
-    </>
+    </section>
   );
 }
