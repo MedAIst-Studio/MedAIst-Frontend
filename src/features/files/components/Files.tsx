@@ -48,11 +48,10 @@ export const Files = () => {
         );
 
         await uploadFileMutation.mutateAsync({
-          file_title: file.name.replace(/\.pdf$/i, ""),
+          file_title: file.name,
           file_data: file,
         });
 
-        // Update status to completed
         setUploadingFiles((prev) =>
           prev.map((f, idx) =>
             idx === i ? {...f, progress: {progress: 100, status: "completed"}} : f,

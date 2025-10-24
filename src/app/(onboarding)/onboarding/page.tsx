@@ -46,7 +46,7 @@ export default function OnboardingPage() {
         );
 
         await uploadFileMutation.mutateAsync({
-          file_title: file.name.replace(/\.pdf$/i, ""),
+          file_title: file.name,
           file_data: file,
         });
 
