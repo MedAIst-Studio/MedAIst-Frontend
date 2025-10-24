@@ -1,3 +1,5 @@
+"use client";
+
 import {Brain, Loader2} from "lucide-react";
 import {useEffect, useRef, useState} from "react";
 

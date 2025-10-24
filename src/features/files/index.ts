@@ -4,7 +4,7 @@
 export * from "./hooks";
 
 // Queries
-export * from "./queries";
+export * from "./hooks";
 
 // Types
 export * from "./types";

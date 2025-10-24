@@ -7,7 +7,7 @@ import {useState} from "react";
 
 import {Skeleton} from "@/components/ui/skeleton";
 
-import {useDeleteFile, useFiles, useUploadFile} from "../queries";
+import {useDeleteFile, useFiles, useUploadFile} from "../hooks";
 
 import {FileList} from "./FileList";
 import {FileProgressDisplay, FileUpload} from "./FileUpload";

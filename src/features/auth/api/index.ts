@@ -10,6 +10,7 @@ import {
 } from "../utils/validation";
 
 const AUTH_PATH = "/auth";
+const USERS_PATH = "/users";
 
 export const AuthAPI = {
   async login(request: LoginFormData) {
@@ -32,19 +33,19 @@ export const AuthAPI = {
   },
 
   async forgotPassword(data: ForgotPasswordFormData) {
-    const {error, success} = await apiClient.post(`${AUTH_PATH}/forgot-password`, data);
+    const {error, success} = await apiClient.post(`${USERS_PATH}/forgot-password`, data);
 
     return {error, success};
   },
 
   async resetPassword(data: ResetPasswordFormData, token: string | null) {
-    const {error, success} = await apiClient.post(`${AUTH_PATH}/reset-password`, {data, token});
+    const {error, success} = await apiClient.post(`${USERS_PATH}/reset-password`, {data, token});
 
     return {error, success};
   },
 
   async verifyEmail(code: string) {
-    const {error, success} = await apiClient.post(`${AUTH_PATH}/verify-email`, {code});
+    const {error, success} = await apiClient.post(`${USERS_PATH}/verify-email`, {code});
 
     return {error, success};
   },
@@ -55,10 +56,10 @@ export const AuthAPI = {
     return {error, success};
   },
 
-  async refreshToken() {
+  async refreshToken(refreshToken: string) {
     const {data, error, success} = await apiClient.post(
       `${AUTH_PATH}/refresh`,
-      {},
+      {refresh_token: refreshToken},
       {
         response: refreshTokenResponseSchema,
       },

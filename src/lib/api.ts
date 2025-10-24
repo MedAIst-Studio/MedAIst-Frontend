@@ -6,7 +6,7 @@ import axios, {
 } from "axios";
 import {z} from "zod";
 
-import {refreshTokenResponseSchema} from "@/features/auth/utils/validation";
+import {AuthAPI} from "@/features/auth/api";
 
 import {logger} from "./logger";
 import {ApiConfig, ApiError, ApiRequestConfig} from "./types";
@@ -134,42 +134,38 @@ axiosInstance.interceptors.response.use(
       if (!isRefreshing) {
         isRefreshing = true;
 
-        try {
-          const refreshResponse = await axiosInstance.post("/auth/refresh", {
-            refresh_token: getCookie("refreshToken"),
-          });
-          const validatedData = refreshTokenResponseSchema.parse(refreshResponse.data);
-          const {access_token} = validatedData;
+        const {data, error: refreshError} = await AuthAPI.refreshToken(
+          getCookie("refreshToken") || "",
+        );
 
-          if (access_token) {
-            if (typeof document !== "undefined") {
-              document.cookie = `accessToken=${access_token}; path=/; max-age=86400; SameSite=Strict; Secure`;
-            }
-
-            if (originalRequest.headers) {
-              originalRequest.headers.Authorization = `Bearer ${access_token}`;
-            }
-
-            onTokenRefreshed(access_token);
-
-            isRefreshing = false;
-
-            return axiosInstance(originalRequest);
+        if (data?.access_token) {
+          if (typeof document !== "undefined") {
+            document.cookie = `accessToken=${data.access_token}; path=/; max-age=86400; SameSite=Strict; Secure`;
           }
-        } catch (refreshError) {
+
+          if (originalRequest.headers) {
+            originalRequest.headers.Authorization = `Bearer ${data.access_token}`;
+          }
+
+          onTokenRefreshed(data.access_token);
+
           isRefreshing = false;
-          refreshSubscribers = [];
 
-          logger.error("Token refresh failed", refreshError);
-
-          if (typeof window !== "undefined") {
-            document.cookie = "accessToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
-            document.cookie = "refreshToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
-            window.location.href = "/login";
-          }
-
-          return Promise.reject(createApiError(refreshError, "TOKEN_REFRESH_ERROR"));
+          return axiosInstance(originalRequest);
         }
+
+        isRefreshing = false;
+        refreshSubscribers = [];
+
+        logger.error("Token refresh failed", refreshError);
+
+        if (typeof window !== "undefined") {
+          document.cookie = "accessToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+          document.cookie = "refreshToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+          window.location.href = "/login";
+        }
+
+        return Promise.reject(createApiError(refreshError, "TOKEN_REFRESH_ERROR"));
       }
 
       return new Promise((resolve) => {
