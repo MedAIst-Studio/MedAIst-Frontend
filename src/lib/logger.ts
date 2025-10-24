@@ -50,6 +50,10 @@ class Logger {
   private config: LoggerConfig;
   private buffer: LogEntry[] = [];
   private flushTimer?: NodeJS.Timeout;
+  private requestStats: Map<
+    string,
+    {method: string; url: string; startTime: number; timestamp: Date}
+  > = new Map();
 
   constructor(config: LoggerConfig) {
     this.config = config;
@@ -216,17 +220,167 @@ class Logger {
   }
 
   logApiRequest(request: RequestLog) {
-    this.debug(`→ ${request.method} ${request.url}`);
+    const isDev = process.env.NODE_ENV !== "production";
+
+    // Store request info for statistics
+    this.requestStats.set(request.id, {
+      method: request.method,
+      url: request.url,
+      startTime: Date.now(),
+      timestamp: request.timestamp,
+    });
+
+    if (isDev) {
+      // Detaylı log - Development
+      console.group(
+        `%c→ ${request.method} %c${request.url}`,
+        "color: #22c55e; font-weight: bold",
+        "color: #94a3b8",
+      );
+
+      console.log("%cRequest ID:", "color: #64748b; font-weight: bold", request.id);
+
+      if (request.headers) {
+        const filteredHeaders = {...request.headers};
+
+        // Sensitive headers'ı maskele
+        if (filteredHeaders.Authorization) {
+          filteredHeaders.Authorization = "Bearer ****";
+        }
+
+        console.log("%cHeaders:", "color: #64748b; font-weight: bold", filteredHeaders);
+      }
+
+      if (request.data) {
+        // FormData ise özel işlem
+        if (request.data instanceof FormData) {
+          console.log("%cBody:", "color: #64748b; font-weight: bold", "FormData");
+          const formDataEntries: Record<string, any> = {};
+
+          request.data.forEach((value, key) => {
+            if (value instanceof File) {
+              formDataEntries[key] = `File: ${value.name} (${(value.size / 1024).toFixed(2)} KB)`;
+            } else {
+              formDataEntries[key] = value;
+            }
+          });
+          console.table(formDataEntries);
+        } else {
+          console.log("%cBody:", "color: #64748b; font-weight: bold", request.data);
+        }
+      }
+
+      console.log(
+        "%cTimestamp:",
+        "color: #64748b; font-weight: bold",
+        request.timestamp.toLocaleTimeString(),
+      );
+      console.groupEnd();
+    } else {
+      // Basit log - Production
+      this.debug(`→ ${request.method} ${request.url}`, {id: request.id});
+    }
   }
 
   logApiResponse(response: ResponseLog) {
-    if (response.errors && response.errors.length > 0) {
-      this.error(`← ${response.status} (${response.duration}ms)`, {
-        errors: response.errors,
-      });
-    } else {
-      this.debug(`← ${response.status} (${response.duration}ms)`);
+    const isDev = process.env.NODE_ENV !== "production";
+    const isError = response.status >= 400;
+    const isSuccess = response.status >= 200 && response.status < 300;
+
+    // Get request info from stats
+    const requestInfo = this.requestStats.get(response.requestId);
+
+    if (requestInfo) {
+      // Clean up stats
+      this.requestStats.delete(response.requestId);
     }
+
+    if (isDev) {
+      // Detaylı log - Development
+      const statusColor = isError ? "#ef4444" : isSuccess ? "#22c55e" : "#f59e0b";
+      const statusIcon = isError ? "❌" : isSuccess ? "✅" : "⚠️";
+
+      console.group(
+        `%c${statusIcon} ${response.status} %c${response.duration}ms %c${requestInfo?.method || ""} ${requestInfo?.url || ""}`,
+        `color: ${statusColor}; font-weight: bold`,
+        "color: #94a3b8",
+        "color: #64748b; font-size: 0.9em",
+      );
+
+      console.log("%cRequest ID:", "color: #64748b; font-weight: bold", response.requestId);
+      console.log("%cStatus:", "color: #64748b; font-weight: bold", response.statusText);
+
+      if (response.data) {
+        if (isError) {
+          console.error("%cResponse:", "color: #64748b; font-weight: bold", response.data);
+        } else {
+          console.log("%cResponse:", "color: #64748b; font-weight: bold", response.data);
+        }
+      }
+
+      if (response.errors && response.errors.length > 0) {
+        console.error("%cErrors:", "color: #ef4444; font-weight: bold", response.errors);
+      }
+
+      // Performance warning
+      if (response.duration > 3000) {
+        console.warn(
+          "%c🐌 Slow Response",
+          "color: #f59e0b; font-weight: bold",
+          `${response.duration}ms`,
+        );
+      } else if (response.duration > 1000) {
+        console.warn(
+          "%c⏱️ Moderate Response",
+          "color: #f59e0b; font-weight: bold",
+          `${response.duration}ms`,
+        );
+      }
+
+      console.log(
+        "%cTimestamp:",
+        "color: #64748b; font-weight: bold",
+        response.timestamp.toLocaleTimeString(),
+      );
+      console.groupEnd();
+    } else {
+      // Basit log - Production
+      if (response.errors && response.errors.length > 0) {
+        this.error(`← ${response.status} (${response.duration}ms)`, {
+          requestId: response.requestId,
+          errors: response.errors,
+        });
+      } else if (isError) {
+        this.warn(`← ${response.status} (${response.duration}ms)`, {
+          requestId: response.requestId,
+        });
+      } else {
+        this.debug(`← ${response.status} (${response.duration}ms)`);
+      }
+    }
+  }
+
+  // Request summary
+  getRequestSummary() {
+    if (this.requestStats.size === 0) {
+      this.info("No pending requests");
+
+      return;
+    }
+
+    console.group("%c📊 Pending Requests Summary", "color: #3b82f6; font-weight: bold");
+    console.log(`Total: ${this.requestStats.size}`);
+
+    const requests = Array.from(this.requestStats.entries()).map(([id, info]) => ({
+      ID: id,
+      Method: info.method,
+      URL: info.url,
+      "Elapsed Time": `${Date.now() - info.startTime}ms`,
+      Started: info.timestamp.toLocaleTimeString(),
+    }));
+
+    console.table(requests);
+    console.groupEnd();
   }
 
   // Performance logging
@@ -281,6 +435,16 @@ const loggerConfig: LoggerConfig = {
 export const logger = new Logger(loggerConfig);
 
 if (typeof window !== "undefined") {
+  // Make logger accessible in development console
+  if (process.env.NODE_ENV !== "production") {
+    (window as any).__logger = logger;
+    console.info(
+      "%c🔍 Logger available in console as __logger",
+      "color: #3b82f6; font-weight: bold",
+    );
+    console.info("%c💡 Try: __logger.getRequestSummary()", "color: #64748b");
+  }
+
   window.addEventListener("beforeunload", () => {
     logger.destroy();
   });

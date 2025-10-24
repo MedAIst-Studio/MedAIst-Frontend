@@ -111,6 +111,7 @@ axiosInstance.interceptors.response.use(
       });
     }
 
+    // Handle 401 errors for token refresh
     if (error.response?.status === 401 && !originalRequest._retry) {
       if (originalRequest.url?.includes("/auth/refresh")) {
         logger.error("Refresh token failed, logging out");
@@ -129,6 +130,7 @@ axiosInstance.interceptors.response.use(
 
       originalRequest._retry = true;
 
+      // If token refresh is not already in progress, start it
       if (!isRefreshing) {
         isRefreshing = true;
 
@@ -137,22 +139,21 @@ axiosInstance.interceptors.response.use(
             refresh_token: getCookie("refreshToken"),
           });
           const validatedData = refreshTokenResponseSchema.parse(refreshResponse.data);
-          const {accessToken} = validatedData;
+          const {access_token} = validatedData;
 
-          if (accessToken) {
+          if (access_token) {
             if (typeof document !== "undefined") {
-              document.cookie = `accessToken=${accessToken}; path=/; max-age=86400; SameSite=Strict; Secure`;
+              document.cookie = `accessToken=${access_token}; path=/; max-age=86400; SameSite=Strict; Secure`;
             }
 
             if (originalRequest.headers) {
-              originalRequest.headers.Authorization = `Bearer ${accessToken}`;
+              originalRequest.headers.Authorization = `Bearer ${access_token}`;
             }
 
-            onTokenRefreshed(accessToken);
+            onTokenRefreshed(access_token);
 
             isRefreshing = false;
 
-            // Retry original request
             return axiosInstance(originalRequest);
           }
         } catch (refreshError) {
