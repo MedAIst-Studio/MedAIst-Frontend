@@ -25,8 +25,8 @@ export const messageRequestSchema = z.object({
 export const messageResponseSchema = z.object({
   ai_message_id: z.string(),
   ai_response: z.string(),
-  chat_id: z.string(),
-  title: z.string(),
+  chat_id: z.string().optional(),
+  title: z.string().optional(),
   user_message_id: z.string(),
 });
 
