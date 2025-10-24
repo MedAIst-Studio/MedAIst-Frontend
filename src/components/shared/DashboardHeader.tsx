@@ -28,7 +28,7 @@ import {
   SidebarTrigger,
   useSidebar,
 } from "@/components/ui/sidebar";
-import {useChats} from "@/features/chat/queries";
+import {useChats} from "@/features/chat/hooks";
 import {cn} from "@/lib/utils";
 
 const menuItems = [

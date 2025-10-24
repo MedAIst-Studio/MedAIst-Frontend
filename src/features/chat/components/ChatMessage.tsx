@@ -38,7 +38,10 @@ export const ChatMessage = ({message, onCopyMessage}: ChatMessageProps) => {
           }`}
         >
           <span className="text-xs">
-            {message.timestamp.toLocaleTimeString([], {hour: "2-digit", minute: "2-digit"})}
+            {new Date(message.timestamp).toLocaleTimeString([], {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
           </span>
 
           {!message.is_user && (

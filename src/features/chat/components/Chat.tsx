@@ -5,7 +5,7 @@ import {useEffect, useRef, useState} from "react";
 
 import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
 
-import {useChatMessages, useChats, useDeleteChat, useSendMessage} from "../queries";
+import {useChatMessages, useChats, useDeleteChat, useSendMessage} from "../hooks";
 
 import {ChatHeader} from "./ChatHeader";
 import {ChatInput} from "./ChatInput";

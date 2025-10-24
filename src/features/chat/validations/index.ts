@@ -12,7 +12,7 @@ export const messagesResponseSchema = z.array(
   z.object({
     content: z.string(),
     is_user: z.boolean(),
-    timestamp: z.date(),
+    timestamp: z.string(), // ISO string format
   }),
 );
 

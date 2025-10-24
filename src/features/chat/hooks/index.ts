@@ -75,36 +75,30 @@ export const useSendMessage = () => {
       return data;
     },
     onMutate: async (variables) => {
-      // Cancel any outgoing refetches
-      await queryClient.cancelQueries({queryKey: chatKeys.messages(variables.chatId || "")});
+      const queryKey = chatKeys.messages(variables.chatId || "");
 
-      // Snapshot the previous value
-      const previousMessages = queryClient.getQueryData(chatKeys.messages(variables.chatId || ""));
+      await queryClient.cancelQueries({queryKey});
 
-      // Optimistically update to the new value (user message only)
-      if (variables.chatId) {
-        queryClient.setQueryData(chatKeys.messages(variables.chatId), (old: any) => [
-          ...(old || []),
-          {
-            content: variables.message,
-            is_user: true,
-            timestamp: new Date(),
-          },
-        ]);
-      }
+      const previousMessages = queryClient.getQueryData(queryKey);
 
-      return {previousMessages};
+      queryClient.setQueryData(queryKey, (old: any) => [
+        ...(old || []),
+        {
+          content: variables.message,
+          is_user: true,
+          timestamp: new Date().toISOString(),
+        },
+      ]);
+
+      return {previousMessages, queryKey};
     },
     onSuccess: (data, variables) => {
-      // Add AI response to the chat
       const chatIdToUse = data?.chat_id || variables.chatId;
 
       if (chatIdToUse && data?.ai_response) {
         queryClient.setQueryData(chatKeys.messages(chatIdToUse), (old: any) => {
-          // If we didn't have optimistic update (new chat), add user message first
           const messages = old || [];
 
-          // Check if user message is already there (optimistic update)
           const hasUserMessage = messages.some(
             (m: any) => m.is_user && m.content === variables.message,
           );
@@ -116,7 +110,7 @@ export const useSendMessage = () => {
                 {
                   content: variables.message,
                   is_user: true,
-                  timestamp: new Date(),
+                  timestamp: new Date().toISOString(),
                 },
               ];
 
@@ -125,7 +119,7 @@ export const useSendMessage = () => {
             {
               content: data.ai_response,
               is_user: false,
-              timestamp: new Date(),
+              timestamp: new Date().toISOString(),
             },
           ];
         });
@@ -136,9 +130,8 @@ export const useSendMessage = () => {
       });
     },
     onError: (error: Error, variables, context) => {
-      // Rollback on error
-      if (context?.previousMessages && variables.chatId) {
-        queryClient.setQueryData(chatKeys.messages(variables.chatId), context.previousMessages);
+      if (context?.previousMessages) {
+        queryClient.setQueryData(context.queryKey, context.previousMessages);
       }
 
       toast.error("Mesaj gönderilemedi", {
