@@ -1,6 +1,6 @@
 "use client";
 
-import {Brain, Bug, ChartArea, FileText, LogOut, Settings, Target, User} from "lucide-react";
+import {Brain, Bug, FileText, LogOut, Settings, Target, User} from "lucide-react";
 import Link from "next/link";
 import {useState} from "react";
 
@@ -150,7 +150,6 @@ export default function DashboardHeader() {
                   <SidebarMenuItem key={chat.id}>
                     <SidebarMenuButton asChild>
                       <Link href={`/chat/${chat.id}`}>
-                        <ChartArea className="h-4 w-4" />
                         <span>{chat.title}</span>
                       </Link>
                     </SidebarMenuButton>
