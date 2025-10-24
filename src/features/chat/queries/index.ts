@@ -62,7 +62,7 @@ export const useSendMessage = () => {
       message,
       file_id,
     }: {
-      chatId: string;
+      chatId?: string;
       message: string;
       file_id: string;
     }) => {

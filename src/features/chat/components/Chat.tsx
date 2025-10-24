@@ -43,7 +43,7 @@ export const Chat = ({chatId: initialChatId, fileId}: ChatProps) => {
     setInputMessage("");
 
     try {
-      const chatIdToUse = currentChatId || "new";
+      const chatIdToUse = currentChatId || null;
 
       const response = await sendMessageMutation.mutateAsync({
         chatId: chatIdToUse,

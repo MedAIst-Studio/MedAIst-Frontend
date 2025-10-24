@@ -26,7 +26,7 @@ export const chatAPI = {
     return {error};
   },
 
-  sendMessage: async (chatId: string, message: string, file_id: string) => {
+  sendMessage: async (message: string, file_id: string, chatId?: string) => {
     const {data, error} = await apiClient.post(
       `/messages`,
       {

@@ -17,7 +17,7 @@ export const messagesResponseSchema = z.array(
 );
 
 export const messageRequestSchema = z.object({
-  chat_id: z.string(),
+  chat_id: z.string().optional(),
   pdf_id: z.string(),
   content: z.string(),
 });
