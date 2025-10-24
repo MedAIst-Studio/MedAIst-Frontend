@@ -43,12 +43,12 @@ export const Chat = ({chatId: initialChatId, fileId}: ChatProps) => {
     setInputMessage("");
 
     try {
-      const chatIdToUse = currentChatId || null;
+      const chatIdToUse = currentChatId || undefined;
 
       const response = await sendMessageMutation.mutateAsync({
-        chatId: chatIdToUse,
         message,
         file_id: fileId,
+        chatId: chatIdToUse,
       });
 
       if (!currentChatId && response?.chat_id) {

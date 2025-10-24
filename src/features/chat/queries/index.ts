@@ -58,15 +58,15 @@ export const useSendMessage = () => {
 
   return useMutation({
     mutationFn: async ({
-      chatId,
       message,
       file_id,
+      chatId,
     }: {
-      chatId?: string;
       message: string;
       file_id: string;
+      chatId?: string;
     }) => {
-      const {data, error} = await chatAPI.sendMessage(chatId, message, file_id);
+      const {data, error} = await chatAPI.sendMessage(message, file_id, chatId);
 
       if (error) {
         throw new Error(error.message || "Mesaj gönderilemedi");
@@ -76,7 +76,7 @@ export const useSendMessage = () => {
     },
     onSuccess: (data, variables) => {
       queryClient.invalidateQueries({
-        queryKey: chatKeys.messages(variables.chatId),
+        queryKey: chatKeys.messages(variables.chatId!),
       });
 
       queryClient.invalidateQueries({
