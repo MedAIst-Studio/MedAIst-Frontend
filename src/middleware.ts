@@ -1,9 +1,7 @@
 import {NextRequest, NextResponse} from "next/server";
 
-/**
- * Route configuration for authentication middleware
- * Centralized configuration makes it easy to maintain and update
- */
+import {isAuthenticated} from "./features/auth";
+
 const ROUTE_CONFIG = {
   // Routes that require authentication (user must be logged in)
   protected: ["/chat", "/files", "/quiz", "/settings"],
@@ -21,28 +19,6 @@ const ROUTE_CONFIG = {
   },
 } as const;
 
-/**
- * Cookie configuration
- */
-const COOKIE_NAMES = {
-  accessToken: "accessToken",
-  refreshToken: "refreshToken",
-} as const;
-
-/**
- * Check if user is authenticated by validating tokens in cookies
- */
-function isAuthenticated(request: NextRequest): boolean {
-  const accessToken = request.cookies.get(COOKIE_NAMES.accessToken);
-  const refreshToken = request.cookies.get(COOKIE_NAMES.refreshToken);
-
-  // User is authenticated if both tokens exist
-  return !!(accessToken?.value && refreshToken?.value);
-}
-
-/**
- * Check if the current path matches any of the route patterns
- */
 function matchesRoute(pathname: string, routes: readonly string[]): boolean {
   return routes.some((route) => {
     // Exact match
@@ -55,9 +31,6 @@ function matchesRoute(pathname: string, routes: readonly string[]): boolean {
   });
 }
 
-/**
- * Determine the route type based on the pathname
- */
 function getRouteType(pathname: string): "protected" | "auth" | "public" {
   if (matchesRoute(pathname, ROUTE_CONFIG.protected)) return "protected";
   if (matchesRoute(pathname, ROUTE_CONFIG.auth)) return "auth";
@@ -71,10 +44,9 @@ function getRouteType(pathname: string): "protected" | "auth" | "public" {
  */
 export function middleware(request: NextRequest) {
   const {pathname} = request.nextUrl;
-  const authenticated = isAuthenticated(request);
+  const authenticated = isAuthenticated();
   const routeType = getRouteType(pathname);
 
-  // Case 1: User trying to access protected routes without authentication
   if (routeType === "protected" && !authenticated) {
     const loginUrl = new URL(ROUTE_CONFIG.redirects.unauthenticated, request.url);
 
@@ -84,22 +56,15 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(loginUrl);
   }
 
-  // Case 2: Authenticated user trying to access auth pages
   if (routeType === "auth" && authenticated) {
     const redirectUrl = new URL(ROUTE_CONFIG.redirects.authenticated, request.url);
 
     return NextResponse.redirect(redirectUrl);
   }
 
-  // Case 3: Public routes or valid access - allow through
   return NextResponse.next();
 }
 
-/**
- * Matcher configuration
- * Optimizes middleware by only running on specific paths
- * Excludes static files, images, and Next.js internals
- */
 export const config = {
   matcher: [
     // Skip Next.js internals and all static files, unless found in search params

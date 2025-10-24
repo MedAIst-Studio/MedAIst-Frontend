@@ -11,6 +11,10 @@ export const loginResponseSchema = z.object({
   refreshToken: z.string(),
 });
 
+export const refreshTokenResponseSchema = z.object({
+  accessToken: z.string(),
+});
+
 export const signupSchema = z
   .object({
     username: z

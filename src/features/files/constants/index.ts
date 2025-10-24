@@ -56,7 +56,7 @@ export const PROCESSING_TIME_ESTIMATES = {
 
 // Retry configuration
 export const RETRY_CONFIG = {
-  MAX_ATTEMPTS: 3,
+  MAX_ATTEMPTS: 1,
   INITIAL_DELAY: 1000,
   MAX_DELAY: 10000,
   BACKOFF_FACTOR: 2,

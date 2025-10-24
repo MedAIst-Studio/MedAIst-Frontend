@@ -1,5 +1,7 @@
 "use client";
 
+import type {FileUploadProgress} from "@/features/files/types";
+
 import {ArrowRight, Brain, CheckCircle, FileText, Upload} from "lucide-react";
 import {useRouter} from "next/navigation";
 import {useState} from "react";
@@ -8,19 +10,74 @@ import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
 import {Badge} from "@/components/ui/badge";
 import {Button} from "@/components/ui/button";
 import {Card, CardContent} from "@/components/ui/card";
-import {FileProgressDisplay, FileUploadComponent} from "@/features/files/components";
-import {useDocumentUpload} from "@/features/files/hooks";
+import {useUploadFile} from "@/features/files";
+import {FileProgressDisplay, FileUpload} from "@/features/files/components";
 
 export default function OnboardingPage() {
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState(1);
-  const {uploadingFiles, isUploading, uploadFiles} = useDocumentUpload();
+  const [uploadingFiles, setUploadingFiles] = useState<
+    {name: string; progress: FileUploadProgress}[]
+  >([]);
 
-  const handleFileSelect = async (files: FileList) => {
-    await uploadFiles(files);
+  const uploadFileMutation = useUploadFile();
+
+  const handleFileSelect = async (fileList: FileList) => {
+    const filesArray = Array.from(fileList);
+
+    const initialProgress: {name: string; progress: FileUploadProgress}[] = filesArray.map(
+      (file) => ({
+        name: file.name,
+        progress: {progress: 0, status: "uploading" as const},
+      }),
+    );
+
+    setUploadingFiles(initialProgress);
+
+    for (let i = 0; i < filesArray.length; i++) {
+      const file = filesArray[i];
+
+      try {
+        // Update status to uploading
+        setUploadingFiles((prev) =>
+          prev.map((f, idx) =>
+            idx === i ? {...f, progress: {...f.progress, progress: 50, status: "uploading"}} : f,
+          ),
+        );
+
+        await uploadFileMutation.mutateAsync({
+          file_title: file.name.replace(/\.pdf$/i, ""),
+          file_data: file,
+        });
+
+        // Update status to completed
+        setUploadingFiles((prev) =>
+          prev.map((f, idx) =>
+            idx === i ? {...f, progress: {progress: 100, status: "completed"}} : f,
+          ),
+        );
+      } catch (error) {
+        // Update status to error
+        setUploadingFiles((prev) =>
+          prev.map((f, idx) =>
+            idx === i
+              ? {
+                  ...f,
+                  progress: {
+                    progress: 0,
+                    status: "error",
+                    error: error instanceof Error ? error.message : "Yükleme başarısız",
+                  },
+                }
+              : f,
+          ),
+        );
+      }
+    }
+
     setTimeout(() => {
       setCurrentStep(2);
-    }, 2000);
+    }, 1500);
   };
 
   const handleGetStarted = () => {
@@ -124,7 +181,10 @@ export default function OnboardingPage() {
                     </p>
                   </div>
 
-                  <FileUploadComponent isUploading={isUploading} onFileSelect={handleFileSelect} />
+                  <FileUpload
+                    isUploading={uploadFileMutation.isPending || uploadingFiles.length > 0}
+                    onFileSelect={handleFileSelect}
+                  />
 
                   {uploadingFiles.length > 0 && (
                     <div className="mt-6">

@@ -1,11 +1,14 @@
 "use client";
 
+import {useRouter, useSearchParams} from "next/navigation";
 import {useState} from "react";
 
-import {AuthLayout, LoginForm, type LoginFormData} from "@/features/auth";
+import {AuthLayout, LoginForm, type LoginFormData, setAuthTokens} from "@/features/auth";
 import {AuthAPI} from "@/features/auth/api";
 
 export default function LoginPage() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -16,9 +19,14 @@ export default function LoginPage() {
     try {
       const {data, error, success} = await AuthAPI.login(_data);
 
-      if (success) {
-        document.cookie = `accessToken=${data?.accessToken}; path=/; max-age=86400`;
-        document.cookie = `refreshToken=${data?.refreshToken}; path=/; max-age=2592000`;
+      if (success && data) {
+        // Use helper function to set tokens
+        setAuthTokens(data.accessToken, data.refreshToken);
+
+        // Redirect to callback URL or default page
+        const callbackUrl = searchParams.get("callbackUrl") || "/files";
+
+        router.push(callbackUrl);
       } else if (error) {
         setError(error.message);
       }

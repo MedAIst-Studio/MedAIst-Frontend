@@ -6,6 +6,8 @@ import axios, {
 } from "axios";
 import {z} from "zod";
 
+import {refreshTokenResponseSchema} from "@/features/auth/utils/validation";
+
 import {logger} from "./logger";
 import {ApiConfig, ApiError, ApiRequestConfig} from "./types";
 import {createApiError, getCookie} from "./utils";
@@ -62,6 +64,19 @@ axiosInstance.interceptors.request.use(
   },
 );
 
+// Token refresh state
+let isRefreshing = false;
+let refreshSubscribers: ((token: string) => void)[] = [];
+
+function subscribeTokenRefresh(callback: (token: string) => void) {
+  refreshSubscribers.push(callback);
+}
+
+function onTokenRefreshed(token: string) {
+  refreshSubscribers.forEach((callback) => callback(token));
+  refreshSubscribers = [];
+}
+
 axiosInstance.interceptors.response.use(
   (response: AxiosResponse) => {
     const config = response.config as any;
@@ -81,18 +96,89 @@ axiosInstance.interceptors.response.use(
     return response;
   },
   async (error: AxiosError) => {
-    const config = error.config as any;
-    const duration = config?.startTime ? Date.now() - config.startTime : 0;
+    const originalRequest = error.config as any;
+    const duration = originalRequest?.startTime ? Date.now() - originalRequest.startTime : 0;
 
     if (defaultApiConfig.enableLogging) {
       logger.logApiResponse({
-        requestId: config?.requestId,
+        requestId: originalRequest?.requestId,
         status: error.response?.status || 0,
         statusText: error.response?.statusText || "Network Error",
         data: error.response?.data,
         duration,
         timestamp: new Date(),
         errors: [error.message],
+      });
+    }
+
+    if (error.response?.status === 401 && !originalRequest._retry) {
+      if (originalRequest.url?.includes("/auth/refresh")) {
+        logger.error("Refresh token failed, logging out");
+
+        if (typeof window !== "undefined") {
+          // Clear cookies
+          document.cookie = "accessToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+          document.cookie = "refreshToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+
+          // Redirect to login
+          window.location.href = "/login";
+        }
+
+        return Promise.reject(createApiError(error, "AUTH_REFRESH_FAILED"));
+      }
+
+      originalRequest._retry = true;
+
+      if (!isRefreshing) {
+        isRefreshing = true;
+
+        try {
+          const refreshResponse = await axiosInstance.post("/auth/refresh", {
+            refresh_token: getCookie("refreshToken"),
+          });
+          const validatedData = refreshTokenResponseSchema.parse(refreshResponse.data);
+          const {accessToken} = validatedData;
+
+          if (accessToken) {
+            if (typeof document !== "undefined") {
+              document.cookie = `accessToken=${accessToken}; path=/; max-age=86400; SameSite=Strict; Secure`;
+            }
+
+            if (originalRequest.headers) {
+              originalRequest.headers.Authorization = `Bearer ${accessToken}`;
+            }
+
+            onTokenRefreshed(accessToken);
+
+            isRefreshing = false;
+
+            // Retry original request
+            return axiosInstance(originalRequest);
+          }
+        } catch (refreshError) {
+          isRefreshing = false;
+          refreshSubscribers = [];
+
+          logger.error("Token refresh failed", refreshError);
+
+          if (typeof window !== "undefined") {
+            document.cookie = "accessToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+            document.cookie = "refreshToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+            window.location.href = "/login";
+          }
+
+          return Promise.reject(createApiError(refreshError, "TOKEN_REFRESH_ERROR"));
+        }
+      }
+
+      return new Promise((resolve) => {
+        subscribeTokenRefresh((token: string) => {
+          if (originalRequest.headers) {
+            originalRequest.headers.Authorization = `Bearer ${token}`;
+          }
+
+          resolve(axiosInstance(originalRequest));
+        });
       });
     }
 

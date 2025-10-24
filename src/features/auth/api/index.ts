@@ -1,7 +1,13 @@
 import {apiClient} from "@/lib/api";
 
 import {ForgotPasswordFormData, ResetPasswordFormData} from "../types";
-import {LoginFormData, loginResponseSchema, loginSchema, SignupFormData} from "../utils/validation";
+import {
+  LoginFormData,
+  loginResponseSchema,
+  loginSchema,
+  refreshTokenResponseSchema,
+  SignupFormData,
+} from "../utils/validation";
 
 const AUTH_PATH = "/auth";
 
@@ -47,5 +53,17 @@ export const AuthAPI = {
     const {error, success} = await apiClient.post(`${AUTH_PATH}/logout`);
 
     return {error, success};
+  },
+
+  async refreshToken() {
+    const {data, error, success} = await apiClient.post(
+      `${AUTH_PATH}/refresh`,
+      {},
+      {
+        response: refreshTokenResponseSchema,
+      },
+    );
+
+    return {data, error, success};
   },
 };

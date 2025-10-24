@@ -14,6 +14,7 @@ export type {
   SocialAuthProvider,
   VerifyEmailFormData,
 } from "./types";
+export * from "./utils";
 export {
   forgotPasswordSchema,
   loginSchema,
