@@ -1,6 +1,6 @@
 "use client";
 
-import {Brain, Bug, FileText, LogOut, Settings, Target, User} from "lucide-react";
+import {Brain, Bug, ChartArea, FileText, LogOut, Settings, Target, User} from "lucide-react";
 import Link from "next/link";
 import {useState} from "react";
 
@@ -28,6 +28,7 @@ import {
   SidebarTrigger,
   useSidebar,
 } from "@/components/ui/sidebar";
+import {useChats} from "@/features/chat/queries";
 import {cn} from "@/lib/utils";
 
 const menuItems = [
@@ -47,8 +48,9 @@ export default function DashboardHeader() {
   const {open} = useSidebar();
   const [feedbackOpen, setFeedbackOpen] = useState(false);
 
+  const {data: chats} = useChats();
+
   const handleLogout = () => {
-    // Logout işlemi
     alert("Çıkış yapılıyor...");
   };
 
@@ -133,6 +135,24 @@ export default function DashboardHeader() {
                       <span>{item.title}</span>
                     </SidebarMenuButton>
                   )}
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+
+        <SidebarGroup>
+          <SidebarGroupLabel className="mt-auto">Sohbetler</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {chats?.map((chat) => (
+                <SidebarMenuItem key={chat.id}>
+                  <SidebarMenuButton asChild>
+                    <Link href={`/chat/${chat.id}`}>
+                      <ChartArea className="h-4 w-4" />
+                      <span>{chat.title}</span>
+                    </Link>
+                  </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
             </SidebarMenu>

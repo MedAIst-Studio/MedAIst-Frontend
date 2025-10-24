@@ -1,12 +1,12 @@
 import z from "zod";
 
-export const chatsResponseSchema = z.array(
-  z.object({
-    id: z.string(),
-    title: z.string().nullable(),
-    created_at: z.string(),
-  }),
-);
+export const chat = z.object({
+  id: z.string(),
+  title: z.string().nullable(),
+  created_at: z.string(),
+});
+
+export const chatsResponseSchema = z.array(chat).nullable();
 
 export const messagesResponseSchema = z.array(
   z.object({
@@ -30,7 +30,7 @@ export const messageResponseSchema = z.object({
   user_message_id: z.string(),
 });
 
-export type Chat = z.infer<typeof chatsResponseSchema.element>;
+export type Chat = z.infer<typeof chat>;
 export type Message = z.infer<typeof messagesResponseSchema.element>;
 export type UserMessage = z.infer<typeof messageRequestSchema>;
 export type AIMessage = z.infer<typeof messageResponseSchema>;
