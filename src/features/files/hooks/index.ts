@@ -1,5 +1,4 @@
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
-import {useRouter} from "next/navigation";
 import {toast} from "sonner";
 
 import {fileAPI} from "../api";
@@ -27,8 +26,6 @@ export const useFiles = () => {
 export const useUploadFile = () => {
   const queryClient = useQueryClient();
 
-  const router = useRouter();
-
   return useMutation({
     mutationFn: async ({file_title, file_data}: {file_title: string; file_data: File}) => {
       const {data, error} = await fileAPI.uploadFile(file_title, file_data);
@@ -39,13 +36,11 @@ export const useUploadFile = () => {
 
       return data;
     },
-    onSuccess: (data) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({queryKey: [FILES_QUERY_KEY]});
       toast.success("Başarılı", {
         description: "Dosya başarıyla yüklendi.",
       });
-
-      router.push(`/files/${data.id}`);
     },
     onError: (error: Error) => {
       toast.error("Hata", {
