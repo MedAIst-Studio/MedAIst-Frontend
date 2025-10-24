@@ -141,23 +141,25 @@ export default function DashboardHeader() {
           </SidebarGroupContent>
         </SidebarGroup>
 
-        <SidebarGroup>
-          <SidebarGroupLabel className="mt-auto">Sohbetler</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {chats?.map((chat) => (
-                <SidebarMenuItem key={chat.id}>
-                  <SidebarMenuButton asChild>
-                    <Link href={`/chat/${chat.id}`}>
-                      <ChartArea className="h-4 w-4" />
-                      <span>{chat.title}</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
+        {chats && chats.length > 0 && (
+          <SidebarGroup>
+            <SidebarGroupLabel className="mt-auto">Sohbetler</SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                {chats?.map((chat) => (
+                  <SidebarMenuItem key={chat.id}>
+                    <SidebarMenuButton asChild>
+                      <Link href={`/chat/${chat.id}`}>
+                        <ChartArea className="h-4 w-4" />
+                        <span>{chat.title}</span>
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        )}
       </SidebarContent>
 
       <SidebarFooter>
