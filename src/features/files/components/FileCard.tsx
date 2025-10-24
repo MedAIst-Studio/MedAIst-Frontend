@@ -22,15 +22,7 @@ interface FileCardProps {
   isDeleting?: boolean;
 }
 
-export const FileCard = ({
-  id,
-  title,
-  size,
-  created_at,
-  onDelete,
-  onOpen,
-  isDeleting = false,
-}: FileCardProps) => {
+export const FileCard = ({id, title, size, created_at, onDelete, onOpen}: FileCardProps) => {
   const [showMenu, setShowMenu] = useState(false);
 
   const formattedDate = new Date(created_at).toLocaleDateString("tr-TR", {
@@ -84,7 +76,7 @@ export const FileCard = ({
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuItem className="text-destructive" onClick={handleDelete}>
-              <Trash2 className="w-4 h-4 mr-2" />
+              <Trash2 />
               Sil
             </DropdownMenuItem>
           </DropdownMenuContent>
