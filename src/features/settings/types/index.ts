@@ -1,8 +1,6 @@
 export interface ProfileSettings {
-  firstName: string;
-  lastName: string;
+  username: string;
   email: string;
-  avatar?: string;
 }
 
 export interface AppearanceSettings {

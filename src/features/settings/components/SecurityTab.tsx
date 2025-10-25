@@ -6,6 +6,7 @@ import {useState} from "react";
 import {Button} from "@/components/ui/button";
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
 import {Label} from "@/components/ui/label";
+import {useUpdatePassword} from "@/features/users/hooks";
 
 import {SettingsTabProps} from "../types";
 import {validatePassword} from "../utils";
@@ -13,6 +14,8 @@ import {validatePassword} from "../utils";
 import {SettingInput} from "./SettingInput";
 
 export const SecurityTab = ({className}: SettingsTabProps) => {
+  const updatePasswordMutation = useUpdatePassword();
+
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -36,14 +39,17 @@ export const SecurityTab = ({className}: SettingsTabProps) => {
     setPasswordErrors([]);
 
     try {
-      // API call to change password
-      // await api.changePassword(currentPassword, newPassword);
-      // Show success message
+      await updatePasswordMutation.mutateAsync({
+        oldPassword: currentPassword,
+        newPassword: newPassword,
+      });
+
+      // Clear form on success
       setCurrentPassword("");
       setNewPassword("");
       setConfirmPassword("");
-    } catch (error) {
-      // Show error message
+    } catch {
+      // Error handled by mutation onError
     }
   };
 
@@ -59,7 +65,7 @@ export const SecurityTab = ({className}: SettingsTabProps) => {
       // API call to delete account
       // await api.deleteAccount();
       // Redirect to login page
-    } catch (error) {
+    } catch {
       // Show error message
     }
   };
@@ -106,8 +112,12 @@ export const SecurityTab = ({className}: SettingsTabProps) => {
               ))}
             </div>
           )}
-          <Button variant="destructive" onClick={handlePasswordChange}>
-            Şifreyi Değiştir
+          <Button
+            disabled={updatePasswordMutation.isPending}
+            variant="destructive"
+            onClick={handlePasswordChange}
+          >
+            {updatePasswordMutation.isPending ? "Değiştiriliyor..." : "Şifreyi Değiştir"}
           </Button>
         </CardContent>
       </Card>

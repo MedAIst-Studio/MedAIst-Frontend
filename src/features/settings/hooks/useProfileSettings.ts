@@ -3,10 +3,8 @@ import {useCallback, useState} from "react";
 import {ProfileSettings} from "../types";
 
 const initialProfileState: ProfileSettings = {
-  firstName: "",
-  lastName: "",
+  username: "",
   email: "",
-  avatar: undefined,
 };
 
 export const useProfileSettings = () => {

@@ -10,6 +10,7 @@ interface SettingInputProps {
   onChange: (value: string) => void;
   error?: string;
   required?: boolean;
+  disabled?: boolean;
 }
 
 export const SettingInput = ({
@@ -21,6 +22,7 @@ export const SettingInput = ({
   onChange,
   error,
   required = false,
+  disabled = false,
 }: SettingInputProps) => {
   return (
     <div className="space-y-2">
@@ -29,6 +31,7 @@ export const SettingInput = ({
         {required && <span className="text-red-500 ml-1">*</span>}
       </Label>
       <Input
+        disabled={disabled}
         id={id}
         placeholder={placeholder}
         type={type}

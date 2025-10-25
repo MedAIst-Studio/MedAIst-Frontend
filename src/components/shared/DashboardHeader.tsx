@@ -29,6 +29,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import {useChats, useDeleteChat} from "@/features/chat/hooks";
+import {useUserDetails} from "@/features/users/hooks";
 import {cn} from "@/lib/utils";
 
 import {ChatItem} from "./ChatItem";
@@ -52,6 +53,7 @@ export default function DashboardHeader() {
 
   const {data: chats} = useChats();
   const deleteChatMutation = useDeleteChat();
+  const {data: userDetails} = useUserDetails();
 
   const handleDeleteChat = async (chatId: string) => {
     await deleteChatMutation.mutateAsync(chatId);
@@ -180,13 +182,19 @@ export default function DashboardHeader() {
                   <Avatar className="h-8 w-8 rounded-lg">
                     <AvatarImage alt="User" src="/placeholder-avatar.jpg" />
                     <AvatarFallback className="rounded-lg bg-blue-100 text-blue-600">
-                      <User className="h-4 w-4" />
+                      {userDetails?.username ? (
+                        userDetails.username.charAt(0).toUpperCase()
+                      ) : (
+                        <User className="h-4 w-4" />
+                      )}
                     </AvatarFallback>
                   </Avatar>
                   <div className="grid flex-1 text-left text-sm leading-tight">
-                    <span className="truncate font-semibold">Ömer Faruk</span>
+                    <span className="truncate font-semibold">
+                      {userDetails?.username || "Kullanıcı"}
+                    </span>
                     <span className="truncate text-xs text-muted-foreground">
-                      omerfaruk@example.com
+                      {userDetails?.email || "email@example.com"}
                     </span>
                   </div>
                 </SidebarMenuButton>
@@ -202,13 +210,19 @@ export default function DashboardHeader() {
                     <Avatar className="h-8 w-8 rounded-lg">
                       <AvatarImage alt="User" src="/placeholder-avatar.jpg" />
                       <AvatarFallback className="rounded-lg bg-blue-100 text-blue-600">
-                        <User className="h-4 w-4" />
+                        {userDetails?.username ? (
+                          userDetails.username.charAt(0).toUpperCase()
+                        ) : (
+                          <User className="h-4 w-4" />
+                        )}
                       </AvatarFallback>
                     </Avatar>
                     <div className="grid flex-1 text-left text-sm leading-tight">
-                      <span className="truncate font-semibold">Ömer Faruk</span>
+                      <span className="truncate font-semibold">
+                        {userDetails?.username || "Kullanıcı"}
+                      </span>
                       <span className="truncate text-xs text-muted-foreground">
-                        omerfaruk@example.com
+                        {userDetails?.email || "email@example.com"}
                       </span>
                     </div>
                   </div>

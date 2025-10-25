@@ -1,28 +1,54 @@
 "use client";
 
-import {Camera, User} from "lucide-react";
+import {User} from "lucide-react";
+import {useEffect, useState} from "react";
 
-import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
 import {Button} from "@/components/ui/button";
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
+import {useUpdateUserDetails, useUserDetails} from "@/features/users/hooks";
 
-import {useProfileSettings} from "../hooks";
 import {SettingsTabProps} from "../types";
-import {generateAvatarFallback} from "../utils";
 
 import {SettingInput} from "./SettingInput";
 
 export const ProfileTab = ({className}: SettingsTabProps) => {
-  const {profileSettings, updateProfile, saveProfile} = useProfileSettings();
+  const {data: userDetails, isLoading} = useUserDetails();
+  const updateUserDetailsMutation = useUpdateUserDetails();
+
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+
+  // Initialize form data when user details are loaded
+  useEffect(() => {
+    if (userDetails) {
+      setUsername(userDetails.username || "");
+      setEmail(userDetails.email || "");
+    }
+  }, [userDetails]);
 
   const handleProfileSave = async () => {
-    try {
-      await saveProfile();
-      // Show success message
-    } catch (error) {
-      // Show error message
+    if (!username.trim()) {
+      return;
     }
+
+    await updateUserDetailsMutation.mutateAsync(username.trim());
   };
+
+  const isFormChanged = userDetails && username !== userDetails.username;
+  const isSubmitDisabled =
+    !username.trim() || updateUserDetailsMutation.isPending || !isFormChanged;
+
+  if (isLoading) {
+    return (
+      <div className={`grid gap-6 ${className}`}>
+        <Card>
+          <CardContent className="p-6 text-center">
+            <div className="text-muted-foreground">Profil bilgileri yükleniyor...</div>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
   return (
     <div className={`grid gap-6 ${className}`}>
@@ -37,57 +63,33 @@ export const ProfileTab = ({className}: SettingsTabProps) => {
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
-          {/* Profile Picture */}
-          <div className="flex items-center gap-4">
-            <Avatar className="h-20 w-20">
-              <AvatarImage
-                alt="Profile"
-                src={profileSettings.avatar || "/placeholder-avatar.jpg"}
-              />
-              <AvatarFallback className="text-lg">
-                {generateAvatarFallback(profileSettings.firstName, profileSettings.lastName)}
-              </AvatarFallback>
-            </Avatar>
-            <div className="space-y-2">
-              <Button className="flex items-center gap-2" variant="outline">
-                <Camera size={16} />
-                Fotoğraf Değiştir
-              </Button>
-              <p className="text-sm text-gray-500">JPG, PNG veya GIF formatında, maksimum 5MB</p>
-            </div>
-          </div>
-
           {/* Personal Information */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <SettingInput
               required
-              id="firstName"
-              label="Ad"
-              placeholder="Adınız"
-              value={profileSettings.firstName}
-              onChange={(value) => updateProfile({firstName: value})}
+              id="username"
+              label="Kullanıcı Adı"
+              placeholder="Kullanıcı adınız"
+              value={username}
+              onChange={setUsername}
             />
             <SettingInput
-              required
-              id="lastName"
-              label="Soyad"
-              placeholder="Soyadınız"
-              value={profileSettings.lastName}
-              onChange={(value) => updateProfile({lastName: value})}
-            />
-            <SettingInput
-              required
+              disabled
               id="email"
               label="E-posta"
               placeholder="ornek@email.com"
               type="email"
-              value={profileSettings.email}
-              onChange={(value) => updateProfile({email: value})}
+              value={email}
+              onChange={setEmail}
             />
           </div>
 
-          <Button className="w-full md:w-auto" onClick={handleProfileSave}>
-            Profil Bilgilerini Kaydet
+          <Button
+            className="w-full md:w-auto"
+            disabled={isSubmitDisabled}
+            onClick={handleProfileSave}
+          >
+            {updateUserDetailsMutation.isPending ? "Kaydediliyor..." : "Profil Bilgilerini Kaydet"}
           </Button>
         </CardContent>
       </Card>
