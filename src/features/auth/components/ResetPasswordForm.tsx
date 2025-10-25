@@ -2,7 +2,6 @@
 
 import {zodResolver} from "@hookform/resolvers/zod";
 import {ArrowRight, CheckCircle} from "lucide-react";
-import {useState} from "react";
 import {useForm} from "react-hook-form";
 
 import DynamicFormField from "@/components/shared/DynamicFormField";
@@ -24,9 +23,6 @@ export function ResetPasswordForm({
   error,
   isSuccess = false,
 }: ResetPasswordFormProps) {
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
   const form = useForm<ResetPasswordFormData>({
     resolver: zodResolver(resetPasswordSchema),
     defaultValues: {
