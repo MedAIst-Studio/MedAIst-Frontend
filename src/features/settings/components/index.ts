@@ -3,4 +3,3 @@ export {ProfileTab} from "./ProfileTab";
 export {SecurityTab} from "./SecurityTab";
 export {SettingInput} from "./SettingInput";
 export {SettingSwitch} from "./SettingSwitch";
-export {SubscriptionTab} from "./SubscriptionTab";

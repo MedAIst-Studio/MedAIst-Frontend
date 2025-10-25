@@ -1,11 +1,9 @@
-"use client";
-
-import {CreditCard, Palette, Shield, User} from "lucide-react";
+import {Palette, Shield, User} from "lucide-react";
 import {Metadata} from "next";
 
 import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
-import {AppearanceTab, ProfileTab, SecurityTab, SubscriptionTab} from "@/features/settings";
+import {AppearanceTab, ProfileTab, SecurityTab} from "@/features/settings";
 
 export const metadata: Metadata = {
   title: "Ayarlar - MedAIst",
@@ -35,10 +33,10 @@ const SettingsPage = () => {
               <Palette size={16} />
               Görünüm
             </TabsTrigger>
-            <TabsTrigger className="flex items-center gap-2" value="subscription">
+            {/* <TabsTrigger className="flex items-center gap-2" value="subscription">
               <CreditCard size={16} />
               Abonelik
-            </TabsTrigger>
+            </TabsTrigger> */}
             <TabsTrigger className="flex items-center gap-2" value="security">
               <Shield size={16} />
               Güvenlik
@@ -54,9 +52,9 @@ const SettingsPage = () => {
             <AppearanceTab />
           </TabsContent>
 
-          <TabsContent value="subscription">
+          {/* <TabsContent value="subscription">
             <SubscriptionTab />
-          </TabsContent>
+          </TabsContent> */}
 
           <TabsContent value="security">
             <SecurityTab />
