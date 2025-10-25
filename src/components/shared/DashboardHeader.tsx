@@ -28,8 +28,10 @@ import {
   SidebarTrigger,
   useSidebar,
 } from "@/components/ui/sidebar";
-import {useChats} from "@/features/chat/hooks";
+import {useChats, useDeleteChat} from "@/features/chat/hooks";
 import {cn} from "@/lib/utils";
+
+import {ChatItem} from "./ChatItem";
 
 const menuItems = [
   {
@@ -49,6 +51,11 @@ export default function DashboardHeader() {
   const [feedbackOpen, setFeedbackOpen] = useState(false);
 
   const {data: chats} = useChats();
+  const deleteChatMutation = useDeleteChat();
+
+  const handleDeleteChat = async (chatId: string) => {
+    await deleteChatMutation.mutateAsync(chatId);
+  };
 
   const handleLogout = () => {
     alert("Çıkış yapılıyor...");
@@ -147,13 +154,13 @@ export default function DashboardHeader() {
             <SidebarGroupContent>
               <SidebarMenu>
                 {chats?.map((chat) => (
-                  <SidebarMenuItem key={chat.id}>
-                    <SidebarMenuButton asChild>
-                      <Link href={`/chat/${chat.id}`}>
-                        <span>{chat.title}</span>
-                      </Link>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
+                  <ChatItem
+                    key={chat.id}
+                    file_id={chat.file_id}
+                    id={chat.id}
+                    title={chat.title}
+                    onDelete={handleDeleteChat}
+                  />
                 ))}
               </SidebarMenu>
             </SidebarGroupContent>

@@ -99,29 +99,14 @@ axiosInstance.interceptors.response.use(
     const originalRequest = error.config as any;
     const duration = originalRequest?.startTime ? Date.now() - originalRequest.startTime : 0;
 
-    if (defaultApiConfig.enableLogging) {
-      logger.logApiResponse({
-        requestId: originalRequest?.requestId,
-        status: error.response?.status || 0,
-        statusText: error.response?.statusText || "Network Error",
-        data: error.response?.data,
-        duration,
-        timestamp: new Date(),
-        errors: [error.message],
-      });
-    }
-
-    // Handle 401 errors for token refresh
     if (error.response?.status === 401 && !originalRequest._retry) {
       if (originalRequest.url?.includes("/auth/refresh")) {
         logger.error("Refresh token failed, logging out");
 
         if (typeof window !== "undefined") {
-          // Clear cookies
           document.cookie = "accessToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
           document.cookie = "refreshToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
 
-          // Redirect to login
           window.location.href = "/login";
         }
 
@@ -130,7 +115,6 @@ axiosInstance.interceptors.response.use(
 
       originalRequest._retry = true;
 
-      // If token refresh is not already in progress, start it
       if (!isRefreshing) {
         isRefreshing = true;
 
@@ -179,6 +163,18 @@ axiosInstance.interceptors.response.use(
       });
     }
 
+    if (defaultApiConfig.enableLogging) {
+      logger.logApiResponse({
+        requestId: originalRequest?.requestId,
+        status: error.response?.status || 0,
+        statusText: error.response?.statusText || "Network Error",
+        data: error.response?.data,
+        duration,
+        timestamp: new Date(),
+        errors: [error.message],
+      });
+    }
+
     const apiError = createApiError(error, "API_RESPONSE_ERROR");
 
     logger.error("API Error", apiError);
@@ -208,6 +204,7 @@ class ApiClient {
       validationSchema,
       responseSchema,
       skipValidation = false,
+      timeout,
     } = requestConfig;
 
     // Request validation
@@ -239,6 +236,7 @@ class ApiClient {
         data,
         params,
         headers,
+        ...(timeout && {timeout}),
       };
 
       const response = await this.instance.request(axiosConfig);

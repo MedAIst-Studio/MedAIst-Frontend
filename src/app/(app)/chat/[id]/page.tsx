@@ -1,13 +1,15 @@
+import {Chat} from "@/features/chat";
+
 type Props = {
-  params: Promise<{chat_id: string}>;
-  searchParams: Promise<{[key: string]: string | string[] | undefined}>;
+  params: Promise<{id: string}>;
+  searchParams: Promise<{[key: string]: string | undefined}>;
 };
 
 const ChatPage = async ({params, searchParams}: Props) => {
-  const {chat_id} = await params;
-  const {pdf_id} = await searchParams;
+  const {id} = await params;
+  const {file_id} = await searchParams;
 
-  return <div>ChatPage</div>;
+  return <Chat chatId={id} fileId={file_id} />;
 };
 
 export default ChatPage;

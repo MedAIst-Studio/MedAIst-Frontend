@@ -22,6 +22,7 @@ export interface ApiRequestConfig<TRequest = any, TResponse = any> {
   skipValidation?: boolean;
   skipLogging?: boolean;
   retries?: number;
+  timeout?: number;
 }
 
 // Generic API Response

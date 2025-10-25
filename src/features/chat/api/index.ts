@@ -27,18 +27,18 @@ export const chatAPI = {
   },
 
   sendMessage: async (message: string, file_id: string, chatId?: string) => {
-    const {data, error} = await apiClient.post(
-      `/messages`,
-      {
+    const {data, error} = await apiClient.request({
+      url: `/messages`,
+      method: "POST",
+      data: {
         chat_id: chatId,
         content: message,
         pdf_id: file_id,
       },
-      {
-        request: messageRequestSchema,
-        response: messageResponseSchema,
-      },
-    );
+      validationSchema: messageRequestSchema,
+      responseSchema: messageResponseSchema,
+      timeout: 60000,
+    });
 
     return {data, error};
   },

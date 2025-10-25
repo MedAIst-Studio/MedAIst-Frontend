@@ -1,4 +1,5 @@
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
+import {useRouter} from "next/navigation";
 import {toast} from "sonner";
 
 import {chatAPI} from "../api";
@@ -55,6 +56,7 @@ export const useChatMessages = (chatId: string | null) => {
 
 export const useSendMessage = () => {
   const queryClient = useQueryClient();
+  const router = useRouter();
 
   return useMutation({
     mutationFn: async ({
@@ -125,9 +127,12 @@ export const useSendMessage = () => {
         });
       }
 
-      queryClient.invalidateQueries({
-        queryKey: chatKeys.lists(),
-      });
+      if (!variables.chatId) {
+        queryClient.invalidateQueries({
+          queryKey: chatKeys.lists(),
+        });
+        router.push(`/chat/${data?.chat_id}?file_id=${variables.file_id}`);
+      }
     },
     onError: (error: Error, variables, context) => {
       if (context?.previousMessages) {

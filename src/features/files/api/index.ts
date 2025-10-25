@@ -16,6 +16,7 @@ export const fileAPI = {
       headers: {
         "Content-Type": "multipart/form-data",
       },
+      timeout: 60000,
     });
 
     return {data, error};

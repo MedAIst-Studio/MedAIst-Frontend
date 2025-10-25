@@ -22,7 +22,7 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground rounded-lg hover:shadow-sm transform hover:-translate-y-0.5 active:translate-y-0 border-b-4 active:border-slate-300",
 
         ghost:
-          "text-slate-700 rounded-lg hover:bg-blue-50 hover:text-blue-700 shadow-sm hover:shadow-lg transform hover:-translate-y-0.5 active:translate-y-0 focus-visible:ring-blue-500/30 border-b-4 border-transparent hover:border-blue-200 active:border-transparent dark:text-slate-300 dark:hover:bg-blue-950/30 dark:hover:text-blue-300 dark:hover:border-blue-800",
+          "text-muted-foreground rounded-lg hover:bg-muted/10 hover:text-muted-foreground transform border-transparent active:border-transparent",
 
         link: "text-blue-600 underline-offset-4 hover:underline hover:text-blue-700 transition-colors font-medium transform hover:-translate-y-0.5 active:translate-y-0 dark:text-blue-400 dark:hover:text-blue-300",
 

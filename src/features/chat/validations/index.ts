@@ -4,6 +4,7 @@ export const chat = z.object({
   id: z.string(),
   title: z.string().nullable(),
   created_at: z.string(),
+  file_id: z.string(),
 });
 
 export const chatsResponseSchema = z.array(chat).nullable();
@@ -12,7 +13,7 @@ export const messagesResponseSchema = z.array(
   z.object({
     content: z.string(),
     is_user: z.boolean(),
-    timestamp: z.string(), // ISO string format
+    timestamp: z.string(),
   }),
 );
 
