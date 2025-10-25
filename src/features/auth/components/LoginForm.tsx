@@ -66,7 +66,7 @@ export function LoginForm({onSubmit, onSocialLogin, isLoading = false, error}: L
 
           {/* Email Continue Button */}
           <Button className="w-full" type="button" onClick={() => setShowEmailForm(true)}>
-            <Mail className="mr-2 h-4 w-4" />
+            <Mail />
             E-posta ile Giriş Yap
             <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" />
           </Button>

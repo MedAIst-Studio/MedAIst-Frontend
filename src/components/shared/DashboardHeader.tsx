@@ -29,6 +29,8 @@ import {
   SidebarTrigger,
   useSidebar,
 } from "@/components/ui/sidebar";
+import {clearAuthTokens} from "@/features/auth";
+import {AuthAPI} from "@/features/auth/api";
 import {useChats, useDeleteChat} from "@/features/chat/hooks";
 import {useUserDetails} from "@/features/users/hooks";
 import {cn} from "@/lib/utils";
@@ -61,8 +63,10 @@ export default function DashboardHeader() {
     await deleteChatMutation.mutateAsync(chatId);
   };
 
-  const handleLogout = () => {
-    alert("Çıkış yapılıyor...");
+  const handleLogout = async () => {
+    await AuthAPI.logout();
+    clearAuthTokens();
+    window.location.href = "/login";
   };
 
   const handleFeedback = () => {

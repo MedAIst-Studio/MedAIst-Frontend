@@ -20,10 +20,8 @@ export default function LoginPage() {
       const {data, error, success} = await AuthAPI.login(_data);
 
       if (success && data) {
-        // Use helper function to set tokens
         setAuthTokens(data.accessToken, data.refreshToken);
 
-        // Redirect to callback URL or default page
         const callbackUrl = searchParams.get("callbackUrl") || "/files";
 
         router.push(callbackUrl);
