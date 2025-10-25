@@ -80,7 +80,7 @@ export const Chat = ({chatId: initialChatId, fileId}: ChatProps) => {
 
   return (
     <div className="h-screen flex flex-col overflow-hidden">
-      <div className="flex items-center justify-between bg-background border-b">
+      <div className="flex items-center justify-between bg-background">
         <ChatHeader
           fileData={fileData}
           fileId={fileId}
