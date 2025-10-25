@@ -159,4 +159,14 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    @apply w-2 h-2;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-muted/90 rounded;
+  }
 }

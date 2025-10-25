@@ -1,12 +1,22 @@
-import {Edit} from "lucide-react";
+import {ChevronLeft, ChevronRight, Edit, FileText} from "lucide-react";
 
 import {Button} from "@/components/ui/button";
 
 interface ChatHeaderProps {
   onClearChat: () => void;
+  fileId?: string;
+  fileData?: any;
+  isPdfPanelOpen: boolean;
+  setIsPdfPanelOpen: (open: boolean) => void;
 }
 
-export const ChatHeader = ({onClearChat}: ChatHeaderProps) => {
+export const ChatHeader = ({
+  onClearChat,
+  fileId,
+  fileData,
+  isPdfPanelOpen,
+  setIsPdfPanelOpen,
+}: ChatHeaderProps) => {
   return (
     <div className="py-2 sm:py-3 px-2 sm:px-4 flex-shrink-0 z-10 w-full ">
       <div className="flex items-center justify-between">
@@ -21,6 +31,25 @@ export const ChatHeader = ({onClearChat}: ChatHeaderProps) => {
             <Edit className="w-3 h-3 sm:w-4 sm:h-4" />
           </Button>
         </div>
+
+        {fileId && fileData && (
+          <Button
+            className="flex items-center gap-2"
+            size="sm"
+            variant="outline"
+            onClick={() => setIsPdfPanelOpen(!isPdfPanelOpen)}
+          >
+            <FileText className="w-4 h-4" />
+            <span className="hidden sm:inline">
+              {isPdfPanelOpen ? "PDF'yi Gizle" : "PDF'yi Göster"}
+            </span>
+            {isPdfPanelOpen ? (
+              <ChevronRight className="w-4 h-4" />
+            ) : (
+              <ChevronLeft className="w-4 h-4" />
+            )}
+          </Button>
+        )}
       </div>
     </div>
   );

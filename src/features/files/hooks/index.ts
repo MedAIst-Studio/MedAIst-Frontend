@@ -50,6 +50,24 @@ export const useUploadFile = () => {
   });
 };
 
+export const useGetFile = (fileId: string) => {
+  return useQuery({
+    queryKey: [FILES_QUERY_KEY, fileId],
+    queryFn: async () => {
+      const {data, error} = await fileAPI.getFile(fileId);
+
+      if (error) {
+        toast.error("Hata", {
+          description: "Dosya yüklenirken bir hata oluştu.",
+        });
+        throw error;
+      }
+
+      return data;
+    },
+  });
+};
+
 export const useDeleteFile = () => {
   const queryClient = useQueryClient();
 

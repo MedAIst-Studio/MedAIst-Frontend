@@ -205,6 +205,7 @@ class ApiClient {
       responseSchema,
       skipValidation = false,
       timeout,
+      responseType,
     } = requestConfig;
 
     // Request validation
@@ -237,6 +238,7 @@ class ApiClient {
         params,
         headers,
         ...(timeout && {timeout}),
+        ...(responseType && {responseType}),
       };
 
       const response = await this.instance.request(axiosConfig);

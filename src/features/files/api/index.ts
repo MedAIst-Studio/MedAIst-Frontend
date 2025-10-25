@@ -28,6 +28,19 @@ export const fileAPI = {
     return {data, error};
   },
 
+  getFile: async (fileId: string) => {
+    const {data, error} = await apiClient.request({
+      url: `/files/${fileId}`,
+      method: "GET",
+      responseType: "blob",
+    });
+
+    const blob = new Blob([data], {type: "application/pdf"});
+    const url = URL.createObjectURL(blob);
+
+    return {data: url, error};
+  },
+
   deleteFile: async (fileId: string) => {
     const {error} = await apiClient.delete(`/files/${fileId}`);
 

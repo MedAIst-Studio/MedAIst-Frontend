@@ -35,12 +35,7 @@ export const ChatInput = ({
   const isMobile = useIsMobile();
 
   return (
-    <div
-      className={cn(
-        "flex-shrink-0 px-2 sm:px-4 fixed bg-background bottom-0 right-0",
-        isMobile ? "left-0" : open ? "left-[16rem]" : "left-[3rem]",
-      )}
-    >
+    <div className={cn("flex-shrink-0 px-2 sm:px-4")}>
       <MaxWidthWrapper className="pb-4 sm:pb-6 !max-w-4xl">
         {/* Input Area */}
         <div className="relative flex items-center border-2 border-b-4 rounded-xl pr-2 sm:pr-4 bg-card hover:shadow-sm transition-all duration-200">

@@ -23,6 +23,7 @@ export interface ApiRequestConfig<TRequest = any, TResponse = any> {
   skipLogging?: boolean;
   retries?: number;
   timeout?: number;
+  responseType?: "json" | "blob" | "text" | "arraybuffer";
 }
 
 // Generic API Response

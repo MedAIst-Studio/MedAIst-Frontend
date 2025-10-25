@@ -22,7 +22,7 @@ export const ChatMessage = ({message, onCopyMessage}: ChatMessageProps) => {
         <div
           className={`${
             message.is_user
-              ? "border-b-4 rounded-2xl sm:px-4 sm:py-3 px-3 py-2 border-primary/30 bg-gradient-to-br from-primary via-primary/90 to-primary/80 text-primary-foreground"
+              ? "border-b-4 rounded-2xl sm:px-4 sm:py-3 px-3 py-2 border-primary/30 bg-gradient-to-br from-primary via-primary/90 to-primary/85 text-primary-foreground"
               : "text-foreground"
           }`}
         >
