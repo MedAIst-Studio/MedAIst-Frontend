@@ -45,7 +45,6 @@ export const PdfViewer = ({fileUrl, className = ""}: PdfViewerProps) => {
   const [scale, setScale] = useState<number>(1);
   const [rotation, setRotation] = useState<number>(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [searchText, setSearchText] = useState("");
   const [pageWidth, setPageWidth] = useState<number>(0);
 
   // Refs
@@ -326,18 +325,6 @@ export const PdfViewer = ({fileUrl, className = ""}: PdfViewerProps) => {
               </TooltipProvider>
             </div>
           </div>
-
-          {/* <div className="flex items-center gap-2">
-            <div className="relative flex-1 max-w-xs">
-              <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <Input
-                className="pl-8"
-                placeholder="PDF'de ara..."
-                value={searchText}
-                onChange={(e) => setSearchText(e.target.value)}
-              />
-            </div>
-          </div> */}
         </CardHeader>
 
         <CardContent ref={containerRef} className="p-0 flex-1 overflow-auto">
