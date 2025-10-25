@@ -1,8 +1,16 @@
+import {Metadata} from "next";
+
 import {Chat} from "@/features/chat";
 
 type Props = {
   params: Promise<{id: string}>;
   searchParams: Promise<{[key: string]: string | undefined}>;
+};
+
+export const metadata: Metadata = {
+  title: "Sohbet - MedAIst",
+  description:
+    "Dosyalarınızla yapay zeka destekli sohbet edin ve tıbbi çalışmalarınızı geliştirin.",
 };
 
 const ChatPage = async ({params, searchParams}: Props) => {

@@ -3,6 +3,7 @@
 import type {Quiz} from "@/features/quiz/types";
 
 import {Brain, Plus, Target, Trophy} from "lucide-react";
+import {Metadata} from "next";
 import {useState} from "react";
 
 import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
@@ -10,6 +11,11 @@ import {Button} from "@/components/ui/button";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import {QuizList} from "@/features/quiz/components/QuizList";
 import {useQuizzes} from "@/features/quiz/hooks";
+
+export const metadata: Metadata = {
+  title: "Quiz Merkezi - MedAIst",
+  description: "Bilgilerinizi test edin ve gelişiminizi takip edin.",
+};
 
 export default function QuizPage() {
   const [activeTab, setActiveTab] = useState("available");

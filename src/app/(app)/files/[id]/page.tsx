@@ -1,7 +1,14 @@
+import {Metadata} from "next";
+
 import {Chat} from "@/features/chat";
 
 type Props = {
   params: Promise<{id: string}>;
+};
+
+export const metadata: Metadata = {
+  title: "Dosya Sohbeti - MedAIst",
+  description: "PDF dosyanızla yapay zeka destekli sohbet edin.",
 };
 
 const FileChatPage = async ({params}: Props) => {

@@ -1,10 +1,16 @@
 "use client";
 
 import {CreditCard, Palette, Shield, User} from "lucide-react";
+import {Metadata} from "next";
 
 import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import {AppearanceTab, ProfileTab, SecurityTab, SubscriptionTab} from "@/features/settings";
+
+export const metadata: Metadata = {
+  title: "Ayarlar - MedAIst",
+  description: "Hesap ayarlarınızı ve tercihlerinizi yönetin.",
+};
 
 const SettingsPage = () => {
   return (

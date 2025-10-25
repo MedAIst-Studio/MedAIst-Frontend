@@ -1,5 +1,12 @@
+import {Metadata} from "next";
+
 import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
 import {Files} from "@/features/files/components/Files";
+
+export const metadata: Metadata = {
+  title: "Dosyalarım - MedAIst",
+  description: "PDF dosyalarınızı yükleyin ve yapay zeka ile etkileşime geçin.",
+};
 
 const FilesPage = () => {
   return (

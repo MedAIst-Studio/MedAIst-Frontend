@@ -6,7 +6,7 @@ import {SidebarProvider} from "@/components/ui/sidebar";
 import {ThemeProvider} from "@/providers/theme-provider";
 
 export const metadata: Metadata = {
-  title: "Dashboard - MedAIst",
+  title: "Platform MedAIst",
   description: "Your AI-powered medical study assistant",
 };
 
