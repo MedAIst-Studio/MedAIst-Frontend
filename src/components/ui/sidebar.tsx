@@ -458,13 +458,14 @@ function SidebarMenuItem({className, ...props}: React.ComponentProps<"li">) {
 }
 
 const sidebarMenuButtonVariants = cva(
-  "peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-lg p-2 text-left text-sm outline-hidden ring-sidebar-ring transition-all duration-300 hover:bg-secondary hover:text-sidebar-foreground focus-visible:ring-2 active:bg-secondary active:text-sidebar-foreground disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-secondary data-[active=true]:font-medium data-[active=true]:text-sidebar-foreground data-[state=open]:hover:bg-secondary data-[state=open]:hover:text-sidebar-foreground group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 hover:-translate-y-0.5 active:translate-y-0 border-b border-transparent hover:border hover:border-b-3 hover:border-secondary data-[active=true]:border-b-2 data-[active=true]:border-border data-[active=true]:-translate-y-0.5",
+  "peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-lg px-2 py-3 text-left text-sm outline-hidden ring-sidebar-ring transition-all duration-300 hover:bg-secondary hover:text-sidebar-foreground focus-visible:ring-2 active:bg-secondary active:text-sidebar-foreground disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-blue-100 dark:data-[active=true]:bg-blue-900/30 data-[active=true]:text-blue-900 dark:data-[active=true]:text-blue-100 data-[active=true]:font-medium data-[state=open]:hover:bg-secondary data-[state=open]:hover:text-sidebar-foreground group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 data-[active=true]:[&>svg]:text-blue-600 dark:data-[active=true]:[&>svg]:text-blue-400",
   {
     variants: {
       variant: {
-        default: "dark:hover:bg-zinc-700 hover:bg-gray-200 hover:text-sidebar-foreground",
+        default:
+          "dark:hover:bg-zinc-700 hover:bg-gray-200 hover:text-sidebar-foreground data-[active=true]:hover:bg-blue-100 dark:data-[active=true]:hover:bg-blue-900/30",
         outline:
-          "bg-background shadow-[0_0_0_1px_hsl(var(--sidebar-border))] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground hover:shadow-[0_0_0_1px_hsl(var(--sidebar-accent))]",
+          "bg-background shadow-[0_0_0_1px_hsl(var(--sidebar-border))] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground hover:shadow-[0_0_0_1px_hsl(var(--sidebar-accent))] data-[active=true]:bg-blue-50 dark:data-[active=true]:bg-blue-900/20 data-[active=true]:border-blue-200 dark:data-[active=true]:border-blue-700",
       },
       size: {
         default: "h-8 text-sm",

@@ -28,9 +28,10 @@ interface ChatItemProps {
   title: string | null;
   file_id: string;
   onDelete: (id: string) => void;
+  isActive?: boolean;
 }
 
-export const ChatItem = ({id, title, onDelete, file_id}: ChatItemProps) => {
+export const ChatItem = ({id, title, onDelete, file_id, isActive = false}: ChatItemProps) => {
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -46,7 +47,7 @@ export const ChatItem = ({id, title, onDelete, file_id}: ChatItemProps) => {
         onMouseLeave={() => setIsHovered(false)}
       >
         <div className="flex items-center w-full group">
-          <SidebarMenuButton asChild className="flex-1">
+          <SidebarMenuButton asChild className="flex-1" isActive={isActive}>
             <Link href={`/chat/${id}?file_id=${file_id}`}>
               <span className="truncate">{title || "Yeni Sohbet"}</span>
             </Link>

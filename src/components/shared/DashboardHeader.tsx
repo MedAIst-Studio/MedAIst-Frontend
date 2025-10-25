@@ -2,6 +2,7 @@
 
 import {Brain, Bug, FileText, LogOut, Settings, Target, User} from "lucide-react";
 import Link from "next/link";
+import {usePathname} from "next/navigation";
 import {useState} from "react";
 
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
@@ -50,6 +51,7 @@ const menuItems = [
 export default function DashboardHeader() {
   const {open} = useSidebar();
   const [feedbackOpen, setFeedbackOpen] = useState(false);
+  const pathname = usePathname();
 
   const {data: chats} = useChats();
   const deleteChatMutation = useDeleteChat();
@@ -65,6 +67,11 @@ export default function DashboardHeader() {
 
   const handleFeedback = () => {
     setFeedbackOpen(true);
+  };
+
+  // Check if a menu item is active
+  const isActive = (url: string) => {
+    return pathname === url || pathname.startsWith(url + "/");
   };
 
   const settingsItems = [
@@ -113,7 +120,7 @@ export default function DashboardHeader() {
             <SidebarMenu>
               {menuItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
+                  <SidebarMenuButton asChild isActive={isActive(item.url)}>
                     <Link href={item.url}>
                       <item.icon className="h-4 w-4" />
                       <span>{item.title}</span>
@@ -132,7 +139,7 @@ export default function DashboardHeader() {
               {settingsItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   {item.url ? (
-                    <SidebarMenuButton asChild>
+                    <SidebarMenuButton asChild isActive={isActive(item.url)}>
                       <Link href={item.url}>
                         <item.icon className="h-4 w-4" />
                         <span>{item.title}</span>
@@ -160,6 +167,7 @@ export default function DashboardHeader() {
                     key={chat.id}
                     file_id={chat.file_id}
                     id={chat.id}
+                    isActive={pathname === `/chat/${chat.id}`}
                     title={chat.title}
                     onDelete={handleDeleteChat}
                   />
