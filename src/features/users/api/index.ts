@@ -21,4 +21,10 @@ export const userAPI = {
 
     return {error};
   },
+
+  deleteAccount: async () => {
+    const {error} = await apiClient.delete(`/users/account`);
+
+    return {error};
+  },
 };

@@ -3,10 +3,21 @@
 import {Lock} from "lucide-react";
 import {useState} from "react";
 
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import {Button} from "@/components/ui/button";
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
 import {Label} from "@/components/ui/label";
-import {useUpdatePassword} from "@/features/users/hooks";
+import {useDeleteAccount, useUpdatePassword} from "@/features/users/hooks";
 
 import {SettingsTabProps} from "../types";
 import {validatePassword} from "../utils";
@@ -15,6 +26,7 @@ import {SettingInput} from "./SettingInput";
 
 export const SecurityTab = ({className}: SettingsTabProps) => {
   const updatePasswordMutation = useUpdatePassword();
+  const deleteAccountMutation = useDeleteAccount();
 
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -38,36 +50,20 @@ export const SecurityTab = ({className}: SettingsTabProps) => {
 
     setPasswordErrors([]);
 
-    try {
-      await updatePasswordMutation.mutateAsync({
-        oldPassword: currentPassword,
-        newPassword: newPassword,
-      });
+    await updatePasswordMutation.mutateAsync({
+      oldPassword: currentPassword,
+      newPassword: newPassword,
+    });
 
-      // Clear form on success
-      setCurrentPassword("");
-      setNewPassword("");
-      setConfirmPassword("");
-    } catch {
-      // Error handled by mutation onError
-    }
+    setCurrentPassword("");
+    setNewPassword("");
+    setConfirmPassword("");
   };
 
   const handleDeleteAccount = async () => {
-    // Show confirmation dialog
-    const confirmed = window.confirm(
-      "Bu işlem geri alınamaz. Hesabınız ve tüm verileriniz kalıcı olarak silinecek. Devam etmek istediğinizden emin misiniz?",
-    );
+    await deleteAccountMutation.mutateAsync();
 
-    if (!confirmed) return;
-
-    try {
-      // API call to delete account
-      // await api.deleteAccount();
-      // Redirect to login page
-    } catch {
-      // Show error message
-    }
+    window.location.href = "/login";
   };
 
   return (
@@ -135,9 +131,33 @@ export const SecurityTab = ({className}: SettingsTabProps) => {
             <p className="text-sm text-red-600 dark:text-red-300">
               Hesabınızı ve tüm verilerinizi kalıcı olarak silin
             </p>
-            <Button className="mt-2" variant="destructive" onClick={handleDeleteAccount}>
-              Hesabı Sil
-            </Button>
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button className="mt-2" variant="destructive">
+                  Hesabı Sil
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Hesabı silmek istediğinize emin misiniz?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    Bu işlem geri alınamaz. Hesabınız, tüm verileriniz, dosyalarınız ve sohbet
+                    geçmişiniz kalıcı olarak silinecektir. Bu işlem sonrasında verilerinizi geri
+                    alamazsınız.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>İptal</AlertDialogCancel>
+                  <AlertDialogAction
+                    className="bg-red-600 hover:bg-red-700 focus:ring-red-600"
+                    disabled={deleteAccountMutation.isPending}
+                    onClick={handleDeleteAccount}
+                  >
+                    {deleteAccountMutation.isPending ? "Siliniyor..." : "Evet, Hesabımı Sil"}
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
           </div>
         </CardContent>
       </Card>

@@ -62,3 +62,21 @@ export const useUpdatePassword = () => {
     },
   });
 };
+
+export const useDeleteAccount = () => {
+  return useMutation({
+    mutationFn: async () => {
+      const {error} = await userAPI.deleteAccount();
+
+      if (error) {
+        throw new Error(error.message || "Hesap silinemedi");
+      }
+    },
+    onSuccess: () => {
+      toast.success("Hesap başarıyla silindi");
+    },
+    onError: (error: Error) => {
+      toast.error(error.message);
+    },
+  });
+};
