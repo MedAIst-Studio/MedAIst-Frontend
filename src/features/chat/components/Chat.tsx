@@ -187,7 +187,7 @@ export const Chat = ({chatId: initialChatId, fileId}: ChatProps) => {
               }
             `}
           >
-            <div className="h-full bg-background rounded-lg border">
+            <div className="h-full bg-background rounded-lg">
               <PdfViewer fileUrl={fileData as string} />
             </div>
           </div>
