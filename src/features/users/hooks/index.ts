@@ -17,11 +17,10 @@ export const useUserDetails = () => {
 
       return data as User;
     },
-    staleTime: 5 * 60 * 1000, // 5 minutes
+    staleTime: Infinity,
   });
 };
 
-// Update user details mutation
 export const useUpdateUserDetails = () => {
   const queryClient = useQueryClient();
 
@@ -34,7 +33,6 @@ export const useUpdateUserDetails = () => {
       }
     },
     onSuccess: () => {
-      // Invalidate and refetch user data
       queryClient.invalidateQueries({queryKey: ["user", "profile"]});
       toast.success("Profil bilgileri başarıyla güncellendi");
     },
@@ -44,7 +42,6 @@ export const useUpdateUserDetails = () => {
   });
 };
 
-// Update password mutation
 export const useUpdatePassword = () => {
   return useMutation({
     mutationFn: async ({oldPassword, newPassword}: {oldPassword: string; newPassword: string}) => {

@@ -76,3 +76,21 @@ export function handleLogout(redirectUrl = "/login"): void {
   clearAuthTokens();
   window.location.href = redirectUrl;
 }
+
+/**
+ * Handle social login (Google, Facebook, etc.)
+ */
+export function handleSocialLogin(provider: "google" | "facebook"): void {
+  switch (provider) {
+    case "google":
+      window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/auth/google`;
+
+      break;
+    case "facebook":
+      window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/auth/facebook`;
+
+      break;
+    default:
+      throw new Error("Desteklenmeyen sosyal giriş sağlayıcısı");
+  }
+}

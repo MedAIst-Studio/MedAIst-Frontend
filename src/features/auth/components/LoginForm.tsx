@@ -35,11 +35,7 @@ export function LoginForm({onSubmit, onSocialLogin, isLoading = false, error}: L
   });
 
   const handleSubmit = async (data: LoginFormData) => {
-    try {
-      await onSubmit(data);
-    } catch {
-      // Error handling is done by parent component
-    }
+    await onSubmit(data);
   };
 
   return (

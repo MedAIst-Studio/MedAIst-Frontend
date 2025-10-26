@@ -3,7 +3,13 @@
 import {useRouter, useSearchParams} from "next/navigation";
 import {useState} from "react";
 
-import {AuthLayout, LoginForm, type LoginFormData, setAuthTokens} from "@/features/auth";
+import {
+  AuthLayout,
+  handleSocialLogin,
+  LoginForm,
+  type LoginFormData,
+  setAuthTokens,
+} from "@/features/auth";
 import {AuthAPI} from "@/features/auth/api";
 
 export default function LoginPage() {
@@ -33,11 +39,6 @@ export default function LoginPage() {
     } finally {
       setIsLoading(false);
     }
-  };
-
-  const handleSocialLogin = (_provider: "google" | "facebook") => {
-    setError(null);
-    // TODO: Implement social login
   };
 
   return (

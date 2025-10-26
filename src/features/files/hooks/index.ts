@@ -20,6 +20,7 @@ export const useFiles = () => {
 
       return data || [];
     },
+    staleTime: Infinity,
   });
 };
 
@@ -65,6 +66,7 @@ export const useGetFile = (fileId: string) => {
 
       return data;
     },
+    staleTime: Infinity,
   });
 };
 
@@ -82,7 +84,7 @@ export const useDeleteFile = () => {
       return fileId;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({queryKey: [FILES_QUERY_KEY]});
+      queryClient.invalidateQueries({queryKey: [FILES_QUERY_KEY, "chats"]});
       toast.success("Başarılı", {
         description: "Dosya başarıyla silindi.",
       });

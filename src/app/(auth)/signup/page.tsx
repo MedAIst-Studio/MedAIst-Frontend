@@ -3,7 +3,13 @@
 import {useRouter} from "next/navigation";
 import {useState} from "react";
 
-import {AuthLayout, setAuthTokens, SignupForm, type SignupFormData} from "@/features/auth";
+import {
+  AuthLayout,
+  handleSocialLogin,
+  setAuthTokens,
+  SignupForm,
+  type SignupFormData,
+} from "@/features/auth";
 import {AuthAPI} from "@/features/auth/api";
 
 export default function SignupPage() {
@@ -19,7 +25,6 @@ export default function SignupPage() {
       const {error, success} = await AuthAPI.signup(data);
 
       if (success) {
-        // Auto login after signup
         const {
           error: loginError,
           success: loginSuccess,
@@ -36,10 +41,8 @@ export default function SignupPage() {
         }
 
         if (loginSuccess && loginData) {
-          // Use helper function to set tokens
           setAuthTokens(loginData.accessToken, loginData.refreshToken);
 
-          // Redirect to onboarding
           router.push("/onboarding");
         }
       } else if (error) {
@@ -50,13 +53,6 @@ export default function SignupPage() {
     } finally {
       setIsLoading(false);
     }
-  };
-
-  const handleSocialLogin = (provider: "google" | "facebook") => {
-    setError(null);
-    // TODO: Implement social login
-    // eslint-disable-next-line no-console
-    console.log(`${provider} signup clicked`);
   };
 
   return (

@@ -7,6 +7,7 @@ import {
   loginSchema,
   refreshTokenResponseSchema,
   SignupFormData,
+  verifyOauthResponseSchema,
 } from "../utils/validation";
 
 const AUTH_PATH = "/auth";
@@ -62,6 +63,18 @@ export const AuthAPI = {
       {refresh_token: refreshToken},
       {
         response: refreshTokenResponseSchema,
+      },
+    );
+
+    return {data, error, success};
+  },
+
+  async verifyOauthSession(session: string) {
+    const {data, error, success} = await apiClient.post(
+      `${AUTH_PATH}/exchange`,
+      {session},
+      {
+        response: verifyOauthResponseSchema,
       },
     );
 

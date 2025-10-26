@@ -11,6 +11,11 @@ export const loginResponseSchema = z.object({
   refreshToken: z.string(),
 });
 
+export const verifyOauthResponseSchema = z.object({
+  access_token: z.string(),
+  refresh_token: z.string(),
+});
+
 export const refreshTokenResponseSchema = z.object({
   access_token: z.string(),
 });
