@@ -28,7 +28,9 @@ export const useChats = () => {
 
       return data;
     },
-    staleTime: 1000 * 60 * 60, // 60 minutes
+    staleTime: Infinity,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
   });
 };
 
@@ -50,7 +52,7 @@ export const useChatMessages = (chatId: string | null) => {
       return data;
     },
     enabled: !!chatId,
-    staleTime: 1000 * 60 * 1, // 1 minutes
+    staleTime: 1000 * 60 * 5, // 5 minutes
   });
 };
 

@@ -1,5 +1,9 @@
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
+import {useRouter} from "next/navigation";
 import {toast} from "sonner";
+
+import {clearAuthTokens} from "@/features/auth";
+import {AuthAPI} from "@/features/auth/api";
 
 import {userAPI} from "../api";
 import {User} from "../types";
@@ -18,6 +22,8 @@ export const useUserDetails = () => {
       return data as User;
     },
     staleTime: Infinity,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
   });
 };
 
@@ -61,6 +67,8 @@ export const useUpdatePassword = () => {
 };
 
 export const useDeleteAccount = () => {
+  const router = useRouter();
+
   return useMutation({
     mutationFn: async () => {
       const {error} = await userAPI.deleteAccount();
@@ -69,7 +77,10 @@ export const useDeleteAccount = () => {
         throw new Error(error.message || "Hesap silinemedi");
       }
     },
-    onSuccess: () => {
+    onSuccess: async () => {
+      clearAuthTokens();
+      await AuthAPI.logout();
+      router.push("/login");
       toast.success("Hesap başarıyla silindi");
     },
     onError: (error: Error) => {

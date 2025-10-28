@@ -26,7 +26,7 @@ export const ChatMessage = ({message, onCopyMessage}: ChatMessageProps) => {
               : "text-foreground"
           }`}
         >
-          <div className="whitespace-pre-wrap text-xs sm:text-sm leading-relaxed">
+          <div className="whitespace-pre-wrap text-sm lg:text-base leading-relaxed">
             {message.content}
           </div>
         </div>

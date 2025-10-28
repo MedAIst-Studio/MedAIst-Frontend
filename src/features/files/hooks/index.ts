@@ -21,6 +21,8 @@ export const useFiles = () => {
       return data || [];
     },
     staleTime: Infinity,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
   });
 };
 
@@ -67,6 +69,8 @@ export const useGetFile = (fileId: string) => {
       return data;
     },
     staleTime: Infinity,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
   });
 };
 
