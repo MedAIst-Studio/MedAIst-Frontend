@@ -1,5 +1,6 @@
 import {Brain, Copy} from "lucide-react";
 
+import MarkdownRenderer from "@/components/shared/MarkdownRenderer";
 import {Button} from "@/components/ui/button";
 
 import {Message} from "../validations";
@@ -18,17 +19,15 @@ export const ChatMessage = ({message, onCopyMessage}: ChatMessageProps) => {
         </div>
       )}
 
-      <div className={`max-w-[calc(100%-3rem)] sm:max-w-3xl ${message.is_user ? "order-1" : ""}`}>
+      <div className={`${message.is_user ? "order-1" : ""}`}>
         <div
           className={`${
             message.is_user
-              ? "border-b-4 rounded-2xl sm:px-4 sm:py-3 px-3 py-2 border-primary/30 bg-gradient-to-br from-primary via-primary/90 to-primary/85 text-primary-foreground"
+              ? "border-b-4 rounded-2xl max-w-[calc(100%-3rem)] sm:max-w-3xl sm:px-4 sm:py-3 px-3 py-2 border-primary/30 bg-gradient-to-br from-primary via-primary/90 to-primary/85 text-primary-foreground"
               : "text-foreground"
           }`}
         >
-          <div className="whitespace-pre-wrap text-sm lg:text-base leading-relaxed">
-            {message.content}
-          </div>
+          <MarkdownRenderer content={message.content} />
         </div>
 
         {/* Message Actions */}
