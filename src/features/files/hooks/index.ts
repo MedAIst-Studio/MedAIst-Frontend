@@ -1,6 +1,8 @@
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import {toast} from "sonner";
 
+import {chatKeys} from "@/features/chat/hooks";
+
 import {fileAPI} from "../api";
 
 export const FILES_QUERY_KEY = "files";
@@ -89,7 +91,7 @@ export const useDeleteFile = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({queryKey: [FILES_QUERY_KEY]});
-      queryClient.invalidateQueries({queryKey: ["chat", "lists"]});
+      queryClient.invalidateQueries({queryKey: chatKeys.lists()});
       toast.success("Başarılı", {
         description: "Dosya başarıyla silindi.",
       });
