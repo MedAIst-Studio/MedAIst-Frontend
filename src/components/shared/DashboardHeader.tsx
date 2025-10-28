@@ -51,7 +51,7 @@ const menuItems = [
 ];
 
 export default function DashboardHeader() {
-  const {open} = useSidebar();
+  const {open, state} = useSidebar();
   const [feedbackOpen, setFeedbackOpen] = useState(false);
   const pathname = usePathname();
 
@@ -105,7 +105,7 @@ export default function DashboardHeader() {
           </div>
           {open && (
             <span className="text-xl font-bold">
-              Med<span className="text-blue-600">AI</span>st
+              Med<span className="text-primary">AI</span>st
             </span>
           )}
         </Link>
@@ -161,7 +161,7 @@ export default function DashboardHeader() {
           </SidebarGroupContent>
         </SidebarGroup>
 
-        {chats && chats.length > 0 && (
+        {chats && chats.length > 0 && state === "expanded" && (
           <SidebarGroup>
             <SidebarGroupLabel className="mt-auto">Sohbetler</SidebarGroupLabel>
             <SidebarGroupContent>

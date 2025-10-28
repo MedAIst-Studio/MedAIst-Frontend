@@ -10,6 +10,7 @@ const MarkdownRenderer = ({content}: Props) => {
     <span className="text-sm lg:text-base leading-relaxed prose prose-neutral dark:prose-invert">
       <Markdown
         components={{
+          /* @ts-ignore */
           code({node, inline, className, children}) {
             return !inline ? (
               <pre className="bg-muted !px-1 py-0.5 rounded-md inline text-muted-foreground">

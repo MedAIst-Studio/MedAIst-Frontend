@@ -19,11 +19,15 @@ export const ChatMessage = ({message, onCopyMessage}: ChatMessageProps) => {
         <div
           className={`${
             message.is_user
-              ? "border-b-4 rounded-2xl max-w-[calc(100%-3rem)] sm:max-w-3xl w-max sm:px-4 sm:py-3 px-3 py-2 border-primary/30 bg-gradient-to-br from-primary via-primary/90 to-primary/85 text-primary-foreground"
+              ? "border-b-4 rounded-2xl max-w-[calc(100%-3rem)] sm:max-w-3xl w-max sm:px-4 sm:py-3 px-3 py-2 border-primary/30 bg-gradient-to-br from-primary via-primary/90 to-primary/85"
               : "text-foreground w-full"
           }`}
         >
-          <MarkdownRenderer content={message.content} />
+          {!message.is_user ? (
+            <MarkdownRenderer content={message.content} />
+          ) : (
+            <span className="text-primary-foreground">{message.content}</span>
+          )}
         </div>
 
         {/* Message Actions */}
