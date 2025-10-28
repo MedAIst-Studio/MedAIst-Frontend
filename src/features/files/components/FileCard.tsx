@@ -51,7 +51,7 @@ export const FileCard = ({id, title, size, created_at, onDelete, onOpen}: FileCa
       onClick={() => onOpen(id)}
       onKeyDown={handleKeyDown}
     >
-      <CardHeader className="flex items-start gap-3 flex-1 min-w-0">
+      <CardHeader className="flex items-start gap-3 flex-1 min-w-0 px-4">
         <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
           <FileText className="w-5 h-5 text-primary" />
         </div>
