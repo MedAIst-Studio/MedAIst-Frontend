@@ -7,9 +7,9 @@ type Props = {
 
 const MarkdownRenderer = ({content}: Props) => {
   return (
-    <div className="text-sm lg:text-base leading-relaxed prose prose-neutral dark:prose-invert">
+    <span className="text-sm lg:text-base leading-relaxed prose prose-neutral dark:prose-invert">
       <Markdown remarkPlugins={[remarkGfm]}>{content}</Markdown>
-    </div>
+    </span>
   );
 };
 
