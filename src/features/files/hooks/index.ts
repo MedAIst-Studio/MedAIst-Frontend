@@ -88,7 +88,8 @@ export const useDeleteFile = () => {
       return fileId;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({queryKey: [FILES_QUERY_KEY, "chats"]});
+      queryClient.invalidateQueries({queryKey: [FILES_QUERY_KEY]});
+      queryClient.invalidateQueries({queryKey: ["chat", "lists"]});
       toast.success("Başarılı", {
         description: "Dosya başarıyla silindi.",
       });
