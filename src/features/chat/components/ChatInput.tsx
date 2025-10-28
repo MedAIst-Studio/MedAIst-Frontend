@@ -4,6 +4,7 @@ import {RefObject} from "react";
 import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
 import {Button} from "@/components/ui/button";
 import {useSidebar} from "@/components/ui/sidebar";
+import {Spinner} from "@/components/ui/spinner";
 import {Textarea} from "@/components/ui/textarea";
 import {useIsMobile} from "@/hooks/use-mobile";
 import {cn} from "@/lib/utils";
@@ -59,7 +60,7 @@ export const ChatInput = ({
             size="icon"
             onClick={onSendMessage}
           >
-            <ArrowUp className="!w-4 !h-4 sm:!w-5 sm:!h-5" />
+            {isLoading ? <Spinner /> : <ArrowUp className="!w-4 !h-4 sm:!w-5 sm:!h-5" />}
           </Button>
         </div>
 
