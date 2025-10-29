@@ -8,6 +8,8 @@ import {useEffect, useState} from "react";
 import {Button} from "@/components/ui/button";
 import {Sheet, SheetContent, SheetTrigger} from "@/components/ui/sheet";
 
+import Logo from "./Logo";
+
 const MarketingHeader = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -58,9 +60,7 @@ const MarketingHeader = () => {
             transition={{duration: 0.6, delay: 0.1}}
           >
             <Link className="flex items-center gap-2 group" href="/">
-              <div className="w-8 h-8 lg:w-10 lg:h-10 bg-primary rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
-                <Sparkles className="w-5 h-5 lg:w-6 lg:h-6 text-primary-foreground" />
-              </div>
+              <Logo size={32} />
               <span className="text-xl lg:text-2xl font-bold text-foreground">MedAIst</span>
             </Link>
           </motion.div>
@@ -68,7 +68,7 @@ const MarketingHeader = () => {
           {/* Desktop Navigation */}
           <motion.nav
             animate={{opacity: 1, y: 0}}
-            className="hidden lg:flex items-center space-x-8"
+            className="hidden lg:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2"
             initial={{opacity: 0, y: -20}}
             transition={{duration: 0.6, delay: 0.2}}
           >
