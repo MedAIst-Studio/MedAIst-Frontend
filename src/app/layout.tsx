@@ -1,9 +1,6 @@
 import type {Metadata} from "next";
 import "./globals.css";
 
-import {gsap} from "gsap";
-import {Flip} from "gsap/Flip";
-import {ScrollTrigger} from "gsap/ScrollTrigger";
 import {IBM_Plex_Mono} from "next/font/google";
 
 import {Toaster} from "@/components/ui/sonner";
@@ -24,8 +21,6 @@ export const metadata: Metadata = {
     icon: "/logo.svg",
   },
 };
-
-gsap.registerPlugin(Flip, ScrollTrigger);
 
 export default function RootLayout({
   children,
