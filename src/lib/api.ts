@@ -6,6 +6,7 @@ import axios, {
 } from "axios";
 import {z} from "zod";
 
+import {clearAuthTokens} from "@/features/auth";
 import {AuthAPI} from "@/features/auth/api";
 
 import {logger} from "./logger";
@@ -104,9 +105,7 @@ axiosInstance.interceptors.response.use(
         logger.error("Refresh token failed, logging out");
 
         if (typeof window !== "undefined") {
-          document.cookie = "accessToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
-          document.cookie = "refreshToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
-
+          clearAuthTokens();
           window.location.href = "/login";
         }
 
