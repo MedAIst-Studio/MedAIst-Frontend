@@ -36,8 +36,8 @@ function isAuthenticated(request: NextRequest): boolean {
   const accessToken = request.cookies.get(COOKIE_NAMES.accessToken);
   const refreshToken = request.cookies.get(COOKIE_NAMES.refreshToken);
 
-  // User is authenticated if both tokens exist
-  return !!(accessToken?.value && refreshToken?.value);
+  // User is authenticated if at least one token exists
+  return !!(accessToken?.value || refreshToken?.value);
 }
 
 /**
