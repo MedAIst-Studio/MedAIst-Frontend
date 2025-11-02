@@ -3,8 +3,8 @@ import Script from "next/script";
 
 import CTASection from "@/components/landing/CTASection";
 import HeroSection from "@/components/landing/HeroSection";
-import HowItWorksSection from "@/components/landing/HowItWorksSection";
 import ProblemSolutionSection from "@/components/landing/ProblemSolutionSection";
+import ScrollytellingSection from "@/components/landing/ScrollytellingSection";
 import TestimonialsSection from "@/components/landing/TestimonialsSection";
 
 export const metadata: Metadata = {
@@ -96,7 +96,7 @@ const LandingPage = () => {
       />
       <HeroSection />
       <ProblemSolutionSection />
-      <HowItWorksSection />
+      <ScrollytellingSection />
       <TestimonialsSection />
       <CTASection />
     </>

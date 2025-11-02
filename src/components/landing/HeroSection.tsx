@@ -20,18 +20,18 @@ const HeroSection = () => {
   return (
     <BackgroundBeamsWithCollision className="pt-32 pb-20 sm:pt-40 sm:pb-32 bg-background relative">
       <MaxWidthWrapper className="relative">
-        <div className="flex flex-col items-center text-center space-y-20">
+        <div className="flex flex-col items-center text-center space-y-12 sm:space-y-16 md:space-y-20">
           {/* Hero Content */}
           <motion.div
             animate={{opacity: 1, y: 0}}
-            className="flex flex-col items-center space-y-8 max-w-4xl mx-auto"
+            className="flex flex-col items-center space-y-6 sm:space-y-7 md:space-y-8 max-w-4xl mx-auto px-4 sm:px-0"
             initial={{opacity: 0, y: 50}}
             transition={{duration: 0.8, ease: "easeOut"}}
           >
             {/* Hero Headline */}
             <motion.div
               animate={{opacity: 1, y: 0}}
-              className="space-y-6"
+              className="space-y-4 sm:space-y-5 md:space-y-6 text-left md:text-center"
               initial={{opacity: 0, y: 30}}
               transition={{duration: 0.8, delay: 0.2}}
             >
@@ -46,7 +46,7 @@ const HeroSection = () => {
                 </span>
               </h1>
 
-              <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+              <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-3xl md:mx-auto">
                 Ders notlarını sadece okumakla yetinme. Onlara soru sor, saniyeler içinde aradığın
                 cevabı bul ve tek tıkla zayıf olduğun konulardan kendine özel deneme sınavı oluştur.
               </p>
@@ -59,7 +59,7 @@ const HeroSection = () => {
             {/* CTA Buttons */}
             <motion.div
               animate={{opacity: 1, y: 0}}
-              className="flex flex-col sm:flex-row gap-4 items-center"
+              className="flex flex-row gap-4 items-start md:items-center justify-start md:justify-center"
               initial={{opacity: 0, y: 20}}
               transition={{duration: 0.6, delay: 0.4}}
             >
@@ -78,7 +78,7 @@ const HeroSection = () => {
             {/* Trust Indicators */}
             <motion.div
               animate={{opacity: 1}}
-              className="flex flex-col sm:flex-row items-center gap-6 text-sm"
+              className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 text-xs sm:text-sm px-4"
               initial={{opacity: 0}}
               transition={{duration: 0.6, delay: 0.6}}
             >
@@ -102,12 +102,12 @@ const HeroSection = () => {
           {/* Video Demo */}
           <motion.div
             animate={{opacity: 1, y: 0}}
-            className="relative w-full max-w-4xl mx-auto"
+            className="relative w-full max-w-4xl mx-auto px-4 sm:px-0"
             initial={{opacity: 0, y: 50}}
             transition={{duration: 0.8, delay: 0.4}}
           >
             {/* Video Container */}
-            <div className="relative overflow-hidden rounded-3xl shadow-2xl bg-gradient-to-br from-primary/10 to-primary/5 p-1">
+            <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl shadow-xl sm:shadow-2xl bg-gradient-to-br from-primary/10 to-primary/5 p-0.5 sm:p-1">
               <div className="relative aspect-video bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl overflow-hidden">
                 {/* Video Element */}
                 <video
@@ -189,37 +189,37 @@ const HeroSection = () => {
             {/* Floating Stats */}
             <motion.div
               animate={{opacity: 1, scale: 1, y: 0}}
-              className="absolute -top-6 -right-8 bg-card/90 backdrop-blur-sm border border-border rounded-xl p-4 shadow-xl"
+              className="hidden sm:flex absolute -top-4 sm:-top-6 -right-4 sm:-right-8 bg-card/90 backdrop-blur-sm border border-border rounded-lg sm:rounded-xl p-2 sm:p-3 md:p-4 shadow-lg sm:shadow-xl"
               initial={{opacity: 0, scale: 0.8, y: 20}}
               transition={{delay: 0.8, duration: 0.6}}
             >
-              <div className="flex items-center gap-3 text-sm">
-                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
-                <span className="font-semibold">1.247 sayfa analiz edildi</span>
+              <div className="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm">
+                <div className="w-2 sm:w-3 h-2 sm:h-3 bg-green-500 rounded-full animate-pulse" />
+                <span className="font-semibold whitespace-nowrap">1.247 sayfa analiz edildi</span>
               </div>
             </motion.div>
 
             <motion.div
               animate={{opacity: 1, scale: 1, y: 0}}
-              className="absolute -bottom-8 -left-8 bg-card/90 backdrop-blur-sm border border-border rounded-xl p-4 shadow-xl"
+              className="hidden sm:flex absolute -bottom-4 sm:-bottom-8 -left-4 sm:-left-8 bg-card/90 backdrop-blur-sm border border-border rounded-lg sm:rounded-xl p-2 sm:p-3 md:p-4 shadow-lg sm:shadow-xl"
               initial={{opacity: 0, scale: 0.8, y: -20}}
               transition={{delay: 1.0, duration: 0.6}}
             >
-              <div className="flex items-center gap-3 text-sm">
-                <Sparkles className="w-4 h-4 text-primary" />
-                <span className="font-semibold">AI yanıt süresi: 0.8s</span>
+              <div className="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm">
+                <Sparkles className="w-3 sm:w-4 h-3 sm:h-4 text-primary" />
+                <span className="font-semibold whitespace-nowrap">AI yanıt süresi: 0.8s</span>
               </div>
             </motion.div>
 
             {/* Performance Badge */}
             <motion.div
               animate={{opacity: 1, scale: 1}}
-              className="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-primary/10 backdrop-blur-sm border border-primary/20 rounded-full px-4 py-2 shadow-lg"
+              className="hidden md:flex absolute -top-4 sm:-top-6 left-1/2 transform -translate-x-1/2 bg-primary/10 backdrop-blur-sm border border-primary/20 rounded-full px-3 sm:px-4 py-1.5 sm:py-2 shadow-lg"
               initial={{opacity: 0, scale: 0.8}}
               transition={{delay: 1.2, duration: 0.6}}
             >
-              <div className="flex items-center gap-2 text-xs font-medium text-primary">
-                <div className="w-2 h-2 bg-primary rounded-full animate-bounce" />
+              <div className="flex items-center gap-1.5 sm:gap-2 text-xs font-medium text-primary">
+                <div className="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-primary rounded-full animate-bounce" />
                 <span>CANLI DEMO</span>
               </div>
             </motion.div>

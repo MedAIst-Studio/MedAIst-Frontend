@@ -37,7 +37,7 @@ const MarketingHeader = () => {
       href: "#testimonials",
     },
     {
-      name: "Fiyatlandırma",
+      name: "Fiyatlar",
       href: "/pricing",
     },
   ];
