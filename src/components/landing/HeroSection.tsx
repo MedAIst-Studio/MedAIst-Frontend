@@ -6,9 +6,10 @@ import {ArrowRight, Play, Sparkles} from "lucide-react";
 import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
 import {Button} from "@/components/ui/button";
 
+import {BackgroundBeamsWithCollision} from "../ui/background-beams-with-collision";
+
 const HeroSection = () => {
   const handleVideoPlay = () => {
-    // Video'yu tam ekran modda açmak
     const video = document.getElementById("hero-demo-video") as HTMLVideoElement;
 
     if (video) {
@@ -17,7 +18,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="pt-32 pb-20 sm:pt-40 sm:pb-32 bg-background relative overflow-hidden">
+    <BackgroundBeamsWithCollision className="pt-32 pb-20 sm:pt-40 sm:pb-32 bg-background relative">
       <MaxWidthWrapper className="relative">
         <div className="flex flex-col items-center text-center space-y-20">
           {/* Hero Content */}
@@ -225,7 +226,7 @@ const HeroSection = () => {
           </motion.div>
         </div>
       </MaxWidthWrapper>
-    </section>
+    </BackgroundBeamsWithCollision>
   );
 };
 
