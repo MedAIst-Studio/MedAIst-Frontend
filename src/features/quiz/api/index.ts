@@ -180,7 +180,7 @@ const submissions: any[] = [
     id: "sub_3",
     quiz_id: "1",
     quiz_title: "Cardiology Fundamentals: ECG Interpretation",
-    score: 20,
+    score: 80,
     attempt_date: new Date(Date.now() - 1000 * 60 * 60 * 24 * 5).toISOString(), // 5 days ago
     questions: quizzes[0].questions,
     results_by_question: [

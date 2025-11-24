@@ -43,7 +43,7 @@ export default function QuizListPage() {
         {quizzes?.map((quiz, index) => (
           <Card
             key={quiz.id}
-            className="group transition-all duration-300 border-border/50 hover:border-primary/50 relative overflow-hidden flex flex-col justify-between"
+            className="group transition-all duration-300 hover:border-primary/50 relative overflow-hidden flex flex-col justify-between"
           >
             <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
               <BrainCircuit className="w-24 h-24 text-primary" />
@@ -65,7 +65,7 @@ export default function QuizListPage() {
             <CardFooter>
               <Button asChild className="w-full">
                 <Link href={`/quiz/${quiz.id}`}>
-                  Start Quiz{" "}
+                  Başlat
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
