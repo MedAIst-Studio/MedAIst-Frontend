@@ -6,6 +6,7 @@ import {useState} from "react";
 
 import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
 import {Button} from "@/components/ui/button";
+import {Spinner} from "@/components/ui/spinner";
 import {QuestionCard} from "@/features/quiz/components/QuestionCard";
 import {QuizProgress} from "@/features/quiz/components/QuizProgress";
 import {QuizResult} from "@/features/quiz/components/QuizResult";
@@ -24,7 +25,7 @@ export default function QuizPage() {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary" />
+        <Spinner />
       </div>
     );
   }
@@ -32,7 +33,7 @@ export default function QuizPage() {
   if (error || !quiz) {
     return (
       <div className="flex items-center justify-center min-h-[60vh] text-destructive">
-        Error loading quiz. Please try again later.
+        Quiz yüklenirken hata oluştu.
       </div>
     );
   }

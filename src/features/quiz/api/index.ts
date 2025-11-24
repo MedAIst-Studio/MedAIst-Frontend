@@ -99,7 +99,122 @@ const quizzes = [
   },
 ];
 
-const submissions: any[] = [];
+const submissions: any[] = [
+  {
+    id: "sub_1",
+    quiz_id: "1",
+    quiz_title: "Cardiology Fundamentals: ECG Interpretation",
+    score: 40,
+    attempt_date: new Date(Date.now() - 1000 * 60 * 60 * 24 * 2).toISOString(), // 2 days ago
+    questions: quizzes[0].questions,
+    results_by_question: [
+      {
+        question_id: "0",
+        user_selected: 1,
+        correct_index: 1,
+        explanation:
+          "ST-elevation in leads II, III, and aVF indicates an inferior wall myocardial infarction, which is most commonly caused by occlusion of the Right Coronary Artery (RCA).",
+      },
+      {
+        question_id: "1",
+        user_selected: 0,
+        correct_index: 0,
+        explanation:
+          "Peaked T waves are the earliest and most characteristic ECG finding in hyperkalemia. As potassium levels rise, the QRS complex may widen.",
+      },
+      {
+        question_id: "2",
+        user_selected: 1,
+        correct_index: 1,
+        explanation:
+          "Atrial Flutter is characterized by a 'sawtooth' pattern of F waves, typically best seen in the inferior leads (II, III, aVF).",
+      },
+      {
+        question_id: "3",
+        user_selected: 1,
+        correct_index: 1,
+        explanation:
+          "The normal PR interval ranges from 0.12 to 0.20 seconds (3 to 5 small squares). A prolonged PR interval suggests AV block.",
+      },
+    ],
+  },
+  {
+    id: "sub_2",
+    quiz_id: "2",
+    quiz_title: "Clinical Anatomy: Upper Limb",
+    score: 30,
+    attempt_date: new Date(Date.now() - 1000 * 60 * 60 * 5).toISOString(), // 5 hours ago
+    questions: quizzes[1].questions,
+    results_by_question: [
+      {
+        question_id: "0",
+        user_selected: 1,
+        correct_index: 1,
+        explanation:
+          "The Axillary nerve winds around the surgical neck of the humerus and is at risk of injury during fractures of this region.",
+      },
+      {
+        question_id: "1",
+        user_selected: 2, // Incorrect
+        correct_index: 0,
+        explanation:
+          "Injury to the Long Thoracic Nerve results in paralysis of the serratus anterior muscle, leading to winging of the scapula.",
+      },
+      {
+        question_id: "2",
+        user_selected: 1,
+        correct_index: 1,
+        explanation:
+          "The Brachialis muscle is the primary flexor of the forearm in all positions. The Biceps Brachii is a powerful supinator and flexor.",
+      },
+      {
+        question_id: "3",
+        user_selected: 2,
+        correct_index: 2,
+        explanation:
+          "Carpal Tunnel Syndrome is caused by compression of the Median nerve as it travels through the carpal tunnel in the wrist.",
+      },
+    ],
+  },
+  {
+    id: "sub_3",
+    quiz_id: "1",
+    quiz_title: "Cardiology Fundamentals: ECG Interpretation",
+    score: 20,
+    attempt_date: new Date(Date.now() - 1000 * 60 * 60 * 24 * 5).toISOString(), // 5 days ago
+    questions: quizzes[0].questions,
+    results_by_question: [
+      {
+        question_id: "0",
+        user_selected: 2, // Incorrect
+        correct_index: 1,
+        explanation:
+          "ST-elevation in leads II, III, and aVF indicates an inferior wall myocardial infarction, which is most commonly caused by occlusion of the Right Coronary Artery (RCA).",
+      },
+      {
+        question_id: "1",
+        user_selected: 0,
+        correct_index: 0,
+        explanation:
+          "Peaked T waves are the earliest and most characteristic ECG finding in hyperkalemia. As potassium levels rise, the QRS complex may widen.",
+      },
+      {
+        question_id: "2",
+        user_selected: 0, // Incorrect
+        correct_index: 1,
+        explanation:
+          "Atrial Flutter is characterized by a 'sawtooth' pattern of F waves, typically best seen in the inferior leads (II, III, aVF).",
+      },
+      {
+        question_id: "3",
+        user_selected: 1,
+        correct_index: 1,
+        explanation:
+          "The normal PR interval ranges from 0.12 to 0.20 seconds (3 to 5 small squares). A prolonged PR interval suggests AV block.",
+      },
+    ],
+  },
+];
 
 export const quizAPI = {
   getQuizzes: async () => {

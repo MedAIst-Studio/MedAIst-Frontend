@@ -29,9 +29,14 @@ export default function QuizListPage() {
 
   return (
     <MaxWidthWrapper className="py-8 space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold mb-2">Quizlerim</h1>
-        <p className="text-muted-foreground">Quizlerinizi burada görebilirsiniz.</p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-bold mb-2">Quizlerim</h1>
+          <p className="text-muted-foreground">Quizlerinizi burada görebilirsiniz.</p>
+        </div>
+        <Button asChild variant="outline">
+          <Link href="/quiz/results">Sonuçlarım</Link>
+        </Button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

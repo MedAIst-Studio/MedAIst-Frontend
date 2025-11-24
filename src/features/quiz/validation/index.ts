@@ -49,7 +49,7 @@ export const quizResponseSchema = z.object({
 
 export const submissionsResponseSchema = z.array(
   z.object({
-    id: z.uuid(),
+    id: z.string(),
     quiz_title: z.string(),
     score: z.number(),
     attempt_date: z.string(),
@@ -57,7 +57,7 @@ export const submissionsResponseSchema = z.array(
 );
 
 export const submissionDetailsResponseSchema = z.object({
-  submission_id: z.uuid(),
+  submission_id: z.string(),
   score: z.number(),
   question_results: z.array(
     z.object({

@@ -2,6 +2,8 @@
 
 import {useParams} from "next/navigation";
 
+import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
+import {Spinner} from "@/components/ui/spinner";
 import {QuizResult} from "@/features/quiz/components/QuizResult";
 import {useSubmissionDetails} from "@/features/quiz/hooks/useQueries";
 
@@ -14,7 +16,7 @@ export default function QuizResultPage() {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary" />
+        <Spinner />
       </div>
     );
   }
@@ -22,18 +24,18 @@ export default function QuizResultPage() {
   if (error || !submission) {
     return (
       <div className="flex items-center justify-center min-h-[60vh] text-destructive">
-        Error loading results. Please try again later.
+        Sonuçlar yüklenirken hata oluştu.
       </div>
     );
   }
 
   return (
-    <div className="container max-w-4xl py-10">
+    <MaxWidthWrapper className="py-8">
       <QuizResult
         results={submission.question_results}
         score={submission.score}
         totalQuestions={submission.question_results.length}
       />
-    </div>
+    </MaxWidthWrapper>
   );
 }
