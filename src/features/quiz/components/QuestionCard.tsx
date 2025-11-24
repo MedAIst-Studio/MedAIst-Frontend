@@ -1,4 +1,5 @@
 import React from "react";
+import {Check} from "lucide-react";
 
 import {Button} from "@/components/ui/button";
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
@@ -41,24 +42,10 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
                   "flex-shrink-0 w-6 h-6 rounded-full border flex items-center justify-center mr-3 transition-colors",
                   selectedOption === index
                     ? "border-primary-foreground bg-primary-foreground text-primary"
-                    : "border-muted-foreground text-muted-foreground",
+                    : "hidden",
                 )}
               >
-                {selectedOption === index && (
-                  <svg
-                    className="w-3.5 h-3.5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M5 13l4 4L19 7"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={3}
-                    />
-                  </svg>
-                )}
+                {selectedOption === index && <Check />}
               </div>
               <span className="text-base font-medium leading-snug">{option}</span>
             </div>

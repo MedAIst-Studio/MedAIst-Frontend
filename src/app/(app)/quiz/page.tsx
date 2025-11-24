@@ -6,6 +6,7 @@ import Link from "next/link";
 import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
 import {Button} from "@/components/ui/button";
 import {Card, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
+import {CreateQuizDialog} from "@/features/quiz/components/CreateQuizDialog";
 import {useQuizzes} from "@/features/quiz/hooks/useQueries";
 
 export default function QuizListPage() {
@@ -34,9 +35,12 @@ export default function QuizListPage() {
           <h1 className="text-3xl font-bold mb-2">Quizlerim</h1>
           <p className="text-muted-foreground">Quizlerinizi burada görebilirsiniz.</p>
         </div>
-        <Button asChild variant="outline">
-          <Link href="/quiz/results">Sonuçlarım</Link>
-        </Button>
+        <div className="flex gap-2">
+          <CreateQuizDialog />
+          <Button asChild variant="outline">
+            <Link href="/quiz/results">Sonuçlarım</Link>
+          </Button>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

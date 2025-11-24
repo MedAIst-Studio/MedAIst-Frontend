@@ -10,6 +10,17 @@ export const useQuizzes = () => {
   });
 };
 
+export const useCreateQuiz = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (data: QuizRequestData) => quizAPI.createQuiz(data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({queryKey: ["quizzes"]});
+    },
+  });
+};
+
 export const useQuiz = (id: string) => {
   return useQuery({
     queryKey: ["quiz", id],

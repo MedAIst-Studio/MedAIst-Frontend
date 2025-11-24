@@ -1,9 +1,11 @@
 import z from "zod";
 
 export const quizRequestSchema = z.object({
-  file_id: z.string().min(1, "File ID is required"),
-  topic: z.string().min(1, "Topic is required"),
-  difficulty: z.enum(["easy", "medium", "hard"]),
+  file_id: z.string().min(1, "Dosya seçimi gereklidir"),
+  topic: z.string().min(3, "Konu en az 3 karakter olmalıdır"),
+  difficulty: z.enum(["easy", "medium", "hard"], {
+    message: "Zorluk seviyesi seçilmelidir",
+  }),
 });
 
 export const submissionRequestSchema = z.object({
@@ -79,3 +81,10 @@ export const quizzesResponseSchema = z.array(
 
 export type SubmissionRequestData = z.infer<typeof submissionRequestSchema>;
 export type QuizRequestData = z.infer<typeof quizRequestSchema>;
+
+export const quizCreationResponseSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+});
+
+export type QuizCreationResponseData = z.infer<typeof quizCreationResponseSchema>;

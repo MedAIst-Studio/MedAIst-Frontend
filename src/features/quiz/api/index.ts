@@ -217,6 +217,39 @@ const submissions: any[] = [
 ];
 
 export const quizAPI = {
+  createQuiz: async (data: QuizRequestData) => {
+    // Return Mock Data - simulates quiz creation
+    // TODO: implement real api call to /quiz/create
+    await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate API delay
+
+    const newQuizId = (quizzes.length + 1).toString();
+    const newQuiz = {
+      id: newQuizId,
+      title: `${data.topic} Quiz (${data.difficulty})`,
+      questions: [
+        {
+          text: `Sample question for ${data.topic}?`,
+          options: ["Option A", "Option B", "Option C", "Option D"],
+          correct_index: 0,
+          explanation: `This is a ${data.difficulty} level question about ${data.topic}.`,
+        },
+        {
+          text: `Another question about ${data.topic}?`,
+          options: ["Choice 1", "Choice 2", "Choice 3", "Choice 4"],
+          correct_index: 1,
+          explanation: `Sample explanation for ${data.topic}.`,
+        },
+      ],
+    };
+
+    quizzes.push(newQuiz);
+
+    return quizCreationResponseSchema.parse({
+      id: newQuiz.id,
+      title: newQuiz.title,
+    });
+  },
+
   getQuizzes: async () => {
     // Return Mock Data.
     // TODO: implement real api
