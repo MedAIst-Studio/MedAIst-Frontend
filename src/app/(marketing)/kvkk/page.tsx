@@ -107,16 +107,15 @@ const KVKKPage = () => {
                   <h2 className="text-2xl font-bold text-foreground mb-4">1. Veri Sorumlusu</h2>
 
                   <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
-                    <h3 className="font-semibold text-blue-900 mb-3">MedAIst Studio</h3>
+                    <h3 className="font-semibold text-blue-900 mb-3">
+                      MedAIst (Geliştirici: Ömer Faruk Işık)
+                    </h3>
                     <div className="space-y-2 text-blue-800">
                       <p>
                         <strong>Adres:</strong> İstanbul, Türkiye
                       </p>
                       <p>
-                        <strong>E-posta:</strong> kvkk@medaist.com
-                      </p>
-                      <p>
-                        <strong>Telefon:</strong> +90 (XXX) XXX XX XX
+                        <strong>E-posta:</strong> destek@medaist.com
                       </p>
                       <p>
                         <strong>Website:</strong> www.medaist.com
@@ -125,9 +124,10 @@ const KVKKPage = () => {
                   </div>
 
                   <p className="text-muted-foreground leading-relaxed">
-                    MedAIst Studio olarak, 6698 sayılı Kişisel Verilerin Korunması Kanunu
+                    MedAIst olarak, 6698 sayılı Kişisel Verilerin Korunması Kanunu
                     (&quot;KVKK&quot;) uyarınca veri sorumlusu sıfatıyla, kişisel verilerinizin
-                    işlenmesi hakkında sizi aydınlatmakla yükümlüyüz.
+                    işlenmesi hakkında sizi aydınlatmakla yükümlüyüz. MedAIst, bireysel bir girişim
+                    olup, kullanıcı gizliliğine ve veri güvenliğine en üst düzeyde önem vermektedir.
                   </p>
                 </CardContent>
               </Card>
@@ -430,14 +430,18 @@ const KVKKPage = () => {
                     6.2 Yurt Dışı Aktarım
                   </h3>
                   <p className="text-muted-foreground mb-4">
-                    Bazı teknik hizmetler için kişisel verileriniz yurt dışına aktarılabilir:
+                    Verileriniz hizmetin sağlanabilmesi için yurt dışındaki güvenli sunucularda
+                    (OpenAI, Qdrant vb.) işlenebilir. Bu işlem, modern yapay zeka ve veritabanı
+                    teknolojilerinin doğası gereği zorunludur.
                   </p>
                   <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
                     <ul className="text-amber-800 text-sm space-y-2">
-                      <li>• Sadece AB/ABD gibi yeterli koruma seviyesine sahip ülkeler</li>
-                      <li>• KVKK m.9 uyarınca uygun güvenceler alınmıştır</li>
-                      <li>• Veri işleme sözleşmeleri ile güvence altına alınmıştır</li>
-                      <li>• Aktarım öncesi KVKK Kurulu&apos;ndan gerekli izinler alınmıştır</li>
+                      <li>
+                        • Sunucularımız ve iş ortaklarımız (OpenAI, Qdrant) global standartlarda
+                        güvenlik önlemlerine sahiptir
+                      </li>
+                      <li>• Verileriniz şifrelenerek saklanmakta ve işlenmektedir</li>
+                      <li>• KVKK m.9 uyarınca gerekli aydınlatma yapılmaktadır</li>
                     </ul>
                   </div>
                 </CardContent>
@@ -656,7 +660,25 @@ const KVKKPage = () => {
               <Card>
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold text-foreground mb-4">
-                    10. İletişim Bilgileri
+                    10. İçerik Sorumluluğu ve Telif Hakları
+                  </h2>
+                  <div className="bg-red-50 border border-red-200 rounded-lg p-6">
+                    <p className="text-red-900 font-medium mb-2">Önemli Yasal Uyarı:</p>
+                    <p className="text-red-800 leading-relaxed">
+                      Kullanıcı, sisteme yüklediği dokümanların telif hakkından kendisi sorumludur.
+                      MedAIst, yüklenen içeriklerin yasal olup olmadığını kontrol etmez ve edemez.
+                      Kullanıcılar, yükledikleri içeriklerin telif haklarını ihlal etmediğini,
+                      yasalara uygun olduğunu ve üçüncü şahısların haklarına tecavüz etmediğini
+                      kabul ve beyan eder.
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardContent className="p-8">
+                  <h2 className="text-2xl font-bold text-foreground mb-4">
+                    11. İletişim Bilgileri
                   </h2>
 
                   <p className="text-muted-foreground mb-6">
@@ -669,9 +691,6 @@ const KVKKPage = () => {
                       <div className="space-y-2 text-muted-foreground">
                         <p>
                           <strong>E-posta:</strong> kvkk@medaist.com
-                        </p>
-                        <p>
-                          <strong>Telefon:</strong> +90 (XXX) XXX XX XX
                         </p>
                         <p>
                           <strong>Adres:</strong> İstanbul, Türkiye

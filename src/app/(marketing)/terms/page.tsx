@@ -122,11 +122,8 @@ const TermsPage = () => {
                     öğrenme platformudur. Platform şunları sunar:
                   </p>
                   <ul className="list-disc pl-6 text-muted-foreground space-y-2 mb-6">
-                    <li>AI destekli chat ve danışmanlık hizmetleri</li>
-                    <li>Kişiselleştirilmiş not alma ve düzenleme araçları</li>
+                    <li>AI destekli sohbet sistemi</li>
                     <li>İnteraktif quiz ve değerlendirme sistemleri</li>
-                    <li>İlerleme takibi ve analitik raporlar</li>
-                    <li>Topluluk özellikleri ve işbirliği araçları</li>
                   </ul>
 
                   <h3 className="text-xl font-semibold text-foreground mb-3">2.2 Hizmet Kapsamı</h3>
@@ -148,7 +145,6 @@ const TermsPage = () => {
                     3.1 Hesap Oluşturma
                   </h3>
                   <ul className="list-disc pl-6 text-muted-foreground space-y-2 mb-4">
-                    <li>18 yaşını doldurmuş olmanız gerekmektedir</li>
                     <li>Doğru ve güncel bilgiler sağlamalısınız</li>
                     <li>Hesap bilgilerinizi güvende tutmalısınız</li>
                     <li>Hesabınızı başkalarıyla paylaşmamalısınız</li>
@@ -375,7 +371,6 @@ const TermsPage = () => {
                       </h3>
                       <ul className="text-muted-foreground text-sm space-y-2">
                         <li>• Hesap ayarlarından istediğiniz zaman</li>
-                        <li>• Verileriniz 30 gün boyunca saklanır</li>
                         <li>• Ücretli abonelik varsa otomatik iptal</li>
                         <li>• Kullanılmayan süre için iade yok</li>
                       </ul>
@@ -446,34 +441,16 @@ const TermsPage = () => {
 
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <h3 className="font-semibold text-foreground mb-3">Yasal İşler</h3>
-                      <div className="space-y-2 text-muted-foreground">
-                        <p>
-                          <strong>E-posta:</strong> legal@medaist.com
-                        </p>
-                        <p>
-                          <strong>Yanıt Süresi:</strong> 5 iş günü
-                        </p>
-                      </div>
-                    </div>
-
-                    <div>
                       <h3 className="font-semibold text-foreground mb-3">Genel Destek</h3>
                       <div className="space-y-2 text-muted-foreground">
                         <p>
-                          <strong>E-posta:</strong> support@medaist.com
+                          <span className="font-bold">E-posta:</span> destek@medaist.com
                         </p>
                         <p>
-                          <strong>Yanıt Süresi:</strong> 24 saat
+                          <span className="font-bold">Yanıt Süresi:</span> 24 saat
                         </p>
                       </div>
                     </div>
-                  </div>
-
-                  <div className="mt-6 p-4 bg-muted/30 rounded-lg">
-                    <p className="text-muted-foreground text-sm">
-                      <strong>Şirket Bilgileri:</strong> MedAIst Studio, İstanbul, Türkiye
-                    </p>
                   </div>
                 </CardContent>
               </Card>

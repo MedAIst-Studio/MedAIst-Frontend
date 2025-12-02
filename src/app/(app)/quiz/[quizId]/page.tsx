@@ -11,12 +11,14 @@ import {QuestionCard} from "@/features/quiz/components/QuestionCard";
 import {QuizProgress} from "@/features/quiz/components/QuizProgress";
 import {QuizResult} from "@/features/quiz/components/QuizResult";
 import {useQuiz, useSubmitQuiz} from "@/features/quiz/hooks/useQueries";
+import {AttemptResponseData, QuizResponseData} from "@/features/quiz/validation";
 
 export default function QuizPage() {
   const params = useParams();
   const quizId = params.quizId as string;
 
-  const {data: quiz, isLoading, error} = useQuiz(quizId);
+  const {data: quizData, isLoading, error} = useQuiz(quizId);
+  const quiz = quizData as QuizResponseData;
   const submitQuizMutation = useSubmitQuiz();
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -73,9 +75,20 @@ export default function QuizPage() {
 
   const handleSubmit = async () => {
     try {
+      const formattedAnswers = answers.map((a) => {
+        const questionIndex = parseInt(a.question_id);
+        const question = quiz.questions[questionIndex];
+        const selectedOption = question.options[a.selected_index];
+
+        return {
+          question_no: question.no,
+          selected_option: selectedOption.label,
+        };
+      });
+
       await submitQuizMutation.mutateAsync({
-        quiz_id: quizId,
-        answers: answers,
+        id: quizId,
+        answers: formattedAnswers,
       });
     } catch (err) {
       console.error("Failed to submit quiz", err);
@@ -83,15 +96,34 @@ export default function QuizPage() {
   };
 
   if (submitQuizMutation.isSuccess && submitQuizMutation.data) {
+    const resultData = submitQuizMutation.data as AttemptResponseData;
+
+    // Calculate detailed results locally
+    const detailedResults = quiz.questions.map((question, index) => {
+      const userAnswer = answers.find((a) => a.question_id === index.toString());
+      const userSelectedIndex = userAnswer ? userAnswer.selected_index : -1;
+
+      // Find correct option index
+      // Assuming correct_option in question matches one of the options' label or text
+      // If correct_option is "A", "B", etc. and options have labels "A", "B"...
+      const correctOptionIndex = question.options.findIndex(
+        (opt) => opt.label === question.correct_option || opt.text === question.correct_option,
+      );
+
+      return {
+        text: question.text,
+        user_selected: userSelectedIndex,
+        correct_index: correctOptionIndex,
+        is_correct: userSelectedIndex === correctOptionIndex,
+        explanation: "Explanation not available", // Placeholder as API doesn't provide it yet
+      };
+    });
+
     return (
       <MaxWidthWrapper className="py-8">
         <QuizResult
-          results={submitQuizMutation.data.results_by_question.map((r) => ({
-            ...r,
-            text: quiz.questions[parseInt(r.question_id)]?.text || "Question",
-            is_correct: r.user_selected === r.correct_index,
-          }))}
-          score={submitQuizMutation.data.score}
+          results={detailedResults}
+          score={resultData.score}
           totalQuestions={quiz.questions.length}
         />
       </MaxWidthWrapper>

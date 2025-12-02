@@ -1,17 +1,7 @@
 "use client";
 
 import {motion} from "framer-motion";
-import {
-  Facebook,
-  Github,
-  Instagram,
-  Linkedin,
-  Mail,
-  MapPin,
-  Phone,
-  Sparkles,
-  Twitter,
-} from "lucide-react";
+import {Facebook, Github, Instagram, Linkedin, Mail, Sparkles, Twitter} from "lucide-react";
 import Link from "next/link";
 
 import {Button} from "@/components/ui/button";
@@ -27,7 +17,6 @@ const MarketingFooter = () => {
         {name: "Özellikler", href: "#features"},
         {name: "Fiyatlandırma", href: "/pricing"},
         {name: "Nasıl Çalışır", href: "#how-it-works"},
-        {name: "Güvenlik", href: "/security"},
       ],
     },
     {
@@ -35,17 +24,7 @@ const MarketingFooter = () => {
       links: [
         {name: "Hakkımızda", href: "/about"},
         {name: "Blog", href: "/blog"},
-        {name: "Kariyer", href: "/careers"},
         {name: "İletişim", href: "/contact"},
-      ],
-    },
-    {
-      title: "Destek",
-      links: [
-        {name: "Yardım Merkezi", href: "/help"},
-        {name: "Dokümantasyon", href: "/docs"},
-        {name: "API Referansı", href: "/api"},
-        {name: "Durumu", href: "/status"},
       ],
     },
     {
@@ -97,14 +76,6 @@ const MarketingFooter = () => {
               <div className="flex items-center gap-3 text-sm text-muted-foreground">
                 <Mail className="w-4 h-4" />
                 <span>destek@medaist.com</span>
-              </div>
-              <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                <Phone className="w-4 h-4" />
-                <span>+90 212 123 45 67</span>
-              </div>
-              <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                <MapPin className="w-4 h-4" />
-                <span>İstanbul, Türkiye</span>
               </div>
             </div>
 

@@ -40,7 +40,7 @@ const CookiesPage = () => {
               </p>
             </div>
 
-            <div className="text-sm text-muted-foreground/60">Son güncelleme: 3 Ekim 2024</div>
+            <div className="text-sm text-muted-foreground/60">Son güncelleme: 2 Aralık 2025</div>
           </div>
         </MaxWidthWrapper>
       </section>
@@ -117,29 +117,21 @@ const CookiesPage = () => {
                     <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                       <h3 className="font-semibold text-blue-900 mb-3">Çerezlerin Amacı</h3>
                       <ul className="text-blue-800 text-sm space-y-2">
-                        <li>• Platform işlevselliğini sağlama</li>
-                        <li>• Kullanıcı tercihlerini hatırlama</li>
-                        <li>• Güvenlik önlemlerini destekleme</li>
-                        <li>• Site performansını ölçme</li>
-                        <li>• Kullanıcı deneyimini kişiselleştirme</li>
+                        <li>Platform işlevselliğini sağlama</li>
+                        <li>Kullanıcı tercihlerini hatırlama</li>
+                        <li>Güvenlik önlemlerini destekleme</li>
+                        <li>Site performansını ölçme</li>
+                        <li>Kullanıcı deneyimini kişiselleştirme</li>
                       </ul>
                     </div>
 
                     <div className="bg-green-50 border border-green-200 rounded-lg p-4">
                       <h3 className="font-semibold text-green-900 mb-3">Çerez Türleri</h3>
                       <ul className="text-green-800 text-sm space-y-2">
-                        <li>
-                          • <strong>Oturum Çerezleri:</strong> Geçici, tarayıcı kapanınca silinir
-                        </li>
-                        <li>
-                          • <strong>Kalıcı Çerezler:</strong> Belirli süre boyunca saklanır
-                        </li>
-                        <li>
-                          • <strong>Birinci Taraf:</strong> MedAIst tarafından oluşturulan
-                        </li>
-                        <li>
-                          • <strong>Üçüncü Taraf:</strong> Harici hizmetler tarafından
-                        </li>
+                        <li>Oturum Çerezleri: Geçici, tarayıcı kapanınca silinir</li>
+                        <li>Kalıcı Çerezler: Belirli süre boyunca saklanır</li>
+                        <li>Birinci Taraf: MedAIst tarafından oluşturulan</li>
+                        <li>Üçüncü Taraf: Harici hizmetler tarafından</li>
                       </ul>
                     </div>
                   </div>
@@ -181,28 +173,18 @@ const CookiesPage = () => {
                         <div>
                           <h4 className="font-medium text-foreground mb-2">Kullanım Alanları:</h4>
                           <ul className="text-muted-foreground text-sm space-y-1">
-                            <li>• Oturum yönetimi ve kimlik doğrulama</li>
-                            <li>• Form verilerinin korunması</li>
-                            <li>• Güvenlik kontrolleri</li>
-                            <li>• Yük dengeleme</li>
+                            <li>Oturum yönetimi ve kimlik doğrulama</li>
+                            <li>Form verilerinin korunması</li>
+                            <li>Güvenlik kontrolleri</li>
+                            <li>Yük dengeleme</li>
                           </ul>
                         </div>
 
                         <div>
                           <h4 className="font-medium text-foreground mb-2">Örnek Çerezler:</h4>
                           <ul className="text-muted-foreground text-sm space-y-1">
-                            <li>
-                              • <code className="bg-muted/50 px-1 rounded">session_id</code>
-                            </li>
-                            <li>
-                              • <code className="bg-muted/50 px-1 rounded">csrf_token</code>
-                            </li>
-                            <li>
-                              • <code className="bg-muted/50 px-1 rounded">auth_token</code>
-                            </li>
-                            <li>
-                              • <code className="bg-muted/50 px-1 rounded">security_hash</code>
-                            </li>
+                            <li>access_token</li>
+                            <li>refresh_token</li>
                           </ul>
                         </div>
                       </div>
@@ -236,10 +218,10 @@ const CookiesPage = () => {
                         <div>
                           <h4 className="font-medium text-foreground mb-2">Toplanan Bilgiler:</h4>
                           <ul className="text-muted-foreground text-sm space-y-1">
-                            <li>• Sayfa görüntülenme sayıları</li>
-                            <li>• Ziyaret süreleri</li>
-                            <li>• Trafik kaynakları</li>
-                            <li>• Cihaz ve tarayıcı bilgileri</li>
+                            <li>Sayfa görüntülenme sayıları</li>
+                            <li>Ziyaret süreleri</li>
+                            <li>Trafik kaynakları</li>
+                            <li>Cihaz ve tarayıcı bilgileri</li>
                           </ul>
                         </div>
 
@@ -248,10 +230,7 @@ const CookiesPage = () => {
                             Hizmet Sağlayıcıları:
                           </h4>
                           <ul className="text-muted-foreground text-sm space-y-1">
-                            <li>• Google Analytics</li>
-                            <li>• Mixpanel</li>
-                            <li>• Hotjar</li>
-                            <li>• İç analitik sistemler</li>
+                            <li>• Posthog</li>
                           </ul>
                         </div>
                       </div>
@@ -285,27 +264,14 @@ const CookiesPage = () => {
                         <div>
                           <h4 className="font-medium text-foreground mb-2">Özellikler:</h4>
                           <ul className="text-muted-foreground text-sm space-y-1">
-                            <li>• Dil ve bölge tercihleri</li>
                             <li>• Tema ayarları (koyu/açık mod)</li>
-                            <li>• Kişiselleştirilmiş içerik</li>
-                            <li>• Kayıtlı arama tercihleri</li>
-                          </ul>
-                        </div>
-
-                        <div>
-                          <h4 className="font-medium text-foreground mb-2">Saklama Süreleri:</h4>
-                          <ul className="text-muted-foreground text-sm space-y-1">
-                            <li>• Dil tercihi: 1 yıl</li>
-                            <li>• Tema ayarları: 6 ay</li>
-                            <li>• Kişiselleştirme: 3 ay</li>
-                            <li>• Diğer tercihler: 30 gün</li>
                           </ul>
                         </div>
                       </div>
                     </div>
 
                     {/* Pazarlama Çerezleri */}
-                    <div className="border-2 border-border rounded-lg p-6">
+                    {/* <div className="border-2 border-border rounded-lg p-6">
                       <div className="flex items-center mb-4">
                         <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-4">
                           <Shield className="h-5 w-5 text-green-600" />
@@ -351,7 +317,7 @@ const CookiesPage = () => {
                           </ul>
                         </div>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </CardContent>
               </Card>
@@ -399,18 +365,10 @@ const CookiesPage = () => {
                         <div className="text-sm text-muted-foreground">
                           <p className="font-medium mb-2">Popüler Tarayıcılar:</p>
                           <ul className="space-y-1">
-                            <li>
-                              • <strong>Chrome:</strong> Ayarlar → Gizlilik ve güvenlik → Çerezler
-                            </li>
-                            <li>
-                              • <strong>Firefox:</strong> Ayarlar → Gizlilik ve güvenlik
-                            </li>
-                            <li>
-                              • <strong>Safari:</strong> Tercihler → Gizlilik
-                            </li>
-                            <li>
-                              • <strong>Edge:</strong> Ayarlar → Çerezler ve site izinleri
-                            </li>
+                            <li>Chrome: Ayarlar → Gizlilik ve güvenlik → Çerezler</li>
+                            <li>Firefox: Ayarlar → Gizlilik ve güvenlik</li>
+                            <li>Safari: Tercihler → Gizlilik</li>
+                            <li>Edge: Ayarlar → Çerezler ve site izinleri</li>
                           </ul>
                         </div>
                       </div>
@@ -437,66 +395,6 @@ const CookiesPage = () => {
                     MedAIst platformunda bazı üçüncü taraf hizmetleri kullanıyoruz. Bu hizmetler
                     kendi çerezlerini yerleştirebilir:
                   </p>
-
-                  <div className="space-y-6">
-                    <div className="border border-border rounded-lg p-4">
-                      <div className="flex items-center justify-between mb-3">
-                        <h3 className="font-semibold text-foreground">Google Analytics</h3>
-                        <Badge variant="outline">Analitik</Badge>
-                      </div>
-                      <p className="text-muted-foreground text-sm mb-3">
-                        Site trafiğini ve kullanıcı davranışlarını analiz etmek için kullanılır.
-                        Kişisel kimlik bilgileri toplamaz.
-                      </p>
-                      <div className="flex space-x-4 text-xs text-muted-foreground">
-                        <span>
-                          <strong>Saklama:</strong> 26 ay
-                        </span>
-                        <span>
-                          <strong>Politika:</strong> policies.google.com/privacy
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="border border-border rounded-lg p-4">
-                      <div className="flex items-center justify-between mb-3">
-                        <h3 className="font-semibold text-foreground">Stripe (Ödeme İşlemleri)</h3>
-                        <Badge variant="outline">Fonksiyonel</Badge>
-                      </div>
-                      <p className="text-muted-foreground text-sm mb-3">
-                        Güvenli ödeme işlemleri için kullanılır. Sadece ödeme sırasında aktif olur.
-                      </p>
-                      <div className="flex space-x-4 text-xs text-muted-foreground">
-                        <span>
-                          <strong>Saklama:</strong> Oturum
-                        </span>
-                        <span>
-                          <strong>Politika:</strong> stripe.com/privacy
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="border border-border rounded-lg p-4">
-                      <div className="flex items-center justify-between mb-3">
-                        <h3 className="font-semibold text-foreground">
-                          Intercom (Müşteri Desteği)
-                        </h3>
-                        <Badge variant="outline">Fonksiyonel</Badge>
-                      </div>
-                      <p className="text-muted-foreground text-sm mb-3">
-                        Canlı destek ve kullanıcı iletişimi için kullanılır. Destek geçmişini
-                        saklar.
-                      </p>
-                      <div className="flex space-x-4 text-xs text-muted-foreground">
-                        <span>
-                          <strong>Saklama:</strong> 13 ay
-                        </span>
-                        <span>
-                          <strong>Politika:</strong> intercom.com/legal/privacy
-                        </span>
-                      </div>
-                    </div>
-                  </div>
                 </CardContent>
               </Card>
 
@@ -549,13 +447,13 @@ const CookiesPage = () => {
                       <Badge variant="outline">2 yıl</Badge>
                     </div>
 
-                    <div className="flex justify-between items-center p-4 bg-muted/30 rounded-lg">
+                    {/* <div className="flex justify-between items-center p-4 bg-muted/30 rounded-lg">
                       <div>
                         <span className="font-medium text-foreground">Pazarlama Çerezleri</span>
                         <p className="text-muted-foreground text-sm">Reklam ve kampanya takibi</p>
                       </div>
                       <Badge variant="outline">90 gün</Badge>
-                    </div>
+                    </div> */}
                   </div>
                 </CardContent>
               </Card>
@@ -630,20 +528,20 @@ const CookiesPage = () => {
                     <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                       <h3 className="font-semibold text-blue-900 mb-2">Güncelleme Nedenleri</h3>
                       <ul className="text-blue-800 text-sm space-y-1">
-                        <li>• Yeni çerez türlerinin eklenmesi</li>
-                        <li>• Yasal gerekliliklerdeki değişiklikler</li>
-                        <li>• Üçüncü taraf hizmet değişiklikleri</li>
-                        <li>• Teknolojik gelişmeler</li>
+                        <li>Yeni çerez türlerinin eklenmesi</li>
+                        <li>Yasal gerekliliklerdeki değişiklikler</li>
+                        <li>Üçüncü taraf hizmet değişiklikleri</li>
+                        <li>Teknolojik gelişmeler</li>
                       </ul>
                     </div>
 
                     <div className="bg-green-50 border border-green-200 rounded-lg p-4">
                       <h3 className="font-semibold text-green-900 mb-2">Bildirim Yöntemleri</h3>
                       <ul className="text-green-800 text-sm space-y-1">
-                        <li>• Platform üzerinde banner bildirimi</li>
-                        <li>• E-posta ile önemli değişiklikler</li>
-                        <li>• Web sitesinde güncelleme tarihi</li>
-                        <li>• Hesap bildirimlerinde uyarı</li>
+                        <li>Platform üzerinde banner bildirimi</li>
+                        <li>E-posta ile önemli değişiklikler</li>
+                        <li>Web sitesinde güncelleme tarihi</li>
+                        <li>Hesap bildirimlerinde uyarı</li>
                       </ul>
                     </div>
                   </div>
@@ -662,43 +560,11 @@ const CookiesPage = () => {
                     <div className="bg-muted/30 border border-border rounded-lg p-6">
                       <h3 className="font-semibold text-foreground mb-4">Genel Sorular</h3>
                       <div className="space-y-2 text-muted-foreground">
-                        <p>
-                          <strong>E-posta:</strong> privacy@medaist.com
-                        </p>
-                        <p>
-                          <strong>Konu:</strong> &quot;Çerez Politikası&quot;
-                        </p>
-                        <p>
-                          <strong>Yanıt Süresi:</strong> 48 saat
-                        </p>
+                        <p>E-posta: destek@medaist.com</p>
+                        <p>Konu: &quot;Çerez Politikası&quot;</p>
+                        <p>Yanıt Süresi: 48 saat</p>
                       </div>
                     </div>
-
-                    <div className="bg-muted/30 border border-border rounded-lg p-6">
-                      <h3 className="font-semibold text-foreground mb-4">Teknik Destek</h3>
-                      <div className="space-y-2 text-muted-foreground">
-                        <p>
-                          <strong>E-posta:</strong> support@medaist.com
-                        </p>
-                        <p>
-                          <strong>Platform:</strong> Canlı destek
-                        </p>
-                        <p>
-                          <strong>Çalışma Saatleri:</strong> 09:00-18:00
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                    <p className="text-blue-800 text-sm">
-                      <strong>Faydalı Linkler:</strong>
-                      <br />
-                      • Gizlilik Politikası: /privacy
-                      <br />
-                      • KVKK Aydınlatma Metni: /kvkk
-                      <br />• Kullanım Şartları: /terms
-                    </p>
                   </div>
                 </CardContent>
               </Card>

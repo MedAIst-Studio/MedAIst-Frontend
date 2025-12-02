@@ -1,5 +1,5 @@
-import React from "react";
 import {Check} from "lucide-react";
+import React from "react";
 
 import {Button} from "@/components/ui/button";
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
@@ -7,7 +7,10 @@ import {cn} from "@/lib/utils";
 
 interface QuestionCardProps {
   question: string;
-  options: string[];
+  options: {
+    label: string;
+    text: string;
+  }[];
   selectedOption: number | null;
   onSelectOption: (index: number) => void;
 }
@@ -39,15 +42,15 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
             <div className="flex items-center w-full">
               <div
                 className={cn(
-                  "flex-shrink-0 w-6 h-6 rounded-full border flex items-center justify-center mr-3 transition-colors",
+                  "flex-shrink-0 w-8 h-8 rounded-full border flex items-center justify-center mr-3 transition-colors font-semibold text-sm",
                   selectedOption === index
                     ? "border-primary-foreground bg-primary-foreground text-primary"
-                    : "hidden",
+                    : "border-muted-foreground/30 text-muted-foreground",
                 )}
               >
-                {selectedOption === index && <Check />}
+                {selectedOption === index ? <Check className="w-5 h-5" /> : option.label}
               </div>
-              <span className="text-base font-medium leading-snug">{option}</span>
+              <span className="text-base font-medium leading-snug">{option.text}</span>
             </div>
           </Button>
         ))}

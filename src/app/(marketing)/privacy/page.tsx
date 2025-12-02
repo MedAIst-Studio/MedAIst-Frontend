@@ -117,9 +117,7 @@ const PrivacyPage = () => {
                     2.1 Kişisel Bilgiler
                   </h3>
                   <ul className="list-disc pl-6 text-muted-foreground space-y-2 mb-4">
-                    <li>Ad, soyad ve e-posta adresi (kayıt sırasında)</li>
-                    <li>Okul/üniversite bilgileri (isteğe bağlı)</li>
-                    <li>Profil fotoğrafı (isteğe bağlı)</li>
+                    <li>E-posta adresi (kayıt sırasında)</li>
                     <li>İletişim bilgileri (destek talepleri için)</li>
                   </ul>
 
@@ -128,7 +126,6 @@ const PrivacyPage = () => {
                   </h3>
                   <ul className="list-disc pl-6 text-muted-foreground space-y-2 mb-4">
                     <li>Platform kullanım istatistikleri</li>
-                    <li>Çalışma süresi ve aktivite verileri</li>
                     <li>Quiz sonuçları ve performans metrikleri</li>
                     <li>Chat geçmişi (AI etkileşimleri)</li>
                   </ul>
@@ -205,18 +202,20 @@ const PrivacyPage = () => {
                   </h3>
                   <ul className="list-disc pl-6 text-muted-foreground space-y-2">
                     <li>
-                      <strong>Hizmet Sağlayıcılar:</strong> Teknik altyapı ve analitik hizmetleri
-                      için güvenilir üçüncü taraf sağlayıcılar
+                      <span className="font-bold">Hizmet Sağlayıcılar:</span> Teknik altyapı ve
+                      analitik hizmetleri için güvenilir üçüncü taraf sağlayıcılar
                     </li>
                     <li>
-                      <strong>Yasal Yükümlülükler:</strong> Kanuni zorunluluklar ve mahkeme
-                      kararları
+                      <span className="font-bold">Yasal Yükümlülükler:</span> Kanuni zorunluluklar
+                      ve mahkeme kararları
                     </li>
                     <li>
-                      <strong>Güvenlik:</strong> Platform güvenliğini tehdit eden durumların tespiti
+                      <span className="font-bold">Güvenlik:</span> Platform güvenliğini tehdit eden
+                      durumların tespiti
                     </li>
                     <li>
-                      <strong>İş Transferi:</strong> Şirket birleşme/satın alma durumlarında
+                      <span className="font-bold">İş Transferi:</span> Şirket birleşme/satın alma
+                      durumlarında
                     </li>
                   </ul>
                 </CardContent>
@@ -300,8 +299,8 @@ const PrivacyPage = () => {
 
                   <div className="mt-6 p-4 bg-muted/30 rounded-lg">
                     <p className="text-muted-foreground text-sm">
-                      <strong>Başvuru için:</strong> privacy@medaist.com adresine e-posta
-                      gönderebilir veya hesap ayarlarınızdan veri yönetimi seçeneklerini
+                      <span className="font-bold">Başvuru için:</span> destek@medaist.com adresine
+                      e-posta gönderebilir veya hesap ayarlarınızdan veri yönetimi seçeneklerini
                       kullanabilirsiniz.
                     </p>
                   </div>
@@ -357,7 +356,7 @@ const PrivacyPage = () => {
 
                     <div className="flex justify-between items-center p-3 bg-muted/30 rounded-lg">
                       <span className="font-medium text-foreground">Çalışma Verileri</span>
-                      <span className="text-muted-foreground">3 yıl (inaktif hesaplar)</span>
+                      <span className="text-muted-foreground">1 yıl (inaktif hesaplar)</span>
                     </div>
 
                     <div className="flex justify-between items-center p-3 bg-muted/30 rounded-lg">
@@ -405,24 +404,7 @@ const PrivacyPage = () => {
                       <h3 className="font-semibold text-foreground mb-3">Genel İletişim</h3>
                       <div className="space-y-2 text-muted-foreground">
                         <p>
-                          <strong>E-posta:</strong> privacy@medaist.com
-                        </p>
-                        <p>
-                          <strong>Adres:</strong> MedAIst Studio
-                          <br />
-                          İstanbul, Türkiye
-                        </p>
-                      </div>
-                    </div>
-
-                    <div>
-                      <h3 className="font-semibold text-foreground mb-3">Veri Koruma Sorumlusu</h3>
-                      <div className="space-y-2 text-muted-foreground">
-                        <p>
-                          <strong>E-posta:</strong> dpo@medaist.com
-                        </p>
-                        <p>
-                          <strong>Yanıt Süresi:</strong> 30 gün içinde
+                          <span className="font-bold">E-posta:</span> destek@medaist.com
                         </p>
                       </div>
                     </div>

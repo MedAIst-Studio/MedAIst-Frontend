@@ -15,24 +15,10 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
 import {Input} from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import {useFiles} from "@/features/files/hooks";
+import DynamicFormField from "@/components/shared/DynamicFormField";
 
 import {useCreateQuiz} from "../hooks/useQueries";
 import {QuizRequestData, quizRequestSchema} from "../validation";
@@ -45,11 +31,18 @@ export function CreateQuizDialog() {
   const form = useForm<QuizRequestData>({
     resolver: zodResolver(quizRequestSchema),
     defaultValues: {
-      file_id: "",
-      topic: "",
-      difficulty: "medium",
+      fileId: "",
+      fileName: "",
+      startPage: 0,
+      endPage: 0,
     },
   });
+
+  const fileOptions =
+    files?.map((file) => ({
+      label: file.title,
+      value: file.id,
+    })) || [];
 
   const onSubmit = async (data: QuizRequestData) => {
     // Close dialog immediately
@@ -64,15 +57,17 @@ export function CreateQuizDialog() {
     try {
       const result = await createQuizMutation.mutateAsync(data);
 
-      toast.dismiss(loadingToast);
-      toast.success("Quiz Hazır! 🚀", {
-        description: `"${result.title}" başarıyla oluşturuldu. Hemen çözmeye başlamak ister misiniz?`,
-        duration: 8000,
-        action: {
-          label: "Quiz'i Başlat",
-          onClick: () => (window.location.href = `/quiz/${result.id}`),
-        },
-      });
+      if (result) {
+        toast.dismiss(loadingToast);
+        toast.success("Quiz Hazır! 🚀", {
+          description: `Quiz başarıyla oluşturuldu. Hemen çözmeye başlamak ister misiniz?`,
+          duration: 8000,
+          /* action: {
+            label: "Quiz'i Başlat",
+            onClick: () => (window.location.href = `/quiz/${result.id}`),
+        }, */
+        });
+      }
     } catch (error) {
       toast.dismiss(loadingToast);
       toast.error("Hata", {
@@ -97,75 +92,61 @@ export function CreateQuizDialog() {
 
         <Form {...form}>
           <form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
-            <FormField
+            <DynamicFormField
               control={form.control}
-              name="file_id"
-              render={({field}) => (
-                <FormItem>
-                  <FormLabel>Dosya</FormLabel>
-                  <Select value={field.value} onValueChange={field.onChange}>
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Bir dosya seçin..." />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      {filesLoading ? (
-                        <div className="p-2 text-sm text-muted-foreground">Yükleniyor...</div>
-                      ) : files && files.length > 0 ? (
-                        files.map((file) => (
-                          <SelectItem key={file.id} value={file.id}>
-                            {file.title}
-                          </SelectItem>
-                        ))
-                      ) : (
-                        <div className="p-2 text-sm text-muted-foreground">Dosya bulunamadı</div>
-                      )}
-                    </SelectContent>
-                  </Select>
-                  <FormDescription>Quiz oluşturmak için dosya seçin</FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
+              description="Quiz için özel bir isim belirleyin"
+              label="Quiz Adı (Opsiyonel)"
+              name="fileName"
+              placeholder="Örn: Vize Çalışması"
             />
 
-            <FormField
-              control={form.control}
-              name="topic"
-              render={({field}) => (
-                <FormItem>
-                  <FormLabel>Konu</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Örn: Kardiyoloji Temelleri" {...field} />
-                  </FormControl>
-                  <FormDescription>Quiz konusunu belirleyin</FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="difficulty"
-              render={({field}) => (
-                <FormItem>
-                  <FormLabel>Zorluk Seviyesi</FormLabel>
-                  <Select value={field.value} onValueChange={field.onChange}>
+            <div className="grid grid-cols-2 gap-4">
+              <FormField
+                control={form.control}
+                name="startPage"
+                render={({field}) => (
+                  <FormItem>
+                    <FormLabel>Başlangıç Sayfası</FormLabel>
                     <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Zorluk seçin..." />
-                      </SelectTrigger>
+                      <Input
+                        placeholder="1"
+                        type="number"
+                        {...field}
+                        onChange={(e) => field.onChange(e.target.valueAsNumber)}
+                      />
                     </FormControl>
-                    <SelectContent>
-                      <SelectItem value="easy">Kolay</SelectItem>
-                      <SelectItem value="medium">Orta</SelectItem>
-                      <SelectItem value="hard">Zor</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <FormDescription>Soru zorluğunu belirleyin</FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="endPage"
+                render={({field}) => (
+                  <FormItem>
+                    <FormLabel>Bitiş Sayfası</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="10"
+                        type="number"
+                        {...field}
+                        onChange={(e) => field.onChange(e.target.valueAsNumber)}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+
+            <DynamicFormField
+              control={form.control}
+              description="Quiz oluşturmak için dosya seçin"
+              label="Dosya"
+              name="fileId"
+              options={fileOptions}
+              placeholder="Bir dosya seçin..."
+              type="select"
             />
 
             <div className="flex justify-end gap-3 pt-4">

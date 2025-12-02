@@ -1,62 +1,62 @@
 import z from "zod";
 
 export const quizRequestSchema = z.object({
-  file_id: z.string().min(1, "Dosya seçimi gereklidir"),
-  topic: z.string().min(3, "Konu en az 3 karakter olmalıdır"),
-  difficulty: z.enum(["easy", "medium", "hard"], {
-    message: "Zorluk seviyesi seçilmelidir",
-  }),
-});
-
-export const submissionRequestSchema = z.object({
-  quiz_id: z.string().min(1, "Quiz ID is required"),
-  answers: z.array(
-    z.object({
-      question_id: z.string().min(1, "Question ID is required"),
-      selected_index: z
-        .number()
-        .min(0, "Selected index must be at least 0")
-        .max(3, "Selected index must be at most 3"),
-    }),
-  ),
-});
-
-export const submissionResponseSchema = z.object({
-  score: z.number(),
-  summary: z.string(),
-  results_by_question: z.array(
-    z.object({
-      question_id: z.string(),
-      user_selected: z.number(),
-      correct_index: z.number(),
-      explanation: z.string(),
-    }),
-  ),
+  fileId: z.string().min(1, "Dosya seçimi gereklidir"),
+  fileName: z.string().optional(),
+  endPage: z.number(),
+  startPage: z.number(),
 });
 
 export const quizResponseSchema = z.object({
-  title: z.string().min(3, "Title must be at least 3 characters long"),
+  id: z.string(),
   questions: z.array(
     z.object({
-      text: z.string().min(3, "Question must be at least 3 characters long"),
-      options: z.array(z.string().min(3, "Option must be at least 3 characters long")),
-      correct_index: z
-        .number()
-        .min(0, "Correct index must be at least 0")
-        .max(3, "Correct index must be at most 3"),
-      explanation: z.string().min(3, "Explanation must be at least 3 characters long"),
+      correct_option: z.string(),
+      no: z.number(),
+      options: z.array(
+        z.object({
+          label: z.string(),
+          text: z.string(),
+        }),
+      ),
+      text: z.string(),
+    }),
+  ),
+  title: z.string(),
+});
+
+export const attemptRequestSchema = z.object({
+  id: z.string().min(1, "Quiz ID is required"),
+  answers: z.array(
+    z.object({
+      question_no: z.number().min(1, "Question ID is required"),
+      selected_option: z.string().min(1, "Selected option is required"),
     }),
   ),
 });
 
-export const submissionsResponseSchema = z.array(
-  z.object({
-    id: z.string(),
-    quiz_title: z.string(),
-    score: z.number(),
-    attempt_date: z.string(),
-  }),
-);
+export const attemptResponseSchema = z.object({
+  attempt_id: z.string(),
+  percentage: z.number(),
+  score: z.number(),
+  total_questions: z.number(),
+});
+
+export const attemptsResponseSchema = z.object({
+  attempts: z.array(
+    z.object({
+      completed_at: z.string(),
+      id: z.string(),
+      percentage: z.number(),
+      quiz_id: z.string(),
+      quiz_title: z.string(),
+      score: z.number(),
+      time_spent_seconds: z.number(),
+      total_questions: z.number(),
+    }),
+  ),
+  total_count: z.number(),
+});
 
 export const submissionDetailsResponseSchema = z.object({
   submission_id: z.string(),
@@ -74,17 +74,16 @@ export const submissionDetailsResponseSchema = z.object({
 
 export const quizzesResponseSchema = z.array(
   z.object({
-    id: z.string(),
+    quizId: z.string(),
     title: z.string(),
+    createdAt: z.string(),
   }),
 );
 
-export type SubmissionRequestData = z.infer<typeof submissionRequestSchema>;
+export type AttemptRequestData = z.infer<typeof attemptRequestSchema>;
 export type QuizRequestData = z.infer<typeof quizRequestSchema>;
-
-export const quizCreationResponseSchema = z.object({
-  id: z.string(),
-  title: z.string(),
-});
-
-export type QuizCreationResponseData = z.infer<typeof quizCreationResponseSchema>;
+export type QuizResponseData = z.infer<typeof quizResponseSchema>;
+export type AttemptResponseData = z.infer<typeof attemptResponseSchema>;
+export type AttemptsResponseData = z.infer<typeof attemptsResponseSchema>;
+export type SubmissionDetailsResponseData = z.infer<typeof submissionDetailsResponseSchema>;
+export type QuizzesResponseData = z.infer<typeof quizzesResponseSchema>;

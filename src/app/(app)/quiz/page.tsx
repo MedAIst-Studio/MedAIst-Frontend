@@ -8,9 +8,11 @@ import {Button} from "@/components/ui/button";
 import {Card, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
 import {CreateQuizDialog} from "@/features/quiz/components/CreateQuizDialog";
 import {useQuizzes} from "@/features/quiz/hooks/useQueries";
+import {QuizzesResponseData} from "@/features/quiz/validation";
 
 export default function QuizListPage() {
-  const {data: quizzes, isLoading, error} = useQuizzes();
+  const {data: quizzesData, isLoading, error} = useQuizzes();
+  const quizzes = quizzesData as QuizzesResponseData;
 
   if (isLoading) {
     return (
@@ -46,7 +48,7 @@ export default function QuizListPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {quizzes?.map((quiz, index) => (
           <Card
-            key={quiz.id}
+            key={quiz.quizId}
             className="group transition-all duration-300 hover:border-primary/50 relative overflow-hidden flex flex-col justify-between"
           >
             <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
@@ -68,7 +70,7 @@ export default function QuizListPage() {
 
             <CardFooter>
               <Button asChild className="w-full">
-                <Link href={`/quiz/${quiz.id}`}>
+                <Link href={`/quiz/${quiz.quizId}`}>
                   Başlat
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>

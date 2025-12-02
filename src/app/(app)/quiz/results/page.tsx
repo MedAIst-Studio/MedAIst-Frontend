@@ -9,9 +9,11 @@ import {Button} from "@/components/ui/button";
 import {Card, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
 import {Spinner} from "@/components/ui/spinner";
 import {useSubmissions} from "@/features/quiz/hooks/useQueries";
+import {AttemptsResponseData} from "@/features/quiz/validation";
 
 export default function QuizHistoryPage() {
-  const {data: submissions, isLoading, error} = useSubmissions();
+  const {data: submissionsData, isLoading, error} = useSubmissions();
+  const submissions = submissionsData as AttemptsResponseData;
 
   if (isLoading) {
     return (
@@ -45,9 +47,9 @@ export default function QuizHistoryPage() {
         </Button>
       </div>
 
-      {submissions && submissions.length > 0 ? (
+      {submissions && submissions.attempts && submissions.attempts.length > 0 ? (
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {submissions.map((submission) => (
+          {submissions.attempts.map((submission) => (
             <Card key={submission.id} className="flex flex-col h-full transition-shadow">
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg line-clamp-2 min-h-[3.5rem]">
@@ -60,7 +62,7 @@ export default function QuizHistoryPage() {
                     year: "numeric",
                     hour: "2-digit",
                     minute: "2-digit",
-                  }).format(new Date(submission.attempt_date))}
+                  }).format(new Date(submission.completed_at))}
                 </div>
               </CardHeader>
               <CardFooter className="flex-col items-stretch">
