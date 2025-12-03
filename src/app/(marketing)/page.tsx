@@ -5,7 +5,6 @@ import CTASection from "@/components/landing/CTASection";
 import HeroSection from "@/components/landing/HeroSection";
 import ProblemSolutionSection from "@/components/landing/ProblemSolutionSection";
 import ScrollytellingSection from "@/components/landing/ScrollytellingSection";
-import TestimonialsSection from "@/components/landing/TestimonialsSection";
 
 export const metadata: Metadata = {
   title: "MedAIst - Yapay Zeka Destekli Tıp Eğitimi Platformu",
@@ -97,7 +96,6 @@ const LandingPage = () => {
       <HeroSection />
       <ProblemSolutionSection />
       <ScrollytellingSection />
-      <TestimonialsSection />
       <CTASection />
     </>
   );

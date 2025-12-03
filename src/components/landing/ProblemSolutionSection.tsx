@@ -53,7 +53,7 @@ const ProblemSolutionSection = () => {
       title: "Notlarına Hükmet",
       subtitle: "Güvenilir Sohbet Özelliği",
       description:
-        "PDF, PPTX ve TXT formatındaki tüm notlarınla anında sohbet et. En karmaşık konuyu sor, saniyeler içinde özetlesin.",
+        "PDF formatındaki tüm notlarınla anında sohbet et. En karmaşık konuyu sor, saniyeler içinde özetlesin.",
       highlight: "Tüm verilerin sana özel ve güvende kalır.",
       color: "text-blue-500",
       bgColor: "bg-blue-50",
@@ -64,7 +64,7 @@ const ProblemSolutionSection = () => {
       subtitle: "AI Quiz Oluşturma",
       description:
         "Tek tıkla, kendi notlarından yüzlerce özgün soru oluştur. Pasif okumayı bırak, aktif hatırlama ile bilgiyi hafızana kazı.",
-      highlight: "Çoktan seçmeli, boşluk doldurma ve daha fazlası.",
+      highlight: "Özenle tasarlanmış çoktan seçmeli sorular.",
       color: "text-green-500",
       bgColor: "bg-green-50",
     },

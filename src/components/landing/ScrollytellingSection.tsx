@@ -1,7 +1,7 @@
 "use client";
 
 import {motion, useScroll, useTransform} from "framer-motion";
-import {BookOpen, Brain, MessageSquare, Target} from "lucide-react";
+import {BookOpen, MessageSquare, Target} from "lucide-react";
 import {useRef} from "react";
 
 import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
@@ -36,18 +36,9 @@ const storySteps: StoryStep[] = [
   },
   {
     id: 3,
-    title: "Zayıf Noktalarını Keşfet",
-    description:
-      "Yapay zeka çalışma alışkanlıklarını analiz eder, hangi konularda zorlandığını tespit eder ve sana özel öğrenme yolu oluşturur.",
-    icon: Brain,
-    image: "/screenshots/analytics.png",
-    color: "from-orange-500 to-red-500",
-  },
-  {
-    id: 4,
     title: "Hedefli Quiz Çöz",
     description:
-      "Zayıf olduğun konulardan otomatik olarak oluşturulan testlerle pratik yap. Her cevabın analiz edilir ve gelişimini takip et.",
+      "Notlarından otomatik olarak oluşturulan quizlerle pratik yap. Sonuçlarını analiz et ve gelişimini takip et.",
     icon: Target,
     image: "/screenshots/quiz.png",
     color: "from-green-500 to-emerald-500",
@@ -180,19 +171,6 @@ const StoryCard = ({step, index}: StoryCardProps) => {
               </>
             )}
             {step.id === 3 && (
-              <>
-                <span className="rounded-full bg-orange-100 dark:bg-orange-900/30 px-2.5 sm:px-3 py-0.5 sm:py-1 text-xs sm:text-sm font-medium text-orange-700 dark:text-orange-300">
-                  Akıllı Analiz
-                </span>
-                <span className="rounded-full bg-orange-100 dark:bg-orange-900/30 px-2.5 sm:px-3 py-0.5 sm:py-1 text-xs sm:text-sm font-medium text-orange-700 dark:text-orange-300">
-                  Kişisel Öneriler
-                </span>
-                <span className="rounded-full bg-orange-100 dark:bg-orange-900/30 px-2.5 sm:px-3 py-0.5 sm:py-1 text-xs sm:text-sm font-medium text-orange-700 dark:text-orange-300">
-                  İlerleme Takibi
-                </span>
-              </>
-            )}
-            {step.id === 4 && (
               <>
                 <span className="rounded-full bg-green-100 dark:bg-green-900/30 px-2.5 sm:px-3 py-0.5 sm:py-1 text-xs sm:text-sm font-medium text-green-700 dark:text-green-300">
                   Özel Quiz

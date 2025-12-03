@@ -86,12 +86,6 @@ const HeroSection = () => {
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                 <span className="font-medium">Ücretsiz başla</span>
               </div>
-              <div className="hidden sm:block w-1 h-1 bg-muted-foreground/30 rounded-full" />
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <div className="w-2 h-2 bg-blue-500 rounded-full" />
-                <span className="font-medium">Kredi kartı gerekmez</span>
-              </div>
-              <div className="hidden sm:block w-1 h-1 bg-muted-foreground/30 rounded-full" />
               <div className="flex items-center gap-2 text-muted-foreground">
                 <div className="w-2 h-2 bg-purple-500 rounded-full" />
                 <span className="font-medium">Anında kurulum</span>

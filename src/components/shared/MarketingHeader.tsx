@@ -32,10 +32,10 @@ const MarketingHeader = () => {
       name: "Nasıl Çalışır",
       href: "#howitworks",
     },
-    {
+    /* {
       name: "Değerlendirmeler",
       href: "#testimonials",
-    },
+    }, */
     {
       name: "Fiyatlar",
       href: "/pricing",
