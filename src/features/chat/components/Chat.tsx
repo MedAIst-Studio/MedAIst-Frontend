@@ -182,7 +182,7 @@ export const Chat = ({chatId: initialChatId, fileId}: ChatProps) => {
               hidden lg:block p-4 pl-0 flex-shrink-0 transition-all duration-300 ease-in-out
               ${
                 isPdfPanelOpen
-                  ? "lg:w-96 xl:w-2/3 opacity-100"
+                  ? "lg:w-96 xl:w-3/5 opacity-100"
                   : "w-0 opacity-0 p-0 overflow-hidden"
               }
             `}
