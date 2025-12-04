@@ -1,12 +1,10 @@
 "use client";
 
-import {Brain, Bug, FileText, LogOut, Settings, Target, User} from "lucide-react";
+import {FileText, LogOut, Settings, Target, User} from "lucide-react";
 import Link from "next/link";
 import {usePathname} from "next/navigation";
-import {useState} from "react";
 
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
-import {Dialog, DialogContent, DialogHeader, DialogTitle} from "@/components/ui/dialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -33,9 +31,9 @@ import {clearAuthTokens} from "@/features/auth";
 import {AuthAPI} from "@/features/auth/api";
 import {useChats, useDeleteChat} from "@/features/chat/hooks";
 import {useUserDetails} from "@/features/users/hooks";
-import {cn} from "@/lib/utils";
 
 import {ChatItem} from "./ChatItem";
+import Logo from "./Logo";
 
 const menuItems = [
   {
@@ -52,7 +50,6 @@ const menuItems = [
 
 export default function DashboardHeader() {
   const {open, state} = useSidebar();
-  const [feedbackOpen, setFeedbackOpen] = useState(false);
   const pathname = usePathname();
 
   const {data: chats} = useChats();
@@ -69,10 +66,6 @@ export default function DashboardHeader() {
     window.location.href = "/login";
   };
 
-  const handleFeedback = () => {
-    setFeedbackOpen(true);
-  };
-
   // Check if a menu item is active
   const isActive = (url: string) => {
     return pathname === url || pathname.startsWith(url + "/");
@@ -84,25 +77,13 @@ export default function DashboardHeader() {
       url: "/settings",
       icon: Settings,
     },
-    {
-      title: "Geri Bildirim",
-      icon: Bug,
-      onClick: handleFeedback,
-    },
   ];
 
   return (
     <Sidebar className="border-r group" collapsible="icon">
       <SidebarHeader className="p-4 flex flex-row items-center justify-between">
-        <Link className="flex items-center space-x-2" href="/dashboard">
-          <div
-            className={cn(
-              "flex h-8 w-8 items-center justify-center rounded-lg bg-primary",
-              !open && "absolute top-4 left-[8px]",
-            )}
-          >
-            <Brain className="h-5 w-5 text-white" />
-          </div>
+        <Link className="flex items-center space-x-2" href="/files">
+          <Logo size={32} />
           {open && (
             <span className="text-xl font-bold">
               Med<span className="text-primary">AI</span>st
@@ -150,7 +131,7 @@ export default function DashboardHeader() {
                       </Link>
                     </SidebarMenuButton>
                   ) : (
-                    <SidebarMenuButton onClick={item.onClick}>
+                    <SidebarMenuButton>
                       <item.icon className="h-4 w-4" />
                       <span>{item.title}</span>
                     </SidebarMenuButton>
@@ -262,26 +243,6 @@ export default function DashboardHeader() {
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>
-
-      {/* Feedback Dialog */}
-      <Dialog open={feedbackOpen} onOpenChange={setFeedbackOpen}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Geri Bildirim</DialogTitle>
-          </DialogHeader>
-          <div className="py-4">
-            <p className="text-sm text-muted-foreground mb-4">
-              Görüşleriniz bizim için çok değerli! Yakında detaylı bir geri bildirim formu
-              eklenecek.
-            </p>
-            <div className="space-y-2">
-              <p className="text-sm">📧 E-posta: feedback@medaist.com</p>
-              <p className="text-sm">💬 Discord: MedAIst Community</p>
-              <p className="text-sm">🐦 Twitter: @MedAIst</p>
-            </div>
-          </div>
-        </DialogContent>
-      </Dialog>
     </Sidebar>
   );
 }
