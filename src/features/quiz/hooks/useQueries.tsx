@@ -1,7 +1,7 @@
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 
 import {quizAPI} from "../api";
-import {AttemptRequestData, QuizRequestData} from "../validation";
+import {AttemptDetailData, AttemptRequestData, QuizRequestData} from "../validation";
 
 export const useQuizzes = () => {
   return useQuery({
@@ -23,13 +23,13 @@ export const useCreateQuiz = () => {
 
   return useMutation({
     mutationFn: async (data: QuizRequestData) => {
-      const {error} = await quizAPI.createQuiz(data);
+      const {error, data: responseData} = await quizAPI.createQuiz(data);
 
       if (error) {
         throw error;
       }
 
-      return;
+      return responseData;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({queryKey: ["quizzes"]});
@@ -88,7 +88,7 @@ export const useSubmissions = () => {
 };
 
 export const useSubmissionDetails = (id: string) => {
-  return useQuery({
+  return useQuery<AttemptDetailData>({
     queryKey: ["submission", id],
     queryFn: async () => {
       const {data, error} = await quizAPI.getAttemptDetails(id);
@@ -97,7 +97,7 @@ export const useSubmissionDetails = (id: string) => {
         throw error;
       }
 
-      return data;
+      return data as AttemptDetailData;
     },
     enabled: !!id,
   });

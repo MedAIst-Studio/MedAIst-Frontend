@@ -11,7 +11,7 @@ import {QuestionCard} from "@/features/quiz/components/QuestionCard";
 import {QuizProgress} from "@/features/quiz/components/QuizProgress";
 import {QuizResult} from "@/features/quiz/components/QuizResult";
 import {useQuiz, useSubmitQuiz} from "@/features/quiz/hooks/useQueries";
-import {AttemptResponseData, QuizResponseData} from "@/features/quiz/validation";
+import {AttemptDetailData, QuizResponseData, SubmitResponseData} from "@/features/quiz/validation";
 
 export default function QuizPage() {
   const params = useParams();
@@ -96,36 +96,28 @@ export default function QuizPage() {
   };
 
   if (submitQuizMutation.isSuccess && submitQuizMutation.data) {
-    const resultData = submitQuizMutation.data as AttemptResponseData;
+    const resultData = submitQuizMutation.data as SubmitResponseData;
 
-    // Calculate detailed results locally
-    const detailedResults = quiz.questions.map((question, index) => {
-      const userAnswer = answers.find((a) => a.question_id === index.toString());
-      const userSelectedIndex = userAnswer ? userAnswer.selected_index : -1;
+    // Merge question text from quiz data into the result
+    const resultWithText: AttemptDetailData = {
+      ...resultData,
+      id: resultData.attempt_id, // Map attempt_id to id
+      quiz_id: quiz.id,
+      quiz_title: quiz.title,
+      completed_at: new Date().toISOString(), // Fallback as it might be missing
+      answers: resultData.answers.map((answer) => {
+        const question = quiz.questions.find((q) => q.no === answer.question_no);
 
-      // Find correct option index
-      // Assuming correct_option in question matches one of the options' label or text
-      // If correct_option is "A", "B", etc. and options have labels "A", "B"...
-      const correctOptionIndex = question.options.findIndex(
-        (opt) => opt.label === question.correct_option || opt.text === question.correct_option,
-      );
-
-      return {
-        text: question.text,
-        user_selected: userSelectedIndex,
-        correct_index: correctOptionIndex,
-        is_correct: userSelectedIndex === correctOptionIndex,
-        explanation: "Explanation not available", // Placeholder as API doesn't provide it yet
-      };
-    });
+        return {
+          ...answer,
+          question_text: question?.text || "Soru metni bulunamadı",
+        };
+      }),
+    };
 
     return (
       <MaxWidthWrapper className="py-8">
-        <QuizResult
-          results={detailedResults}
-          score={resultData.score}
-          totalQuestions={quiz.questions.length}
-        />
+        <QuizResult result={resultWithText} />
       </MaxWidthWrapper>
     );
   }

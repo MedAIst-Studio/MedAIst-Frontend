@@ -6,6 +6,7 @@ import {useState} from "react";
 import {useForm} from "react-hook-form";
 import {toast} from "sonner";
 
+import DynamicFormField from "@/components/shared/DynamicFormField";
 import {Button} from "@/components/ui/button";
 import {
   Dialog,
@@ -18,7 +19,6 @@ import {
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
 import {Input} from "@/components/ui/input";
 import {useFiles} from "@/features/files/hooks";
-import DynamicFormField from "@/components/shared/DynamicFormField";
 
 import {useCreateQuiz} from "../hooks/useQueries";
 import {QuizRequestData, quizRequestSchema} from "../validation";
@@ -32,7 +32,7 @@ export function CreateQuizDialog() {
     resolver: zodResolver(quizRequestSchema),
     defaultValues: {
       fileId: "",
-      fileName: "",
+      quizName: "",
       startPage: 0,
       endPage: 0,
     },
@@ -62,10 +62,10 @@ export function CreateQuizDialog() {
         toast.success("Quiz Hazır! 🚀", {
           description: `Quiz başarıyla oluşturuldu. Hemen çözmeye başlamak ister misiniz?`,
           duration: 8000,
-          /* action: {
+          action: {
             label: "Quiz'i Başlat",
-            onClick: () => (window.location.href = `/quiz/${result.id}`),
-        }, */
+            onClick: () => (window.location.href = `/quiz/${result.quizId}`),
+          },
         });
       }
     } catch (error) {
@@ -96,7 +96,7 @@ export function CreateQuizDialog() {
               control={form.control}
               description="Quiz için özel bir isim belirleyin"
               label="Quiz Adı (Opsiyonel)"
-              name="fileName"
+              name="quizName"
               placeholder="Örn: Vize Çalışması"
             />
 

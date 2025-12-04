@@ -17,8 +17,8 @@ export const QuizProgress: React.FC<QuizProgressProps> = ({
     <div className="w-full mb-8 space-y-2">
       <div className="flex justify-between items-center text-sm">
         <span className="text-muted-foreground font-medium">
-          Question <span className="text-foreground">{currentQuestionIndex + 1}</span> of{" "}
-          {totalQuestions}
+          {totalQuestions} Sorudan{" "}
+          <span className="text-foreground">{currentQuestionIndex + 1}.</span>
         </span>
         <span className="text-primary font-semibold">{Math.round(progressPercentage)}%</span>
       </div>

@@ -1,24 +1,26 @@
 import {apiClient} from "@/lib/api";
 
 import {
+  attemptDetailResponseSchema,
   AttemptRequestData,
   attemptRequestSchema,
-  attemptResponseSchema,
   attemptsResponseSchema,
+  quizCreateResponseSchema,
   QuizRequestData,
   quizRequestSchema,
   quizResponseSchema,
   quizzesResponseSchema,
-  submissionDetailsResponseSchema,
+  submitResponseSchema,
 } from "../validation";
 
 export const quizAPI = {
   createQuiz: async (data: QuizRequestData) => {
-    const {error} = await apiClient.post("/quizzes", data, {
+    const {data: responseData, error} = await apiClient.post("/quizzes", data, {
       request: quizRequestSchema,
+      response: quizCreateResponseSchema,
     });
 
-    return {error};
+    return {error, data: responseData};
   },
 
   getQuizzes: async () => {
@@ -40,7 +42,7 @@ export const quizAPI = {
   submitQuiz: async (requestData: AttemptRequestData) => {
     const {error, data} = await apiClient.post(`/quizzes/${requestData.id}/solve`, requestData, {
       request: attemptRequestSchema,
-      response: attemptResponseSchema,
+      response: submitResponseSchema,
     });
 
     return {error, data};
@@ -48,7 +50,7 @@ export const quizAPI = {
 
   getAttemptDetails: async (id: string) => {
     const {error, data} = await apiClient.get("/quizzes/attempts/" + id, {
-      response: submissionDetailsResponseSchema,
+      response: attemptDetailResponseSchema,
     });
 
     return {error, data};

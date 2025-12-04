@@ -2,9 +2,13 @@ import z from "zod";
 
 export const quizRequestSchema = z.object({
   fileId: z.string().min(1, "Dosya seçimi gereklidir"),
-  fileName: z.string().optional(),
-  endPage: z.number(),
-  startPage: z.number(),
+  quizName: z.string().min(1, "Quiz adı gereklidir"),
+  endPage: z.number().optional(),
+  startPage: z.number().optional(),
+});
+
+export const quizCreateResponseSchema = z.object({
+  quizId: z.string(),
 });
 
 export const quizResponseSchema = z.object({
@@ -35,9 +39,22 @@ export const attemptRequestSchema = z.object({
   ),
 });
 
-export const attemptResponseSchema = z.object({
-  attempt_id: z.string(),
+export const attemptDetailResponseSchema = z.object({
+  answers: z.array(
+    z.object({
+      correct_option: z.string(),
+      explanation: z.string(),
+      is_correct: z.boolean(),
+      question_no: z.number(),
+      question_text: z.string(),
+      selected_option: z.string(),
+    }),
+  ),
+  completed_at: z.string(),
+  id: z.string(),
   percentage: z.number(),
+  quiz_id: z.string(),
+  quiz_title: z.string(),
   score: z.number(),
   total_questions: z.number(),
 });
@@ -45,7 +62,6 @@ export const attemptResponseSchema = z.object({
 export const attemptsResponseSchema = z.object({
   attempts: z.array(
     z.object({
-      completed_at: z.string(),
       id: z.string(),
       percentage: z.number(),
       quiz_id: z.string(),
@@ -58,18 +74,20 @@ export const attemptsResponseSchema = z.object({
   total_count: z.number(),
 });
 
-export const submissionDetailsResponseSchema = z.object({
-  submission_id: z.string(),
-  score: z.number(),
-  question_results: z.array(
+export const submitResponseSchema = z.object({
+  answers: z.array(
     z.object({
-      text: z.string(),
-      user_selected: z.number(),
-      correct_index: z.number(),
-      is_correct: z.boolean(),
+      correct_option: z.string(),
       explanation: z.string(),
+      is_correct: z.boolean(),
+      question_no: z.number(),
+      selected_option: z.string(),
     }),
   ),
+  attempt_id: z.string(),
+  percentage: z.number(),
+  score: z.number(),
+  total_questions: z.number(),
 });
 
 export const quizzesResponseSchema = z.array(
@@ -83,7 +101,7 @@ export const quizzesResponseSchema = z.array(
 export type AttemptRequestData = z.infer<typeof attemptRequestSchema>;
 export type QuizRequestData = z.infer<typeof quizRequestSchema>;
 export type QuizResponseData = z.infer<typeof quizResponseSchema>;
-export type AttemptResponseData = z.infer<typeof attemptResponseSchema>;
+export type AttemptDetailData = z.infer<typeof attemptDetailResponseSchema>;
 export type AttemptsResponseData = z.infer<typeof attemptsResponseSchema>;
-export type SubmissionDetailsResponseData = z.infer<typeof submissionDetailsResponseSchema>;
+export type SubmitResponseData = z.infer<typeof submitResponseSchema>;
 export type QuizzesResponseData = z.infer<typeof quizzesResponseSchema>;
