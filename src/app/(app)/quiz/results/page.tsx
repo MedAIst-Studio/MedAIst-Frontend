@@ -43,7 +43,7 @@ export default function QuizHistoryPage() {
         </div>
         <Button asChild className="shadow-sm" variant="default">
           <Link href="/quiz">
-            <ArrowLeft className="mr-2 h-4 w-4" /> Quizlere Dön
+            <ArrowLeft className="h-4 w-4" /> Quizlere Dön
           </Link>
         </Button>
       </div>

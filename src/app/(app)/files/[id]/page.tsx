@@ -7,7 +7,7 @@ type Props = {
 };
 
 export const metadata: Metadata = {
-  title: "Dosya Sohbeti - MedAIst",
+  title: "Dosya - MedAIst",
   description: "PDF dosyanızla yapay zeka destekli sohbet edin.",
 };
 

@@ -95,7 +95,7 @@ export function CreateQuizDialog() {
             <DynamicFormField
               control={form.control}
               description="Quiz için özel bir isim belirleyin"
-              label="Quiz Adı (Opsiyonel)"
+              label="Quiz Adı*"
               name="quizName"
               placeholder="Örn: Vize Çalışması"
             />
@@ -142,7 +142,7 @@ export function CreateQuizDialog() {
             <DynamicFormField
               control={form.control}
               description="Quiz oluşturmak için dosya seçin"
-              label="Dosya"
+              label="Dosya*"
               name="fileId"
               options={fileOptions}
               placeholder="Bir dosya seçin..."

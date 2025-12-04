@@ -1,4 +1,4 @@
-import {FileText, MessageSquare, Target} from "lucide-react";
+import {FileText, Target} from "lucide-react";
 
 export interface MenuItem {
   title: string;
@@ -9,17 +9,12 @@ export interface MenuItem {
 
 export const navigationItems: MenuItem[] = [
   {
-    title: "AI Chat",
-    url: "/chat",
-    icon: MessageSquare,
-  },
-  {
-    title: "Notlarım",
-    url: "/notes",
+    title: "Dosyalarım",
+    url: "/files",
     icon: FileText,
   },
   {
-    title: "Quizler",
+    title: "Quizlerim",
     url: "/quiz",
     icon: Target,
   },
