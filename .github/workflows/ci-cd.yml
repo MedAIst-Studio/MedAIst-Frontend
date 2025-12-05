@@ -85,5 +85,5 @@ jobs:
           curl -X POST 'https://panel.medaist.com/api/trpc/application.deploy?batch=1' \
             -H 'accept: */*' \
             -H 'content-type: application/json' \
-            -H "Authorization: Bearer ${{ secrets.DOKPLOY_API_KEY }}" \
+            -H "x-api-key: ${{ secrets.DOKPLOY_API_KEY }}" \
             --data-raw "{\"0\":{\"json\":{\"applicationId\":\"${APPLICATION_ID}\"}}}"
