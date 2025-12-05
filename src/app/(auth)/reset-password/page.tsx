@@ -1,12 +1,13 @@
 "use client";
 
 import {useRouter, useSearchParams} from "next/navigation";
-import {useState} from "react";
+import {Suspense, useState} from "react";
 
+import {Spinner} from "@/components/ui/spinner";
 import {AuthLayout, ResetPasswordForm, type ResetPasswordFormData} from "@/features/auth";
 import {AuthAPI} from "@/features/auth/api";
 
-export default function ResetPasswordPage() {
+function ResetPasswordContent() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -57,5 +58,19 @@ export default function ResetPasswordPage() {
         onSubmit={handleResetPassword}
       />
     </AuthLayout>
+  );
+}
+
+export default function ResetPasswordPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex items-center justify-center min-h-screen">
+          <Spinner className="w-16 h-16" />
+        </div>
+      }
+    >
+      <ResetPasswordContent />
+    </Suspense>
   );
 }

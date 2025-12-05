@@ -1,8 +1,9 @@
 "use client";
 
 import {useRouter, useSearchParams} from "next/navigation";
-import {useState} from "react";
+import {Suspense, useState} from "react";
 
+import {Spinner} from "@/components/ui/spinner";
 import {
   AuthLayout,
   handleSocialLogin,
@@ -12,7 +13,7 @@ import {
 } from "@/features/auth";
 import {AuthAPI} from "@/features/auth/api";
 
-export default function LoginPage() {
+function LoginContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
@@ -58,5 +59,19 @@ export default function LoginPage() {
         onSubmit={handleLogin}
       />
     </AuthLayout>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex items-center justify-center min-h-screen">
+          <Spinner className="w-16 h-16" />
+        </div>
+      }
+    >
+      <LoginContent />
+    </Suspense>
   );
 }

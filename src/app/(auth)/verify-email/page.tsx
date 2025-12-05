@@ -1,12 +1,13 @@
 "use client";
 
 import {useSearchParams} from "next/navigation";
-import {useState} from "react";
+import {Suspense, useState} from "react";
 
+import {Spinner} from "@/components/ui/spinner";
 import {AuthLayout, VerifyEmailForm, type VerifyEmailFormData} from "@/features/auth";
 import {AuthAPI} from "@/features/auth/api";
 
-export default function VerifyEmailPage() {
+function VerifyEmailContent() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -50,5 +51,19 @@ export default function VerifyEmailPage() {
         onSubmit={handleVerifyEmail}
       />
     </AuthLayout>
+  );
+}
+
+export default function VerifyEmailPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex items-center justify-center min-h-screen">
+          <Spinner className="w-16 h-16" />
+        </div>
+      }
+    >
+      <VerifyEmailContent />
+    </Suspense>
   );
 }
