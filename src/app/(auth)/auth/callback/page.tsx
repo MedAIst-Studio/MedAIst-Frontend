@@ -112,7 +112,7 @@ function OAuthCallbackContent() {
                 <CheckCircle className="w-8 h-8 text-green-600" />
               </div>
               <CardTitle className="text-2xl text-green-700 dark:text-green-400">
-                Başarılı! 🎉
+                Başarılı!
               </CardTitle>
               <CardDescription>OAuth doğrulama başarıyla tamamlandı</CardDescription>
             </CardHeader>
