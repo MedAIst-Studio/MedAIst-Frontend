@@ -59,7 +59,7 @@ jobs:
           tags: |
             type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
             type=raw,value=dev,enable=${{ github.ref == 'refs/heads/dev' }}
-            type=sha,prefix=,format=short
+
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
