@@ -60,7 +60,6 @@ jobs:
             type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
             type=raw,value=dev,enable=${{ github.ref == 'refs/heads/dev' }}
 
-
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
@@ -71,13 +70,20 @@ jobs:
           cache-from: type=gha 
           cache-to: type=gha,mode=max
 
-      - name: Trigger Webhook
+      - name: Deploy Application
         if: success()
         run: |
           if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
-            echo "Triggering Prod Webhook..."
-            curl -X POST ${{ secrets.WEBHOOK_URL_PROD }}
+            APPLICATION_ID="${{ secrets.PROD_APP_ID }}"
           elif [[ "${{ github.ref }}" == "refs/heads/dev" ]]; then
-            echo "Triggering Dev Webhook..."
-            curl -X POST ${{ secrets.WEBHOOK_URL_DEV }}
+            APPLICATION_ID="${{ secrets.DEV_APP_ID }}"
+          else
+            echo "Skipping deployment for non-main/dev branch"
+            exit 0
           fi
+          
+          curl -X POST 'https://panel.medaist.com/api/trpc/application.deploy?batch=1' \
+            -H 'accept: */*' \
+            -H 'content-type: application/json' \
+            -H "Authorization: Bearer ${{ secrets.DOKPLOY_API_KEY }}" \
+            --data-raw "{\"0\":{\"json\":{\"applicationId\":\"${APPLICATION_ID}\"}}}"
