@@ -98,13 +98,12 @@ export default function QuizPage() {
   if (submitQuizMutation.isSuccess && submitQuizMutation.data) {
     const resultData = submitQuizMutation.data as SubmitResponseData;
 
-    // Merge question text from quiz data into the result
     const resultWithText: AttemptDetailData = {
       ...resultData,
-      id: resultData.attempt_id, // Map attempt_id to id
+      id: resultData.attempt_id,
       quiz_id: quiz.id,
       quiz_title: quiz.title,
-      completed_at: new Date().toISOString(), // Fallback as it might be missing
+      completed_at: new Date().toISOString(),
       answers: resultData.answers.map((answer) => {
         const question = quiz.questions.find((q) => q.no === answer.question_no);
 
