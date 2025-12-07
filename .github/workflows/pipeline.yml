@@ -42,15 +42,6 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Delete older package versions
-        uses: actions/delete-package-versions@v5
-        with:
-          package-name: ${{ env.IMAGE_NAME }}
-          package-type: 'container'
-          min-versions-to-keep: 2
-          delete-only-untagged-versions: 'false'
-        continue-on-error: true
-
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@v5
