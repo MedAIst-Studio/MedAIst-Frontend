@@ -1,8 +1,9 @@
 "use client";
 
-import {Brain, Sparkles, Star} from "lucide-react";
+import {Sparkles, Star} from "lucide-react";
 import Link from "next/link";
 
+import Logo from "@/components/shared/Logo";
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
 import {cn} from "@/lib/utils";
 
@@ -28,19 +29,16 @@ export function AuthLayout({
 }: AuthLayoutProps) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 flex items-center justify-center p-4 relative overflow-hidden">
-      {/* Advanced Background Decorations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Grid Pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f46e510_1px,transparent_1px),linear-gradient(to_bottom,#4f46e510_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
 
-        {/* Floating Elements */}
         <div className="absolute top-20 left-20 w-32 h-32 bg-gradient-to-r from-blue-400/20 to-cyan-400/20 rounded-full blur-3xl animate-pulse" />
         <div
-          className="absolute bottom-20 right-20 w-40 h-40 bg-gradient-to-r from-indigo-400/20 to-purple-400/20 rounded-full blur-3xl animate-pulse"
+          className="absolute bottom-20 right-20 w-40 h-40 bg-gradient-to-r from-blue-400/20 to-indigo-400/20 rounded-full blur-3xl animate-pulse"
           style={{animationDelay: "2s"}}
         />
         <div
-          className="absolute top-1/2 left-1/4 w-24 h-24 bg-gradient-to-r from-purple-400/15 to-pink-400/15 rounded-full blur-2xl animate-bounce"
+          className="absolute top-1/2 left-1/4 w-24 h-24 bg-gradient-to-r from-blue-400/15 to-indigo-400/15 rounded-full blur-2xl animate-bounce"
           style={{animationDelay: "1s"}}
         />
 
@@ -63,20 +61,16 @@ export function AuthLayout({
       </div>
 
       <div className={cn("w-full max-w-lg mx-auto relative z-10", className)}>
-        {/* Logo and Brand */}
         <div className="text-center mb-8">
           <Link className="inline-flex items-center space-x-3 group" href="/">
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl blur opacity-75 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="relative flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 shadow-2xl group-hover:shadow-blue-500/25 group-hover:-translate-y-1 transition-all duration-300 border border-blue-400/20">
-                <Brain className="h-7 w-7 text-white" />
-              </div>
+              <Logo size={40} />
             </div>
             <div className="text-start">
               <span className="text-4xl font-bold text-white block leading-none">
                 Med<span className="text-blue-400">AI</span>st
               </span>
-              <span className="text-blue-200/80 text-xs font-medium tracking-wide">
+              <span className="text-blue-200/80 text-xs font-medium tracking-wide -mt-0.5 block">
                 Akıllı Tıp Asistanı
               </span>
             </div>
@@ -88,9 +82,6 @@ export function AuthLayout({
 
         {/* Auth Card with Glass Morphism */}
         <Card className="w-full flex-1">
-          {/* Card Glow Effect */}
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-transparent to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
           <CardHeader className="relative space-y-3 text-center">
             <div className="mx-auto w-12 h-1 bg-gradient-to-r from-blue-400 to-indigo-400 rounded-full mb-4" />
             <CardTitle className="text-3xl font-bold">{title}</CardTitle>
