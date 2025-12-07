@@ -26,8 +26,10 @@ jobs:
           echo "OWNER_LC=${GITHUB_REPOSITORY_OWNER,,}" >> ${GITHUB_ENV}
           if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
             echo "IMAGE_NAME=${{ env.PROD_IMAGE_NAME }}" >> $GITHUB_ENV
+            echo "BACKEND_URL=${{ secrets.PROD_BACKEND_URL }}" >> $GITHUB_ENV
           elif [[ "${{ github.ref }}" == "refs/heads/dev" ]]; then
             echo "IMAGE_NAME=${{ env.DEV_IMAGE_NAME }}" >> $GITHUB_ENV
+            echo "BACKEND_URL=${{ secrets.DEV_BACKEND_URL }}" >> $GITHUB_ENV
           else
             echo "IMAGE_NAME=medaist-frontend-other" >> $GITHUB_ENV
           fi
@@ -41,15 +43,6 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Delete older package versions
-        uses: actions/delete-package-versions@v5
-        with:
-          package-name: ${{ env.IMAGE_NAME }}
-          package-type: 'container'
-          min-versions-to-keep: 2
-          delete-only-untagged-versions: 'false'
-        continue-on-error: true
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
@@ -67,6 +60,8 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+             NEXT_PUBLIC_BACKEND_URL=${{ env.BACKEND_URL }}
           cache-from: type=gha 
           cache-to: type=gha,mode=max
 
