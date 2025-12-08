@@ -16,7 +16,7 @@ export const fileAPI = {
       headers: {
         "Content-Type": "multipart/form-data",
       },
-      timeout: 60000,
+      timeout: 10 * 60 * 1000, // 10 minutes
     });
 
     return {data, error};
@@ -33,6 +33,7 @@ export const fileAPI = {
       url: `/files/${fileId}`,
       method: "GET",
       responseType: "blob",
+      timeout: 2 * 60 * 1000, // 2 minutes
     });
 
     const blob = new Blob([data], {type: "application/pdf"});
