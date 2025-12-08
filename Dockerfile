@@ -21,7 +21,9 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 ARG NEXT_PUBLIC_API_URL
+ARG NEXT_PUBLIC_POSTHOG_KEY
 ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
+ENV NEXT_PUBLIC_POSTHOG_KEY=$NEXT_PUBLIC_POSTHOG_KEY
 
 RUN \
   if [ -f yarn.lock ]; then yarn run build; \

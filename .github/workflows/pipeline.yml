@@ -62,6 +62,9 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
             NEXT_PUBLIC_API_URL=${{ env.BACKEND_URL }}
+            if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
+              NEXT_PUBLIC_POSTHOG_KEY=${{ secrets.POSTHOG_KEY }}
+            fi
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
