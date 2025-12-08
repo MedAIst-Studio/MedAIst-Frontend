@@ -6,6 +6,7 @@ import Link from "next/link";
 import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
 import {Button} from "@/components/ui/button";
 import {Card, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
+import {Spinner} from "@/components/ui/spinner";
 import {CreateQuizDialog} from "@/features/quiz/components/CreateQuizDialog";
 import {useQuizzes} from "@/features/quiz/hooks/useQueries";
 import {QuizzesResponseData} from "@/features/quiz/validation";
@@ -17,7 +18,7 @@ export default function QuizListPage() {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary" />
+        <Spinner />
       </div>
     );
   }
@@ -45,40 +46,56 @@ export default function QuizListPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {quizzes?.map((quiz, index) => (
-          <Card
-            key={quiz.quizId}
-            className="group transition-all duration-300 hover:border-primary/50 relative overflow-hidden flex flex-col justify-between"
-          >
-            <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-              <BrainCircuit className="w-24 h-24 text-primary" />
-            </div>
-
-            <CardHeader>
-              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 text-primary group-hover:scale-110 transition-transform duration-300">
-                {index % 2 === 0 ? (
-                  <Stethoscope className="w-6 h-6" />
-                ) : (
-                  <Activity className="w-6 h-6" />
-                )}
+      {quizzes?.length === 0 ? (
+        <div className="flex flex-col items-center justify-center py-12 md:py-20 text-center border-2 border-dashed rounded-xl bg-muted/30">
+          <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+            <BrainCircuit className="w-8 h-8 text-primary" />
+          </div>
+          <h3 className="text-xl font-semibold mb-2">Henüz bir quiz oluşturmadınız</h3>
+          <p className="text-muted-foreground max-w-sm mb-6">
+            Yapay zeka asistanınız ile hemen yeni bir quiz oluşturun ve bilgilerinizi test etmeye
+            başlayın.
+          </p>
+          <div className="flex gap-4">
+            <CreateQuizDialog />
+          </div>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {quizzes?.map((quiz, index) => (
+            <Card
+              key={quiz.quizId}
+              className="group transition-all duration-300 hover:border-primary/50 relative overflow-hidden flex flex-col justify-between"
+            >
+              <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                <BrainCircuit className="w-24 h-24 text-primary" />
               </div>
-              <CardTitle className="text-xl group-hover:text-primary transition-colors">
-                {quiz.title}
-              </CardTitle>
-            </CardHeader>
 
-            <CardFooter>
-              <Button asChild className="w-full">
-                <Link href={`/quiz/${quiz.quizId}`}>
-                  Başlat
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </Button>
-            </CardFooter>
-          </Card>
-        ))}
-      </div>
+              <CardHeader>
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 text-primary group-hover:scale-110 transition-transform duration-300">
+                  {index % 2 === 0 ? (
+                    <Stethoscope className="w-6 h-6" />
+                  ) : (
+                    <Activity className="w-6 h-6" />
+                  )}
+                </div>
+                <CardTitle className="text-xl group-hover:text-primary transition-colors">
+                  {quiz.title}
+                </CardTitle>
+              </CardHeader>
+
+              <CardFooter>
+                <Button asChild className="w-full">
+                  <Link href={`/quiz/${quiz.quizId}`}>
+                    Başlat
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </Button>
+              </CardFooter>
+            </Card>
+          ))}
+        </div>
+      )}
     </MaxWidthWrapper>
   );
 }
