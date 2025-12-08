@@ -53,7 +53,11 @@ const ScrollytellingSection = () => {
   });
 
   return (
-    <section ref={containerRef} className="relative bg-background py-12 sm:py-16 md:py-20 lg:py-24">
+    <section
+      ref={containerRef}
+      className="relative bg-background py-12 sm:py-16 md:py-20 lg:py-24"
+      id="howitworks"
+    >
       <MaxWidthWrapper>
         {/* Section Header */}
         <motion.div

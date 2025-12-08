@@ -36,10 +36,10 @@ const MarketingHeader = () => {
       name: "Değerlendirmeler",
       href: "#testimonials",
     }, */
-    {
+    /* {
       name: "Fiyatlar",
       href: "/pricing",
-    },
+    }, */
   ];
 
   return (
@@ -51,7 +51,7 @@ const MarketingHeader = () => {
       initial={{y: -100}}
       transition={{duration: 0.6}}
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container md:mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <motion.div
@@ -118,7 +118,7 @@ const MarketingHeader = () => {
                   <Menu className="h-6 w-6" />
                 </Button>
               </SheetTrigger>
-              <SheetContent className="w-80" side="right">
+              <SheetContent className="w-80 p-4" side="right">
                 <div className="flex flex-col h-full">
                   {/* Mobile Logo */}
                   <div className="flex items-center gap-2 mb-8">

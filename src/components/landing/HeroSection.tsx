@@ -2,6 +2,7 @@
 
 import {motion} from "framer-motion";
 import {ArrowRight, Play, Sparkles} from "lucide-react";
+import Link from "next/link";
 
 import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
 import {Button} from "@/components/ui/button";
@@ -63,11 +64,13 @@ const HeroSection = () => {
               initial={{opacity: 0, y: 20}}
               transition={{duration: 0.6, delay: 0.4}}
             >
-              <Button size="lg">
-                <Sparkles />
-                Ücretsiz Dene
-                <ArrowRight />
-              </Button>
+              <Link href="/signup">
+                <Button size="lg">
+                  <Sparkles />
+                  Ücretsiz Dene
+                  <ArrowRight />
+                </Button>
+              </Link>
 
               <Button size="lg" variant="outline" onClick={handleVideoPlay}>
                 <Play />
@@ -189,7 +192,7 @@ const HeroSection = () => {
             >
               <div className="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm">
                 <div className="w-2 sm:w-3 h-2 sm:h-3 bg-green-500 rounded-full animate-pulse" />
-                <span className="font-semibold whitespace-nowrap">1.247 sayfa analiz edildi</span>
+                <span className="font-semibold whitespace-nowrap">1000+ sayfa analiz edildi</span>
               </div>
             </motion.div>
 
@@ -201,7 +204,7 @@ const HeroSection = () => {
             >
               <div className="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm">
                 <Sparkles className="w-3 sm:w-4 h-3 sm:h-4 text-primary" />
-                <span className="font-semibold whitespace-nowrap">AI yanıt süresi: 0.8s</span>
+                <span className="font-semibold whitespace-nowrap">AI yanıt süresi: 3 saniye</span>
               </div>
             </motion.div>
 

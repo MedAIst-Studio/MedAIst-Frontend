@@ -12,6 +12,7 @@ import {
   Zap,
 } from "lucide-react";
 import {useRef} from "react";
+import Link from "next/link";
 
 import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
 import {Badge} from "@/components/ui/badge";
@@ -235,10 +236,12 @@ const ProblemSolutionSection = () => {
                 Eski yöntemlerle boğuşmaya devam mı edeceksin, yoksa AI ile çalışmanın gücünü
                 keşfedecek misin?
               </p>
-              <Button className="text-sm sm:text-base" size={"lg"}>
-                Akıllı Çalışmaya Geç
-                <ArrowRight className="ml-2" />
-              </Button>
+              <Link href="/signup">
+                <Button className="text-sm sm:text-base" size={"lg"}>
+                  Akıllı Çalışmaya Geç
+                  <ArrowRight className="ml-2" />
+                </Button>
+              </Link>
             </CardContent>
           </Card>
         </motion.div>
