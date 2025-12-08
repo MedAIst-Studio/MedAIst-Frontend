@@ -3,6 +3,7 @@
 import {motion, useInView} from "framer-motion";
 import {ArrowRight, BookOpen, Clock, Sparkles, Target, Trophy} from "lucide-react";
 import {useRef} from "react";
+import Link from "next/link";
 
 import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
 import {Button} from "@/components/ui/button";
@@ -141,15 +142,17 @@ const CTASection = () => {
             initial={{opacity: 0, scale: 0.9}}
             transition={{delay: 1.6, duration: 0.6}}
           >
-            <Button
-              className="group text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 shadow-lg"
-              size="lg"
-            >
-              <Sparkles className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-              <span className="hidden sm:inline">Ücretsiz Dene - Hemen Başla</span>
-              <span className="sm:hidden">Ücretsiz Başla</span>
-              <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 transition-transform group-hover:translate-x-1" />
-            </Button>
+            <Link href="/signup">
+              <Button
+                className="group text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 shadow-lg"
+                size="lg"
+              >
+                <Sparkles className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                <span className="hidden sm:inline">Ücretsiz Dene - Hemen Başla</span>
+                <span className="sm:hidden">Ücretsiz Başla</span>
+                <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 transition-transform group-hover:translate-x-1" />
+              </Button>
+            </Link>
           </motion.div>
 
           <motion.div

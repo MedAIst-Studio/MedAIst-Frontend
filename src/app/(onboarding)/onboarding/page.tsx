@@ -81,11 +81,11 @@ export default function OnboardingPage() {
   };
 
   const handleGetStarted = () => {
-    router.push("/chat");
+    router.push("/files");
   };
 
   const handleSkip = () => {
-    router.push("/chat");
+    router.push("/files");
   };
 
   return (
@@ -113,7 +113,7 @@ export default function OnboardingPage() {
               </div>
 
               {/* Stats */}
-              <div className="grid grid-cols-3 gap-8">
+              {/* <div className="grid grid-cols-3 gap-8">
                 <div>
                   <div className="text-3xl font-bold text-foreground">10K+</div>
                   <div className="text-sm text-muted-foreground">Tıp Öğrencisi</div>
@@ -122,11 +122,7 @@ export default function OnboardingPage() {
                   <div className="text-3xl font-bold text-foreground">500K+</div>
                   <div className="text-sm text-muted-foreground">İşlenen Doküman</div>
                 </div>
-                <div>
-                  <div className="text-3xl font-bold text-foreground">95%</div>
-                  <div className="text-sm text-muted-foreground">Başarı Oranı</div>
-                </div>
-              </div>
+              </div> */}
 
               {/* Features */}
               <div className="space-y-4">
@@ -239,7 +235,7 @@ export default function OnboardingPage() {
               <Button
                 className="h-16 flex flex-col gap-1 p-4"
                 variant="outline"
-                onClick={() => router.push("/notes")}
+                onClick={() => router.push("/files")}
               >
                 <FileText className="h-5 w-5 text-primary" />
                 <span className="text-sm font-medium">Notları Görüntüle</span>
