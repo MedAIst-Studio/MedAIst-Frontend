@@ -114,17 +114,15 @@ const MarketingHeader = () => {
           <div className="lg:hidden">
             <Sheet>
               <SheetTrigger asChild>
-                <Button className="p-2" size="sm" variant="ghost">
-                  <Menu className="h-6 w-6" />
+                <Button className="p-2" variant="ghost">
+                  <Menu />
                 </Button>
               </SheetTrigger>
               <SheetContent className="w-80 p-4" side="right">
                 <div className="flex flex-col h-full">
                   {/* Mobile Logo */}
                   <div className="flex items-center gap-2 mb-8">
-                    <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                      <Sparkles className="w-5 h-5 text-primary-foreground" />
-                    </div>
+                    <Logo size={32} />
                     <span className="text-xl font-bold text-foreground">MedAIst</span>
                   </div>
 
@@ -142,7 +140,7 @@ const MarketingHeader = () => {
                   </nav>
 
                   {/* Mobile CTA */}
-                  <div className="space-y-4 pt-6 border-t border-border">
+                  <div className="space-y-4 pt-6">
                     <Link className="block" href="/login">
                       <Button className="w-full" variant="outline">
                         Giriş Yap
