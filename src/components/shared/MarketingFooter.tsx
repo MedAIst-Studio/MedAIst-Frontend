@@ -1,11 +1,10 @@
 "use client";
 
 import {motion} from "framer-motion";
-import {Facebook, Github, Instagram, Linkedin, Mail, Sparkles, Twitter} from "lucide-react";
+import {Facebook, Instagram, Linkedin, Mail, Twitter} from "lucide-react";
 import Link from "next/link";
 
-import {Button} from "@/components/ui/button";
-import {Input} from "@/components/ui/input";
+import Logo from "./Logo";
 
 const MarketingFooter = () => {
   const currentYear = new Date().getFullYear();
@@ -15,8 +14,8 @@ const MarketingFooter = () => {
       title: "Ürün",
       links: [
         {name: "Özellikler", href: "#features"},
-        {name: "Fiyatlandırma", href: "/pricing"},
-        {name: "Nasıl Çalışır", href: "#how-it-works"},
+        /* {name: "Fiyatlandırma", href: "/pricing"}, */
+        {name: "Nasıl Çalışır", href: "#howitworks"},
       ],
     },
     {
@@ -43,7 +42,6 @@ const MarketingFooter = () => {
     {name: "LinkedIn", href: "#", icon: Linkedin},
     {name: "Instagram", href: "#", icon: Instagram},
     {name: "Facebook", href: "#", icon: Facebook},
-    {name: "Github", href: "#", icon: Github},
   ];
 
   return (
@@ -60,9 +58,7 @@ const MarketingFooter = () => {
             whileInView={{opacity: 1, y: 0}}
           >
             <Link className="flex items-center gap-2 group" href="/">
-              <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
-                <Sparkles className="w-6 h-6 text-primary-foreground" />
-              </div>
+              <Logo size={32} />
               <span className="text-2xl font-bold text-foreground">MedAIst</span>
             </Link>
 
@@ -77,18 +73,6 @@ const MarketingFooter = () => {
                 <Mail className="w-4 h-4" />
                 <span>destek@medaist.com</span>
               </div>
-            </div>
-
-            {/* Newsletter */}
-            <div className="space-y-3">
-              <h4 className="font-semibold text-foreground">Güncellemelerden haberdar ol</h4>
-              <div className="flex gap-2">
-                <Input className="flex-1" placeholder="E-posta adresiniz" type="email" />
-                <Button>Abone Ol</Button>
-              </div>
-              <p className="text-xs text-muted-foreground">
-                Yeni özellikler ve güncellemeler hakkında bilgi alın.
-              </p>
             </div>
           </motion.div>
 

@@ -53,7 +53,6 @@ export const ChatItem = ({id, title, onDelete, file_id, isActive = false}: ChatI
             </Link>
           </SidebarMenuButton>
 
-          {/* Three dots menu - visible on hover */}
           <div
             className={`flex-shrink-0 transition-opacity duration-200 ${
               isHovered ? "opacity-100" : "opacity-0"
