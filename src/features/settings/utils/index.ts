@@ -66,7 +66,7 @@ export const SUBSCRIPTION_PLANS = [
     features: [
       {name: "AI Soru-Cevap", description: "Ayda 100 sorgu", included: true, limit: 100},
       {name: "Quiz Oluşturma", description: "Ayda 50 quiz", included: true, limit: 50},
-      {name: "Not Alma", description: "20 not", included: true, limit: 20},
+      {name: "Dosya Depolama", description: "20 dosya", included: true, limit: 20},
       {name: "Depolama", description: "500 MB", included: true, limit: 500},
       {name: "Temel Destek", description: "E-posta desteği", included: true},
     ],
@@ -82,7 +82,7 @@ export const SUBSCRIPTION_PLANS = [
     features: [
       {name: "AI Soru-Cevap", description: "Ayda 500 sorgu", included: true, limit: 500},
       {name: "Quiz Oluşturma", description: "Ayda 200 quiz", included: true, limit: 200},
-      {name: "Not Alma", description: "Sınırsız not", included: true},
+      {name: "Dosya Depolama", description: "Sınırsız dosya", included: true},
       {name: "Depolama", description: "5 GB", included: true, limit: 5000},
       {name: "Öncelikli Destek", description: "24/7 destek", included: true},
       {name: "İleri Analitikler", description: "Detaylı raporlar", included: true},
@@ -98,7 +98,7 @@ export const SUBSCRIPTION_PLANS = [
     features: [
       {name: "AI Soru-Cevap", description: "Ayda 2000 sorgu", included: true, limit: 2000},
       {name: "Quiz Oluşturma", description: "Sınırsız quiz", included: true},
-      {name: "Not Alma", description: "Sınırsız not", included: true},
+      {name: "Dosya Depolama", description: "Sınırsız dosya", included: true},
       {name: "Depolama", description: "20 GB", included: true, limit: 20000},
       {name: "Premium Destek", description: "Öncelikli destek", included: true},
       {name: "AI Özel Modeller", description: "GPT-4 erişimi", included: true},
@@ -115,12 +115,9 @@ export const SUBSCRIPTION_PLANS = [
     features: [
       {name: "AI Soru-Cevap", description: "Sınırsız sorgu", included: true},
       {name: "Quiz Oluşturma", description: "Sınırsız quiz", included: true},
-      {name: "Not Alma", description: "Sınırsız not", included: true},
+      {name: "Dosya Depolama", description: "Sınırsız dosya", included: true},
       {name: "Depolama", description: "100 GB", included: true, limit: 100000},
       {name: "Kurumsal Destek", description: "Özel hesap yöneticisi", included: true},
-      {name: "API Erişimi", description: "Özel entegrasyonlar", included: true},
-      {name: "Takım Özellikleri", description: "Sınırsız üye", included: true},
-      {name: "Özel Eğitim", description: "1:1 eğitim seansları", included: true},
     ],
   },
 ];

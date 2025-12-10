@@ -63,8 +63,8 @@ const MarketingFooter = () => {
             </Link>
 
             <p className="text-muted-foreground leading-relaxed max-w-sm">
-              Yapay zeka destekli tıp eğitimi platformu ile çalışmanızı dönüştürün. Akıllı not alma,
-              AI chat ve quiz sistemi ile başarınızı artırın.
+              Yapay zeka destekli tıp eğitimi platformu ile çalışmanızı dönüştürün. AI chat ve quiz
+              sistemi ile başarınızı artırın.
             </p>
 
             {/* Contact Info */}
