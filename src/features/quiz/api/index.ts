@@ -5,9 +5,7 @@ import {
   AttemptRequestData,
   attemptRequestSchema,
   attemptsResponseSchema,
-  quizCreateResponseSchema,
   QuizRequestData,
-  quizRequestSchema,
   quizResponseSchema,
   quizzesResponseSchema,
   submitResponseSchema,
@@ -15,9 +13,14 @@ import {
 
 export const quizAPI = {
   createQuiz: async (data: QuizRequestData) => {
-    const {data: responseData, error} = await apiClient.post("/quizzes", data, {
-      request: quizRequestSchema,
-      response: quizCreateResponseSchema,
+    const {data: responseData, error} = await apiClient.request({
+      url: "/quizzes",
+      method: "POST",
+      data: data,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      timeout: 10 * 60 * 1000,
     });
 
     return {error, data: responseData};

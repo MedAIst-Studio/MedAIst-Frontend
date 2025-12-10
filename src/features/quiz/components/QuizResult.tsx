@@ -48,7 +48,7 @@ export const QuizResult: React.FC<QuizResultProps> = ({result}) => {
               />
               <div className="text-center z-10">
                 <span className="text-4xl font-extrabold text-primary tracking-tighter block">
-                  {result.percentage}%
+                  {result.percentage.toFixed(2)}%
                 </span>
                 <span className="text-xs text-muted-foreground font-medium uppercase tracking-wider">
                   Başarı
