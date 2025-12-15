@@ -38,7 +38,7 @@ const AboutPage = () => {
       icon: Heart,
       title: "Vizyonumuz",
       description:
-        "Türkiye'nin en büyük tıp eğitimi platformu olarak, gelecekteki doktorları yetiştirmede öncü rol oynamak.",
+        "Yapay zekanın gücünü kullanarak, öğrencilerin daha verimli ve etkili bir şekilde öğrenmesini sağlamak.",
     },
     {
       icon: Shield,
@@ -102,9 +102,8 @@ const AboutPage = () => {
               initial={{opacity: 0, y: 20}}
               transition={{delay: 0.4, duration: 0.8}}
             >
-              2023 yılında kurulan MedAIst, tıp öğrencilerinin akademik başarısını artırmak için
-              geliştirilmiş yenilikçi bir yapay zeka platformudur. Binlerce öğrencinin güvendiği
-              platformumuz ile eğitiminizi dönüştürün.
+              2025 yılında kurulan MedAIst, tıp öğrencilerinin akademik başarısını artırmak için
+              geliştirilmiş yenilikçi bir yapay zeka platformudur.
             </motion.p>
           </motion.div>
         </MaxWidthWrapper>
@@ -263,12 +262,12 @@ const AboutPage = () => {
                 </h2>
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   Tıp fakültesi öğrencilerinin karşılaştığı en büyük problemlerden biri, binlerce
-                  sayfalık ders materyali arasında kaybolmaktı. 2023 yılında bu soruna çözüm bulmak
+                  sayfalık ders materyali arasında kaybolmaktı. 2025 yılında bu soruna çözüm bulmak
                   için yola çıktık.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   Yapay zeka teknolojisinin gücünü eğitimle birleştirerek, öğrencilerin notlarını
-                  daha akıllıca kullanabilecekleri, soru sorabileceği ve kişiselleştirilmiş quizler
+                  daha akıllıca kullanabilecekleri, soru sorabileceği ve kişiselleştirilmiş sınavlar
                   oluşturabileceği bir platform geliştirdik.
                 </p>
               </div>
@@ -280,9 +279,9 @@ const AboutPage = () => {
                     İletişime Geç
                   </Link>
                 </Button>
-                <Button asChild size="lg" variant="outline">
+                {/* <Button asChild size="lg" variant="outline">
                   <Link href="/pricing">Fiyatları İncele</Link>
-                </Button>
+                </Button> */}
               </div>
             </motion.div>
 
@@ -301,7 +300,7 @@ const AboutPage = () => {
                     </div>
                     <div>
                       <h3 className="font-semibold text-foreground">İlk Fikir</h3>
-                      <p className="text-sm text-muted-foreground">2023 Ocak</p>
+                      <p className="text-sm text-muted-foreground">2025 Eylül</p>
                     </div>
                   </div>
                   <div className="h-px bg-border" />
@@ -310,8 +309,8 @@ const AboutPage = () => {
                       <Brain className="w-6 h-6 text-primary" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-foreground">AI Geliştirme</h3>
-                      <p className="text-sm text-muted-foreground">2023 Mart</p>
+                      <h3 className="font-semibold text-foreground">Geliştirme</h3>
+                      <p className="text-sm text-muted-foreground">2025 Eylül</p>
                     </div>
                   </div>
                   <div className="h-px bg-border" />
@@ -321,7 +320,7 @@ const AboutPage = () => {
                     </div>
                     <div>
                       <h3 className="font-semibold text-foreground">Beta Lansmanı</h3>
-                      <p className="text-sm text-muted-foreground">2023 Haziran</p>
+                      <p className="text-sm text-muted-foreground">2025 Aralık</p>
                     </div>
                   </div>
                 </div>
