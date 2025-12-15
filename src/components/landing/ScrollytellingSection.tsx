@@ -3,6 +3,7 @@
 import {motion, useScroll, useTransform} from "framer-motion";
 import {BookOpen, MessageSquare, Target} from "lucide-react";
 import {useRef} from "react";
+import Image from "next/image";
 
 import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
 
@@ -22,7 +23,7 @@ const storySteps: StoryStep[] = [
     description:
       "Ders notlarını, kitapları ve sunumlarını tek bir yere topla. Tüm dökümanların yapay zeka tarafından analiz edilir ve anında erişime hazır hale gelir.",
     icon: BookOpen,
-    image: "/screenshots/upload.png",
+    image: "/screenshots/upload_dark.png",
     color: "from-blue-500 to-cyan-500",
   },
   {
@@ -31,7 +32,7 @@ const storySteps: StoryStep[] = [
     description:
       "Notlarınla sohbet et, soru sor ve saniyeler içinde cevap al. AI asistanın karmaşık tıbbi kavramları basitleştirir ve senin için örnekler oluşturur.",
     icon: MessageSquare,
-    image: "/screenshots/chat.png",
+    image: "/screenshots/chat_dark.png",
     color: "from-purple-500 to-pink-500",
   },
   {
@@ -40,7 +41,7 @@ const storySteps: StoryStep[] = [
     description:
       "Notlarından otomatik olarak oluşturulan quizlerle pratik yap. Sonuçlarını analiz et ve gelişimini takip et.",
     icon: Target,
-    image: "/screenshots/quiz.png",
+    image: "/screenshots/quiz_dark.png",
     color: "from-green-500 to-emerald-500",
   },
 ];
@@ -196,34 +197,11 @@ const StoryCard = ({step, index}: StoryCardProps) => {
           style={{y: imageY}}
         >
           <motion.div
-            className="relative overflow-hidden rounded-xl sm:rounded-2xl border-2 border-b-4 shadow-xl sm:shadow-2xl"
+            className="relative overflow-hidden rounded-xl sm:rounded-2xl border-2 border-b-4 shadow-xl sm:shadow-2xl h-[400px]"
             style={{rotate: imageRotate}}
           >
-            {/* Placeholder with gradient background */}
-            <div
-              className={`relative aspect-[4/3] bg-gradient-to-br ${step.color} p-4 sm:p-6 md:p-8`}
-            >
-              {/* Placeholder Content */}
-              <div className="flex h-full items-center justify-center">
-                <div className="space-y-2 sm:space-y-3 md:space-y-4 text-center text-white">
-                  <step.icon className="mx-auto size-12 sm:size-14 md:size-16" strokeWidth={1.5} />
-                  <p className="text-base sm:text-lg font-semibold">{step.title}</p>
-                  <p className="text-xs sm:text-sm opacity-90">Ekran görüntüsü yakında eklenecek</p>
-                </div>
-              </div>
-
-              {/* Decorative Elements */}
-              <div className="absolute top-2 right-2 sm:top-4 sm:right-4 size-16 sm:size-20 md:size-24 rounded-full bg-white/10 blur-2xl" />
-              <div className="absolute bottom-2 left-2 sm:bottom-4 sm:left-4 size-20 sm:size-24 md:size-32 rounded-full bg-white/10 blur-3xl" />
-            </div>
-
             {/* Real image overlay (when available) */}
-            {/* <Image
-              src={step.image}
-              alt={step.title}
-              fill
-              className="object-cover"
-            /> */}
+            <Image fill alt={step.title} className="object-contain" src={step.image} />
           </motion.div>
 
           {/* Floating badge */}

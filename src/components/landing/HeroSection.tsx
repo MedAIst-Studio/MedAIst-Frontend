@@ -1,13 +1,15 @@
 "use client";
 
 import {motion} from "framer-motion";
-import {ArrowRight, Play, Sparkles} from "lucide-react";
+import {ArrowRight, Sparkles} from "lucide-react";
 import Link from "next/link";
 
 import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
 import {Button} from "@/components/ui/button";
 
 import {BackgroundBeamsWithCollision} from "../ui/background-beams-with-collision";
+
+import {DemoEmbed} from "./DemoEmbed";
 
 const HeroSection = () => {
   const handleVideoPlay = () => {
@@ -71,11 +73,6 @@ const HeroSection = () => {
                   <ArrowRight />
                 </Button>
               </Link>
-
-              <Button size="lg" variant="outline" onClick={handleVideoPlay}>
-                <Play />
-                Demo İzle
-              </Button>
             </motion.div>
 
             {/* Trust Indicators */}
@@ -103,85 +100,28 @@ const HeroSection = () => {
             initial={{opacity: 0, y: 50}}
             transition={{duration: 0.8, delay: 0.4}}
           >
-            {/* Video Container */}
-            <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl shadow-xl sm:shadow-2xl bg-gradient-to-br from-primary/10 to-primary/5 p-0.5 sm:p-1">
-              <div className="relative aspect-video bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl overflow-hidden">
-                {/* Video Element */}
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="w-full h-full object-cover"
-                  id="hero-demo-video"
-                >
-                  <source src="/videos/medaist-demo.mp4" type="video/mp4" />
-                  {/* Fallback content */}
-                  <div className="absolute inset-0 flex items-center justify-center bg-muted">
-                    <div className="text-center space-y-4">
-                      <div className="w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center mx-auto">
-                        <Play className="w-8 h-8 text-primary ml-1" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-lg">MedAIst Demo</h3>
-                        <p className="text-sm text-muted-foreground">
-                          Yapay zeka destekli tıp eğitimi platformunu keşfet
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </video>
+            {/* Demo Element */}
+            <DemoEmbed />
 
-                {/* Video Overlay Controls */}
-                <div
-                  className="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer"
-                  role="button"
-                  tabIndex={0}
-                  onClick={handleVideoPlay}
-                  onKeyDown={(e) => e.key === "Enter" && handleVideoPlay()}
-                >
-                  <Button
-                    className="bg-white/20 backdrop-blur-sm border-white/30 hover:bg-white/30"
-                    size="lg"
-                    variant="outline"
-                  >
-                    <Play className="w-6 h-6 text-white" />
-                  </Button>
-                </div>
-
-                {/* Video Progress Bar */}
-                <div className="absolute bottom-4 left-4 right-4">
-                  <div className="bg-white/20 backdrop-blur-sm rounded-full h-1">
-                    <motion.div
-                      animate={{width: "100%"}}
-                      className="bg-white rounded-full h-1"
-                      initial={{width: "0%"}}
-                      transition={{duration: 30, repeat: Infinity, ease: "linear"}}
-                    />
-                  </div>
-                </div>
-
-                {/* Video Info Badge */}
-                <div className="absolute top-4 left-4">
-                  <div className="bg-black/50 backdrop-blur-sm rounded-lg px-3 py-1.5">
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
-                      <span className="text-white text-xs font-medium">CANLI DEMO</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Video Duration */}
-                <div className="absolute top-4 right-4">
-                  <div className="bg-black/50 backdrop-blur-sm rounded-lg px-2 py-1">
-                    <span className="text-white text-xs font-mono">2:34</span>
-                  </div>
+            {/* Video Info Badge */}
+            <div className="absolute top-4 left-4">
+              <div className="bg-black/50 backdrop-blur-sm rounded-lg px-3 py-1.5">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
+                  <span className="text-white text-xs font-medium">INTERAKTIF DEMO</span>
                 </div>
               </div>
-
-              {/* Glow Effect */}
-              <div className="absolute -inset-4 bg-gradient-to-r from-primary/30 via-transparent to-primary/30 blur-xl -z-10" />
             </div>
+
+            {/* Video Duration */}
+            <div className="absolute top-4 right-4">
+              <div className="bg-black/50 backdrop-blur-sm rounded-lg px-2 py-1">
+                <span className="text-white text-xs font-mono">2:34</span>
+              </div>
+            </div>
+
+            {/* Glow Effect */}
+            <div className="absolute -inset-4 bg-gradient-to-r from-primary/30 via-transparent to-primary/30 blur-xl -z-10" />
 
             {/* Floating Stats */}
             <motion.div
