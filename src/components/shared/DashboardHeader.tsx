@@ -81,9 +81,9 @@ export default function DashboardHeader() {
 
   return (
     <Sidebar className="border-r group" collapsible="icon">
-      <SidebarHeader className="p-4 flex flex-row items-center justify-between">
+      <SidebarHeader className="p-3 pt-4 flex flex-row items-center justify-between">
         <Link className="flex items-center space-x-2" href="/files">
-          <Logo size={32} />
+          <Logo size={28} />
           {open && (
             <span className="text-xl font-bold">
               Med<span className="text-primary">AI</span>st
@@ -94,8 +94,6 @@ export default function DashboardHeader() {
         <SidebarTrigger
           className={open ? "" : "absolute top-4 left-[8px] hidden group-hover:flex"}
         />
-
-        {!open && <div className="h-6" />}
       </SidebarHeader>
 
       <SidebarContent>
