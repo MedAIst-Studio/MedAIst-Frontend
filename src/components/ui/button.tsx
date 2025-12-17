@@ -5,29 +5,29 @@ import * as React from "react";
 import {cn} from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center cursor-pointer justify-center gap-2 whitespace-nowrap text-sm font-semibold transition-all duration-300 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 relative overflow-hidden group",
+  "inline-flex items-center cursor-pointer justify-center gap-2 whitespace-nowrap text-sm font-semibold transition-all duration-300 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 relative overflow-hidden group rounded-xl",
   {
     variants: {
       variant: {
         default:
-          "border-b-4 border-primary/20 bg-gradient-to-br from-primary via-primary/80 to-primary/70 text-primary-foreground transform hover:-translate-y-0.5 active:translate-y-0 focus-visible:ring-blue-500/50 hover:border-primary/50 hover:shadow-sm rounded-lg",
+          "bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 border-b-4 border-primary-dark active:border-primary-dark/50 active:translate-y-0.5 hover:-translate-y-0.5 transition-all",
 
         destructive:
-          "bg-red-500 text-destructive-foreground rounded-lg shadow-lg hover:bg-red-600 hover:shadow-sm transform hover:-translate-y-0.5 active:translate-y-0 focus-visible:ring-red-500/50 border-b-4 border-red-700 hover:border-red-800 active:border-red-600",
+          "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90 border-b-4 border-destructive/80 active:border-destructive/50 active:translate-y-0.5 hover:-translate-y-0.5 transition-all",
 
         outline:
-          "border-2 bg-card rounded-lg hover:shadow-sm hover:border-primary hover:text-primary transform hover:-translate-y-0.5 active:translate-y-0 focus-visible:ring-primary/50 border-b-4 hover:border-primary active:border-slate-300",
+          "border-2 border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground border-b-4 active:border-input active:translate-y-0.5 hover:-translate-y-0.5 transition-all",
 
         secondary:
-          "bg-secondary text-secondary-foreground rounded-lg hover:shadow-sm transform hover:-translate-y-0.5 active:translate-y-0 border-b-4 active:border-slate-300",
+          "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80 border-b-4 border-muted-foreground/20 active:border-muted-foreground/10 active:translate-y-0.5 hover:-translate-y-0.5 transition-all",
 
         ghost:
-          "text-muted-foreground rounded-lg hover:bg-muted/10 hover:text-muted-foreground transform border-transparent active:border-transparent",
+          "hover:bg-accent hover:text-accent-foreground active:translate-y-0.5 hover:-translate-y-0.5 transition-all",
 
-        link: "text-blue-600 underline-offset-4 hover:underline hover:text-blue-700 transition-colors font-medium transform hover:-translate-y-0.5 active:translate-y-0 dark:text-blue-400 dark:hover:text-blue-300",
+        link: "text-primary underline-offset-4 hover:underline",
 
         success:
-          "bg-green-600 text-white rounded-lg shadow-lg hover:bg-green-700 hover:shadow-xl transform hover:-translate-y-0.5 active:translate-y-0 focus-visible:ring-green-500/50 border-b-4 border-green-800 hover:border-green-900 active:border-green-700",
+          "bg-green-600 text-white shadow-sm hover:bg-green-700 border-b-4 border-green-800 active:border-green-800/50 active:translate-y-0.5 hover:-translate-y-0.5 transition-all",
       },
       size: {
         default: "h-10 px-6 py-2.5 text-sm has-[>svg]:px-4",

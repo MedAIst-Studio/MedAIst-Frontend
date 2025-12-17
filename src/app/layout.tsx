@@ -1,7 +1,7 @@
 import type {Metadata} from "next";
 import "./globals.css";
 
-import {IBM_Plex_Mono} from "next/font/google";
+import {IBM_Plex_Mono, Plus_Jakarta_Sans} from "next/font/google";
 
 import {Toaster} from "@/components/ui/sonner";
 import {QueryProvider} from "@/providers/query-provider";
@@ -11,6 +11,13 @@ const ibm_plex_mono = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-ibm-plex-mono",
+  display: "swap",
+});
+
+const plus_jakarta_sans = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-plus-jakarta-sans",
   display: "swap",
 });
 
@@ -29,7 +36,7 @@ export default function RootLayout({
 }>) {
   return (
     <html suppressHydrationWarning className="scroll-smooth" lang="en">
-      <body className={`${ibm_plex_mono.variable} antialiased`}>
+      <body className={`${plus_jakarta_sans.variable} ${ibm_plex_mono.variable} antialiased`}>
         <QueryProvider>
           <ThemeProvider
             disableTransitionOnChange
