@@ -23,6 +23,11 @@ const FAQSection = () => {
         "Evet! PDF formatındaki tüm ders notlarınızı, textbookları veya kurul notlarını sisteme yükleyebilirsiniz. Yapay zeka bu belgeleri analiz ederek size özel içerikler üretir.",
     },
     {
+      question: "Notlarım güvende mi?",
+      answer:
+        "Evet, MedAIst tüm verilerinizi güvenli bir şekilde saklı tutar. Sadece sizin için özel olarak oluşturulan sorular ve quizlerinizle ilgili bilgiler saklanır.",
+    },
+    {
       question: "Oluşturulan sorular ne kadar güvenilir?",
       answer:
         "Sorular tamamen sizin yüklediğiniz kaynaklardan ve güvenilir tıp literatüründen derlenerek oluşturulur. Böylece doğruluğu her zaman kontrol edebilirsiniz.",

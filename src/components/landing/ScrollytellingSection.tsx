@@ -3,16 +3,19 @@
 import {motion, useScroll, useTransform} from "framer-motion";
 import {BookOpen, MessageSquare, Target} from "lucide-react";
 import {useRef} from "react";
-import Image from "next/image";
 
 import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
+
+import {MockChatInterface} from "./mockups/MockChatInterface";
+import {MockFileUpload} from "./mockups/MockFileUpload";
+import {MockQuizInterface} from "./mockups/MockQuizInterface";
 
 interface StoryStep {
   id: number;
   title: string;
   description: string;
   icon: React.ElementType;
-  image: string;
+  component: React.ReactNode;
   color: string;
 }
 
@@ -23,7 +26,7 @@ const storySteps: StoryStep[] = [
     description:
       "Ders notlarını, kitapları ve sunumlarını tek bir yere topla. Tüm dökümanların yapay zeka tarafından analiz edilir ve anında erişime hazır hale gelir.",
     icon: BookOpen,
-    image: "/screenshots/upload_dark.png",
+    component: <MockFileUpload />,
     color: "from-blue-500 to-cyan-500",
   },
   {
@@ -32,7 +35,7 @@ const storySteps: StoryStep[] = [
     description:
       "Notlarınla sohbet et, soru sor ve saniyeler içinde cevap al. AI asistanın karmaşık tıbbi kavramları basitleştirir ve senin için örnekler oluşturur.",
     icon: MessageSquare,
-    image: "/screenshots/chat_dark.png",
+    component: <MockChatInterface />,
     color: "from-purple-500 to-pink-500",
   },
   {
@@ -41,7 +44,7 @@ const storySteps: StoryStep[] = [
     description:
       "Notlarından otomatik olarak oluşturulan quizlerle pratik yap. Sonuçlarını analiz et ve gelişimini takip et.",
     icon: Target,
-    image: "/screenshots/quiz_dark.png",
+    component: <MockQuizInterface />,
     color: "from-green-500 to-emerald-500",
   },
 ];
@@ -106,9 +109,8 @@ const StoryCard = ({step, index}: StoryCardProps) => {
   const opacity = useTransform(cardScrollProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
   const scale = useTransform(cardScrollProgress, [0, 0.2, 0.8, 1], [0.8, 1, 1, 0.8]);
 
-  // Image effects
-  const imageY = useTransform(cardScrollProgress, [0, 1], [50, -50]);
-  const imageRotate = useTransform(cardScrollProgress, [0, 1], [-5, 5]);
+  // Image effects - simplified for components
+  const imageY = useTransform(cardScrollProgress, [0, 1], [30, -30]);
 
   const isEven = index % 2 === 0;
 
@@ -191,22 +193,32 @@ const StoryCard = ({step, index}: StoryCardProps) => {
           </div>
         </motion.div>
 
-        {/* Image Side */}
+        {/* Component Side */}
         <motion.div
           className={`relative mt-8 lg:mt-0 ${isEven ? "lg:col-start-2" : "lg:col-start-1 lg:row-start-1"}`}
           style={{y: imageY}}
         >
-          <motion.div
-            className="relative overflow-hidden rounded-xl sm:rounded-2xl border-2 border-b-4 shadow-xl sm:shadow-2xl h-[400px]"
-            style={{rotate: imageRotate}}
-          >
-            {/* Real image overlay (when available) */}
-            <Image fill alt={step.title} className="object-contain" src={step.image} />
-          </motion.div>
+          {/* Main "Device" Container */}
+          <div className="relative z-10 mx-auto w-full max-w-[500px] h-[350px] sm:h-[400px] bg-background rounded-2xl border-2 border-b-4 shadow-xl overflow-hidden flex flex-col">
+            {/* Simple visual header for each 'window' */}
+            <div className="h-8 bg-muted/30 border-b border-border flex items-center px-4 space-x-2">
+              <div className="w-2.5 h-2.5 rounded-full bg-red-400" />
+              <div className="w-2.5 h-2.5 rounded-full bg-amber-400" />
+              <div className="w-2.5 h-2.5 rounded-full bg-green-400" />
+            </div>
+
+            {/* Content Area */}
+            <div className="flex-1 p-4 bg-muted/5 relative overflow-hidden">{step.component}</div>
+          </div>
+
+          {/* Decorative Backdrops */}
+          <div
+            className={`absolute inset-0 bg-gradient-to-br ${step.color} opacity-10 blur-3xl transform scale-110 -z-10`}
+          />
 
           {/* Floating badge */}
           <motion.div
-            className="absolute -right-2 -top-2 sm:-right-4 sm:-top-4 rounded-lg sm:rounded-xl bg-card/90 px-2.5 py-1.5 sm:px-4 sm:py-2 shadow-lg sm:shadow-xl backdrop-blur-sm border-2 border-b-4"
+            className="absolute -right-2 -top-2 sm:-right-4 sm:-top-4 z-20 rounded-lg sm:rounded-xl bg-card/90 px-2.5 py-1.5 sm:px-4 sm:py-2 shadow-lg sm:shadow-xl backdrop-blur-sm border-2 border-b-4"
             initial={{scale: 0, rotate: -10}}
             transition={{delay: 0.3, type: "spring"}}
             viewport={{once: true}}
@@ -216,7 +228,6 @@ const StoryCard = ({step, index}: StoryCardProps) => {
               {step.id === 1 && "⚡ Hızlı"}
               {step.id === 2 && "🤖 Akıllı"}
               {step.id === 3 && "📊 Veri Odaklı"}
-              {step.id === 4 && "🎯 Hedefli"}
             </p>
           </motion.div>
         </motion.div>

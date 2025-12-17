@@ -59,7 +59,7 @@ const MarketingHeader = () => {
     >
       <div className="container md:mx-auto md:px-4 md:pt-4">
         <div
-          className={`flex px-4 transition-all rounded-xl items-center justify-between h-12 lg:h-16 ${isScrolled ? "bg-background/80 backdrop-blur-md border" : "bg-transparent"}`}
+          className={`flex px-4 transition-all lg:rounded-xl items-center justify-between h-16 ${isScrolled ? "bg-background/80 backdrop-blur-md border" : "bg-transparent"}`}
         >
           {/* Logo */}
           <motion.div
