@@ -40,7 +40,7 @@ const MarketingFooter = () => {
   const socialLinks = [
     {name: "Twitter", href: "#", icon: Twitter},
     {name: "LinkedIn", href: "#", icon: Linkedin},
-    {name: "Instagram", href: "#", icon: Instagram},
+    {name: "Instagram", href: "https://www.instagram.com/medaistt/", icon: Instagram},
     {name: "Facebook", href: "#", icon: Facebook},
   ];
 
