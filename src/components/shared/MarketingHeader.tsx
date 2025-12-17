@@ -32,6 +32,14 @@ const MarketingHeader = () => {
       name: "Nasıl Çalışır",
       href: "#howitworks",
     },
+    {
+      name: "Hakkımızda",
+      href: "/about",
+    },
+    {
+      name: "İletişim",
+      href: "/contact",
+    },
     /* {
       name: "Değerlendirmeler",
       href: "#testimonials",
@@ -45,14 +53,14 @@ const MarketingHeader = () => {
   return (
     <motion.header
       animate={{y: 0}}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background/80 backdrop-blur-md border-b-2 border-border" : "bg-transparent"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50`}
       initial={{y: -100}}
       transition={{duration: 0.6}}
     >
-      <div className="container md:mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+      <div className="container md:mx-auto md:px-4 md:pt-4">
+        <div
+          className={`flex px-4 transition-all rounded-xl items-center justify-between h-12 lg:h-16 ${isScrolled ? "bg-background/80 backdrop-blur-md border" : "bg-transparent"}`}
+        >
           {/* Logo */}
           <motion.div
             animate={{opacity: 1, x: 0}}

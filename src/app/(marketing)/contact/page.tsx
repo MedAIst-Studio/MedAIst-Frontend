@@ -1,16 +1,13 @@
 "use client";
 
 import {motion} from "framer-motion";
-import {Clock, Mail, MapPin, MessageCircle, Send, Sparkles} from "lucide-react";
+import {Mail, MessageCircle, Sparkles} from "lucide-react";
 import Link from "next/link";
 import {useState} from "react";
 
 import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
 import {Button} from "@/components/ui/button";
 import {Card} from "@/components/ui/card";
-import {Input} from "@/components/ui/input";
-import {Label} from "@/components/ui/label";
-import {Textarea} from "@/components/ui/textarea";
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -51,13 +48,13 @@ const ContactPage = () => {
       description: "7/24 e-posta desteği",
       href: "mailto:destek@medaist.com",
     },
-    {
+    /* {
       icon: MapPin,
       title: "Adres",
       content: "Levent, Büyükdere Cad. No:123",
       description: "İstanbul, Türkiye 34394",
       href: "#",
-    },
+    }, */
   ];
 
   const faqs = [
@@ -73,8 +70,7 @@ const ContactPage = () => {
     },
     {
       question: "Hangi dosya formatları desteklenir?",
-      answer:
-        "PDF, DOCX, TXT formatlarını destekliyoruz. Yakında PowerPoint ve diğer formatları da ekleyeceğiz.",
+      answer: "PDF dosya formatını destekliyoruz.",
     },
     {
       question: "Verilerim güvende mi?",
@@ -164,92 +160,6 @@ const ContactPage = () => {
 
           {/* Contact Form & Info */}
           <div className="grid lg:grid-cols-2 gap-16">
-            {/* Contact Form */}
-            <motion.div
-              initial={{opacity: 0, x: -20}}
-              transition={{duration: 0.8}}
-              viewport={{once: true}}
-              whileInView={{opacity: 1, x: 0}}
-            >
-              <Card className="p-8">
-                <div className="space-y-6">
-                  <div>
-                    <h2 className="text-2xl font-bold text-foreground mb-2">Bize Mesaj Gönderin</h2>
-                    <p className="text-muted-foreground">
-                      Formu doldurun, 24 saat içinde size dönüş yapalım.
-                    </p>
-                  </div>
-
-                  <form className="space-y-6" onSubmit={handleSubmit}>
-                    <div className="grid sm:grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="name">Ad Soyad</Label>
-                        <Input
-                          required
-                          id="name"
-                          name="name"
-                          placeholder="Adınız ve soyadınız"
-                          value={formData.name}
-                          onChange={handleInputChange}
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="email">E-posta</Label>
-                        <Input
-                          required
-                          id="email"
-                          name="email"
-                          placeholder="ornek@email.com"
-                          type="email"
-                          value={formData.email}
-                          onChange={handleInputChange}
-                        />
-                      </div>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="subject">Konu</Label>
-                      <Input
-                        required
-                        id="subject"
-                        name="subject"
-                        placeholder="Mesajınızın konusu"
-                        value={formData.subject}
-                        onChange={handleInputChange}
-                      />
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="message">Mesaj</Label>
-                      <Textarea
-                        required
-                        className="min-h-[120px]"
-                        id="message"
-                        name="message"
-                        placeholder="Mesajınızı buraya yazın..."
-                        value={formData.message}
-                        onChange={handleInputChange}
-                      />
-                    </div>
-
-                    <Button className="w-full" disabled={isSubmitting} size="lg" type="submit">
-                      {isSubmitting ? (
-                        <>
-                          <Clock className="mr-2 animate-spin" />
-                          Gönderiliyor...
-                        </>
-                      ) : (
-                        <>
-                          <Send className="mr-2" />
-                          Mesaj Gönder
-                        </>
-                      )}
-                    </Button>
-                  </form>
-                </div>
-              </Card>
-            </motion.div>
-
             {/* FAQ */}
             <motion.div
               className="space-y-8"
@@ -279,29 +189,6 @@ const ContactPage = () => {
                   </motion.div>
                 ))}
               </div>
-
-              <Card className="p-6 bg-primary/5 border-primary/20">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Sparkles className="w-5 h-5 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-2">Hızlı Destek İçin</h3>
-                    <p className="text-muted-foreground mb-4 text-sm">
-                      Acil sorularınız için canlı destek hattımızı kullanabilir veya WhatsApp
-                      üzerinden bize ulaşabilirsiniz.
-                    </p>
-                    <div className="flex flex-col sm:flex-row gap-3">
-                      <Button asChild size="sm" variant="outline">
-                        <Link href="https://wa.me/902121234567">WhatsApp</Link>
-                      </Button>
-                      <Button size="sm" variant="outline">
-                        Canlı Destek
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              </Card>
             </motion.div>
           </div>
         </MaxWidthWrapper>
@@ -330,9 +217,9 @@ const ContactPage = () => {
                   Ücretsiz Başla
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline">
+              {/* <Button asChild size="lg" variant="outline">
                 <Link href="/pricing">Fiyatları İncele</Link>
-              </Button>
+              </Button> */}
             </div>
           </motion.div>
         </MaxWidthWrapper>
