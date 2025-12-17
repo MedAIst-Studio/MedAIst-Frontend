@@ -51,15 +51,14 @@ const AboutPage = () => {
   const team = [
     {
       name: "Ömer Faruk Işık",
-      role: "Kurucu - CEO",
+      role: "Ürün Mühendisi - CEO",
       image: "/team/omer-faruk-isik.jpg",
-      description: "Ön Yüz Geliştirici",
+      description: "Fullstack Geliştirici",
     },
     {
       name: "Muhammed Küçükaslan",
-      role: "Teknoloji Lideri - CTO",
+      role: "Backend Geliştirici",
       image: "/team/muhammed-kucukaslan.jpg",
-      description: "Teknoloji Lideri",
     },
   ];
 

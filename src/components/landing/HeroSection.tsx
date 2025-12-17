@@ -10,6 +10,7 @@ import {Button} from "@/components/ui/button";
 import {BackgroundBeamsWithCollision} from "../ui/background-beams-with-collision";
 
 import {DemoEmbed} from "./DemoEmbed";
+import {MobileDemoMockup} from "./MobileDemoMockup";
 
 const HeroSection = () => {
   const handleVideoPlay = () => {
@@ -45,7 +46,7 @@ const HeroSection = () => {
                 </span>
                 <br />
                 <span className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-semibold text-muted-foreground">
-                  Notlarınla Sohbet Et.
+                  Çıkabilecek soruları yakala.
                 </span>
               </h1>
 
@@ -100,28 +101,35 @@ const HeroSection = () => {
             initial={{opacity: 0, y: 50}}
             transition={{duration: 0.8, delay: 0.4}}
           >
-            {/* Demo Element */}
-            <DemoEmbed />
+            {/* Demo Element (Desktop) */}
+            <div className="hidden md:block relative">
+              <DemoEmbed />
 
-            {/* Video Info Badge */}
-            <div className="absolute top-4 left-4">
-              <div className="bg-black/50 backdrop-blur-sm rounded-lg px-3 py-1.5">
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
-                  <span className="text-white text-xs font-medium">INTERAKTIF DEMO</span>
+              {/* Video Info Badge */}
+              <div className="absolute top-4 left-4">
+                <div className="bg-black/50 backdrop-blur-sm rounded-lg px-3 py-1.5">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
+                    <span className="text-white text-xs font-medium">INTERAKTIF DEMO</span>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Video Duration */}
-            <div className="absolute top-4 right-4">
-              <div className="bg-black/50 backdrop-blur-sm rounded-lg px-2 py-1">
-                <span className="text-white text-xs font-mono">2:34</span>
+              {/* Video Duration */}
+              <div className="absolute top-4 right-4">
+                <div className="bg-black/50 backdrop-blur-sm rounded-lg px-2 py-1">
+                  <span className="text-white text-xs font-mono">2:34</span>
+                </div>
               </div>
+
+              {/* Glow Effect */}
+              <div className="absolute -inset-4 bg-gradient-to-r from-primary/30 via-transparent to-primary/30 blur-xl -z-10" />
             </div>
 
-            {/* Glow Effect */}
-            <div className="absolute -inset-4 bg-gradient-to-r from-primary/30 via-transparent to-primary/30 blur-xl -z-10" />
+            {/* Mobile Mockup (Mobile Only) */}
+            <div className="block md:hidden">
+              <MobileDemoMockup />
+            </div>
 
             {/* Floating Stats */}
             <motion.div
