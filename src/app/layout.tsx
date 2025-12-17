@@ -35,8 +35,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html suppressHydrationWarning className="scroll-smooth" lang="en">
-      <body className={`${plus_jakarta_sans.variable} ${ibm_plex_mono.variable} antialiased`}>
+    <html
+      suppressHydrationWarning
+      className={`scroll-smooth ${plus_jakarta_sans.variable} ${ibm_plex_mono.variable}`}
+      lang="en"
+    >
+      <body className="antialiased">
         <QueryProvider>
           <ThemeProvider
             disableTransitionOnChange
