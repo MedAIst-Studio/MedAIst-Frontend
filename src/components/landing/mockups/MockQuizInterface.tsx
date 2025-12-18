@@ -95,8 +95,8 @@ export const MockQuizInterface = () => {
       >
         <div className="p-3 bg-green-500/10 rounded-lg border border-green-500/20">
           <p className="text-xs text-green-700 dark:text-green-400 leading-relaxed">
-            <span className="font-bold">Doğru!</span> Parasempatik sistem "dinlen ve sindir"
-            fonksiyonlarını yönetir.
+            <span className="font-bold">Doğru!</span> Parasempatik sistem &quot;dinlen ve
+            sindir&quot; fonksiyonlarını yönetir.
           </p>
         </div>
       </motion.div>
