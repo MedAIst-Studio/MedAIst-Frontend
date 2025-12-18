@@ -6,6 +6,7 @@ import {
   Download,
   Maximize,
   Minimize,
+  MoreVertical,
   RotateCw,
   ZoomIn,
   ZoomOut,
@@ -15,6 +16,13 @@ import {Document, Page, pdfjs} from "react-pdf";
 
 import {Button} from "@/components/ui/button";
 import {Card, CardContent, CardHeader} from "@/components/ui/card";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import {Input} from "@/components/ui/input";
 import {
   Select,
@@ -153,23 +161,25 @@ export const PdfViewer = ({fileUrl, className = ""}: PdfViewerProps) => {
             {/* Navigation Controls */}
             {numPages && (
               <div className="flex items-center gap-2">
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button
-                        className="gap-0"
-                        disabled={pageNumber <= 1}
-                        size="icon-sm"
-                        variant="outline"
-                        onClick={firstPage}
-                      >
-                        <ChevronLeft className="-mr-2" />
-                        <ChevronLeft />
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>İlk sayfa</TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
+                <div className="hidden sm:inline-flex gap-2">
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Button
+                          className="gap-0"
+                          disabled={pageNumber <= 1}
+                          size="icon-sm"
+                          variant="outline"
+                          onClick={firstPage}
+                        >
+                          <ChevronLeft className="-mr-2" />
+                          <ChevronLeft />
+                        </Button>
+                      </TooltipTrigger>
+                      <TooltipContent>İlk sayfa</TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </div>
 
                 <TooltipProvider>
                   <Tooltip>
@@ -196,7 +206,10 @@ export const PdfViewer = ({fileUrl, className = ""}: PdfViewerProps) => {
                     value={pageNumber}
                     onChange={(e) => goToPage(parseInt(e.target.value) || 1)}
                   />
-                  <span className="text-sm text-muted-foreground">/ {numPages}</span>
+                  <span className="text-sm text-muted-foreground hidden sm:inline">
+                    / {numPages}
+                  </span>
+                  <span className="text-sm text-muted-foreground sm:hidden">/ {numPages}</span>
                 </div>
 
                 <TooltipProvider>
@@ -215,28 +228,30 @@ export const PdfViewer = ({fileUrl, className = ""}: PdfViewerProps) => {
                   </Tooltip>
                 </TooltipProvider>
 
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button
-                        className="gap-0"
-                        disabled={pageNumber >= numPages}
-                        size="icon-sm"
-                        variant="outline"
-                        onClick={lastPage}
-                      >
-                        <ChevronRight className="w-4 h-4" />
-                        <ChevronRight className="w-4 h-4 -ml-2" />
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>Son sayfa</TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
+                <div className="hidden sm:inline-flex gap-2">
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Button
+                          className="gap-0"
+                          disabled={pageNumber >= numPages}
+                          size="icon-sm"
+                          variant="outline"
+                          onClick={lastPage}
+                        >
+                          <ChevronRight className="w-4 h-4" />
+                          <ChevronRight className="w-4 h-4 -ml-2" />
+                        </Button>
+                      </TooltipTrigger>
+                      <TooltipContent>Son sayfa</TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </div>
               </div>
             )}
 
-            {/* Action Controls */}
-            <div className="flex items-center gap-2">
+            {/* Desktop Action Controls */}
+            <div className="hidden md:flex items-center gap-2">
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
@@ -323,6 +338,53 @@ export const PdfViewer = ({fileUrl, className = ""}: PdfViewerProps) => {
                   <TooltipContent>{isFullscreen ? "Tam ekrandan çık" : "Tam ekran"}</TooltipContent>
                 </Tooltip>
               </TooltipProvider>
+            </div>
+
+            {/* Mobile Action Controls (Dropdown) */}
+            <div className="flex md:hidden items-center gap-2">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button size="icon-sm" variant="outline">
+                    <MoreVertical className="w-4 h-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem onClick={zoomIn}>
+                    <ZoomIn className="w-4 h-4 mr-2" />
+                    Yakınlaştır
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={zoomOut}>
+                    <ZoomOut className="w-4 h-4 mr-2" />
+                    Uzaklaştır
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={resetZoom}>
+                    <Maximize className="w-4 h-4 mr-2" />
+                    Sığdır
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={rotateClockwise}>
+                    <RotateCw className="w-4 h-4 mr-2" />
+                    Döndür
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={downloadPdf}>
+                    <Download className="w-4 h-4 mr-2" />
+                    İndir
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={toggleFullscreen}>
+                    {isFullscreen ? (
+                      <>
+                        <Minimize className="w-4 h-4 mr-2" />
+                        Küçült
+                      </>
+                    ) : (
+                      <>
+                        <Maximize className="w-4 h-4 mr-2" />
+                        Tam Ekran
+                      </>
+                    )}
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
           </div>
         </CardHeader>
