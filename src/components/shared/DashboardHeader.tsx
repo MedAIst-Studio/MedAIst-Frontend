@@ -221,19 +221,19 @@ export default function DashboardHeader() {
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>
                   <Link href="/profile">
-                    <User className="mr-2 h-4 w-4" />
+                    <User />
                     Profil
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link href="/settings">
-                    <Settings className="mr-2 h-4 w-4" />
+                    <Settings />
                     Ayarlar
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={handleLogout}>
-                  <LogOut className="mr-2 h-4 w-4" />
+                  <LogOut />
                   Çıkış Yap
                 </DropdownMenuItem>
               </DropdownMenuContent>

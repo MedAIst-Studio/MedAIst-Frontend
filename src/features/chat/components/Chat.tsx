@@ -196,21 +196,19 @@ export const Chat = ({chatId: initialChatId, fileId}: ChatProps) => {
 
       {/* PDF Modal - Mobile */}
       {fileId && fileData && isPdfPanelOpen && (
-        <div className="lg:hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 animate-in fade-in duration-200">
-          <div className="bg-background rounded-lg w-full h-full max-w-4xl max-h-[90vh] flex flex-col animate-in slide-in-from-bottom-4 duration-300">
-            <div className="flex items-center justify-between p-4 border-b">
-              <h3 className="text-lg font-semibold">PDF Görüntüleyici</h3>
-              <Button
-                className="h-8 w-8 p-0"
-                variant="ghost"
-                onClick={() => setIsPdfPanelOpen(false)}
-              >
-                <ChevronLeft className="w-4 h-4" />
-              </Button>
-            </div>
-            <div className="flex-1 p-4">
-              <PdfViewer fileUrl={fileData as string} />
-            </div>
+        <div className="lg:hidden fixed inset-0 bg-background z-50 flex flex-col animate-in slide-in-from-bottom-4 duration-300">
+          <div className="flex items-center justify-between p-2 border-b bg-background">
+            <h3 className="text-lg font-semibold ml-2">PDF Görüntüleyici</h3>
+            <Button
+              className="h-8 w-8 p-0"
+              variant="ghost"
+              onClick={() => setIsPdfPanelOpen(false)}
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </Button>
+          </div>
+          <div className="flex-1 w-full h-full overflow-hidden">
+            <PdfViewer className="border-0 shadow-none" fileUrl={fileData as string} />
           </div>
         </div>
       )}
