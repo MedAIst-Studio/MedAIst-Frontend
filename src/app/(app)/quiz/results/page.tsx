@@ -65,7 +65,7 @@ export default function QuizHistoryPage() {
                     }
                     variant={submission.score >= 70 ? "default" : "secondary"}
                   >
-                    {submission.percentage}%
+                    {submission.percentage.toFixed(2)}%
                   </Badge>
                 </div>
               </CardHeader>
