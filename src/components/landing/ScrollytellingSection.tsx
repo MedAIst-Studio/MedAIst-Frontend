@@ -5,9 +5,12 @@ import {BookOpen, MessageSquare, Target} from "lucide-react";
 import {useRef} from "react";
 
 import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
+import {Badge} from "@/components/ui/badge";
 
 import {MockChatInterface} from "./mockups/MockChatInterface";
 import {MockFileUpload} from "./mockups/MockFileUpload";
+import {MockFlashcards} from "./mockups/MockFlashcards";
+import {MockMindmaps} from "./mockups/MockMindmaps";
 import {MockQuizInterface} from "./mockups/MockQuizInterface";
 
 interface StoryStep {
@@ -17,6 +20,7 @@ interface StoryStep {
   icon: React.ElementType;
   component: React.ReactNode;
   color: string;
+  isComingSoon?: boolean;
 }
 
 const storySteps: StoryStep[] = [
@@ -42,10 +46,30 @@ const storySteps: StoryStep[] = [
     id: 3,
     title: "Hedefli Quiz Çöz",
     description:
-      "Notlarından otomatik olarak oluşturulan quizlerle pratik yap. Sonuçlarını analiz et ve gelişimini takip et.",
+      "Notlarından otomatik olarak oluşturulan quizlerle pratik yap. Pasif okumayı bırak, aktif hatırlama ile bilgiyi hafızana kazı.",
     icon: Target,
     component: <MockQuizInterface />,
     color: "from-green-500 to-emerald-500",
+  },
+  {
+    id: 4,
+    title: "Hafıza Kartları",
+    description:
+      "Öğrendiğin bilgileri kalıcı hafızana aktar. Spaced Repetition (Aralıklı Tekrar) algoritması ile hangi kartı ne zaman görmen gerektiğini biz hesaplayalım.",
+    icon: Target,
+    component: <MockFlashcards />,
+    color: "from-amber-500 to-orange-500",
+    isComingSoon: true,
+  },
+  {
+    id: 5,
+    title: "AI Mindmaps",
+    description:
+      "Yüklediğin PDF'lerin konu haritalamasını yapıp ilerleme takibini kolaylaştıran sistem. Konular arasındaki bağlantıları görselleştir ve eksiklerini anında tespit et.",
+    icon: MessageSquare,
+    component: <MockMindmaps />,
+    color: "from-indigo-500 to-purple-500",
+    isComingSoon: true,
   },
 ];
 
@@ -140,9 +164,16 @@ const StoryCard = ({step, index}: StoryCardProps) => {
           </div>
 
           {/* Title */}
-          <h3 className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-bold tracking-tight">
-            {step.title}
-          </h3>
+          <div className="flex items-center gap-3">
+            <h3 className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-bold tracking-tight">
+              {step.title}
+            </h3>
+            {step.isComingSoon && (
+              <Badge className="bg-primary/10 text-primary hover:bg-primary/20 border-none text-[10px] px-2 py-0">
+                Yakında
+              </Badge>
+            )}
+          </div>
 
           {/* Description */}
           <p className="text-base sm:text-lg leading-relaxed text-muted-foreground">
@@ -190,6 +221,32 @@ const StoryCard = ({step, index}: StoryCardProps) => {
                 </span>
               </>
             )}
+            {step.id === 4 && (
+              <>
+                <span className="rounded-full bg-amber-100 dark:bg-amber-900/30 px-2.5 sm:px-3 py-0.5 sm:py-1 text-xs sm:text-sm font-medium text-amber-700 dark:text-amber-300">
+                  Aralıklı Tekrar
+                </span>
+                <span className="rounded-full bg-amber-100 dark:bg-amber-900/30 px-2.5 sm:px-3 py-0.5 sm:py-1 text-xs sm:text-sm font-medium text-amber-700 dark:text-amber-300">
+                  Kalıcı Öğrenme
+                </span>
+                <span className="rounded-full bg-amber-100 dark:bg-amber-900/30 px-2.5 sm:px-3 py-0.5 sm:py-1 text-xs sm:text-sm font-medium text-amber-700 dark:text-amber-300">
+                  Akıllı Algoritma
+                </span>
+              </>
+            )}
+            {step.id === 5 && (
+              <>
+                <span className="rounded-full bg-indigo-100 dark:bg-indigo-900/30 px-2.5 sm:px-3 py-0.5 sm:py-1 text-xs sm:text-sm font-medium text-indigo-700 dark:text-indigo-300">
+                  Görselleştirme
+                </span>
+                <span className="rounded-full bg-indigo-100 dark:bg-indigo-900/30 px-2.5 sm:px-3 py-0.5 sm:py-1 text-xs sm:text-sm font-medium text-indigo-700 dark:text-indigo-300">
+                  Konu Takibi
+                </span>
+                <span className="rounded-full bg-indigo-100 dark:bg-indigo-900/30 px-2.5 sm:px-3 py-0.5 sm:py-1 text-xs sm:text-sm font-medium text-indigo-700 dark:text-indigo-300">
+                  Bütünsel Bakış
+                </span>
+              </>
+            )}
           </div>
         </motion.div>
 
@@ -228,6 +285,8 @@ const StoryCard = ({step, index}: StoryCardProps) => {
               {step.id === 1 && "⚡ Hızlı"}
               {step.id === 2 && "🤖 Akıllı"}
               {step.id === 3 && "📊 Veri Odaklı"}
+              {step.id === 4 && "🧠 Kalıcı"}
+              {step.id === 5 && "🗺️ Görsel"}
             </p>
           </motion.div>
         </motion.div>

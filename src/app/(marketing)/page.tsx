@@ -4,6 +4,7 @@ import Script from "next/script";
 import CTASection from "@/components/landing/CTASection";
 import FAQSection from "@/components/landing/FAQSection";
 import HeroSection from "@/components/landing/HeroSection";
+import PricingSection from "@/components/landing/PricingSection";
 import ProblemSolutionSection from "@/components/landing/ProblemSolutionSection";
 import ScrollytellingSection from "@/components/landing/ScrollytellingSection";
 
@@ -87,6 +88,7 @@ const LandingPage = () => {
       <HeroSection />
       <ProblemSolutionSection />
       <ScrollytellingSection />
+      <PricingSection />
       <FAQSection />
       <CTASection />
     </>
